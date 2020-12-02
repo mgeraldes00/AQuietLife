@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloseUp : MonoBehaviour
 {
+    public GameObject cabinetGeneral;
     public GameObject cabinet;
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class CloseUp : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log(hit.collider.gameObject.name);
+                cabinetGeneral.SetActive(false);
                 cabinet.SetActive(true);
 
             }
