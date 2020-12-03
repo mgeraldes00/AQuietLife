@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class CabinetManager : MonoBehaviour
 {
+    public GameObject returnArrow;
     public GameObject cabinetGeneral;
     public GameObject cabinet;
     public GameObject plate;
+    public GameObject glass;
 
-    public Animator cabinetAnim;
+    public Animator door1Anim;
+    public Animator door3Anim;
+    public Animator glassAnim;
     public Animator plateAnim;
 
     private Animator anim;
+
+    public bool isLocked;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        isLocked = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -30,19 +37,19 @@ public class CabinetManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider == null)
+            if (hit.collider.CompareTag("Nothing"))
             {
                 cabinetGeneral.SetActive(true);
                 cabinet.SetActive(false);
-                //plate.SetActive(false);
+                returnArrow.SetActive(false);
             }
 
-            else if (hit.collider != null)
+            if (hit.collider.CompareTag("Cabinet"))
             {
-                cabinetAnim.SetBool("Open", true);
-                //StartCoroutine(PlateToAppear());
-                StartCoroutine(PlateToAnimate());
-                StartCoroutine(CabinetToClose());
+                door1Anim.SetTrigger("Door1OpenFull");
+                plate.SetActive(true);
+                glass.SetActive(true);
+                StartCoroutine(CabinetRewind());
             }
         }
 
@@ -55,22 +62,77 @@ public class CabinetManager : MonoBehaviour
             }
         }*/
     }
-    IEnumerator PlateToAppear()
-    {
-        yield return new WaitForSeconds(1);
-        plate.SetActive(true);        
-    }
 
-    IEnumerator PlateToAnimate()
+    IEnumerator CabinetRewind()
     {
         yield return new WaitForSeconds(2);
-        plateAnim.SetBool("Taken", true);
+        glassAnim.SetTrigger("GlassTaken");
+
+        yield return new WaitForSeconds(2);
+        glass.SetActive(false);
+
+        yield return new WaitForSeconds(2);
+        door3Anim.SetTrigger("Door3OpenFull");
+
+        yield return new WaitForSeconds(2);
+        plateAnim.SetTrigger("PlateTaken");
+
+        yield return new WaitForSeconds(2);
+        plate.SetActive(false);
     }
 
-    IEnumerator CabinetToClose()
+    public void ButtonBehaviour(int i)
     {
-        yield return new WaitForSeconds(4);
-        cabinetAnim.SetBool("Open", false);
-        plateAnim.SetBool("Taken", false);
+        if (isLocked == false)
+        {
+            switch (i)
+            {
+                case (0):
+                default:
+                    glass.SetActive(true);
+                    door1Anim.SetTrigger("Door1Part1");
+                    break;
+                case (1):
+                    glass.SetActive(true);
+                    door1Anim.SetTrigger("Door1Part2");
+                    glassAnim.SetTrigger("GlassTaken");
+                    break;
+                case (2):
+                    glass.SetActive(false);
+                    door1Anim.SetTrigger("Door1Part3");
+                    break;
+                case (3):
+                    plate.SetActive(true);
+                    door3Anim.SetTrigger("Door3Part1");
+                    break;
+                case (4):
+                    plate.SetActive(true);
+                    door3Anim.SetTrigger("Door3Part2");
+                    plateAnim.SetTrigger("PlateTaken");
+                    break;
+                case (5):
+                    plate.SetActive(false);
+                    door3Anim.SetTrigger("Door3Part3");
+                    break;
+            }
+        }
+        
+    }
+
+    public void LockAndUnlock()
+    {
+        if (isLocked == false)
+        {
+            returnArrow.SetActive(false);
+            isLocked = true;
+            StartCoroutine(Unlock());
+        }        
+    }
+
+    IEnumerator Unlock()
+    {
+        yield return new WaitForSeconds(2);
+        isLocked = false;
+        returnArrow.SetActive(true);
     }
 }

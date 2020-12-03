@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloseUp : MonoBehaviour
 {
+    public GameObject returnArrow;
     public GameObject cabinetGeneral;
     public GameObject cabinet;
 
@@ -29,6 +30,7 @@ public class CloseUp : MonoBehaviour
                 Debug.Log(hit.collider.gameObject.name);
                 cabinetGeneral.SetActive(false);
                 cabinet.SetActive(true);
+                returnArrow.SetActive(true);
 
             }
         }
