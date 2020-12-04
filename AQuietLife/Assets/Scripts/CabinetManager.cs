@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CabinetManager : MonoBehaviour
 {
+    public ClockManager clock;
+
     public GameObject returnArrow;
+    public GameObject cabinetButtons;
     public GameObject cabinetGeneral;
     public GameObject cabinet;
     public GameObject plate;
@@ -17,13 +20,16 @@ public class CabinetManager : MonoBehaviour
 
     private Animator anim;
 
-    public bool isLocked;
+    private bool isLocked;
+
+    public bool hasTime;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         isLocked = false;
+        hasTime = true;
     }
 
     // Update is called once per frame
@@ -42,6 +48,7 @@ public class CabinetManager : MonoBehaviour
                 cabinetGeneral.SetActive(true);
                 cabinet.SetActive(false);
                 returnArrow.SetActive(false);
+                cabinetButtons.SetActive(false);
             }
 
             if (hit.collider.CompareTag("Cabinet"))
@@ -83,7 +90,7 @@ public class CabinetManager : MonoBehaviour
 
     public void ButtonBehaviour(int i)
     {
-        if (isLocked == false)
+        if (isLocked == false && hasTime == true)
         {
             switch (i)
             {
@@ -91,28 +98,34 @@ public class CabinetManager : MonoBehaviour
                 default:
                     glass.SetActive(true);
                     door1Anim.SetTrigger("Door1Part1");
+                    clock.Drain();
                     break;
                 case (1):
                     glass.SetActive(true);
                     door1Anim.SetTrigger("Door1Part2");
                     glassAnim.SetTrigger("GlassTaken");
+                    clock.Drain();
                     break;
                 case (2):
                     glass.SetActive(false);
                     door1Anim.SetTrigger("Door1Part3");
+                    clock.Drain();
                     break;
                 case (3):
                     plate.SetActive(true);
                     door3Anim.SetTrigger("Door3Part1");
+                    clock.Drain();
                     break;
                 case (4):
                     plate.SetActive(true);
                     door3Anim.SetTrigger("Door3Part2");
                     plateAnim.SetTrigger("PlateTaken");
+                    clock.Drain();
                     break;
                 case (5):
                     plate.SetActive(false);
                     door3Anim.SetTrigger("Door3Part3");
+                    clock.Drain();
                     break;
             }
         }
@@ -121,12 +134,17 @@ public class CabinetManager : MonoBehaviour
 
     public void LockAndUnlock()
     {
-        if (isLocked == false)
+        if (isLocked == false && hasTime == true)
         {
             returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(Unlock());
         }        
+    }
+
+    public void NoMoreTime()
+    {
+        hasTime = false;
     }
 
     IEnumerator Unlock()
