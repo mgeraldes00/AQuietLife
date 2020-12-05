@@ -5,22 +5,35 @@ using UnityEngine;
 public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
+    public InventoryManager inventory;
+
+    public GameObject cabinetGeneral;
+    public GameObject cabinetDoor2Open;
+    public GameObject cabinetDoor4Open;
+    public GameObject cabinetDoor24Open;
+    public GameObject cabinetDoor24OpenNoPlate; 
+    public GameObject cabinetDoor4OpenNoPlate;
 
     public GameObject returnArrow;
-    public GameObject cabinetButtons;
-    public GameObject cabinetGeneral;
+    public GameObject cabinetButtons;   
     public GameObject cabinet;
     public GameObject plate;
+    public GameObject plateInteract;
     public GameObject glass;
 
     public Animator door1Anim;
+    public Animator door2Anim;
     public Animator door3Anim;
+    public Animator door4Anim;
     public Animator glassAnim;
     public Animator plateAnim;
 
     private Animator anim;
 
     private bool isLocked;
+    private bool door2Open;
+    private bool door4Open;
+    private bool plateTaken;
 
     public bool hasTime;
 
@@ -38,14 +51,39 @@ public class CabinetManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePos = 
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
             if (hit.collider.CompareTag("Nothing"))
             {
-                cabinetGeneral.SetActive(true);
+                if (door2Open == true && door4Open == false)
+                {
+                    cabinetDoor2Open.SetActive(true);
+                }
+                if (door4Open == true && door2Open == false && plateTaken == false)
+                {
+                    cabinetDoor4Open.SetActive(true);
+                }
+                if (door2Open == true && door4Open == true && plateTaken == false)
+                {
+                    cabinetDoor24Open.SetActive(true);
+                }
+                if (door4Open == true && door2Open == false && plateTaken == true)
+                {
+                    cabinetDoor4OpenNoPlate.SetActive(true);
+                }
+                if (door2Open == true && door4Open == true && plateTaken == true)
+                {
+                    cabinetDoor24OpenNoPlate.SetActive(true);
+                }
+                if (door2Open == false && door4Open == false && plateTaken == false)
+                {
+                    cabinetGeneral.SetActive(true);
+                } 
+                
                 cabinet.SetActive(false);
                 returnArrow.SetActive(false);
                 cabinetButtons.SetActive(false);
@@ -53,10 +91,37 @@ public class CabinetManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Cabinet"))
             {
-                door1Anim.SetTrigger("Door1OpenFull");
-                plate.SetActive(true);
-                glass.SetActive(true);
-                StartCoroutine(CabinetRewind());
+                //door1Anim.SetTrigger("Door1OpenFull");
+                //plate.SetActive(true);
+                //glass.SetActive(true);
+                //StartCoroutine(CabinetRewind());
+                cabinetButtons.SetActive(true);
+            }
+
+            if (hit.collider.CompareTag("CabinetDoor1") ||
+                hit.collider.CompareTag("CabinetDoor3"))
+            {
+                Debug.Log("Game Over");
+            }
+
+            if (hit.collider.CompareTag("CabinetDoor2"))
+            {
+                door2Anim.SetBool("Door2Open", true);
+                door2Open = true;
+            }
+
+            if (hit.collider.CompareTag("CabinetDoor4"))
+            {
+                door4Anim.SetBool("Door4Open", true);
+                door4Open = true;
+                plateInteract.SetActive(true);
+            }
+
+            if (hit.collider.CompareTag("Plate"))
+            {
+                plateInteract.SetActive(false);
+                inventory.PlateInInventory();
+                plateTaken = true;
             }
         }
 

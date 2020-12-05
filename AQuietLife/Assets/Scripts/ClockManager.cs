@@ -15,9 +15,9 @@ public class ClockManager : MonoBehaviour
 
     void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.1f)
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
-            Debug.Log("End");
+            Debug.Log("Time's Up!");
             cabinet.NoMoreTime();
         }
     }

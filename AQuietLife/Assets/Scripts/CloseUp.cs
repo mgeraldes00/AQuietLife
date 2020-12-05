@@ -21,7 +21,8 @@ public class CloseUp : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //Debug.Log("Mouse Clicked");
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePos = 
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
@@ -32,7 +33,7 @@ public class CloseUp : MonoBehaviour
                 cabinetGeneral.SetActive(false);
                 cabinet.SetActive(true);
                 returnArrow.SetActive(true);
-                cabinetButtons.SetActive(true);
+                //cabinetButtons.SetActive(true);
 
             }
         }

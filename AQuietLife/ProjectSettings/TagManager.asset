@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Cabinet
   - Nothing
+  - CabinetDoor1
+  - CabinetDoor2
+  - CabinetDoor3
+  - CabinetDoor4
+  - Plate
   layers:
   - Default
   - TransparentFX
