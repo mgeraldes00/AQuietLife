@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public Image plateIcon;
 
+    public bool hasObject;
     public bool hasPlate;
 
     // Start is called before the first frame update
@@ -25,11 +26,13 @@ public class InventoryManager : MonoBehaviour
     {
         plateIcon.enabled = true;
         hasPlate = true;
+        hasObject = true;
     }
 
     public void PlateOffInventory()
     {
         plateIcon.enabled = false;
         hasPlate = false;
+        hasObject = false;
     }
 }

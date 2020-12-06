@@ -6,6 +6,8 @@ public class ClockManager : MonoBehaviour
 {
     public Animator anim;
 
+    public AudioSource tick;
+
     public CabinetManager cabinet;
 
     void Start()
@@ -25,6 +27,7 @@ public class ClockManager : MonoBehaviour
     public void Drain()
     {
         anim.speed = 1;
+        tick.Play();
         StartCoroutine(StopDrain());
     }
 
@@ -32,5 +35,6 @@ public class ClockManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         anim.speed = 0;
+        tick.Stop();
     }
 }
