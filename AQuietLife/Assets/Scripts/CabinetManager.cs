@@ -6,6 +6,7 @@ public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
+    public GameOver gameOver;
 
     public GameObject cabinetGeneral;
     public GameObject cabinetDoor2Open;
@@ -102,6 +103,7 @@ public class CabinetManager : MonoBehaviour
                 hit.collider.CompareTag("CabinetDoor3"))
             {
                 Debug.Log("Game Over");
+                gameOver.Die();
             }
 
             if (hit.collider.CompareTag("CabinetDoor2"))
