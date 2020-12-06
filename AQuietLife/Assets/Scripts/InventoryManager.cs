@@ -26,4 +26,10 @@ public class InventoryManager : MonoBehaviour
         plateIcon.enabled = true;
         hasPlate = true;
     }
+
+    public void PlateOffInventory()
+    {
+        plateIcon.enabled = false;
+        hasPlate = false;
+    }
 }

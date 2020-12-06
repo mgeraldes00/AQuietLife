@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseUp : MonoBehaviour
+public class CloseUpCabinet : MonoBehaviour
 {
     public GameObject returnArrow;
-    public GameObject cabinetGeneral;
+    public GameObject[] objsToZoom;
     public GameObject cabinet;
     public GameObject cabinetButtons;
+
+    public BoxCollider2D[] zoomableObjs;
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +31,15 @@ public class CloseUp : MonoBehaviour
 
             if (hit.collider.CompareTag("Cabinet"))
             {
+                for (int i = 0; i < zoomableObjs.Length; i++)
+                    zoomableObjs[i].enabled = false;
                 Debug.Log(hit.collider.gameObject.name);
-                cabinetGeneral.SetActive(false);
+                for (int i = 0; i < objsToZoom.Length; i++)
+                    objsToZoom[i].SetActive(false);
+                //objToZoom.SetActive(false);
                 cabinet.SetActive(true);
                 returnArrow.SetActive(true);
                 //cabinetButtons.SetActive(true);
-
             }
         }
 

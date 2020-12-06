@@ -11,6 +11,7 @@ TagManager:
   - CabinetDoor3
   - CabinetDoor4
   - Plate
+  - Table
   layers:
   - Default
   - TransparentFX

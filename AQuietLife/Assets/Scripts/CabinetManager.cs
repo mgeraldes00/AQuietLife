@@ -7,6 +7,7 @@ public class CabinetManager : MonoBehaviour
     public ClockManager clock;
     public InventoryManager inventory;
     public GameOver gameOver;
+    public CloseUpCabinet closeUp;
 
     public GameObject cabinetGeneral;
     public GameObject cabinetDoor2Open;
@@ -62,26 +63,38 @@ public class CabinetManager : MonoBehaviour
             {
                 if (door2Open == true && door4Open == false)
                 {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor2Open.SetActive(true);
                 }
                 if (door4Open == true && door2Open == false && plateTaken == false)
                 {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor4Open.SetActive(true);
                 }
                 if (door2Open == true && door4Open == true && plateTaken == false)
                 {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor24Open.SetActive(true);
                 }
                 if (door4Open == true && door2Open == false && plateTaken == true)
                 {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor4OpenNoPlate.SetActive(true);
                 }
                 if (door2Open == true && door4Open == true && plateTaken == true)
                 {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor24OpenNoPlate.SetActive(true);
                 }
                 if (door2Open == false && door4Open == false && plateTaken == false)
                 {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
                     cabinetGeneral.SetActive(true);
                 } 
                 
