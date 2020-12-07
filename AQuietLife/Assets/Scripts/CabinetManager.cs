@@ -32,6 +32,8 @@ public class CabinetManager : MonoBehaviour
 
     private Animator anim;
 
+    public AudioSource doorSound;
+
     private bool isLocked;
     private bool door2Open;
     private bool door4Open;
@@ -123,6 +125,7 @@ public class CabinetManager : MonoBehaviour
             {
                 door2Anim.SetBool("Door2Open", true);
                 door2Open = true;
+                doorSound.Play();
             }
 
             if (hit.collider.CompareTag("CabinetDoor4"))
@@ -130,6 +133,7 @@ public class CabinetManager : MonoBehaviour
                 door4Anim.SetBool("Door4Open", true);
                 door4Open = true;
                 plateInteract.SetActive(true);
+                doorSound.Play();
             }
 
             if (hit.collider.CompareTag("Plate"))
@@ -178,6 +182,7 @@ public class CabinetManager : MonoBehaviour
                 default:
                     glass.SetActive(true);
                     door1Anim.SetTrigger("Door1Part1");
+                    doorSound.Play();
                     clock.Drain();
                     break;
                 case (1):
@@ -194,6 +199,7 @@ public class CabinetManager : MonoBehaviour
                 case (3):
                     plate.SetActive(true);
                     door3Anim.SetTrigger("Door3Part1");
+                    doorSound.Play();
                     clock.Drain();
                     break;
                 case (4):
