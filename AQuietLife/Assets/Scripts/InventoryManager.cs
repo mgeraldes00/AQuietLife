@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public Image plateIcon;
+    public Image gloveIcon;
 
     public bool hasObject;
+    public bool hasGlove;
+
     public bool hasPlate;
 
     // Start is called before the first frame update
@@ -34,5 +37,17 @@ public class InventoryManager : MonoBehaviour
         plateIcon.enabled = false;
         hasPlate = false;
         hasObject = false;
+    }
+
+    public void GloveInInventory()
+    {
+        gloveIcon.enabled = true;
+        hasGlove = true;
+    }
+
+    public void GloveOffInventory()
+    {
+        gloveIcon.enabled = false;
+        hasGlove = false;
     }
 }

@@ -12,6 +12,12 @@ TagManager:
   - CabinetDoor4
   - Plate
   - Table
+  - Drawers
+  - DrawerDoor1
+  - DrawerDoor2
+  - DrawerDoor3
+  - BreadBox
+  - BreadBoxDoor
   layers:
   - Default
   - TransparentFX

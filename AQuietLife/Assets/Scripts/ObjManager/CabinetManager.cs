@@ -6,7 +6,7 @@ public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
-    public GameOver gameOver;
+    public GameManager gameOver;
     public CloseUpCabinet closeUp;
 
     public GameObject cabinetGeneral;
