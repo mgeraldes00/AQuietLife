@@ -17,7 +17,8 @@ public class CabinetManager : MonoBehaviour
     public GameObject cabinetDoor4OpenNoPlate;
 
     public GameObject returnArrow;
-    public GameObject cabinetButtons;   
+    public GameObject glove;
+    public GameObject cabinetButtons;    
     public GameObject cabinet;
     public GameObject plate;
     public GameObject plateInteract;
@@ -126,6 +127,7 @@ public class CabinetManager : MonoBehaviour
                 door2Anim.SetBool("Door2Open", true);
                 door2Open = true;
                 doorSound.Play();
+                glove.SetActive(true);
             }
 
             if (hit.collider.CompareTag("CabinetDoor4"))

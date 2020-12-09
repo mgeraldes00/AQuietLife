@@ -20,6 +20,8 @@ public class DrawerManager : MonoBehaviour
     public GameObject knife;
     public GameObject knifeInteract;
 
+    public BoxCollider2D[] interactableColliders;
+
     public Animator doorLeftAnim;
     public Animator doorRightAnim;
     public Animator doorCenterAnim;
@@ -27,6 +29,7 @@ public class DrawerManager : MonoBehaviour
     public Animator knifeAnim;
 
     private bool isLocked;
+    private bool knifeTaken;
 
     public bool hasTime;
 
@@ -67,6 +70,16 @@ public class DrawerManager : MonoBehaviour
             if (hit.collider.CompareTag("DrawerDoor2"))
             {
                 doorCenterAnim.SetBool("DrawerCenterOpen", true);
+
+                for (int i = 0; i <= interactableColliders.Length; i++)
+                    interactableColliders[i].enabled = true;
+            }
+
+            if (hit.collider.CompareTag("Knife"))
+            {
+                knifeInteract.SetActive(false);
+                inventory.KnifeInInventory();
+                knifeTaken = true;
             }
         }
     }

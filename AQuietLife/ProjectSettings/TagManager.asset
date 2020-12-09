@@ -18,6 +18,10 @@ TagManager:
   - DrawerDoor3
   - BreadBox
   - BreadBoxDoor
+  - Glove
+  - Bread1
+  - Bread2
+  - Knife
   layers:
   - Default
   - TransparentFX

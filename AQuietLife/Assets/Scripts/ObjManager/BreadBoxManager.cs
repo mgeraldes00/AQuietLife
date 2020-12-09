@@ -21,11 +21,14 @@ public class BreadBoxManager : MonoBehaviour
     public GameObject breadInteract1;
     public GameObject breadInteract2;
 
+    public BoxCollider2D[] interactableColliders;
+
     public Animator doorAnim;
     public Animator breadAnim;
 
     private bool isLocked;
     private bool isTrapped;
+    private bool bread1Taken;
 
     public bool hasTime;
 
@@ -69,6 +72,10 @@ public class BreadBoxManager : MonoBehaviour
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 inventory.GloveOffInventory();
                 isTrapped = false;
+
+                for (int i = 0; i <= interactableColliders.Length; i++)
+                    interactableColliders[i].enabled = true;
+
             }
 
             if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == false && isTrapped == true)
@@ -78,6 +85,13 @@ public class BreadBoxManager : MonoBehaviour
             else if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == false && isTrapped == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
+            }
+
+            if (hit.collider.CompareTag("Bread1") && inventory.plateUsed == true)
+            {
+                breadInteract1.SetActive(false);
+                inventory.BreadInInventory();
+                bread1Taken = true;
             }
         }
     }
