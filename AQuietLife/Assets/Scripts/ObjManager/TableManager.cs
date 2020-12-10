@@ -14,8 +14,12 @@ public class TableManager : MonoBehaviour
     public GameObject returnArrow;
     public GameObject table;
     public GameObject plate;
+    public GameObject bread;
+    public GameObject knife;
 
     private bool plateOnTable;
+    private bool breadOnTable;
+    private bool knifeOnTable;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +41,25 @@ public class TableManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Nothing"))
             {
-                if (plateOnTable == true)
+                switch (plateOnTable)
+                {
+                    case (true):
+                        for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                            closeUp.zoomableObjs[i].enabled = true;
+                        tableGeneralWPlate.SetActive(true);
+                        table.SetActive(false);
+                        returnArrow.SetActive(false);
+                        return;
+                    case (false):
+                        for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                            closeUp.zoomableObjs[i].enabled = true;
+                        tableGeneral.SetActive(true);
+                        table.SetActive(false);
+                        returnArrow.SetActive(false);
+                        return;
+                }
+
+                /*if (plateOnTable == true)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
@@ -49,10 +71,10 @@ public class TableManager : MonoBehaviour
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     tableGeneral.SetActive(true);
-                }
+                }*/
 
-                table.SetActive(false);
-                returnArrow.SetActive(false);
+                //table.SetActive(false);
+                //returnArrow.SetActive(false);
             }
 
             if (hit.collider.CompareTag("Table") && inventory.hasPlate == true)
@@ -60,6 +82,25 @@ public class TableManager : MonoBehaviour
                 plate.SetActive(true);
                 inventory.PlateOffInventory();
                 plateOnTable = true;
+            }
+
+            if (hit.collider.CompareTag("Table") && inventory.hasBread == true)
+            {
+                bread.SetActive(true);
+                inventory.BreadOffInventory();
+                breadOnTable = true;
+            }
+
+            if (hit.collider.CompareTag("Table") && inventory.hasKnife == true)
+            {
+                knife.SetActive(true);
+                inventory.KnifeOffInventory();
+                knifeOnTable = true;
+            }
+
+            if (knifeOnTable == true && breadOnTable == true)
+            {
+                //Bread is cut
             }
         }
     }

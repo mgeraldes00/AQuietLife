@@ -18,6 +18,8 @@ public class InventoryManager : MonoBehaviour
     public bool hasKnife;
 
     public bool plateUsed;
+    public bool breadUsed;
+    public bool knifeUsed;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +33,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasObject == true)
-        {
 
-        }
     }
 
     public void GloveInInventory()
@@ -81,6 +80,7 @@ public class InventoryManager : MonoBehaviour
         breadIcon.enabled = false;
         hasBread = false;
         hasObject = false;
+        breadUsed = true;
     }
 
     public void KnifeInInventory()
@@ -95,5 +95,6 @@ public class InventoryManager : MonoBehaviour
         knifeIcon.enabled = false;
         hasKnife = false;
         hasObject = false;
+        knifeUsed = true;
     }
 }

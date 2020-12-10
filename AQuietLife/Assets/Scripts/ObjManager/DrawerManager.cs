@@ -67,6 +67,13 @@ public class DrawerManager : MonoBehaviour
                 drawerButtons.SetActive(true);
             }
 
+            if (hit.collider.CompareTag("DrawerDoor1") ||
+                hit.collider.CompareTag("DrawerDoor3"))
+            {
+                Debug.Log("Game Over");
+                gameOver.Die();
+            }
+
             if (hit.collider.CompareTag("DrawerDoor2"))
             {
                 doorCenterAnim.SetBool("DrawerCenterOpen", true);
@@ -75,7 +82,7 @@ public class DrawerManager : MonoBehaviour
                     interactableColliders[i].enabled = true;
             }
 
-            if (hit.collider.CompareTag("Knife"))
+            if (hit.collider.CompareTag("Knife") && inventory.hasObject != true)
             {
                 knifeInteract.SetActive(false);
                 inventory.KnifeInInventory();

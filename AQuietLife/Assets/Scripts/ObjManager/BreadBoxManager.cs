@@ -87,7 +87,8 @@ public class BreadBoxManager : MonoBehaviour
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
             }
 
-            if (hit.collider.CompareTag("Bread1") && inventory.plateUsed == true)
+            if (hit.collider.CompareTag("Bread1") 
+                && inventory.hasObject != true && inventory.plateUsed == true)
             {
                 breadInteract1.SetActive(false);
                 inventory.BreadInInventory();

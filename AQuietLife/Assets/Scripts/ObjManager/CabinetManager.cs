@@ -138,7 +138,7 @@ public class CabinetManager : MonoBehaviour
                 doorSound.Play();
             }
 
-            if (hit.collider.CompareTag("Plate"))
+            if (hit.collider.CompareTag("Plate") && inventory.hasObject != true)
             {
                 plateInteract.SetActive(false);
                 inventory.PlateInInventory();
