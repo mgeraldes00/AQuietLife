@@ -6,6 +6,7 @@ public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
+    public GloveManager gloveMng;
     public GameManager gameOver;
     public CloseUpCabinet closeUp;
 
@@ -15,6 +16,9 @@ public class CabinetManager : MonoBehaviour
     public GameObject cabinetDoor24Open;
     public GameObject cabinetDoor24OpenNoPlate; 
     public GameObject cabinetDoor4OpenNoPlate;
+    public GameObject cabinetDoor2OpenGlove;
+    public GameObject cabinetDoor24OpenGloveNoPlate;
+    public GameObject cabinetDoor24OpenGlovePlate;
 
     public GameObject returnArrow;
     public GameObject glove;
@@ -64,11 +68,17 @@ public class CabinetManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Nothing"))
             {
-                if (door2Open == true && door4Open == false)
+                if (door2Open == true && door4Open == false && gloveMng.gloveTaken == true)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor2Open.SetActive(true);
+                }
+                if (door2Open == true && door4Open == false && gloveMng.gloveTaken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    cabinetDoor2OpenGlove.SetActive(true);
                 }
                 if (door4Open == true && door2Open == false && plateTaken == false)
                 {
@@ -76,11 +86,17 @@ public class CabinetManager : MonoBehaviour
                         closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor4Open.SetActive(true);
                 }
-                if (door2Open == true && door4Open == true && plateTaken == false)
+                if (door2Open == true && door4Open == true && plateTaken == false && gloveMng.gloveTaken == true)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor24Open.SetActive(true);
+                }
+                if (door2Open == true && door4Open == true && plateTaken == false && gloveMng.gloveTaken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    cabinetDoor24OpenGlovePlate.SetActive(true);
                 }
                 if (door4Open == true && door2Open == false && plateTaken == true)
                 {
@@ -88,11 +104,17 @@ public class CabinetManager : MonoBehaviour
                         closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor4OpenNoPlate.SetActive(true);
                 }
-                if (door2Open == true && door4Open == true && plateTaken == true)
+                if (door2Open == true && door4Open == true && plateTaken == true && gloveMng.gloveTaken == true)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     cabinetDoor24OpenNoPlate.SetActive(true);
+                }
+                if (door2Open == true && door4Open == true && plateTaken == true && gloveMng.gloveTaken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    cabinetDoor24OpenGloveNoPlate.SetActive(true);
                 }
                 if (door2Open == false && door4Open == false && plateTaken == false)
                 {
@@ -240,5 +262,7 @@ public class CabinetManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         isLocked = false;
         returnArrow.SetActive(true);
+        plate.SetActive(false);
+        glass.SetActive(false);
     }
 }

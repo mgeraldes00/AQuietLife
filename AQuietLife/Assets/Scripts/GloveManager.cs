@@ -9,6 +9,8 @@ public class GloveManager : MonoBehaviour
     public GameObject[] gloves;
     public GameObject currentGlove;
 
+    public bool gloveTaken;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class GloveManager : MonoBehaviour
                 //Debug.Log(hit.collider.gameObject.name);
                 currentGlove.SetActive(false);
                 inventory.GloveInInventory();
+                gloveTaken = true;
             }
         }
     }

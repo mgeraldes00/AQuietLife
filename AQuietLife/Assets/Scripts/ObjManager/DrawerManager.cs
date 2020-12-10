@@ -10,8 +10,8 @@ public class DrawerManager : MonoBehaviour
     public CloseUpDrawers closeUp;
 
     public GameObject drawersGeneral;
-    //public GameObject drawersMiddleDoorOpen;
-    //public GameObject drawersMiddleDoorOpenNoKnife;
+    public GameObject drawersMiddleDoorOpen;
+    public GameObject drawersMiddleDoorOpenNoKnife;
 
     public GameObject returnArrow;
     public GameObject drawerButtons;
@@ -29,6 +29,7 @@ public class DrawerManager : MonoBehaviour
     public Animator knifeAnim;
 
     private bool isLocked;
+    private bool doorCenterOpen;
     private bool knifeTaken;
 
     public bool hasTime;
@@ -54,9 +55,27 @@ public class DrawerManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Nothing"))
             {
-                for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                    closeUp.zoomableObjs[i].enabled = true;
-                drawersGeneral.SetActive(true);
+                if (doorCenterOpen == true && knifeTaken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    drawersMiddleDoorOpen.SetActive(true);
+                }
+
+                if (doorCenterOpen == true && knifeTaken == true)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    drawersMiddleDoorOpenNoKnife.SetActive(true);
+                }
+
+                if (doorCenterOpen == false && knifeTaken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    drawersGeneral.SetActive(true);
+                }   
+                
                 drawers.SetActive(false);
                 returnArrow.SetActive(false);
                 drawerButtons.SetActive(false);
@@ -77,7 +96,7 @@ public class DrawerManager : MonoBehaviour
             if (hit.collider.CompareTag("DrawerDoor2"))
             {
                 doorCenterAnim.SetBool("DrawerCenterOpen", true);
-
+                doorCenterOpen = true;
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
             }
@@ -169,5 +188,7 @@ public class DrawerManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         isLocked = false;
         returnArrow.SetActive(true);
+        spoon.SetActive(false);
+        knife.SetActive(false);
     }
 }

@@ -10,6 +10,10 @@ public class TableManager : MonoBehaviour
 
     public GameObject tableGeneral;
     public GameObject tableGeneralWPlate;
+    public GameObject tableGeneralWKnife;
+    public GameObject tableGeneralWPlateKnife;
+    public GameObject tableGeneralWPlateBread;
+    public GameObject tableGeneralWPlateKnifeBread;
 
     public GameObject returnArrow;
     public GameObject table;
@@ -41,40 +45,50 @@ public class TableManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Nothing"))
             {
-                switch (plateOnTable)
-                {
-                    case (true):
-                        for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                            closeUp.zoomableObjs[i].enabled = true;
-                        tableGeneralWPlate.SetActive(true);
-                        table.SetActive(false);
-                        returnArrow.SetActive(false);
-                        return;
-                    case (false):
-                        for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                            closeUp.zoomableObjs[i].enabled = true;
-                        tableGeneral.SetActive(true);
-                        table.SetActive(false);
-                        returnArrow.SetActive(false);
-                        return;
-                }
-
-                /*if (plateOnTable == true)
+                if (plateOnTable == true && breadOnTable == false && knifeOnTable == false)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     tableGeneralWPlate.SetActive(true);
                 }
 
-                if (plateOnTable == false)
+                if (plateOnTable == false && breadOnTable == false && knifeOnTable == true)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    tableGeneralWKnife.SetActive(true);
+                }
+
+                if (plateOnTable == true && breadOnTable == false && knifeOnTable == true)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    tableGeneralWPlateKnife.SetActive(true);
+                }
+
+                if (plateOnTable == true && breadOnTable == true && knifeOnTable == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    tableGeneralWPlateBread.SetActive(true);
+                }
+
+                if (plateOnTable == true && breadOnTable == true && knifeOnTable == true)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    tableGeneralWPlateKnifeBread.SetActive(true);
+                }
+
+                if (plateOnTable == false && breadOnTable == false && knifeOnTable == false)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     tableGeneral.SetActive(true);
-                }*/
+                }
 
-                //table.SetActive(false);
-                //returnArrow.SetActive(false);
+                table.SetActive(false);
+                returnArrow.SetActive(false);
             }
 
             if (hit.collider.CompareTag("Table") && inventory.hasPlate == true)

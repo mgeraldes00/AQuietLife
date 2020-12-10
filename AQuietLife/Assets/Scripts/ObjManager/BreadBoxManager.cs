@@ -10,9 +10,10 @@ public class BreadBoxManager : MonoBehaviour
     public CloseUpBreadBox closeUp;
 
     public GameObject breadBoxGeneral;
-    //public GameObject breadBoxDoorOpen;
-    //public GameObject breadBoxNoBreadCenter;
-    //public GameObject breadBoxNoBreadRight;
+    public GameObject breadBoxDoorOpen;
+    public GameObject breadBoxNoBreadCenter;
+    public GameObject breadBoxNoBreadRight;
+    public GameObject breadBoxNoBread;
 
     public GameObject returnArrow;
     public GameObject breadBoxButtons;
@@ -28,6 +29,7 @@ public class BreadBoxManager : MonoBehaviour
 
     private bool isLocked;
     private bool isTrapped;
+    private bool doorOpen;
     private bool bread1Taken;
 
     public bool hasTime;
@@ -54,9 +56,27 @@ public class BreadBoxManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Nothing"))
             {
-                for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                    closeUp.zoomableObjs[i].enabled = true;
-                breadBoxGeneral.SetActive(true);
+                if (doorOpen == true && bread1Taken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    breadBoxDoorOpen.SetActive(true);
+                }
+
+                if (doorOpen == true && bread1Taken == true)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    breadBoxNoBreadRight.SetActive(true);
+                }
+
+                if (doorOpen == false && bread1Taken == false)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    breadBoxGeneral.SetActive(true);
+                }  
+                
                 breadBox.SetActive(false);
                 returnArrow.SetActive(false);
                 breadBoxButtons.SetActive(false);
@@ -72,19 +92,21 @@ public class BreadBoxManager : MonoBehaviour
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 inventory.GloveOffInventory();
                 isTrapped = false;
+                doorOpen = true;
 
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
-
             }
 
-            if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == false && isTrapped == true)
+            if (hit.collider.CompareTag("BreadBoxDoor") 
+                && inventory.hasGlove == false && isTrapped == true)
             {
                 gameOver.Die();
             }
             else if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == false && isTrapped == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
+                doorOpen = true;
             }
 
             if (hit.collider.CompareTag("Bread1") 
@@ -144,5 +166,6 @@ public class BreadBoxManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         isLocked = false;
         returnArrow.SetActive(true);
+        bread.SetActive(false);
     }
 }
