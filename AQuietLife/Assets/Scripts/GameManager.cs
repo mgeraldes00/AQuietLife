@@ -26,4 +26,15 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Kitchen");
     }
+
+    public void ButtonBehaviour(int i)
+    {
+        switch (i)
+        {
+            case (0):
+            default:
+                SceneManager.LoadScene("Kitchen");
+                break;
+        }
+    }
 }
