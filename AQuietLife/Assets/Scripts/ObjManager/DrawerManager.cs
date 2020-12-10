@@ -97,6 +97,7 @@ public class DrawerManager : MonoBehaviour
             {
                 doorCenterAnim.SetBool("DrawerCenterOpen", true);
                 doorCenterOpen = true;
+                LockAndUnlock();
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
             }

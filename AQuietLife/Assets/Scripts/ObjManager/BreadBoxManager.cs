@@ -93,6 +93,7 @@ public class BreadBoxManager : MonoBehaviour
                 inventory.GloveOffInventory();
                 isTrapped = false;
                 doorOpen = true;
+                LockAndUnlock();
 
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
@@ -107,6 +108,7 @@ public class BreadBoxManager : MonoBehaviour
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 doorOpen = true;
+                LockAndUnlock();
             }
 
             if (hit.collider.CompareTag("Bread1") 

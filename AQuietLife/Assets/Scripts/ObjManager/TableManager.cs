@@ -20,6 +20,7 @@ public class TableManager : MonoBehaviour
     public GameObject plate;
     public GameObject bread;
     public GameObject knife;
+    public GameObject breadCut;
 
     private bool plateOnTable;
     private bool breadOnTable;
@@ -110,6 +111,12 @@ public class TableManager : MonoBehaviour
                 knife.SetActive(true);
                 inventory.KnifeOffInventory();
                 knifeOnTable = true;
+            }
+
+            if (breadOnTable == true && knifeOnTable == true)
+            {
+                bread.SetActive(false);
+                breadCut.SetActive(true);
             }
 
             if (knifeOnTable == true && breadOnTable == true)

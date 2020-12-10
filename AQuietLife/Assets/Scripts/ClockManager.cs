@@ -9,6 +9,8 @@ public class ClockManager : MonoBehaviour
     public AudioSource tick;
 
     public CabinetManager cabinet;
+    public BreadBoxManager breadBox;
+    public DrawerManager drawers;
 
     void Start()
     {
@@ -21,6 +23,8 @@ public class ClockManager : MonoBehaviour
         {
             Debug.Log("Time's Up!");
             cabinet.NoMoreTime();
+            breadBox.NoMoreTime();
+            drawers.NoMoreTime();
         }
     }
 

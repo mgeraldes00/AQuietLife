@@ -150,6 +150,7 @@ public class CabinetManager : MonoBehaviour
                 door2Open = true;
                 doorSound.Play();
                 glove.SetActive(true);
+                LockAndUnlock();
             }
 
             if (hit.collider.CompareTag("CabinetDoor4"))
@@ -158,6 +159,7 @@ public class CabinetManager : MonoBehaviour
                 door4Open = true;
                 plateInteract.SetActive(true);
                 doorSound.Play();
+                LockAndUnlock();
             }
 
             if (hit.collider.CompareTag("Plate") && inventory.hasObject != true)
