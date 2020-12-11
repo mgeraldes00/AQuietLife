@@ -7,6 +7,7 @@ public class BreadBoxManager : MonoBehaviour
     public ClockManager clock;
     public InventoryManager inventory;
     public GameManager gameOver;
+    public ObjectiveManager objective;
     public CloseUpBreadBox closeUp;
 
     public GameObject breadBoxGeneral;
@@ -117,6 +118,7 @@ public class BreadBoxManager : MonoBehaviour
                 breadInteract1.SetActive(false);
                 inventory.BreadInInventory();
                 bread1Taken = true;
+                objective.hasBread = true;
             }
         }
     }

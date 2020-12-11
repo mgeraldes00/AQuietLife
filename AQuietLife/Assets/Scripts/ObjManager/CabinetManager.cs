@@ -7,6 +7,7 @@ public class CabinetManager : MonoBehaviour
     public ClockManager clock;
     public InventoryManager inventory;
     public GloveManager gloveMng;
+    public ObjectiveManager objective;
     public GameManager gameOver;
     public CloseUpCabinet closeUp;
 
@@ -167,6 +168,7 @@ public class CabinetManager : MonoBehaviour
                 plateInteract.SetActive(false);
                 inventory.PlateInInventory();
                 plateTaken = true;
+                objective.hasPlate = true;
             }
         }
 

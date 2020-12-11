@@ -7,6 +7,7 @@ public class TableManager : MonoBehaviour
     public ClockManager clock;
     public InventoryManager inventory;
     public CloseUpTable closeUp;
+    public ObjectiveManager objective;
 
     public GameObject tableGeneral;
     public GameObject tableGeneralWPlate;
@@ -117,11 +118,7 @@ public class TableManager : MonoBehaviour
             {
                 bread.SetActive(false);
                 breadCut.SetActive(true);
-            }
-
-            if (knifeOnTable == true && breadOnTable == true)
-            {
-                //Bread is cut
+                objective.part1Complete = true;
             }
         }
     }

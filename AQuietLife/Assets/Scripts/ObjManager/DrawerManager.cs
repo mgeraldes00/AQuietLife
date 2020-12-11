@@ -7,6 +7,7 @@ public class DrawerManager : MonoBehaviour
     public ClockManager clock;
     public InventoryManager inventory;
     public GameManager gameOver;
+    public ObjectiveManager objective;
     public CloseUpDrawers closeUp;
 
     public GameObject drawersGeneral;
@@ -107,6 +108,7 @@ public class DrawerManager : MonoBehaviour
                 knifeInteract.SetActive(false);
                 inventory.KnifeInInventory();
                 knifeTaken = true;
+                objective.hasKnife = true;
             }
         }
     }

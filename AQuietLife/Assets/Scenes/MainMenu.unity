@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b646b1ab1cb0c4887cc0271e6cdb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  context: []
+  contextButtons: []
 --- !u!4 &592836783
 Transform:
   m_ObjectHideFlags: 0
@@ -768,9 +770,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Play
-
-'
+  m_Text: Start
 --- !u!222 &2120465854
 CanvasRenderer:
   m_ObjectHideFlags: 0
