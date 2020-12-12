@@ -7,6 +7,7 @@ public class CloseUpDrawers : MonoBehaviour
     public GameObject returnArrow;
     public GameObject[] objsToZoom;
     public GameObject drawers;
+    public GameObject drawerRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -37,6 +38,7 @@ public class CloseUpDrawers : MonoBehaviour
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
                 drawers.SetActive(true);
+                drawerRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
             }
         }

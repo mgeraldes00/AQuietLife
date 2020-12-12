@@ -7,6 +7,7 @@ public class CloseUpBreadBox : MonoBehaviour
     public GameObject returnArrow;
     public GameObject[] objsToZoom;
     public GameObject breadBox;
+    public GameObject breadBoxRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -37,6 +38,7 @@ public class CloseUpBreadBox : MonoBehaviour
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
                 breadBox.SetActive(true);
+                breadBoxRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
             }
         }

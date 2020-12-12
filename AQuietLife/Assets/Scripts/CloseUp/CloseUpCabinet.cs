@@ -7,6 +7,7 @@ public class CloseUpCabinet : MonoBehaviour
     public GameObject returnArrow;
     public GameObject[] objsToZoom;
     public GameObject cabinet;
+    public GameObject cabinetRewindButton;
     public GameObject cabinetButtons;
 
     public BoxCollider2D[] zoomableObjs;
@@ -38,6 +39,7 @@ public class CloseUpCabinet : MonoBehaviour
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
                 cabinet.SetActive(true);
+                cabinetRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
                 //cabinetButtons.SetActive(true);
             }

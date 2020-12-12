@@ -18,6 +18,7 @@ public class BreadBoxManager : MonoBehaviour
 
     public GameObject returnArrow;
     public GameObject breadBoxButtons;
+    public GameObject breadBoxRewindButton;
     public GameObject breadBox;
     public GameObject bread;
     public GameObject breadInteract1;
@@ -80,13 +81,14 @@ public class BreadBoxManager : MonoBehaviour
                 
                 breadBox.SetActive(false);
                 returnArrow.SetActive(false);
+                breadBoxRewindButton.SetActive(false);
                 breadBoxButtons.SetActive(false);
             }
 
-            if (hit.collider.CompareTag("BreadBox"))
+            /*if (hit.collider.CompareTag("BreadBox"))
             {
                 breadBoxButtons.SetActive(true);
-            }
+            }*/
 
             if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == true)
             {
@@ -131,17 +133,21 @@ public class BreadBoxManager : MonoBehaviour
             {
                 case (0):
                 default:
+                    breadBoxButtons.SetActive(true);
+                    breadBoxRewindButton.SetActive(false);
+                    break;
+                case (1):
                     bread.SetActive(true);
                     doorAnim.SetTrigger("DoorPart1");
                     clock.Drain();
                     break;
-                case (1):
+                case (2):
                     bread.SetActive(true);
                     doorAnim.SetTrigger("DoorPart2");
                     breadAnim.SetTrigger("BreadTaken");
                     clock.Drain();
                     break;
-                case (2):
+                case (3):
                     bread.SetActive(false);
                     doorAnim.SetTrigger("DoorPart3");
                     clock.Drain();

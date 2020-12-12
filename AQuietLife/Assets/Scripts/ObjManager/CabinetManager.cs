@@ -23,6 +23,7 @@ public class CabinetManager : MonoBehaviour
 
     public GameObject returnArrow;
     public GameObject glove;
+    public GameObject cabinetRewindButton;
     public GameObject cabinetButtons;    
     public GameObject cabinet;
     public GameObject plate;
@@ -126,17 +127,18 @@ public class CabinetManager : MonoBehaviour
                 
                 cabinet.SetActive(false);
                 returnArrow.SetActive(false);
+                cabinetRewindButton.SetActive(false);
                 cabinetButtons.SetActive(false);
             }
 
-            if (hit.collider.CompareTag("Cabinet"))
+            /*if (hit.collider.CompareTag("Cabinet"))
             {
                 //door1Anim.SetTrigger("Door1OpenFull");
                 //plate.SetActive(true);
                 //glass.SetActive(true);
                 //StartCoroutine(CabinetRewind());
                 cabinetButtons.SetActive(true);
-            }
+            }*/
 
             if (hit.collider.CompareTag("CabinetDoor1") ||
                 hit.collider.CompareTag("CabinetDoor3"))
@@ -208,35 +210,39 @@ public class CabinetManager : MonoBehaviour
             {
                 case (0):
                 default:
+                    cabinetButtons.SetActive(true);
+                    cabinetRewindButton.SetActive(false);
+                    break;
+                case (1):
                     glass.SetActive(true);
                     door1Anim.SetTrigger("Door1Part1");
                     doorSound.Play();
                     clock.Drain();
                     break;
-                case (1):
+                case (2):
                     glass.SetActive(true);
                     door1Anim.SetTrigger("Door1Part2");
                     glassAnim.SetTrigger("GlassTaken");
                     clock.Drain();
                     break;
-                case (2):
+                case (3):
                     glass.SetActive(false);
                     door1Anim.SetTrigger("Door1Part3");
                     clock.Drain();
                     break;
-                case (3):
+                case (4):
                     plate.SetActive(true);
                     door3Anim.SetTrigger("Door3Part1");
                     doorSound.Play();
                     clock.Drain();
                     break;
-                case (4):
+                case (5):
                     plate.SetActive(true);
                     door3Anim.SetTrigger("Door3Part2");
                     plateAnim.SetTrigger("PlateTaken");
                     clock.Drain();
                     break;
-                case (5):
+                case (6):
                     plate.SetActive(false);
                     door3Anim.SetTrigger("Door3Part3");
                     clock.Drain();

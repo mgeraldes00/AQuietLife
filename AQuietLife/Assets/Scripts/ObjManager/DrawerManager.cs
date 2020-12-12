@@ -15,6 +15,7 @@ public class DrawerManager : MonoBehaviour
     public GameObject drawersMiddleDoorOpenNoKnife;
 
     public GameObject returnArrow;
+    public GameObject drawerRewindButton;
     public GameObject drawerButtons;
     public GameObject drawers;
     public GameObject spoon;
@@ -79,13 +80,14 @@ public class DrawerManager : MonoBehaviour
                 
                 drawers.SetActive(false);
                 returnArrow.SetActive(false);
+                drawerRewindButton.SetActive(false);
                 drawerButtons.SetActive(false);
             }
 
-            if (hit.collider.CompareTag("Drawers"))
+            /*if (hit.collider.CompareTag("Drawers"))
             {
                 drawerButtons.SetActive(true);
-            }
+            }*/
 
             if (hit.collider.CompareTag("DrawerDoor1") ||
                 hit.collider.CompareTag("DrawerDoor3"))
@@ -121,46 +123,57 @@ public class DrawerManager : MonoBehaviour
             {
                 case (0):
                 default:
-                    spoon.SetActive(true);
-                    knife.SetActive(true);
-                    doorRightAnim.SetTrigger("DrawerRightPart1");
-                    clock.Drain();
+                    drawerButtons.SetActive(true);
+                    drawerRewindButton.SetActive(false);
                     break;
                 case (1):
                     spoon.SetActive(true);
+                    spoonAnim.SetTrigger("Idle");
                     knife.SetActive(true);
-                    doorRightAnim.SetTrigger("DrawerRightPart2");
-                    spoonAnim.SetTrigger("SpoonTaken");
-                    clock.Drain();
+                    doorRightAnim.SetTrigger("DrawerRightPart1");
+                    StartCoroutine(TakeSpoon());
+                    clock.DrainMore();
                     break;
                 case (2):
-                    spoon.SetActive(false);
+                    //spoon.SetActive(true);
                     knife.SetActive(true);
                     doorRightAnim.SetTrigger("DrawerRightPart3");
-                    clock.Drain();
+                    //spoonAnim.SetTrigger("SpoonTaken");
+                    clock.DrainMore();
                     break;
                 case (3):
+                    //spoon.SetActive(false);
+                    //knife.SetActive(true);
+                    //doorRightAnim.SetTrigger("DrawerRightPart3");
                     doorLeftAnim.SetTrigger("DrawerLeftPart1");
-                    clock.Drain();
+                    doorLeftAnim.SetTrigger("DrawerLeftPart3");
+                    clock.DrainMore();
                     break;
                 case (4):
-                    doorLeftAnim.SetTrigger("DrawerLeftPart3");
-                    clock.Drain();
+                    knife.SetActive(true);
+                    doorRightAnim.SetTrigger("DrawerRightPart1Late");
+                    clock.DrainMore();
                     break;
-                case (5):                   
+                case (5):
+                    knife.SetActive(true);
+                    knifeAnim.SetTrigger("KnifeTaken");
+                    doorRightAnim.SetTrigger("DrawerRightPart3Late");
+                    clock.DrainMore();
+                    break;
+                case (6):                   
                     spoon.SetActive(false);
                     knife.SetActive(true);
                     doorRightAnim.SetTrigger("DrawerRightPart1");
                     clock.Drain();
                     break;
-                case (6):
+                case (7):
                     spoon.SetActive(false);
                     knife.SetActive(true);
                     doorRightAnim.SetTrigger("DrawerRightPart2");
                     knifeAnim.SetTrigger("KnifeTaken");
                     clock.Drain();
                     break;
-                case (7):
+                case (8):
                     spoon.SetActive(false);
                     knife.SetActive(false);
                     doorRightAnim.SetTrigger("DrawerRightPart3");
@@ -181,6 +194,16 @@ public class DrawerManager : MonoBehaviour
         }
     }
 
+    public void LockAndUnlockLonger()
+    {
+        if (isLocked == false && hasTime == true)
+        {
+            returnArrow.SetActive(false);
+            isLocked = true;
+            StartCoroutine(UnlockLonger());
+        }
+    }
+
     public void NoMoreTime()
     {
         hasTime = false;
@@ -193,5 +216,20 @@ public class DrawerManager : MonoBehaviour
         returnArrow.SetActive(true);
         spoon.SetActive(false);
         knife.SetActive(false);
+    }
+
+    IEnumerator UnlockLonger()
+    {
+        yield return new WaitForSeconds(4);
+        isLocked = false;
+        returnArrow.SetActive(true);
+        spoon.SetActive(false);
+        knife.SetActive(false);
+    }
+
+    IEnumerator TakeSpoon()
+    {
+        yield return new WaitForSeconds(2);
+        spoonAnim.SetTrigger("SpoonTaken");
     }
 }

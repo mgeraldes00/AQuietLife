@@ -35,9 +35,23 @@ public class ClockManager : MonoBehaviour
         StartCoroutine(StopDrain());
     }
 
+    public void DrainMore()
+    {
+        anim.speed = 1;
+        tick.Play();
+        StartCoroutine(StopDrainMore());
+    }
+
     IEnumerator StopDrain()
     {
         yield return new WaitForSeconds(2);
+        anim.speed = 0;
+        tick.Stop();
+    }
+
+    IEnumerator StopDrainMore()
+    {
+        yield return new WaitForSeconds(4);
         anim.speed = 0;
         tick.Stop();
     }
