@@ -8,7 +8,7 @@ public class CabinetManager : MonoBehaviour
     public InventoryManager inventory;
     public GloveManager gloveMng;
     public ObjectiveManager objective;
-    public GameManager gameOver;
+    public GameManager gameMng;
     public CloseUpCabinet closeUp;
 
     public GameObject cabinetGeneral;
@@ -140,14 +140,14 @@ public class CabinetManager : MonoBehaviour
                 cabinetButtons.SetActive(true);
             }*/
 
-            if (hit.collider.CompareTag("CabinetDoor1") ||
-                hit.collider.CompareTag("CabinetDoor3"))
+            if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false 
+                || hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
                 Debug.Log("Game Over");
-                gameOver.Die();
+                gameMng.Die();
             }
 
-            if (hit.collider.CompareTag("CabinetDoor2"))
+            if (hit.collider.CompareTag("CabinetDoor2") && gameMng.isLocked == false)
             {
                 door2Anim.SetBool("Door2Open", true);
                 door2Open = true;
@@ -156,7 +156,7 @@ public class CabinetManager : MonoBehaviour
                 LockAndUnlock();
             }
 
-            if (hit.collider.CompareTag("CabinetDoor4"))
+            if (hit.collider.CompareTag("CabinetDoor4") && gameMng.isLocked == false)
             {
                 door4Anim.SetBool("Door4Open", true);
                 door4Open = true;
@@ -165,7 +165,8 @@ public class CabinetManager : MonoBehaviour
                 LockAndUnlock();
             }
 
-            if (hit.collider.CompareTag("Plate") && inventory.hasObject != true)
+            if (hit.collider.CompareTag("Plate") && inventory.hasObject != true 
+                && gameMng.isLocked == false)
             {
                 plateInteract.SetActive(false);
                 inventory.PlateInInventory();
@@ -204,7 +205,7 @@ public class CabinetManager : MonoBehaviour
 
     public void ButtonBehaviour(int i)
     {
-        if (isLocked == false && hasTime == true)
+        if (isLocked == false && hasTime == true && gameMng.isLocked == false)
         {
             switch (i)
             {
@@ -254,7 +255,7 @@ public class CabinetManager : MonoBehaviour
 
     public void LockAndUnlock()
     {
-        if (isLocked == false && hasTime == true)
+        if (isLocked == false && hasTime == true && gameMng.isLocked == false)
         {
             returnArrow.SetActive(false);
             isLocked = true;

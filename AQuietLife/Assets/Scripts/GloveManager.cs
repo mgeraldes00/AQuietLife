@@ -5,11 +5,16 @@ using UnityEngine;
 public class GloveManager : MonoBehaviour
 {
     public InventoryManager inventory;
+    public GameManager gameManager;
 
     public GameObject[] gloves;
     public GameObject currentGlove;
+    public GameObject gloveTutorial;
+    public GameObject returnArrow;
 
     public bool gloveTaken;
+    public bool firstGlove;
+    //public bool isLocked;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +34,17 @@ public class GloveManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Glove"))
+            if (hit.collider.CompareTag("Glove") && firstGlove == false)
+            {
+                //Debug.Log(hit.collider.gameObject.name);
+                currentGlove.SetActive(false);
+                inventory.GloveInInventory();
+                gloveTaken = true;
+                firstGlove = true;
+                ShowTutorial();
+            }
+
+            if (hit.collider.CompareTag("Glove") && firstGlove == true)
             {
                 //Debug.Log(hit.collider.gameObject.name);
                 currentGlove.SetActive(false);
@@ -37,5 +52,17 @@ public class GloveManager : MonoBehaviour
                 gloveTaken = true;
             }
         }
+    }
+
+    public void ShowTutorial()
+    {
+        gloveTutorial.SetActive(true);
+        Lock();
+    }
+
+    public void Lock()
+    {
+        returnArrow.SetActive(false);
+        gameManager.isLocked = true;
     }
 }

@@ -22,6 +22,8 @@ TagManager:
   - Bread1
   - Bread2
   - Knife
+  - Inspection
+  - TableClose
   layers:
   - Default
   - TransparentFX

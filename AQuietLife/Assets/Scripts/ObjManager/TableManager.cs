@@ -93,21 +93,21 @@ public class TableManager : MonoBehaviour
                 returnArrow.SetActive(false);
             }
 
-            if (hit.collider.CompareTag("Table") && inventory.hasPlate == true)
+            if (hit.collider.CompareTag("TableClose") && inventory.hasPlate == true)
             {
                 plate.SetActive(true);
                 inventory.PlateOffInventory();
                 plateOnTable = true;
             }
 
-            if (hit.collider.CompareTag("Table") && inventory.hasBread == true)
+            if (hit.collider.CompareTag("TableClose") && inventory.hasBread == true)
             {
                 bread.SetActive(true);
                 inventory.BreadOffInventory();
                 breadOnTable = true;
             }
 
-            if (hit.collider.CompareTag("Table") && inventory.hasKnife == true)
+            if (hit.collider.CompareTag("TableClose") && inventory.hasKnife == true)
             {
                 knife.SetActive(true);
                 inventory.KnifeOffInventory();

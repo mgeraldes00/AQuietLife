@@ -50,15 +50,15 @@ public class ObjectiveManager : MonoBehaviour
             StartCoroutine(newObjectives());          
             for (int i = 0; i < list2.Length; i++)
                 list2[i].SetActive(true);
-        }
+        }      
+    }
 
-        IEnumerator newObjectives()
-        {
-            yield return new WaitForSeconds(2);
-            for (int i = 0; i < list1.Length; i++)
-                list1[i].SetActive(true);
-            list2Ctrl.SetTrigger("ObjectivesDone");
-            background.SetTrigger("ObjectivesDone");
-        }
+    IEnumerator newObjectives()
+    {
+        yield return new WaitForSeconds(2);
+        for (int i = 0; i < list1.Length; i++)
+            list1[i].SetActive(true);
+        list2Ctrl.SetTrigger("ObjectivesDone");
+        background.SetTrigger("ObjectivesDone");
     }
 }
