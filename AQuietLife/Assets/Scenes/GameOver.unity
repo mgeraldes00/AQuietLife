@@ -442,6 +442,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b646b1ab1cb0c4887cc0271e6cdb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objective: {fileID: 0}
+  context: []
+  contextButtons: []
+  inspectionText: {fileID: 0}
+  returnArrow: {fileID: 0}
+  gloveTutorial: {fileID: 0}
+  objectTutorial: {fileID: 0}
+  finalTutorial: {fileID: 0}
+  isLocked: 0
+  firstObject: 0
 --- !u!4 &927814456
 Transform:
   m_ObjectHideFlags: 0
@@ -640,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.68458986, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.7942071, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

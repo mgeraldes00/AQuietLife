@@ -139,6 +139,7 @@ public class BreadBoxManager : MonoBehaviour
                 case (1):
                     bread.SetActive(true);
                     doorAnim.SetTrigger("DoorPart1");
+                    breadAnim.SetTrigger("BreadIdle");
                     clock.Drain();
                     break;
                 case (2):

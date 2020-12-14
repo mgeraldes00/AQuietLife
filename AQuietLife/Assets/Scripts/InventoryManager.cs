@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public Image plateIcon;
     public Image breadIcon;
     public Image knifeIcon;
+    public Image[] finalIcon;
 
     public bool hasObject;
     public bool hasGlove;
@@ -16,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     public bool hasPlate;
     public bool hasBread;
     public bool hasKnife;
+    public bool hasPlateWBread;
 
     public bool plateUsed;
     public bool breadUsed;
@@ -28,6 +30,8 @@ public class InventoryManager : MonoBehaviour
         plateIcon.enabled = false;
         breadIcon.enabled = false;
         knifeIcon.enabled = false;
+        for (int i = 0; i < finalIcon.Length; i++)
+            finalIcon[i].enabled = false;
     }
 
     // Update is called once per frame
@@ -96,5 +100,13 @@ public class InventoryManager : MonoBehaviour
         hasKnife = false;
         hasObject = false;
         knifeUsed = true;
+    }
+
+    public void FinalInInventory()
+    {
+        for (int i = 0; i < finalIcon.Length; i++)
+            finalIcon[i].enabled = true;
+        hasPlateWBread = true;
+        hasObject = true;
     }
 }

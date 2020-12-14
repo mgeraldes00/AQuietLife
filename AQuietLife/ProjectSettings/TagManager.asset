@@ -24,6 +24,7 @@ TagManager:
   - Knife
   - Inspection
   - TableClose
+  - Door
   layers:
   - Default
   - TransparentFX

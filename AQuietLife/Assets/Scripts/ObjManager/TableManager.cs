@@ -16,6 +16,8 @@ public class TableManager : MonoBehaviour
     public GameObject tableGeneralWPlateBread;
     public GameObject tableGeneralWPlateKnifeBread;
 
+    public BoxCollider2D tableCollider;
+
     public GameObject returnArrow;
     public GameObject table;
     public GameObject plate;
@@ -26,6 +28,8 @@ public class TableManager : MonoBehaviour
     private bool plateOnTable;
     private bool breadOnTable;
     private bool knifeOnTable;
+    private bool allOnTable;
+    private bool plateTaken;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +79,8 @@ public class TableManager : MonoBehaviour
                     tableGeneralWPlateBread.SetActive(true);
                 }
 
-                if (plateOnTable == true && breadOnTable == true && knifeOnTable == true)
+                if (plateOnTable == true && breadOnTable == true && knifeOnTable == true
+                    && plateTaken == false)
                 {
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
@@ -87,6 +92,13 @@ public class TableManager : MonoBehaviour
                     for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                         closeUp.zoomableObjs[i].enabled = true;
                     tableGeneral.SetActive(true);
+                }
+
+                if (plateTaken == true)
+                {
+                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                        closeUp.zoomableObjs[i].enabled = true;
+                    tableGeneralWKnife.SetActive(true);
                 }
 
                 table.SetActive(false);
@@ -114,11 +126,22 @@ public class TableManager : MonoBehaviour
                 knifeOnTable = true;
             }
 
-            if (breadOnTable == true && knifeOnTable == true)
+            if (breadOnTable == true && knifeOnTable == true && plateTaken == false)
             {
                 bread.SetActive(false);
                 breadCut.SetActive(true);
                 objective.part1Complete = true;
+                allOnTable = true;
+                tableCollider.enabled = false;
+            }
+
+            if (hit.collider.CompareTag("Plate") 
+                && allOnTable == true)
+            {
+                plate.SetActive(false);
+                breadCut.SetActive(false);               
+                inventory.FinalInInventory();
+                plateTaken = true;
             }
         }
     }

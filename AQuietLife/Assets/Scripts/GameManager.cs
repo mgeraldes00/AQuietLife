@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public bool isLocked;
     public bool firstObject;
-    private bool allObjects;
+    private bool allObjectives;
 
     // Start is called before the first frame update
     void Start()
@@ -61,10 +61,9 @@ public class GameManager : MonoBehaviour
             ShowTutorial();
         }
 
-        if (objective.hasPlate == true && objective.hasBread == true 
-            && objective.hasKnife == true && allObjects == false)
+        if (objective.part1Complete == true && allObjectives == false)
         {
-            allObjects = true;
+            allObjectives = true;
             ShowFinalTutorial();
         }
     }
@@ -95,6 +94,10 @@ public class GameManager : MonoBehaviour
                 break;
             case (2):
                 SceneManager.LoadScene("Kitchen");
+                break;
+            case (3):
+                Debug.Log("Quit");
+                Application.Quit();
                 break;
         }
     }
