@@ -22,6 +22,9 @@ public class CabinetManager : MonoBehaviour
     public GameObject cabinetDoor24OpenGlovePlate;
 
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderCabinet;
+    public GameObject interactionText;
     public GameObject glove;
     public GameObject cabinetRewindButton;
     public GameObject cabinetButtons;    
@@ -41,11 +44,11 @@ public class CabinetManager : MonoBehaviour
 
     public AudioSource doorSound;
 
-    private bool isLocked;
-    private bool door2Open;
-    private bool door4Open;
-    private bool plateTaken;
-
+    private bool isLocked; 
+    
+    public bool plateTaken;
+    public bool door2Open;
+    public bool door4Open;
     public bool hasTime;
 
     // Start is called before the first frame update
@@ -127,6 +130,8 @@ public class CabinetManager : MonoBehaviour
                 
                 cabinet.SetActive(false);
                 returnArrow.SetActive(false);
+                noTextCollidersGeneral.SetActive(true);
+                noTextColliderCabinet.SetActive(false);
                 cabinetRewindButton.SetActive(false);
                 cabinetButtons.SetActive(false);
             }
@@ -147,22 +152,36 @@ public class CabinetManager : MonoBehaviour
                 gameMng.Die();
             }
 
-            if (hit.collider.CompareTag("CabinetDoor2") && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("CabinetDoor2") && door2Open == false 
+                && gameMng.isLocked == false)
             {
                 door2Anim.SetBool("Door2Open", true);
                 door2Open = true;
                 doorSound.Play();
                 glove.SetActive(true);
+                interactionText.SetActive(false);
                 LockAndUnlock();
             }
 
-            if (hit.collider.CompareTag("CabinetDoor4") && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("CabinetDoor2") && door2Open == true)
+            {
+                //Do nothing
+            }
+
+            if (hit.collider.CompareTag("CabinetDoor4") && door4Open == false 
+                && gameMng.isLocked == false)
             {
                 door4Anim.SetBool("Door4Open", true);
                 door4Open = true;
                 plateInteract.SetActive(true);
                 doorSound.Play();
+                interactionText.SetActive(false);
                 LockAndUnlock();
+            }
+
+            if (hit.collider.CompareTag("CabinetDoor4") && door4Open == true)
+            {
+                //Do nothing
             }
 
             if (hit.collider.CompareTag("Plate") && inventory.hasObject != true 
@@ -172,6 +191,7 @@ public class CabinetManager : MonoBehaviour
                 inventory.PlateInInventory();
                 plateTaken = true;
                 objective.hasPlate = true;
+                gameMng.pickUpText.SetActive(false);
             }
         }
 

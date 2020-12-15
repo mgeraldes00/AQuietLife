@@ -10,6 +10,7 @@ public class GloveManager : MonoBehaviour
     public GameObject[] gloves;
     public GameObject currentGlove;
     public GameObject gloveTutorial;
+    public GameObject interactionText;
     public GameObject returnArrow;
 
     public bool gloveTaken;
@@ -41,6 +42,7 @@ public class GloveManager : MonoBehaviour
                 inventory.GloveInInventory();
                 gloveTaken = true;
                 firstGlove = true;
+                interactionText.SetActive(false);
                 ShowTutorial();
             }
 
@@ -50,6 +52,7 @@ public class GloveManager : MonoBehaviour
                 currentGlove.SetActive(false);
                 inventory.GloveInInventory();
                 gloveTaken = true;
+                interactionText.SetActive(false);
             }
         }
     }
@@ -64,5 +67,15 @@ public class GloveManager : MonoBehaviour
     {
         returnArrow.SetActive(false);
         gameManager.isLocked = true;
+    }
+
+    private void OnMouseOver()
+    {
+        interactionText.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        interactionText.SetActive(false);
     }
 }

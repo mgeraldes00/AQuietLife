@@ -6,7 +6,7 @@ public class BreadBoxManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
-    public GameManager gameOver;
+    public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpBreadBox closeUp;
 
@@ -17,6 +17,9 @@ public class BreadBoxManager : MonoBehaviour
     public GameObject breadBoxNoBread;
 
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderBreadBox;
+    public GameObject interactionText;
     public GameObject breadBoxButtons;
     public GameObject breadBoxRewindButton;
     public GameObject breadBox;
@@ -31,9 +34,9 @@ public class BreadBoxManager : MonoBehaviour
 
     private bool isLocked;
     private bool isTrapped;
-    private bool doorOpen;
-    private bool bread1Taken;
 
+    public bool bread1Taken;
+    public bool doorOpen;
     public bool hasTime;
 
     // Start is called before the first frame update
@@ -81,6 +84,8 @@ public class BreadBoxManager : MonoBehaviour
                 
                 breadBox.SetActive(false);
                 returnArrow.SetActive(false);
+                noTextCollidersGeneral.SetActive(true);
+                noTextColliderBreadBox.SetActive(false);
                 breadBoxRewindButton.SetActive(false);
                 breadBoxButtons.SetActive(false);
             }
@@ -90,12 +95,14 @@ public class BreadBoxManager : MonoBehaviour
                 breadBoxButtons.SetActive(true);
             }*/
 
-            if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == true)
+            if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false && inventory.hasGlove == true
+                && gameMng.isLocked == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 inventory.GloveOffInventory();
                 isTrapped = false;
                 doorOpen = true;
+                interactionText.SetActive(false);
                 LockAndUnlock();
 
                 for (int i = 0; i <= interactableColliders.Length; i++)
@@ -103,14 +110,16 @@ public class BreadBoxManager : MonoBehaviour
             }
 
             if (hit.collider.CompareTag("BreadBoxDoor") 
-                && inventory.hasGlove == false && isTrapped == true)
+                && inventory.hasGlove == false && isTrapped == true
+                && gameMng.isLocked == false)
             {
-                gameOver.Die();
+                gameMng.Die();
             }
             else if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == false && isTrapped == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 doorOpen = true;
+                interactionText.SetActive(false);
                 LockAndUnlock();
             }
 
@@ -121,6 +130,7 @@ public class BreadBoxManager : MonoBehaviour
                 inventory.BreadInInventory();
                 bread1Taken = true;
                 objective.hasBread = true;
+                gameMng.pickUpText.SetActive(false);
             }
         }
     }

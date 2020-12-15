@@ -6,6 +6,7 @@ public class TableManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
+    public GameManager gameMng;
     public CloseUpTable closeUp;
     public ObjectiveManager objective;
 
@@ -19,17 +20,21 @@ public class TableManager : MonoBehaviour
     public BoxCollider2D tableCollider;
 
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderTable;
+    public GameObject interactionText;
     public GameObject table;
     public GameObject plate;
     public GameObject bread;
     public GameObject knife;
     public GameObject breadCut;
-
-    private bool plateOnTable;
-    private bool breadOnTable;
-    private bool knifeOnTable;
+    
     private bool allOnTable;
     private bool plateTaken;
+
+    public bool plateOnTable;
+    public bool breadOnTable;
+    public bool knifeOnTable;
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +108,8 @@ public class TableManager : MonoBehaviour
 
                 table.SetActive(false);
                 returnArrow.SetActive(false);
+                noTextCollidersGeneral.SetActive(true);
+                noTextColliderTable.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasPlate == true)
@@ -110,6 +117,7 @@ public class TableManager : MonoBehaviour
                 plate.SetActive(true);
                 inventory.PlateOffInventory();
                 plateOnTable = true;
+                interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasBread == true)
@@ -117,6 +125,7 @@ public class TableManager : MonoBehaviour
                 bread.SetActive(true);
                 inventory.BreadOffInventory();
                 breadOnTable = true;
+                interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasKnife == true)
@@ -124,6 +133,7 @@ public class TableManager : MonoBehaviour
                 knife.SetActive(true);
                 inventory.KnifeOffInventory();
                 knifeOnTable = true;
+                interactionText.SetActive(false);
             }
 
             if (breadOnTable == true && knifeOnTable == true && plateTaken == false)
@@ -142,6 +152,7 @@ public class TableManager : MonoBehaviour
                 breadCut.SetActive(false);               
                 inventory.FinalInInventory();
                 plateTaken = true;
+                gameMng.pickUpTextFinal.SetActive(false);
             }
         }
     }

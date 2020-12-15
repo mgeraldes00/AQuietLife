@@ -5,9 +5,12 @@ using UnityEngine;
 public class CloseUpBreadBox : MonoBehaviour
 {
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderBreadBox;
+    public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject breadBox;
-    public GameObject breadBoxRewindButton;
+    public GameObject breadBoxRewindButton;  
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -40,6 +43,9 @@ public class CloseUpBreadBox : MonoBehaviour
                 breadBox.SetActive(true);
                 breadBoxRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
+                noTextCollidersGeneral.SetActive(false);
+                noTextColliderBreadBox.SetActive(true);
+                inspectionTextGeneral.SetActive(false);
             }
         }
     }

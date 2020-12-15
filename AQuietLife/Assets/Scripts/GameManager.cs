@@ -7,16 +7,28 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public InventoryManager inventory;
     public ObjectiveManager objective;
+    public BreadBoxManager breadBox;
+    public DrawerManager drawers;
+    public TableManager table;
+    
+    public CabinetManager cabinet;
 
     public GameObject[] context;
     public GameObject[] contextButtons;
 
     public GameObject inspectionText;
+    public GameObject tableInteractionText;
+    public GameObject interactionText;
+    public GameObject pickUpText;
+    public GameObject pickUpTextFinal;
+    public GameObject exitText;
     public GameObject returnArrow;
     public GameObject gloveTutorial;
     public GameObject objectTutorial;
     public GameObject finalTutorial;
+    public GameObject noTextCollidersGeneral;
 
     public bool isLocked;
     public bool firstObject;
@@ -41,17 +53,66 @@ public class GameManager : MonoBehaviour
             || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox"))
         {
             Debug.Log("Object");
-            inspectionText.SetActive(true);
-        }
-        else if (hit.collider.CompareTag("Nothing"))
-        {
-            inspectionText.SetActive(false);
+            inspectionText.SetActive(true);          
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (hit.collider.CompareTag("CabinetDoor1") 
+            || hit.collider.CompareTag("CabinetDoor2") && cabinet.door2Open == false
+            || hit.collider.CompareTag("CabinetDoor3") 
+            || hit.collider.CompareTag("CabinetDoor4") && cabinet.door4Open == false
+            || hit.collider.CompareTag("BreadBoxDoor") && breadBox.doorOpen == false
+            || hit.collider.CompareTag("DrawerDoor1")
+            || hit.collider.CompareTag("DrawerDoor2") && drawers.doorCenterOpen == false
+            || hit.collider.CompareTag("DrawerDoor3"))
+        {
+            interactionText.SetActive(true);
+        }
+
+        if (hit.collider.CompareTag("Plate") && inventory.plateUsed == false
+            || hit.collider.CompareTag("Bread1") && inventory.plateUsed == true
+            || hit.collider.CompareTag("Knife"))
+        {
+            pickUpText.SetActive(true);
+        }
+
+        if (hit.collider.CompareTag("Plate") && objective.part1Complete == true)
+        {
+            pickUpTextFinal.SetActive(true);
+        }
+
+        if (hit.collider.CompareTag("TableClose")
+            && cabinet.plateTaken == true && table.plateOnTable == false
+            || hit.collider.CompareTag("TableClose")
+            && breadBox.bread1Taken == true && table.breadOnTable == false
+            || hit.collider.CompareTag("TableClose")
+            && drawers.knifeTaken == true && table.knifeOnTable == false)
+        {
+            tableInteractionText.SetActive(true);
+        }
+
+        if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
+        {
+            exitText.SetActive(true);
+        }
+
+        if (hit.collider.CompareTag("NoTag"))
         {
             inspectionText.SetActive(false);
+            interactionText.SetActive(false);
+            pickUpText.SetActive(false);
+            pickUpTextFinal.SetActive(false);
+            tableInteractionText.SetActive(false);
+            exitText.SetActive(false);
         }
+
+        /*if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Table") ||
+            Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Drawers") ||
+            Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Cabinet") ||
+            Input.GetMouseButtonDown(0) && hit.collider.CompareTag("BreadBox"))
+        {
+            inspectionText.SetActive(false);
+            noTextCollidersGeneral.SetActive(false);
+        }*/
 
         if (objective.hasPlate == true && firstObject == false ||
             objective.hasBread == true && firstObject == false ||

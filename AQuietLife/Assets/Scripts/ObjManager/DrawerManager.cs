@@ -6,7 +6,7 @@ public class DrawerManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
-    public GameManager gameOver;
+    public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpDrawers closeUp;
 
@@ -15,6 +15,9 @@ public class DrawerManager : MonoBehaviour
     public GameObject drawersMiddleDoorOpenNoKnife;
 
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderDrawers;
+    public GameObject interactionText;
     public GameObject drawerRewindButton;
     public GameObject drawerButtons;
     public GameObject drawers;
@@ -30,10 +33,10 @@ public class DrawerManager : MonoBehaviour
     public Animator spoonAnim;
     public Animator knifeAnim;
 
-    private bool isLocked;
-    private bool doorCenterOpen;
-    private bool knifeTaken;
-
+    private bool isLocked; 
+    
+    public bool knifeTaken;
+    public bool doorCenterOpen;
     public bool hasTime;
 
     // Start is called before the first frame update
@@ -80,6 +83,8 @@ public class DrawerManager : MonoBehaviour
                 
                 drawers.SetActive(false);
                 returnArrow.SetActive(false);
+                noTextCollidersGeneral.SetActive(true);
+                noTextColliderDrawers.SetActive(false);
                 drawerRewindButton.SetActive(false);
                 drawerButtons.SetActive(false);
             }
@@ -89,17 +94,19 @@ public class DrawerManager : MonoBehaviour
                 drawerButtons.SetActive(true);
             }*/
 
-            if (hit.collider.CompareTag("DrawerDoor1") ||
-                hit.collider.CompareTag("DrawerDoor3"))
+            if (hit.collider.CompareTag("DrawerDoor1") && gameMng.isLocked == false
+                || hit.collider.CompareTag("DrawerDoor3") && gameMng.isLocked == false)
             {
                 Debug.Log("Game Over");
-                gameOver.Die();
+                gameMng.Die();
             }
 
-            if (hit.collider.CompareTag("DrawerDoor2"))
+            if (hit.collider.CompareTag("DrawerDoor2") && doorCenterOpen == false
+                && gameMng.isLocked == false)
             {
                 doorCenterAnim.SetBool("DrawerCenterOpen", true);
                 doorCenterOpen = true;
+                interactionText.SetActive(false);
                 LockAndUnlock();
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
@@ -111,6 +118,7 @@ public class DrawerManager : MonoBehaviour
                 inventory.KnifeInInventory();
                 knifeTaken = true;
                 objective.hasKnife = true;
+                gameMng.pickUpText.SetActive(false);
             }
         }
     }

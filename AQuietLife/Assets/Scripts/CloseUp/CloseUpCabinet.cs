@@ -5,6 +5,9 @@ using UnityEngine;
 public class CloseUpCabinet : MonoBehaviour
 {
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderCabinet;
+    public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject cabinet;
     public GameObject cabinetRewindButton;
@@ -41,6 +44,9 @@ public class CloseUpCabinet : MonoBehaviour
                 cabinet.SetActive(true);
                 cabinetRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
+                noTextCollidersGeneral.SetActive(false);
+                inspectionTextGeneral.SetActive(false);
+                noTextColliderCabinet.SetActive(true);
                 //cabinetButtons.SetActive(true);
             }
         }

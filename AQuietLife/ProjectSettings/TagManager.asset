@@ -25,6 +25,7 @@ TagManager:
   - Inspection
   - TableClose
   - Door
+  - NoTag
   layers:
   - Default
   - TransparentFX

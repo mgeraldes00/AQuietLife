@@ -5,6 +5,9 @@ using UnityEngine;
 public class CloseUpDrawers : MonoBehaviour
 {
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderDrawers;
+    public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject drawers;
     public GameObject drawerRewindButton;
@@ -40,6 +43,9 @@ public class CloseUpDrawers : MonoBehaviour
                 drawers.SetActive(true);
                 drawerRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
+                noTextCollidersGeneral.SetActive(false);
+                noTextColliderDrawers.SetActive(true);
+                inspectionTextGeneral.SetActive(false);
             }
         }
     }

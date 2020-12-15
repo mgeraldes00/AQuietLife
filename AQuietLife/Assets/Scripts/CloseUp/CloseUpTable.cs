@@ -5,6 +5,9 @@ using UnityEngine;
 public class CloseUpTable : MonoBehaviour
 {
     public GameObject returnArrow;
+    public GameObject noTextCollidersGeneral;
+    public GameObject noTextColliderTable;
+    public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject table;
 
@@ -36,7 +39,10 @@ public class CloseUpTable : MonoBehaviour
                 for (int i = 0; i < objsToZoom.Length; i++)
                     objsToZoom[i].SetActive(false);
                 table.SetActive(true);
-                returnArrow.SetActive(true);               
+                returnArrow.SetActive(true);
+                noTextCollidersGeneral.SetActive(false);
+                noTextColliderTable.SetActive(true);
+                inspectionTextGeneral.SetActive(false);
             }
         }
 
