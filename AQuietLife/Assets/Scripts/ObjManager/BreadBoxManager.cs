@@ -20,6 +20,7 @@ public class BreadBoxManager : MonoBehaviour
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderBreadBox;
     public GameObject interactionText;
+    public GameObject activityText;
     public GameObject breadBoxButtons;
     public GameObject breadBoxRewindButton;
     public GameObject breadBox;
@@ -34,7 +35,8 @@ public class BreadBoxManager : MonoBehaviour
 
     private bool isLocked;
     private bool isTrapped;
-
+    
+    public bool rewindApplied;
     public bool bread1Taken;
     public bool doorOpen;
     public bool hasTime;
@@ -86,6 +88,7 @@ public class BreadBoxManager : MonoBehaviour
                 returnArrow.SetActive(false);
                 noTextCollidersGeneral.SetActive(true);
                 noTextColliderBreadBox.SetActive(false);
+                activityText.SetActive(false);
                 breadBoxRewindButton.SetActive(false);
                 breadBoxButtons.SetActive(false);
             }
@@ -145,6 +148,8 @@ public class BreadBoxManager : MonoBehaviour
                 default:
                     breadBoxButtons.SetActive(true);
                     breadBoxRewindButton.SetActive(false);
+                    activityText.SetActive(true);
+                    rewindApplied = true;
                     break;
                 case (1):
                     bread.SetActive(true);

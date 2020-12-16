@@ -18,6 +18,7 @@ public class DrawerManager : MonoBehaviour
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderDrawers;
     public GameObject interactionText;
+    public GameObject activityText;
     public GameObject drawerRewindButton;
     public GameObject drawerButtons;
     public GameObject drawers;
@@ -33,8 +34,9 @@ public class DrawerManager : MonoBehaviour
     public Animator spoonAnim;
     public Animator knifeAnim;
 
-    private bool isLocked; 
-    
+    private bool isLocked;
+
+    public bool rewindApplied;
     public bool knifeTaken;
     public bool doorCenterOpen;
     public bool hasTime;
@@ -85,6 +87,7 @@ public class DrawerManager : MonoBehaviour
                 returnArrow.SetActive(false);
                 noTextCollidersGeneral.SetActive(true);
                 noTextColliderDrawers.SetActive(false);
+                activityText.SetActive(false);
                 drawerRewindButton.SetActive(false);
                 drawerButtons.SetActive(false);
             }
@@ -133,6 +136,8 @@ public class DrawerManager : MonoBehaviour
                 default:
                     drawerButtons.SetActive(true);
                     drawerRewindButton.SetActive(false);
+                    activityText.SetActive(true);
+                    rewindApplied = true;
                     break;
                 case (1):
                     spoon.SetActive(true);

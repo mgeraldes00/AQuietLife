@@ -25,6 +25,7 @@ public class CabinetManager : MonoBehaviour
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderCabinet;
     public GameObject interactionText;
+    public GameObject activityText;
     public GameObject glove;
     public GameObject cabinetRewindButton;
     public GameObject cabinetButtons;    
@@ -44,8 +45,9 @@ public class CabinetManager : MonoBehaviour
 
     public AudioSource doorSound;
 
-    private bool isLocked; 
-    
+    private bool isLocked;
+
+    public bool rewindApplied;
     public bool plateTaken;
     public bool door2Open;
     public bool door4Open;
@@ -132,6 +134,7 @@ public class CabinetManager : MonoBehaviour
                 returnArrow.SetActive(false);
                 noTextCollidersGeneral.SetActive(true);
                 noTextColliderCabinet.SetActive(false);
+                activityText.SetActive(false);
                 cabinetRewindButton.SetActive(false);
                 cabinetButtons.SetActive(false);
             }
@@ -233,6 +236,8 @@ public class CabinetManager : MonoBehaviour
                 default:
                     cabinetButtons.SetActive(true);
                     cabinetRewindButton.SetActive(false);
+                    activityText.SetActive(true);
+                    rewindApplied = true;
                     break;
                 case (1):
                     glass.SetActive(true);

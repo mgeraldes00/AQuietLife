@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class CloseUpDrawers : MonoBehaviour
 {
+    public DrawerManager drawerMng;
+
     public GameObject returnArrow;
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderDrawers;
     public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject drawers;
+    public GameObject drawerButtons;
+    public GameObject activityText;
     public GameObject drawerRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
@@ -34,6 +38,16 @@ public class CloseUpDrawers : MonoBehaviour
 
             if (hit.collider.CompareTag("Drawers"))
             {
+                if (drawerMng.rewindApplied == true)
+                {
+                    drawerButtons.SetActive(true);
+                    activityText.SetActive(true);
+                }
+                else if (drawerMng.rewindApplied == false)
+                {
+                    drawerRewindButton.SetActive(true);
+                }
+
                 for (int i = 0; i < zoomableObjs.Length; i++)
                     zoomableObjs[i].enabled = false;
                 Debug.Log(hit.collider.gameObject.name);
@@ -41,7 +55,6 @@ public class CloseUpDrawers : MonoBehaviour
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
                 drawers.SetActive(true);
-                drawerRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
                 noTextCollidersGeneral.SetActive(false);
                 noTextColliderDrawers.SetActive(true);

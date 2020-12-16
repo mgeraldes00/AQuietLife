@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9449e3e684c5ced4eb115f5e1d22b0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breadBoxMng: {fileID: 944029206}
   returnArrow: {fileID: 625711726}
   noTextCollidersGeneral: {fileID: 262078039}
   noTextColliderBreadBox: {fileID: 332327030}
@@ -284,6 +285,8 @@ MonoBehaviour:
   - {fileID: 1628325562}
   - {fileID: 208642932}
   breadBox: {fileID: 944029203}
+  breadBoxButtons: {fileID: 1140926067}
+  activityText: {fileID: 2014710063}
   breadBoxRewindButton: {fileID: 1140953456}
   zoomableObjs:
   - {fileID: 1240014756}
@@ -417,6 +420,7 @@ MonoBehaviour:
   noTextCollidersGeneral: {fileID: 262078039}
   noTextColliderDrawers: {fileID: 1984131119}
   interactionText: {fileID: 718968753}
+  activityText: {fileID: 2014710063}
   drawerRewindButton: {fileID: 1119335087}
   drawerButtons: {fileID: 145721909}
   drawers: {fileID: 21656948}
@@ -430,6 +434,7 @@ MonoBehaviour:
   doorCenterAnim: {fileID: 1532722307}
   spoonAnim: {fileID: 16285990}
   knifeAnim: {fileID: 2065627252}
+  rewindApplied: 0
   knifeTaken: 0
   doorCenterOpen: 0
   hasTime: 0
@@ -741,7 +746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0}
+  m_AnchoredPosition: {x: 25, y: -9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &61373886
@@ -1220,6 +1225,7 @@ MonoBehaviour:
   noTextCollidersGeneral: {fileID: 262078039}
   noTextColliderCabinet: {fileID: 839029001}
   interactionText: {fileID: 718968753}
+  activityText: {fileID: 2014710063}
   glove: {fileID: 106106059}
   cabinetRewindButton: {fileID: 906553025}
   cabinetButtons: {fileID: 1207948280}
@@ -1234,6 +1240,7 @@ MonoBehaviour:
   glassAnim: {fileID: 502431606}
   plateAnim: {fileID: 920608906}
   doorSound: {fileID: 115204098}
+  rewindApplied: 0
   plateTaken: 0
   door2Open: 0
   door4Open: 0
@@ -1657,11 +1664,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1688092777807993850, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Text
-      value: 12-16
+      value: 12-16s
       objectReference: {fileID: 0}
     - target: {fileID: 1688092777807993850, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1688092777807993850, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_FontData.m_MinSize
@@ -1713,7 +1720,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092777874075569, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Text
-      value: 8-12
+      value: 8-12s
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092777874075569, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092777874075569, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1688092777877227562, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_IsActive
@@ -1805,11 +1820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092778441675156, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Text
-      value: 16-20
+      value: 16-20s
       objectReference: {fileID: 0}
     - target: {fileID: 1688092778441675156, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1688092778441675156, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_FontData.m_MinSize
@@ -1821,7 +1836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779112628999, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Text
-      value: '0-4
+      value: '0-4s
 
 '
       objectReference: {fileID: 0}
@@ -1863,7 +1878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1919,7 +1934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779166717899, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Text
-      value: 4-8
+      value: 4-8s
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779390745468, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_IsActive
@@ -2276,6 +2291,7 @@ MonoBehaviour:
   noTextCollidersGeneral: {fileID: 0}
   noTextColliderCabinet: {fileID: 0}
   interactionText: {fileID: 0}
+  activityText: {fileID: 0}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 0}
   cabinetButtons: {fileID: 0}
@@ -2290,6 +2306,7 @@ MonoBehaviour:
   glassAnim: {fileID: 0}
   plateAnim: {fileID: 0}
   doorSound: {fileID: 0}
+  rewindApplied: 0
   plateTaken: 0
   door2Open: 0
   door4Open: 0
@@ -4542,6 +4559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65be87221ebcd4546923f27d1ae5c4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawerMng: {fileID: 21656951}
   returnArrow: {fileID: 625711726}
   noTextCollidersGeneral: {fileID: 262078039}
   noTextColliderDrawers: {fileID: 1984131119}
@@ -4551,6 +4569,8 @@ MonoBehaviour:
   - {fileID: 1302281987}
   - {fileID: 1158529513}
   drawers: {fileID: 21656948}
+  drawerButtons: {fileID: 145721909}
+  activityText: {fileID: 2014710063}
   drawerRewindButton: {fileID: 1119335087}
   zoomableObjs:
   - {fileID: 1240014756}
@@ -5989,7 +6009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0}
+  m_AnchoredPosition: {x: 25, y: -9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &718968755
@@ -7430,6 +7450,7 @@ MonoBehaviour:
   noTextCollidersGeneral: {fileID: 262078039}
   noTextColliderBreadBox: {fileID: 332327030}
   interactionText: {fileID: 718968753}
+  activityText: {fileID: 2014710063}
   breadBoxButtons: {fileID: 1140926067}
   breadBoxRewindButton: {fileID: 1140953456}
   breadBox: {fileID: 944029203}
@@ -7441,6 +7462,7 @@ MonoBehaviour:
   - {fileID: 558256132}
   doorAnim: {fileID: 1533992836}
   breadAnim: {fileID: 1990689370}
+  rewindApplied: 0
   bread1Taken: 0
   doorOpen: 0
   hasTime: 0
@@ -7798,6 +7820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd01099fbcf73e140975ca27e305e8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cabinetMng: {fileID: 115204095}
   returnArrow: {fileID: 625711726}
   noTextCollidersGeneral: {fileID: 262078039}
   noTextColliderCabinet: {fileID: 839029001}
@@ -7814,6 +7837,7 @@ MonoBehaviour:
   - {fileID: 1271890519}
   cabinet: {fileID: 115204094}
   cabinetRewindButton: {fileID: 906553025}
+  activityText: {fileID: 2014710063}
   cabinetButtons: {fileID: 1207948280}
   zoomableObjs:
   - {fileID: 409937037}
@@ -10085,6 +10109,7 @@ RectTransform:
   - {fileID: 823564707}
   - {fileID: 61373885}
   - {fileID: 1371874341}
+  - {fileID: 2014710064}
   - {fileID: 1207948281}
   - {fileID: 145721908}
   - {fileID: 1140926068}
@@ -12001,6 +12026,7 @@ MonoBehaviour:
   noTextCollidersGeneral: {fileID: 0}
   noTextColliderCabinet: {fileID: 0}
   interactionText: {fileID: 0}
+  activityText: {fileID: 0}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 0}
   cabinetButtons: {fileID: 0}
@@ -12015,6 +12041,7 @@ MonoBehaviour:
   glassAnim: {fileID: 0}
   plateAnim: {fileID: 1285107640}
   doorSound: {fileID: 0}
+  rewindApplied: 0
   plateTaken: 0
   door2Open: 0
   door4Open: 0
@@ -14229,6 +14256,85 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2014710063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014710064}
+  - component: {fileID: 2014710066}
+  - component: {fileID: 2014710065}
+  m_Layer: 5
+  m_Name: RewindText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2014710064
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014710063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1344439973}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 25, y: 9}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2014710065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014710063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Activity detected
+--- !u!222 &2014710066
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014710063}
+  m_CullTransparentMesh: 0
 --- !u!1 &2016443926
 GameObject:
   m_ObjectHideFlags: 0
@@ -14768,6 +14874,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1688092777874075569, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: 4-6s
+      objectReference: {fileID: 0}
     - target: {fileID: 1688092777877227563, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -69.09998
@@ -14812,6 +14922,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1688092779112628999, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: '0-2s
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498440, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Name
       value: BreadBoxButtons
@@ -14850,7 +14966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14903,6 +15019,12 @@ PrefabInstance:
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092779166717899, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: '2-4s
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779390745469, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -15405,6 +15527,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344439973}
     m_Modifications:
+    - target: {fileID: 1688092777807993850, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: 6-8s
+      objectReference: {fileID: 0}
     - target: {fileID: 1688092777815414368, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -68.7
@@ -15436,6 +15562,10 @@ PrefabInstance:
     - target: {fileID: 1688092777815414399, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092777874075569, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: 4-6s
       objectReference: {fileID: 0}
     - target: {fileID: 1688092777877227562, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_IsActive
@@ -15501,9 +15631,39 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1688092778441675156, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: '8-10s
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092778441675156, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092778441675156, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1688092778668024290, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092778668024290, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092778668024290, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: '10-12s
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092779112628999, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: '0-2s
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498440, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Name
@@ -15543,7 +15703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15596,6 +15756,12 @@ PrefabInstance:
     - target: {fileID: 1688092779157498441, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688092779166717899, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
+      propertyPath: m_Text
+      value: '2-4s
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 1688092779390745468, guid: ba0f2e78465dd184d83d6ca76b5f0962, type: 3}
       propertyPath: m_IsActive

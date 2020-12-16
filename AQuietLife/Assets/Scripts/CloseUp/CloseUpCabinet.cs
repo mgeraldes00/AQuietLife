@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CloseUpCabinet : MonoBehaviour
 {
+    public CabinetManager cabinetMng;
+
     public GameObject returnArrow;
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderCabinet;
@@ -11,6 +13,7 @@ public class CloseUpCabinet : MonoBehaviour
     public GameObject[] objsToZoom;
     public GameObject cabinet;
     public GameObject cabinetRewindButton;
+    public GameObject activityText;
     public GameObject cabinetButtons;
 
     public BoxCollider2D[] zoomableObjs;
@@ -35,6 +38,16 @@ public class CloseUpCabinet : MonoBehaviour
 
             if (hit.collider.CompareTag("Cabinet"))
             {
+                if (cabinetMng.rewindApplied == true)
+                {
+                    cabinetButtons.SetActive(true);
+                    activityText.SetActive(true);
+                }
+                else if (cabinetMng.rewindApplied == false)
+                {
+                    cabinetRewindButton.SetActive(true);
+                }
+
                 for (int i = 0; i < zoomableObjs.Length; i++)
                     zoomableObjs[i].enabled = false;
                 Debug.Log(hit.collider.gameObject.name);

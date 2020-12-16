@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class CloseUpBreadBox : MonoBehaviour
 {
+    public BreadBoxManager breadBoxMng;
+
     public GameObject returnArrow;
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderBreadBox;
     public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject breadBox;
-    public GameObject breadBoxRewindButton;  
+    public GameObject breadBoxButtons;
+    public GameObject activityText;
+    public GameObject breadBoxRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -34,14 +38,23 @@ public class CloseUpBreadBox : MonoBehaviour
 
             if (hit.collider.CompareTag("BreadBox"))
             {
+                if (breadBoxMng.rewindApplied == true)
+                {
+                    breadBoxButtons.SetActive(true);
+                    activityText.SetActive(true);
+                }
+                else if (breadBoxMng.rewindApplied == false)
+                {
+                    breadBoxRewindButton.SetActive(true);
+                }
+
                 for (int i = 0; i < zoomableObjs.Length; i++)
                     zoomableObjs[i].enabled = false;
                 Debug.Log(hit.collider.gameObject.name);
                 for (int i = 0; i < objsToZoom.Length; i++)
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
-                breadBox.SetActive(true);
-                breadBoxRewindButton.SetActive(true);
+                breadBox.SetActive(true);              
                 returnArrow.SetActive(true);
                 noTextCollidersGeneral.SetActive(false);
                 noTextColliderBreadBox.SetActive(true);

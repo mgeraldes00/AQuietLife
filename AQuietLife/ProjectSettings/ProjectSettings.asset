@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: AQuietLife
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: f6d7643f0b3b04b41809259c4b785f1c, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.09825563, g: 0.72526103, b: 0.9056604, a: 1}
   m_ShowUnitySplashScreen: 1
