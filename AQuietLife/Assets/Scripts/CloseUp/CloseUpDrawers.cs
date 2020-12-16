@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloseUpDrawers : MonoBehaviour
 {
+    public GameManager gameMng;
     public DrawerManager drawerMng;
 
     public GameObject returnArrow;
@@ -36,7 +37,7 @@ public class CloseUpDrawers : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Drawers"))
+            if (hit.collider.CompareTag("Drawers") && gameMng.isLocked == false)
             {
                 if (drawerMng.rewindApplied == true)
                 {

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CloseUpTable : MonoBehaviour
 {
+    public GameManager gameMng;
+
     public GameObject returnArrow;
     public GameObject noTextCollidersGeneral;
     public GameObject noTextColliderTable;
@@ -31,7 +33,7 @@ public class CloseUpTable : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Table"))
+            if (hit.collider.CompareTag("Table") && gameMng.isLocked == false)
             {
                 for (int i = 0; i < zoomableObjs.Length; i++)
                     zoomableObjs[i].enabled = false;

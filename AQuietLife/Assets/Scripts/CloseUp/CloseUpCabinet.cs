@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloseUpCabinet : MonoBehaviour
 {
+    public GameManager gameMng;
     public CabinetManager cabinetMng;
 
     public GameObject returnArrow;
@@ -36,7 +37,7 @@ public class CloseUpCabinet : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Cabinet"))
+            if (hit.collider.CompareTag("Cabinet") && gameMng.isLocked == false)
             {
                 if (cabinetMng.rewindApplied == true)
                 {
@@ -55,7 +56,7 @@ public class CloseUpCabinet : MonoBehaviour
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
                 cabinet.SetActive(true);
-                cabinetRewindButton.SetActive(true);
+                //cabinetRewindButton.SetActive(true);
                 returnArrow.SetActive(true);
                 noTextCollidersGeneral.SetActive(false);
                 inspectionTextGeneral.SetActive(false);

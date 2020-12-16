@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloseUpBreadBox : MonoBehaviour
 {
+    public GameManager gameMng;
     public BreadBoxManager breadBoxMng;
 
     public GameObject returnArrow;
@@ -36,7 +37,7 @@ public class CloseUpBreadBox : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("BreadBox"))
+            if (hit.collider.CompareTag("BreadBox") && gameMng.isLocked == false)
             {
                 if (breadBoxMng.rewindApplied == true)
                 {
