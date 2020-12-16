@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
     public BreadBoxManager breadBox;
     public DrawerManager drawers;
     public TableManager table;
+    public ClockManager clock;
     
     public CabinetManager cabinet;
 
     public GameObject[] context;
     public GameObject[] contextButtons;
 
+    public GameObject timeText;
     public GameObject inspectionText;
     public GameObject tableInteractionText;
     public GameObject interactionText;
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeText.GetComponent<Text>().text =
+            "" + clock.GetComponent<ClockManager>().pTime;
+
         Vector3 mousePos =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
