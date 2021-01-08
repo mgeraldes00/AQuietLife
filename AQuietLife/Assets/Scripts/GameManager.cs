@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
 {
     public InventoryManager inventory;
     public ObjectiveManager objective;
+    public CabinetManager cabinet;
     public BreadBoxManager breadBox;
     public DrawerManager drawers;
+    public FridgeManager fridge;
     public TableManager table;
     public ClockManager clock;
-    
-    public CabinetManager cabinet;
 
     public GameObject[] context;
     public GameObject[] contextButtons;
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
         if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers") 
-            || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox"))
+            || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox")
+            || hit.collider.CompareTag("Fridge"))
         {
             Debug.Log("Object");
             inspectionText.SetActive(true);          

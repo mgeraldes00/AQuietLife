@@ -98,8 +98,8 @@ public class BreadBoxManager : MonoBehaviour
                 breadBoxButtons.SetActive(true);
             }*/
 
-            if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false && inventory.hasGlove == true
-                && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false
+                && inventory.hasGlove == true && gameMng.isLocked == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 inventory.GloveOffInventory();
@@ -111,7 +111,6 @@ public class BreadBoxManager : MonoBehaviour
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
             }
-
             if (hit.collider.CompareTag("BreadBoxDoor") 
                 && inventory.hasGlove == false && isTrapped == true
                 && gameMng.isLocked == false)

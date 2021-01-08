@@ -26,6 +26,9 @@ TagManager:
   - TableClose
   - Door
   - NoTag
+  - Fridge
+  - FridgeDoor1
+  - FridgeDoor2
   layers:
   - Default
   - TransparentFX
