@@ -6,6 +6,7 @@ public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
+    public Eyelids eyelids;
     public GloveManager gloveMng;
     public ObjectiveManager objective;
     public GameManager gameMng;
@@ -234,10 +235,12 @@ public class CabinetManager : MonoBehaviour
             {
                 case (0):
                 default:
-                    cabinetButtons.SetActive(true);
+                    eyelids.Close();
+                    StartCoroutine(TimeToOpen());
+                    /*cabinetButtons.SetActive(true);
                     cabinetRewindButton.SetActive(false);
                     activityText.SetActive(true);
-                    rewindApplied = true;
+                    rewindApplied = true;*/
                     break;
                 case (1):
                     glass.SetActive(true);
@@ -300,5 +303,11 @@ public class CabinetManager : MonoBehaviour
         returnArrow.SetActive(true);
         plate.SetActive(false);
         glass.SetActive(false);
+    }
+
+    IEnumerator TimeToOpen()
+    {
+        yield return new WaitForSeconds(3);
+        eyelids.Open();
     }
 }
