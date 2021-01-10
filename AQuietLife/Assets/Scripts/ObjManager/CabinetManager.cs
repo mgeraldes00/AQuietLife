@@ -44,6 +44,7 @@ public class CabinetManager : MonoBehaviour
 
     private Animator anim;
 
+    public AudioSource rewindAudio;
     public AudioSource doorSound;
 
     private bool isLocked;
@@ -236,6 +237,7 @@ public class CabinetManager : MonoBehaviour
                 case (0):
                 default:
                     eyelids.Close();
+                    //rewindAudio.Play();
                     StartCoroutine(TimeToOpen());
                     /*cabinetButtons.SetActive(true);
                     cabinetRewindButton.SetActive(false);
@@ -291,6 +293,16 @@ public class CabinetManager : MonoBehaviour
         }        
     }
 
+    public void RewindLock()
+    {
+        if (isLocked == false && hasTime == true && gameMng.isLocked == false)
+        {
+            returnArrow.SetActive(false);
+            isLocked = true;
+            StartCoroutine(UnlockRewind());
+        }
+    }
+
     public void NoMoreTime()
     {
         hasTime = false;
@@ -305,9 +317,18 @@ public class CabinetManager : MonoBehaviour
         glass.SetActive(false);
     }
 
+    IEnumerator UnlockRewind()
+    {
+        yield return new WaitForSeconds(16);
+        isLocked = false;
+        returnArrow.SetActive(true);
+    }
+
     IEnumerator TimeToOpen()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        rewindAudio.Play();
+        yield return new WaitForSeconds(13);
         eyelids.Open();
     }
 }
