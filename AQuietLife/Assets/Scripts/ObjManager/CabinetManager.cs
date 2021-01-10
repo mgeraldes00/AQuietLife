@@ -42,6 +42,8 @@ public class CabinetManager : MonoBehaviour
     public Animator glassAnim;
     public Animator plateAnim;
 
+    public Animator pointer;
+
     private Animator anim;
 
     public AudioSource rewindAudio;
@@ -319,7 +321,7 @@ public class CabinetManager : MonoBehaviour
 
     IEnumerator UnlockRewind()
     {
-        yield return new WaitForSeconds(16);
+        yield return new WaitForSeconds(17);
         isLocked = false;
         returnArrow.SetActive(true);
     }
@@ -328,7 +330,8 @@ public class CabinetManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         rewindAudio.Play();
-        yield return new WaitForSeconds(13);
+        pointer.SetTrigger("CabinetRewind");
+        yield return new WaitForSeconds(14);
         eyelids.Open();
     }
 }
