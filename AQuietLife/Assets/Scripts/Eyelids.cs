@@ -8,6 +8,7 @@ public class Eyelids : MonoBehaviour
     public Animator timer;
 
     public AudioSource tick;
+    public AudioSource tickReverse;
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,12 @@ public class Eyelids : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         timer.SetTrigger("Pressed");
+        tickReverse.Play();
+        yield return new WaitForSeconds(2);
+        timer.SetTrigger("Pressed");
+        tickReverse.Stop();
         tick.Play();
-        yield return new WaitForSeconds(13);
+        yield return new WaitForSeconds(12);
         timer.SetTrigger("Pressed");
         timer.SetBool("Rewind", false);
         tick.Stop();

@@ -47,6 +47,7 @@ public class CabinetManager : MonoBehaviour
     private Animator anim;
 
     public AudioSource rewindAudio;
+    public AudioSource rewindReverseAudio;
     public AudioSource doorSound;
 
     private bool isLocked;
@@ -321,7 +322,7 @@ public class CabinetManager : MonoBehaviour
 
     IEnumerator UnlockRewind()
     {
-        yield return new WaitForSeconds(17);
+        yield return new WaitForSeconds(18);
         isLocked = false;
         returnArrow.SetActive(true);
     }
@@ -329,9 +330,11 @@ public class CabinetManager : MonoBehaviour
     IEnumerator TimeToOpen()
     {
         yield return new WaitForSeconds(2);
-        rewindAudio.Play();
         pointer.SetTrigger("CabinetRewind");
-        yield return new WaitForSeconds(14);
+        rewindReverseAudio.Play();
+        yield return new WaitForSeconds(2);
+        rewindAudio.Play();       
+        yield return new WaitForSeconds(13);
         eyelids.Open();
     }
 }
