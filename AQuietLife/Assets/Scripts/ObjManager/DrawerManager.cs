@@ -115,7 +115,8 @@ public class DrawerManager : MonoBehaviour
                     interactableColliders[i].enabled = true;
             }
 
-            if (hit.collider.CompareTag("Knife") && inventory.hasObject != true)
+            if (hit.collider.CompareTag("Knife") && inventory.hasObject != true
+                && gameMng.isLocked == false)
             {
                 knifeInteract.SetActive(false);
                 inventory.KnifeInInventory();

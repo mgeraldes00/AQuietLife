@@ -292,6 +292,7 @@ public class CabinetManager : MonoBehaviour
         {
             returnArrow.SetActive(false);
             isLocked = true;
+            gameMng.isLocked = true;
             StartCoroutine(Unlock());
         }        
     }
@@ -302,6 +303,7 @@ public class CabinetManager : MonoBehaviour
         {
             returnArrow.SetActive(false);
             isLocked = true;
+            gameMng.isLocked = true;
             StartCoroutine(UnlockRewind());
         }
     }
@@ -315,6 +317,7 @@ public class CabinetManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
+        gameMng.isLocked = false;
         returnArrow.SetActive(true);
         plate.SetActive(false);
         glass.SetActive(false);
@@ -324,6 +327,7 @@ public class CabinetManager : MonoBehaviour
     {
         yield return new WaitForSeconds(18);
         isLocked = false;
+        gameMng.isLocked = false;
         returnArrow.SetActive(true);
     }
 

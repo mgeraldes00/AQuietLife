@@ -187,6 +187,7 @@ public class GameManager : MonoBehaviour
         startTutorial.SetActive(false);
         isLocked = false;
         kitchenClock.SetBool("Active", true);
+        StartCoroutine(TimeTillLock());
     }
 
     public void ShowTutorial()
@@ -204,6 +205,16 @@ public class GameManager : MonoBehaviour
     public void Lock()
     {
         returnArrow.SetActive(false);
+        isLocked = true;
+    }
+
+    IEnumerator TimeTillLock()
+    {
+        yield return new WaitForSeconds(20);
+        isLocked = true;
+        yield return new WaitForSeconds(5);
+        isLocked = true;
+        yield return new WaitForSeconds(5);
         isLocked = true;
     }
 }

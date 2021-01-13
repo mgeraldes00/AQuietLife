@@ -126,7 +126,8 @@ public class BreadBoxManager : MonoBehaviour
             }
 
             if (hit.collider.CompareTag("Bread1") 
-                && inventory.hasObject != true && inventory.plateUsed == true)
+                && inventory.hasObject != true && inventory.plateUsed == true
+                && gameMng.isLocked == false)
             {
                 breadInteract1.SetActive(false);
                 inventory.BreadInInventory();

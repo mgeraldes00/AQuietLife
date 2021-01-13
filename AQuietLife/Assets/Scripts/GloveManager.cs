@@ -35,7 +35,8 @@ public class GloveManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Glove") && firstGlove == false)
+            if (hit.collider.CompareTag("Glove") && firstGlove == false
+                && gameManager.isLocked == false)
             {
                 //Debug.Log(hit.collider.gameObject.name);
                 currentGlove.SetActive(false);
