@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public GameObject finalTutorial;
     public GameObject noTextCollidersGeneral;
 
+    public Animator kitchenClock;
+
     public bool isLocked;
     public bool firstObject;
     private bool allObjectives;
@@ -184,6 +186,7 @@ public class GameManager : MonoBehaviour
     {
         startTutorial.SetActive(false);
         isLocked = false;
+        kitchenClock.SetBool("Active", true);
     }
 
     public void ShowTutorial()
