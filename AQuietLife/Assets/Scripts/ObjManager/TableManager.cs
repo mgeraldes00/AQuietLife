@@ -150,7 +150,7 @@ public class TableManager : MonoBehaviour
             {
                 plate.SetActive(false);
                 breadCut.SetActive(false);               
-                inventory.FinalInInventory();
+                inventory.BreadCutInInventory();
                 plateTaken = true;
                 gameMng.pickUpTextFinal.SetActive(false);
             }
