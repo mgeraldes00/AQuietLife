@@ -29,6 +29,7 @@ TagManager:
   - Fridge
   - FridgeDoor1
   - FridgeDoor2
+  - CabinetBreach
   layers:
   - Default
   - TransparentFX

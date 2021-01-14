@@ -66,6 +66,11 @@ public class GameManager : MonoBehaviour
             inspectionText.SetActive(true);          
         }
 
+        if (hit.collider.CompareTag("CabinetBreach"))
+        {
+            inspectionText.SetActive(true);
+        }
+
         if (hit.collider.CompareTag("CabinetDoor1") 
             || hit.collider.CompareTag("CabinetDoor2") && cabinet.door2Open == false
             || hit.collider.CompareTag("CabinetDoor3") 
@@ -210,7 +215,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TimeTillLock()
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(900);
         isLocked = true;
         yield return new WaitForSeconds(5);
         isLocked = true;

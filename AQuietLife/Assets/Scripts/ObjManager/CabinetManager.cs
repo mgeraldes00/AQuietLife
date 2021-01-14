@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CabinetManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CabinetManager : MonoBehaviour
     public ObjectiveManager objective;
     public GameManager gameMng;
     public CloseUpCabinet closeUp;
+    public ThoughtManager thought;
+
+    public Text thoughtText;
 
     public GameObject cabinetGeneral;
     public GameObject cabinetDoor2Open;
@@ -200,6 +204,12 @@ public class CabinetManager : MonoBehaviour
                 plateTaken = true;
                 objective.hasPlate = true;
                 gameMng.pickUpText.SetActive(false);
+            }
+
+            if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
+            {
+                thought.ShowThought();
+                thoughtText.text = "Someone didn't close this properly...";
             }
         }
 

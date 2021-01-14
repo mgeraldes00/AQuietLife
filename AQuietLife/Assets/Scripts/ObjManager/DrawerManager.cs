@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawerManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class DrawerManager : MonoBehaviour
     public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpDrawers closeUp;
+    public ThoughtManager thought;
+
+    public Text thoughtText;
 
     public GameObject drawersGeneral;
     public GameObject drawersMiddleDoorOpen;
@@ -123,6 +127,12 @@ public class DrawerManager : MonoBehaviour
                 knifeTaken = true;
                 objective.hasKnife = true;
                 gameMng.pickUpText.SetActive(false);
+            }
+
+            if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
+            {
+                thought.ShowThought();
+                thoughtText.text = "I cleaned this yesterday...";
             }
         }
     }
