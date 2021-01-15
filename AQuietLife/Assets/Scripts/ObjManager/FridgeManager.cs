@@ -99,11 +99,22 @@ public class FridgeManager : MonoBehaviour
                 fridgeButtons.SetActive(false);
             }
 
-            if (hit.collider.CompareTag("FridgeDoor2") && doorLeftOpen == false
+            if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
+                && doorLeftOpen == false)
+            {
+                doorLeftAnim.SetBool("Open", true);
+                doorLeftOpen = true;
+                frozenBread.SetActive(true);
+                interactionText.SetActive(false);
+                LockAndUnlock();
+            }
+
+            if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
                 && inventory.hasGlove == true && gameMng.isLocked == false)
             {
-                doorRightAnim.SetBool("Door2Open", true);
+                doorRightAnim.SetBool("Open", true);
                 inventory.GloveOffInventory();
+                ham.SetActive(true);
                 isTrapped = false;
                 doorRightOpen = true;
                 interactionText.SetActive(false);
@@ -119,7 +130,8 @@ public class FridgeManager : MonoBehaviour
                 Debug.Log("Game Over");
                 gameMng.Die();
             }
-            else if (hit.collider.CompareTag("FridgeDoor2") && inventory.hasGlove == false && isTrapped == false)
+            else if (hit.collider.CompareTag("FridgeDoor2") && inventory.hasGlove == false 
+                && isTrapped == false)
             {
                 doorRightAnim.SetBool("BreadBoxDoorOpen", true);
                 doorRightOpen = true;
@@ -127,7 +139,7 @@ public class FridgeManager : MonoBehaviour
                 LockAndUnlock();
             }
 
-            if (hit.collider.CompareTag("Bread")
+            if (hit.collider.CompareTag("Bread1")
                 && inventory.hasObject != true && inventory.plateUsed == true)
             {
                 frozenBread.SetActive(false);

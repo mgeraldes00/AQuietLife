@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseUpBreadBox : MonoBehaviour
+public class CloseUpDrawers : MonoBehaviour
 {
     public GameManager gameMng;
-    public BreadBoxManager breadBoxMng;
+    public DrawerManager drawerMng;
 
     public GameObject returnArrow;
     public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderBreadBox;
+    public GameObject noTextColliderDrawers;
     public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
-    public GameObject breadBox;
-    public GameObject breadBoxButtons;
+    public GameObject drawers;
+    public GameObject drawerButtons;
     public GameObject activityText;
-    public GameObject breadBoxRewindButton;
+    public GameObject drawerRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -37,16 +37,16 @@ public class CloseUpBreadBox : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("BreadBox") && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("Drawers") && gameMng.isLocked == false)
             {
-                if (breadBoxMng.rewindApplied == true)
+                if (drawerMng.rewindApplied == true)
                 {
-                    breadBoxButtons.SetActive(true);
-                    activityText.SetActive(true);
+                    //drawerButtons.SetActive(true);
+                    //activityText.SetActive(true);
                 }
-                else if (breadBoxMng.rewindApplied == false)
+                else if (drawerMng.rewindApplied == false)
                 {
-                    breadBoxRewindButton.SetActive(true);
+                    //drawerRewindButton.SetActive(true);
                 }
 
                 for (int i = 0; i < zoomableObjs.Length; i++)
@@ -55,10 +55,10 @@ public class CloseUpBreadBox : MonoBehaviour
                 for (int i = 0; i < objsToZoom.Length; i++)
                     objsToZoom[i].SetActive(false);
                 //objToZoom.SetActive(false);
-                breadBox.SetActive(true);              
+                drawers.SetActive(true);
                 returnArrow.SetActive(true);
                 noTextCollidersGeneral.SetActive(false);
-                noTextColliderBreadBox.SetActive(true);
+                noTextColliderDrawers.SetActive(true);
                 inspectionTextGeneral.SetActive(false);
             }
         }

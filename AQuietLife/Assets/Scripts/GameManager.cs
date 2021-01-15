@@ -78,7 +78,9 @@ public class GameManager : MonoBehaviour
             || hit.collider.CompareTag("BreadBoxDoor") && breadBox.doorOpen == false
             || hit.collider.CompareTag("DrawerDoor1")
             || hit.collider.CompareTag("DrawerDoor2") && drawers.doorCenterOpen == false
-            || hit.collider.CompareTag("DrawerDoor3"))
+            || hit.collider.CompareTag("DrawerDoor3")
+            || hit.collider.CompareTag("FridgeDoor1") && fridge.doorLeftOpen == false
+            || hit.collider.CompareTag("FridgeDoor2") && fridge.doorRightOpen == false)
         {
             interactionText.SetActive(true);
         }

@@ -41,12 +41,12 @@ public class CloseUpFridge : MonoBehaviour
             {
                 if (fridgeMng.rewindApplied == true)
                 {
-                    fridgeButtons.SetActive(true);
-                    activityText.SetActive(true);
+                    //fridgeButtons.SetActive(true);
+                    //activityText.SetActive(true);
                 }
                 else if (fridgeMng.rewindApplied == false)
                 {
-                    fridgeRewindButton.SetActive(true);
+                    //fridgeRewindButton.SetActive(true);
                 }
 
                 for (int i = 0; i < zoomableObjs.Length; i++)
