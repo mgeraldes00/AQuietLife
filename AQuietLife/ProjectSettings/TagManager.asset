@@ -30,6 +30,7 @@ TagManager:
   - FridgeDoor1
   - FridgeDoor2
   - CabinetBreach
+  - Microwave
   layers:
   - Default
   - TransparentFX
