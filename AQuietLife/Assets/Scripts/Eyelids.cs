@@ -45,7 +45,7 @@ public class Eyelids : MonoBehaviour
         timer.SetTrigger("Pressed");
         tickReverse.Stop();
         tick.Play();
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(10);
         timer.SetTrigger("Pressed");
         timer.SetBool("Rewind", false);
         tick.Stop();

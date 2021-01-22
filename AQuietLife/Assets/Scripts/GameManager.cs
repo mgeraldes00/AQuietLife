@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
         {
             case (0):
             default:
-                SceneManager.LoadScene("Context");
+                SceneManager.LoadScene("Kitchen");
                 break;
             case (1):
                 context[0].SetActive(false);

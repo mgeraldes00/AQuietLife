@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
+    public Clock wave;
+    public AudioSlider audioSlider;
     public InventoryManager inventory;
     public Eyelids eyelids;
     public GloveManager gloveMng;
@@ -50,9 +52,17 @@ public class CabinetManager : MonoBehaviour
 
     private Animator anim;
 
+    public Image waveform;
+    public Image waveformCabinet;
+
+    public GameObject slider;
+
     public AudioSource rewindAudio;
+    public AudioClip rewind;
     public AudioSource rewindReverseAudio;
     public AudioSource doorSound;
+
+    private Color red = new Color(1, 0, 0, 1);
 
     private bool isLocked;
 
@@ -335,7 +345,7 @@ public class CabinetManager : MonoBehaviour
 
     IEnumerator UnlockRewind()
     {
-        yield return new WaitForSeconds(18);
+        yield return new WaitForSeconds(16);
         isLocked = false;
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
@@ -347,8 +357,16 @@ public class CabinetManager : MonoBehaviour
         pointer.SetTrigger("CabinetRewind");
         rewindReverseAudio.Play();
         yield return new WaitForSeconds(2);
-        rewindAudio.Play();       
-        yield return new WaitForSeconds(13);
+        rewindAudio.Play();
+        slider.SetActive(true);
+        waveformCabinet.enabled = true;
+        //waveform.enabled = true;
+        //Texture2D tex = wave.PaintWaveformSpectrum(rewind, 0.5f, 500, 200, red);
+        //waveform.overrideSprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+        yield return new WaitForSeconds(11);
         eyelids.Open();
+        slider.SetActive(false);
+        waveformCabinet.enabled = false;
+        //waveform.enabled = false;
     }
 }
