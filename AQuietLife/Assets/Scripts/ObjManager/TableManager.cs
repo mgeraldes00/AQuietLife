@@ -17,6 +17,7 @@ public class TableManager : MonoBehaviour
     public GameObject tableGeneralWPlateBread;
     public GameObject tableGeneralWPlateKnifeBread;
     public GameObject tableGeneralWPlateKnifeBreadUncut;
+    public GameObject tableGeneralWPlateKnifeBreadHam;
 
     public BoxCollider2D tableCollider;
 
@@ -29,6 +30,7 @@ public class TableManager : MonoBehaviour
     public GameObject bread;
     public GameObject knife;
     public GameObject breadCut;
+    public GameObject ham;
     
     [SerializeField]
     private bool allOnTable;
@@ -39,6 +41,7 @@ public class TableManager : MonoBehaviour
     public bool breadOnTable;
     public bool frozenBreadOnTable;
     public bool knifeOnTable;
+    public bool hamOnTable;
 
     // Start is called before the first frame update
     void Start()
@@ -171,13 +174,22 @@ public class TableManager : MonoBehaviour
                 interactionText.SetActive(false);
             }
 
+            if (hit.collider.CompareTag("TableClose") && inventory.hasHam == true)
+            {
+                ham.SetActive(true);
+                inventory.HamOffInventory();
+                hamOnTable = true;
+                allOnTable = true;
+                tableCollider.enabled = false;
+            }
+
             if (breadOnTable == true && knifeOnTable == true && plateTaken == false)
             {
                 bread.SetActive(false);
                 breadCut.SetActive(true);
                 objective.part1Complete = true;
-                allOnTable = true;
-                tableCollider.enabled = false;
+                //allOnTable = true;
+                //tableCollider.enabled = false;
             }
 
             if (hit.collider.CompareTag("Plate")
@@ -195,7 +207,8 @@ public class TableManager : MonoBehaviour
                 && allOnTable == true)
             {
                 plate.SetActive(false);
-                breadCut.SetActive(false);               
+                breadCut.SetActive(false);
+                ham.SetActive(false);
                 inventory.BreadCutInInventory();
                 plateTaken = true;
                 gameMng.pickUpTextFinal.SetActive(false);

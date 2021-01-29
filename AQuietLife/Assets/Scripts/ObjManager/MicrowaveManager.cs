@@ -35,6 +35,7 @@ public class MicrowaveManager : MonoBehaviour
     private bool isLocked;
     //private bool isTrapped;
     private bool breadPlaced;
+    [SerializeField]
     private bool worked;
 
     public bool rewindApplied;

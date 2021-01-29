@@ -17,6 +17,7 @@ public class ObjectiveManager : MonoBehaviour
     public bool hasPlate;
     public bool hasBread;
     public bool hasKnife;
+    public bool hasHam;
     public bool part1Complete;
 
 
@@ -50,7 +51,12 @@ public class ObjectiveManager : MonoBehaviour
             StartCoroutine(newObjectives());          
             for (int i = 0; i < list2.Length; i++)
                 list2[i].SetActive(true);
-        }      
+        }
+        
+        if (hasHam == true)
+        {
+            scratchListPart2[0].SetActive(true);
+        }
     }
 
     IEnumerator newObjectives()

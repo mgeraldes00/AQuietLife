@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
             ShowTutorial();
         }
 
-        if (objective.part1Complete == true && allObjectives == false)
+        if (inventory.hamUsed == true && allObjectives == false)
         {
             allObjectives = true;
             ShowFinalTutorial();

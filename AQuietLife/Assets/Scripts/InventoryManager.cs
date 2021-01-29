@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public Image plateIcon;
     public Image breadIcon;
     public Image knifeIcon;
+    public Image hamIcon;
     public Image[] breadPlateUncutIcon;
     public Image[] breadCutIcon;
     public Image[] hamBreadIcon;
@@ -22,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     public bool hasFrozenBreadInPlate;
     public bool hasBreadInPlate;
     public bool hasKnife;
+    public bool hasHam;
     public bool hasPlateWBread;
 
     public bool plateUsed;
@@ -30,6 +32,7 @@ public class InventoryManager : MonoBehaviour
     public bool frozenBreadPlateUsed;
     public bool breadPlateUsed;
     public bool knifeUsed;
+    public bool hamUsed;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,7 @@ public class InventoryManager : MonoBehaviour
         plateIcon.enabled = false;
         breadIcon.enabled = false;
         knifeIcon.enabled = false;
+        hamIcon.enabled = false;
         for (int i = 0; i < breadPlateUncutIcon.Length; i++)
             breadPlateUncutIcon[i].enabled = false;
         for (int i = 0; i < breadCutIcon.Length; i++)
@@ -168,9 +172,24 @@ public class InventoryManager : MonoBehaviour
 
     public void BreadCutInInventory()
     {
-        for (int i = 0; i < breadCutIcon.Length; i++)
-            breadCutIcon[i].enabled = true;
+        for (int i = 0; i < hamBreadIcon.Length; i++)
+            hamBreadIcon[i].enabled = true;
         hasPlateWBread = true;
         hasObject = true;
+    }
+
+    public void HamInInventory()
+    {
+        hamIcon.enabled = true;
+        hasHam = true;
+        hasObject = true;
+    }
+
+    public void HamOffInventory()
+    {
+        hamIcon.enabled = false;
+        hasHam = false;
+        hasObject = false;
+        hamUsed = true;
     }
 }

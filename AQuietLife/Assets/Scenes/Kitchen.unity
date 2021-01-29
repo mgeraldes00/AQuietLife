@@ -716,6 +716,81 @@ MonoBehaviour:
   knifeTaken: 0
   doorCenterOpen: 0
   hasTime: 0
+--- !u!1 &42299530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 42299531}
+  - component: {fileID: 42299533}
+  - component: {fileID: 42299532}
+  m_Layer: 5
+  m_Name: HamIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &42299531
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42299530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1888950850}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 112, y: -28}
+  m_SizeDelta: {x: 1000, y: 600}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &42299532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42299530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 7e1335f18a3fea544a5dc375ab98f063, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &42299533
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42299530}
+  m_CullTransparentMesh: 0
 --- !u!1 &46144441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,6 +4881,7 @@ MonoBehaviour:
   bread: {fileID: 424211685}
   doorAnim: {fileID: 1084134319}
   microwaveWork: {fileID: 205098648}
+  worked: 0
   rewindApplied: 0
   BreadTaken: 0
   doorOpen: 0
@@ -7556,7 +7632,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b954ba68b47cd914b9bf346c93d5526b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8376,7 +8452,7 @@ RectTransform:
   m_Children:
   - {fileID: 1189074587}
   m_Father: {fileID: 1888950850}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8915,7 +8991,7 @@ RectTransform:
   m_Children:
   - {fileID: 11171930}
   m_Father: {fileID: 1888950850}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9583,6 +9659,7 @@ MonoBehaviour:
   fridgeButtons: {fileID: 1559630092}
   fridge: {fileID: 811611865}
   ham: {fileID: 1833600270}
+  hamLess: {fileID: 1246288402}
   cheese: {fileID: 1289179193}
   frozenBread: {fileID: 799145685}
   interactableColliders: []
@@ -10379,7 +10456,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4928e5126d5f0cf47b00e14c8cfdd8ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12028,6 +12105,7 @@ MonoBehaviour:
   tableGeneralWPlateBread: {fileID: 67130654}
   tableGeneralWPlateKnifeBread: {fileID: 701155529}
   tableGeneralWPlateKnifeBreadUncut: {fileID: 1500559893}
+  tableGeneralWPlateKnifeBreadHam: {fileID: 2131785064}
   tableCollider: {fileID: 1112780440}
   returnArrow: {fileID: 625711726}
   noTextCollidersGeneral: {fileID: 262078039}
@@ -12038,12 +12116,14 @@ MonoBehaviour:
   bread: {fileID: 1695319663}
   knife: {fileID: 1938427525}
   breadCut: {fileID: 1553279801}
+  ham: {fileID: 1981097267}
   allOnTable: 0
   plateTaken: 0
   plateOnTable: 0
   breadOnTable: 0
   frozenBreadOnTable: 0
   knifeOnTable: 0
+  hamOnTable: 0
 --- !u!1 &1119335087
 GameObject:
   m_ObjectHideFlags: 0
@@ -13241,6 +13321,88 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.7, y: 1.48}
   m_EdgeRadius: 0
+--- !u!1 &1246288402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1246288403}
+  - component: {fileID: 1246288404}
+  m_Layer: 0
+  m_Name: hamLess
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1246288403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246288402}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1753619977}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1246288404
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246288402}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 2612d9d1dc308a8438125e3c5986fc31, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.2, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1246871587
 GameObject:
   m_ObjectHideFlags: 0
@@ -14464,6 +14626,7 @@ MonoBehaviour:
   hasPlate: 0
   hasBread: 0
   hasKnife: 0
+  hasHam: 0
   part1Complete: 0
 --- !u!1 &1316856480
 GameObject:
@@ -15741,7 +15904,7 @@ RectTransform:
   m_Children:
   - {fileID: 251723464}
   m_Father: {fileID: 1888950850}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18479,6 +18642,7 @@ Transform:
   - {fileID: 1833600271}
   - {fileID: 1289179194}
   - {fileID: 799145686}
+  - {fileID: 1246288403}
   m_Father: {fileID: 811611866}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19455,9 +19619,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1833600271}
   - component: {fileID: 1833600272}
+  - component: {fileID: 1833600273}
   m_Layer: 0
   m_Name: Ham
-  m_TagString: Untagged
+  m_TagString: Ham
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19527,6 +19692,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1833600273
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833600270}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2, y: 0.58}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.45, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1846854469
 GameObject:
   m_ObjectHideFlags: 0
@@ -19624,7 +19815,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4ba004d77b28938459201d320c853114, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19821,6 +20012,7 @@ RectTransform:
   - {fileID: 2016443927}
   - {fileID: 933149351}
   - {fileID: 389473776}
+  - {fileID: 42299531}
   - {fileID: 654479405}
   - {fileID: 753628911}
   - {fileID: 1480754848}
@@ -19886,6 +20078,7 @@ MonoBehaviour:
   plateIcon: {fileID: 2016443928}
   breadIcon: {fileID: 933149353}
   knifeIcon: {fileID: 389473774}
+  hamIcon: {fileID: 42299532}
   breadPlateUncutIcon:
   - {fileID: 1480754850}
   - {fileID: 251723462}
@@ -19903,6 +20096,7 @@ MonoBehaviour:
   hasFrozenBreadInPlate: 0
   hasBreadInPlate: 0
   hasKnife: 0
+  hasHam: 0
   hasPlateWBread: 0
   plateUsed: 0
   breadUsed: 0
@@ -19910,6 +20104,7 @@ MonoBehaviour:
   frozenBreadPlateUsed: 0
   breadPlateUsed: 0
   knifeUsed: 0
+  hamUsed: 0
 --- !u!1 &1892218173
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class FridgeManager : MonoBehaviour
     public GameObject fridgeButtons;
     public GameObject fridge;
     public GameObject ham;
+    public GameObject hamLess;
     public GameObject cheese;
     public GameObject frozenBread;
 
@@ -149,6 +150,16 @@ public class FridgeManager : MonoBehaviour
                 frozenBreadTaken = true;
                 objective.hasBread = true;
                 gameMng.pickUpText.SetActive(false);
+            }
+
+            if (hit.collider.CompareTag("Ham") && gameMng.isLocked == false
+                && inventory.hasObject != true && objective.part1Complete == true)
+            {
+                ham.SetActive(false);
+                hamLess.SetActive(true);
+                inventory.HamInInventory();
+                hamTaken = true;
+                objective.hasHam = true;
             }
         }
     }
