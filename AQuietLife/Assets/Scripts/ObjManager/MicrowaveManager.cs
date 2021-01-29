@@ -54,9 +54,9 @@ public class MicrowaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (working == false)
+        if (working == true)
         {
-            doorAnim.SetTrigger("Unlight");
+            doorAnim.SetTrigger("KeepLit");
         }
 
         if (doorOpen == true)
@@ -130,11 +130,11 @@ public class MicrowaveManager : MonoBehaviour
             }
 
             if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
-                && doorOpen == true && inventory.hasFrozenBread == true)
+                && doorOpen == true && inventory.hasFrozenBreadInPlate == true)
             {
                 Bread.SetActive(true);
                 breadPlaced = true;
-                inventory.FrozenBreadOffInventory();
+                inventory.PlateBreadUncutOffInventory();
                 //doorAnim.SetBool("Open", false);
                 //doorOpen = false;
                 //LockAndUnlock();
@@ -155,7 +155,7 @@ public class MicrowaveManager : MonoBehaviour
             if (hit.collider.CompareTag("Bread1") && gameMng.isLocked == false
                 && worked == true)
             {
-                inventory.BreadInInventory();
+                inventory.PlateBreadUncutUnfrozenInInventory();
                 Bread.SetActive(false);
             }
         }
