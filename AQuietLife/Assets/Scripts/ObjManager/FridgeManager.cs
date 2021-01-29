@@ -140,10 +140,12 @@ public class FridgeManager : MonoBehaviour
             }
 
             if (hit.collider.CompareTag("Bread1")
-                && inventory.hasObject != true && inventory.plateUsed == true)
+                && inventory.hasObject != true && inventory.plateUsed == true
+                && inventory.breadUsed != true
+                && gameMng.isLocked == false)
             {
                 frozenBread.SetActive(false);
-                inventory.BreadInInventory();
+                inventory.FrozenBreadInInventory();
                 frozenBreadTaken = true;
                 objective.hasBread = true;
                 gameMng.pickUpText.SetActive(false);

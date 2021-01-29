@@ -125,8 +125,9 @@ public class BreadBoxManager : MonoBehaviour
                 LockAndUnlock();
             }
 
-            if (hit.collider.CompareTag("Bread1") 
+            if (hit.collider.CompareTag("Bread1")
                 && inventory.hasObject != true && inventory.plateUsed == true
+                && inventory.breadUsed != true
                 && gameMng.isLocked == false)
             {
                 breadInteract1.SetActive(false);

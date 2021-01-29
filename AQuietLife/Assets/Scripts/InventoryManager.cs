@@ -17,11 +17,13 @@ public class InventoryManager : MonoBehaviour
 
     public bool hasPlate;
     public bool hasBread;
+    public bool hasFrozenBread;
     public bool hasKnife;
     public bool hasPlateWBread;
 
     public bool plateUsed;
     public bool breadUsed;
+    public bool frozenBreadUsed;
     public bool knifeUsed;
 
     // Start is called before the first frame update
@@ -86,6 +88,21 @@ public class InventoryManager : MonoBehaviour
     {
         breadIcon.enabled = false;
         hasBread = false;
+        hasObject = false;
+        breadUsed = true;
+    }
+
+    public void FrozenBreadInInventory()
+    {
+        breadIcon.enabled = true;
+        hasFrozenBread = true;
+        hasObject = true;
+    }
+
+    public void FrozenBreadOffInventory()
+    {
+        breadIcon.enabled = false;
+        hasFrozenBread = false;
         hasObject = false;
         breadUsed = true;
     }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public BreadBoxManager breadBox;
     public DrawerManager drawers;
     public FridgeManager fridge;
+    public MicrowaveManager microwave;
     public TableManager table;
     public ClockManager clock;
 
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
     public bool firstObject;
     private bool allObjectives;
 
+    public bool breadHeated;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers") 
             || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox")
-            || hit.collider.CompareTag("Fridge"))
+            || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave"))
         {
             Debug.Log("Object");
             inspectionText.SetActive(true);          
@@ -223,5 +226,12 @@ public class GameManager : MonoBehaviour
         isLocked = true;
         yield return new WaitForSeconds(5);
         isLocked = true;
+    }
+
+    IEnumerator Unfreeze()
+    {
+        yield return new WaitForSeconds(10);
+        microwave.working = false;
+        //microwave.doorAnim.SetBool("Working", false);
     }
 }
