@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FridgeManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class FridgeManager : MonoBehaviour
     public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpFridge closeUp;
+    public ThoughtManager thought;
+
+    public Text thoughtText;
 
     public GameObject fridgeGeneral;
     public GameObject fridgeDoor1Open;
@@ -138,6 +142,13 @@ public class FridgeManager : MonoBehaviour
                 doorRightOpen = true;
                 interactionText.SetActive(false);
                 LockAndUnlock();
+            }
+
+            if (hit.collider.CompareTag("Bread1")
+                && inventory.plateUsed == false)
+            {
+                thought.ShowThought();
+                thoughtText.text = "Should find something to place this in first.";
             }
 
             if (hit.collider.CompareTag("Bread1")
