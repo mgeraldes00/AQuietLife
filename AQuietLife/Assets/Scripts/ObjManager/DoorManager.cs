@@ -8,6 +8,8 @@ public class DoorManager : MonoBehaviour
     public ObjectiveManager objective;
     public InventoryManager inventory;
 
+    public RatingManager rating;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,8 @@ public class DoorManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
             {
-                SceneManager.LoadScene("MainMenu");
+                rating.EndLevel();
+                //SceneManager.LoadScene("MainMenu");
             }
         }
     }

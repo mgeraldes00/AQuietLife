@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    public GameManager gameMng;
+
     public Image[] gloveIcons;
     public Image plateIcon;
     public Image breadIcon;
@@ -84,6 +86,7 @@ public class InventoryManager : MonoBehaviour
     public void GloveOffInventory()
     {
         numOfGloves--;
+        gameMng.glovesUsed++;
         //gloveIcon.enabled = false;
         //hasGlove = false;
 

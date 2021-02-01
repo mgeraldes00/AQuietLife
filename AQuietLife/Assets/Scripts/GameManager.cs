@@ -43,10 +43,15 @@ public class GameManager : MonoBehaviour
 
     public bool breadHeated;
 
+    public int numOfIngredients;
+    public int glovesUsed;
+
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         isLocked = true;
+        numOfIngredients = 0;
+        glovesUsed = 0;
         startTutorial.SetActive(true);
     }
 
@@ -146,6 +151,7 @@ public class GameManager : MonoBehaviour
         if (inventory.hamUsed == true && allObjectives == false)
         {
             allObjectives = true;
+            numOfIngredients++;
             ShowFinalTutorial();
         }
     }
