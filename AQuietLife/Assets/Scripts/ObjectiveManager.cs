@@ -45,6 +45,11 @@ public class ObjectiveManager : MonoBehaviour
             scratchListPart1[2].SetActive(true);
         }
 
+        if (hasHam == true)
+        {
+            scratchListPart2[0].SetActive(true);
+        }
+
         if (part1Complete == true)
         {
             list1Ctrl.SetTrigger("ObjectivesDone");
