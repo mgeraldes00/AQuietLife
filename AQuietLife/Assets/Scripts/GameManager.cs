@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public bool isLocked;
     public bool firstObject;
+    public bool firstGlove;
     private bool allObjectives;
 
     public bool breadHeated;
@@ -203,6 +204,12 @@ public class GameManager : MonoBehaviour
     public void ShowTutorial()
     {
         objectTutorial.SetActive(true);
+        Lock();
+    }
+
+    public void ShowGloveTutorial()
+    {
+        gloveTutorial.SetActive(true);
         Lock();
     }
 

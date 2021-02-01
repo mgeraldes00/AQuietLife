@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Image gloveIcon;
+    public Image[] gloveIcons;
     public Image plateIcon;
     public Image breadIcon;
     public Image knifeIcon;
@@ -16,6 +16,9 @@ public class InventoryManager : MonoBehaviour
 
     public bool hasObject;
     public bool hasGlove;
+
+    [SerializeField]
+    private int numOfGloves;
 
     public bool hasPlate;
     public bool hasBread;
@@ -37,7 +40,11 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gloveIcon.enabled = false;
+        numOfGloves = 0;
+
+        //gloveIcon.enabled = false;
+        for (int i = 0; i < gloveIcons.Length; i++)
+            gloveIcons[i].enabled = false;
         plateIcon.enabled = false;
         breadIcon.enabled = false;
         knifeIcon.enabled = false;
@@ -58,14 +65,38 @@ public class InventoryManager : MonoBehaviour
 
     public void GloveInInventory()
     {
-        gloveIcon.enabled = true;
-        hasGlove = true;
+        numOfGloves++;
+        //gloveIcon.enabled = true;
+        //hasGlove = true;
+
+        switch (numOfGloves)
+        {
+            case 2:
+                gloveIcons[0].enabled = true;
+                hasGlove = true;
+                break;
+            case 3:
+                gloveIcons[1].enabled = true;
+                break;
+        }
     }
 
     public void GloveOffInventory()
     {
-        gloveIcon.enabled = false;
-        hasGlove = false;
+        numOfGloves--;
+        //gloveIcon.enabled = false;
+        //hasGlove = false;
+
+        switch (numOfGloves)
+        {
+            case 2:
+                gloveIcons[1].enabled = false;             
+                break;
+            case 1:
+                gloveIcons[0].enabled = false;
+                hasGlove = false;
+                break;
+        }
     }
 
     public void NoMoreObjects()

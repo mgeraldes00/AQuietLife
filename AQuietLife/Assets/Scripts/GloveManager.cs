@@ -7,20 +7,20 @@ public class GloveManager : MonoBehaviour
     public InventoryManager inventory;
     public GameManager gameManager;
 
-    public GameObject[] gloves;
+    //public GameObject[] gloves;
     public GameObject currentGlove;
-    public GameObject gloveTutorial;
-    public GameObject interactionText;
+    //public GameObject gloveTutorial;
+    //public GameObject interactionText;
     public GameObject returnArrow;
 
     public bool gloveTaken;
-    public bool firstGlove;
+    //public bool firstGlove;
     //public bool isLocked;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -35,48 +35,50 @@ public class GloveManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Glove") && firstGlove == false
+            if (hit.collider.CompareTag("Glove") && gameManager.firstGlove == false
                 && gameManager.isLocked == false)
             {
                 //Debug.Log(hit.collider.gameObject.name);
                 currentGlove.SetActive(false);
                 inventory.GloveInInventory();
+                gameManager.ShowGloveTutorial();
                 gloveTaken = true;
-                firstGlove = true;
-                interactionText.SetActive(false);
-                ShowTutorial();
+                gameManager.firstGlove = true;
+                //firstGlove = true;
+                //interactionText.SetActive(false);
+                //ShowTutorial();
             }
 
-            if (hit.collider.CompareTag("Glove") && firstGlove == true)
+            if (hit.collider.CompareTag("Glove") && gameManager.firstGlove == true)
             {
                 //Debug.Log(hit.collider.gameObject.name);
                 currentGlove.SetActive(false);
                 inventory.GloveInInventory();
                 gloveTaken = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
             }
         }
     }
 
-    public void ShowTutorial()
+    /*public void ShowTutorial()
     {
         gloveTutorial.SetActive(true);
         Lock();
-    }
+    }*/
 
-    public void Lock()
+    /*public void Lock()
     {
         returnArrow.SetActive(false);
         gameManager.isLocked = true;
-    }
+    }*/
 
     private void OnMouseOver()
     {
-        interactionText.SetActive(true);
+        //interactionText.SetActive(true);
     }
 
     private void OnMouseExit()
     {
-        interactionText.SetActive(false);
+        //interactionText.SetActive(false);
     }
 }
