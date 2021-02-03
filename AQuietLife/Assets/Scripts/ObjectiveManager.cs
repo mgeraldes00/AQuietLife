@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
+    public InventoryManager inventory;
+
     public GameObject[] scratchListPart1;
     public GameObject[] scratchListPart2;
 
@@ -14,17 +16,22 @@ public class ObjectiveManager : MonoBehaviour
     public Animator list2Ctrl;
     public Animator background;
 
+    public GameObject listScratch;
+
     public bool hasPlate;
     public bool hasBread;
     public bool hasKnife;
     public bool hasHam;
     public bool part1Complete;
 
+    [SerializeField]
+    private bool isScratching;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isScratching = false;
     }
 
     // Update is called once per frame
@@ -33,21 +40,30 @@ public class ObjectiveManager : MonoBehaviour
         if (hasPlate == true)
         {
             scratchListPart1[0].SetActive(true);
+            listScratch.SetActive(true);
+            StartCoroutine(resetScratch());
         }
 
         if (hasBread == true)
         {
             scratchListPart1[1].SetActive(true);
+            listScratch.SetActive(true);
+            StartCoroutine(resetScratch());
         }
 
         if (hasKnife == true)
         {
             scratchListPart1[2].SetActive(true);
+            listScratch.SetActive(true);
+            StartCoroutine(resetScratch());
+
         }
 
-        if (hasHam == true)
+        if (inventory.hamUsed == true && hasHam == true)
         {
             scratchListPart2[0].SetActive(true);
+            listScratch.SetActive(true);
+            StartCoroutine(resetScratch());
         }
 
         if (part1Complete == true)
@@ -56,11 +72,6 @@ public class ObjectiveManager : MonoBehaviour
             StartCoroutine(newObjectives());          
             for (int i = 0; i < list2.Length; i++)
                 list2[i].SetActive(true);
-        }
-        
-        if (hasHam == true)
-        {
-            scratchListPart2[0].SetActive(true);
         }
     }
 
@@ -71,5 +82,15 @@ public class ObjectiveManager : MonoBehaviour
             list1[i].SetActive(true);
         list2Ctrl.SetTrigger("ObjectivesDone");
         background.SetTrigger("ObjectivesDone");
+    }
+
+    IEnumerator resetScratch()
+    {
+        yield return new WaitForSeconds(1);
+        listScratch.SetActive(false);
+        hasPlate = false;
+        hasBread = false;
+        hasKnife = false;
+        hasHam = false;
     }
 }

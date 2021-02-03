@@ -30,6 +30,7 @@ public class DoorManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
             {
+                FindObjectOfType<AudioSource>().Play();
                 rating.EndLevel();
                 //SceneManager.LoadScene("MainMenu");
             }
