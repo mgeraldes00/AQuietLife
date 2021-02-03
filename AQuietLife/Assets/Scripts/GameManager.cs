@@ -72,12 +72,12 @@ public class GameManager : MonoBehaviour
             || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave"))
         {
             Debug.Log("Object");
-            inspectionText.SetActive(true);          
+            //inspectionText.SetActive(true);          
         }
 
         if (hit.collider.CompareTag("CabinetBreach"))
         {
-            inspectionText.SetActive(true);
+            //inspectionText.SetActive(true);
         }
 
         if (hit.collider.CompareTag("CabinetDoor1") 
@@ -91,19 +91,19 @@ public class GameManager : MonoBehaviour
             || hit.collider.CompareTag("FridgeDoor1") && fridge.doorLeftOpen == false
             || hit.collider.CompareTag("FridgeDoor2") && fridge.doorRightOpen == false)
         {
-            interactionText.SetActive(true);
+            //interactionText.SetActive(true);
         }
 
         if (hit.collider.CompareTag("Plate") && inventory.plateUsed == false
             || hit.collider.CompareTag("Bread1") && inventory.plateUsed == true
             || hit.collider.CompareTag("Knife"))
         {
-            pickUpText.SetActive(true);
+            //pickUpText.SetActive(true);
         }
 
         if (hit.collider.CompareTag("Plate") && objective.part1Complete == true)
         {
-            pickUpTextFinal.SetActive(true);
+            //pickUpTextFinal.SetActive(true);
         }
 
         if (hit.collider.CompareTag("TableClose")
@@ -113,12 +113,12 @@ public class GameManager : MonoBehaviour
             || hit.collider.CompareTag("TableClose")
             && drawers.knifeTaken == true && table.knifeOnTable == false)
         {
-            tableInteractionText.SetActive(true);
+            //tableInteractionText.SetActive(true);
         }
 
         if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
         {
-            exitText.SetActive(true);
+            //exitText.SetActive(true);
         }
 
         if (hit.collider.CompareTag("NoTag"))
