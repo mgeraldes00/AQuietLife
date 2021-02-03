@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TableManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
+    public ThoughtManager thought;
     public GameManager gameMng;
     public CloseUpTable closeUp;
     public ObjectiveManager objective;
+
+    public Text thoughtText;
 
     public GameObject tableGeneral;
     public GameObject tableGeneralWPlate;
@@ -190,6 +194,15 @@ public class TableManager : MonoBehaviour
                 objective.part1Complete = true;
                 //allOnTable = true;
                 //tableCollider.enabled = false;
+            }
+
+            if (hit.collider.CompareTag("Plate"))
+            {
+                if (frozenBreadOnTable == true)
+                {
+                    thought.ShowThought();
+                    thoughtText.text = "Can't cut into the bread in this state...";
+                }
             }
 
             if (hit.collider.CompareTag("Plate")

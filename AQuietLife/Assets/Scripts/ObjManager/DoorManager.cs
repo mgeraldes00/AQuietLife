@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class DoorManager : MonoBehaviour
 {
     public ObjectiveManager objective;
     public InventoryManager inventory;
+    public ThoughtManager thought;
+
+    public Text thoughtText;
 
     public RatingManager rating;
 
@@ -35,6 +39,14 @@ public class DoorManager : MonoBehaviour
                 //FindObjectOfType<AudioSource>().Play();
                 doorOpen.Play();
                 rating.EndLevel();
+                //SceneManager.LoadScene("MainMenu");
+            }
+
+            if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == false)
+            {
+                //FindObjectOfType<AudioSource>().Play();
+                thought.ShowThought();
+                thoughtText.text = "Can't leave now, gotta make something to eat.";
                 //SceneManager.LoadScene("MainMenu");
             }
         }

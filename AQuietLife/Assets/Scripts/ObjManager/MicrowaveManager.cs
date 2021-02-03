@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MicrowaveManager : MonoBehaviour
 {
     public ClockManager clock;
     public InventoryManager inventory;
+    public ThoughtManager thought;
     public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpMicrowave closeUp;
+
+    public Text thoughtText;
 
     public GameObject microwaveGeneral;
     public GameObject microwaveDoorOpen;
@@ -139,6 +143,13 @@ public class MicrowaveManager : MonoBehaviour
                 //doorAnim.SetBool("Open", false);
                 //doorOpen = false;
                 //LockAndUnlock();
+            }
+
+            if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
+                && doorOpen == true && inventory.hasFrozenBread == true)
+            {
+                thought.ShowThought();
+                thoughtText.text = "Better place this in a plate first.";
             }
 
             if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false

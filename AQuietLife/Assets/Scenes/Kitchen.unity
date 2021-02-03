@@ -960,6 +960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectText
       objectReference: {fileID: 0}
+    - target: {fileID: 1427586375382439795, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0dacab6ee280e4f45a3a8af6924f4798, type: 3}
     - target: {fileID: 1427586375382439796, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1254,6 +1258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartText
       objectReference: {fileID: 0}
+    - target: {fileID: 1427586375382439795, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0dacab6ee280e4f45a3a8af6924f4798, type: 3}
     - target: {fileID: 1427586375382439796, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5394,9 +5402,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clock: {fileID: 1952594464}
   inventory: {fileID: 1888950853}
+  thought: {fileID: 1938436214}
   gameMng: {fileID: 1037535894}
   objective: {fileID: 1316763220}
   closeUp: {fileID: 913124986}
+  thoughtText: {fileID: 332918231}
   microwaveGeneral: {fileID: 896338622}
   microwaveDoorOpen: {fileID: 562909479}
   microwaveWorking: {fileID: 1846854469}
@@ -9836,6 +9846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objective: {fileID: 1316763220}
   inventory: {fileID: 1888950853}
+  thought: {fileID: 1938436214}
+  thoughtText: {fileID: 332918231}
   rating: {fileID: 176232255}
   doorOpen: {fileID: 763870991}
 --- !u!61 &763870989
@@ -13367,9 +13379,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clock: {fileID: 1952594464}
   inventory: {fileID: 1888950853}
+  thought: {fileID: 1938436214}
   gameMng: {fileID: 1037535894}
   closeUp: {fileID: 1663366167}
   objective: {fileID: 1316763220}
+  thoughtText: {fileID: 332918231}
   tableGeneral: {fileID: 409937033}
   tableGeneralWPlate: {fileID: 1806896494}
   tableGeneralWKnife: {fileID: 1689403164}
@@ -14943,6 +14957,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1427586375382439795, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0dacab6ee280e4f45a3a8af6924f4798, type: 3}
     - target: {fileID: 1427586375382439796, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -25142,6 +25160,10 @@ PrefabInstance:
         can carry as many gloves as you find throughout the level, and they will
         appear on the bottom right corner of the screen.'
       objectReference: {fileID: 0}
+    - target: {fileID: 1427586375382439795, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0dacab6ee280e4f45a3a8af6924f4798, type: 3}
     - target: {fileID: 1427586375382439796, guid: 3f7527c8f8071bf4dab5463ebcdfdaec, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
