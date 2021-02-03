@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public InventoryManager inventory;
     public ObjectiveManager objective;
+    public ThoughtManager thought;
     public CabinetManager cabinet;
     public BreadBoxManager breadBox;
     public DrawerManager drawers;
@@ -17,8 +18,14 @@ public class GameManager : MonoBehaviour
     public TableManager table;
     public ClockManager clock;
 
+    public Text thoughtText;
+
     public GameObject[] context;
     public GameObject[] contextButtons;
+    public GameObject[] deathScreen;
+
+    public GameObject scene;
+    public GameObject sceneCloseUp;
 
     public GameObject timeText;
     public GameObject inspectionText;
@@ -35,6 +42,7 @@ public class GameManager : MonoBehaviour
     public GameObject noTextCollidersGeneral;
 
     public Animator kitchenClock;
+    public Animator deathAnim;
 
     public bool isLocked;
     public bool firstObject;
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviour
     private bool allObjectives;
 
     public bool breadHeated;
+    public bool isDead;
 
     public int numOfIngredients;
     public int glovesUsed;
@@ -94,11 +103,13 @@ public class GameManager : MonoBehaviour
             //interactionText.SetActive(true);
         }
 
-        if (hit.collider.CompareTag("Plate") && inventory.plateUsed == false
-            || hit.collider.CompareTag("Bread1") && inventory.plateUsed == true
-            || hit.collider.CompareTag("Knife"))
+        if (hit.collider.CompareTag("Plate") && inventory.hasObject == true
+            || hit.collider.CompareTag("Bread1") && inventory.hasObject == true
+            || hit.collider.CompareTag("Knife") && inventory.hasObject == true)
         {
             //pickUpText.SetActive(true);
+            thought.ShowThought();
+            thoughtText.text = "Need to place this somewhere first.";
         }
 
         if (hit.collider.CompareTag("Plate") && objective.part1Complete == true)
@@ -158,7 +169,13 @@ public class GameManager : MonoBehaviour
 
     public void Die()
     {
-        SceneManager.LoadScene("GameOver");
+        //SceneManager.LoadScene("GameOver");
+        isLocked = true;
+        isDead = true;
+        deathScreen[0].SetActive(true);
+        //Destroy(scene);
+        Destroy(sceneCloseUp);
+        StartCoroutine(DeathProcess());
     }
 
     public void Restart()
@@ -175,13 +192,15 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("Kitchen");
                 break;
             case (1):
-                context[0].SetActive(false);
+                /*context[0].SetActive(false);
                 context[1].SetActive(true);
                 contextButtons[0].SetActive(false);
-                contextButtons[1].SetActive(true);
+                contextButtons[1].SetActive(true);*/
+                SceneManager.LoadScene("MainMenu");
                 break;
             case (2):
-                SceneManager.LoadScene("Kitchen");
+                //SceneManager.LoadScene("Kitchen");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 break;
             case (3):
                 Debug.Log("Quit");
@@ -246,5 +265,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(10);
         microwave.working = false;
         //microwave.doorAnim.SetBool("Working", false);
+    }
+
+    IEnumerator DeathProcess()
+    {
+        yield return new WaitForSeconds(2);
+        for (int i = 0; i < 4; i++)
+            deathScreen[i].SetActive(true);       
+        deathAnim.SetTrigger("Death");
+        yield return new WaitForSeconds(1);
+        deathScreen[4].SetActive(false);
     }
 }

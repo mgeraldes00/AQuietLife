@@ -31,7 +31,8 @@ public class PointerManager : MonoBehaviour
 
         if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers")
             || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox")
-            || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave"))
+            || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave")
+            || hit.collider.CompareTag("CabinetBreach"))
         {
             Debug.Log("Hovering");
             Cursor.SetCursor(examineTexture, hotSpot, curMode);
@@ -65,7 +66,7 @@ public class PointerManager : MonoBehaviour
                 Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }
 
-        if (hit.collider.CompareTag("NoTag"))
+        if (hit.collider.CompareTag("NoTag") || gameMng.isDead == true)
         {
             Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }       

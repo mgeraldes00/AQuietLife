@@ -10,6 +10,8 @@ public class DoorManager : MonoBehaviour
 
     public RatingManager rating;
 
+    public AudioSource doorOpen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,8 @@ public class DoorManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
             {
-                FindObjectOfType<AudioSource>().Play();
+                //FindObjectOfType<AudioSource>().Play();
+                doorOpen.Play();
                 rating.EndLevel();
                 //SceneManager.LoadScene("MainMenu");
             }
