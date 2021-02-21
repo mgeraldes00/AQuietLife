@@ -65,6 +65,7 @@ public class CabinetManager : MonoBehaviour
     private Color red = new Color(1, 0, 0, 1);
 
     private bool isLocked;
+    private bool rewindOnce;
 
     public bool rewindApplied;
     public bool plateTaken;
@@ -324,7 +325,7 @@ public class CabinetManager : MonoBehaviour
             returnArrow.SetActive(false);
             isLocked = true;
             gameMng.isLocked = true;
-            StartCoroutine(UnlockRewind());
+            //StartCoroutine(UnlockRewind());
         }
     }
 
@@ -353,7 +354,7 @@ public class CabinetManager : MonoBehaviour
 
     IEnumerator TimeToOpen()
     {
-        yield return new WaitForSeconds(2);
+        /*yield return new WaitForSeconds(2);
         pointer.SetTrigger("CabinetRewind");
         rewindReverseAudio.Play();
         yield return new WaitForSeconds(2);
@@ -367,6 +368,29 @@ public class CabinetManager : MonoBehaviour
         eyelids.Open();
         slider.SetActive(false);
         waveformCabinet.enabled = false;
-        //waveform.enabled = false;
+        //waveform.enabled = false;*/
+        if (rewindOnce != true)
+        {
+            yield return new WaitForSeconds(2);
+            pointer.SetTrigger("CabinetRewind");
+            rewindReverseAudio.Play();
+            eyelids.timer.SetTrigger("Pressed");
+            rewindOnce = true;
+            yield return new WaitForSeconds(2);
+            eyelids.timer.SetTrigger("Pressed");
+            for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
+                eyelids.ctrlButtons[i].SetActive(true);
+            slider.SetActive(true);
+            waveformCabinet.enabled = true;
+        }
+        else if (rewindOnce == true)
+        {
+            yield return new WaitForSeconds(2);
+            eyelids.timer.SetTrigger("Pressed");
+            for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
+                eyelids.ctrlButtons[i].SetActive(true);
+            slider.SetActive(true);
+            waveformCabinet.enabled = true;
+        }
     }
 }
