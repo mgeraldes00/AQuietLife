@@ -7,6 +7,7 @@ public class CabinetManager : MonoBehaviour
 {
     public ClockManager clock;
     public Clock wave;
+    public AudioCtrl audioCtrl;
     public AudioSlider audioSlider;
     public InventoryManager inventory;
     public Eyelids eyelids;
@@ -386,6 +387,7 @@ public class CabinetManager : MonoBehaviour
             eyelids.pointer.SetBool("Moving", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
+            audioCtrl.audioButtons[2].SetBool("Play", true);
             slider.SetActive(true);
             waveformCabinet.enabled = true;
             rewindAudio.Play();
@@ -397,6 +399,7 @@ public class CabinetManager : MonoBehaviour
             eyelids.pointer.SetBool("Moving", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
+            audioCtrl.audioButtons[2].SetBool("Play", true);
             slider.SetActive(true);
             waveformCabinet.enabled = true;
             rewindAudio.Play();
