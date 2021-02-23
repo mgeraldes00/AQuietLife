@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioCtrl : MonoBehaviour
 {
+    public Eyelids eyelids;
+
     public AudioSource rewindAudio;
 
     // Start is called before the first frame update
@@ -38,6 +40,10 @@ public class AudioCtrl : MonoBehaviour
                 break;
             case 3:
                 rewindAudio.pitch = 0.0f;
+                break;
+            case 4:
+                rewindAudio.Stop();
+                eyelids.Open();
                 break;
         }
     }

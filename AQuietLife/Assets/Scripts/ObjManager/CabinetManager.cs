@@ -64,7 +64,9 @@ public class CabinetManager : MonoBehaviour
 
     private Color red = new Color(1, 0, 0, 1);
 
+    [SerializeField]
     private bool isLocked;
+    [SerializeField]
     private bool rewindOnce;
 
     public bool rewindApplied;
@@ -84,6 +86,9 @@ public class CabinetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameMng.isLocked != true)
+            isLocked = false;
+
         if (Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");
@@ -372,25 +377,29 @@ public class CabinetManager : MonoBehaviour
         if (rewindOnce != true)
         {
             yield return new WaitForSeconds(2);
-            pointer.SetTrigger("CabinetRewind");
+            eyelids.pointer.SetTrigger("CabinetRewind");
             rewindReverseAudio.Play();
             eyelids.timer.SetTrigger("Pressed");
             rewindOnce = true;
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
+            eyelids.pointer.SetBool("Moving", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
             slider.SetActive(true);
             waveformCabinet.enabled = true;
+            rewindAudio.Play();
         }
         else if (rewindOnce == true)
         {
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
+            eyelids.pointer.SetBool("Moving", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
             slider.SetActive(true);
             waveformCabinet.enabled = true;
+            rewindAudio.Play();
         }
     }
 }

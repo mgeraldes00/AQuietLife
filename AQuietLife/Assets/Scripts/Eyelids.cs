@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Eyelids : MonoBehaviour
 {
+    public GameManager gameMng;
+
     public Animator eyelids;
     public Animator timer;
+    public Animator pointer;
 
     public AudioSource tick;
     public AudioSource tickReverse;
 
     public GameObject[] ctrlButtons;
+
+    public GameObject slider;
+    public GameObject returnArrow;
+
+    public Image[] waveform;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +43,8 @@ public class Eyelids : MonoBehaviour
 
     public void Open()
     {
-        eyelids.SetTrigger("Open");
-        timer.SetTrigger("RewindEnd");
+        timer.SetTrigger("Pressed");
+        StartCoroutine(TimerPress());        
     }
 
     IEnumerator TimerPress()
@@ -51,9 +60,16 @@ public class Eyelids : MonoBehaviour
         timer.SetTrigger("Pressed");
         timer.SetBool("Rewind", false);
         tick.Stop();*/
-        yield return new WaitForSeconds(2);
-        for (int i = 0; i < ctrlButtons.Length; i++)
-            ctrlButtons[i].SetActive(true);
-        timer.SetTrigger("Pressed");
+        yield return new WaitForSeconds(0.2f);
+        eyelids.SetTrigger("Open");
+        timer.SetTrigger("RewindEnd");
+        pointer.SetBool("Moving", false);
+        slider.SetActive(false);
+        for (int i = 0; i < waveform.Length; i++)
+            waveform[i].enabled = false;
+        for (int b = 0; b < ctrlButtons.Length; b++)
+            ctrlButtons[b].SetActive(false);
+        gameMng.isLocked = false;
+        returnArrow.SetActive(true);
     }
 }
