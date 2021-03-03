@@ -65,6 +65,7 @@ public class AudioCtrl : MonoBehaviour
                 eyelids.pointer.speed = 0.0f;
                 break;
             case 4:
+                rewindAudio.pitch = 0.0f;
                 rewindAudio.Stop();
                 audioButtons[0].SetBool("FF", false);
                 audioButtons[1].SetBool("FB", false);
