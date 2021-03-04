@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CloseUpFridge : MonoBehaviour
 {
@@ -30,36 +31,39 @@ public class CloseUpFridge : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log("Mouse Clicked");
-            Vector3 mousePos =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-            if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false)
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                if (fridgeMng.rewindApplied == true)
-                {
-                    //fridgeButtons.SetActive(true);
-                    //activityText.SetActive(true);
-                }
-                else if (fridgeMng.rewindApplied == false)
-                {
-                    //fridgeRewindButton.SetActive(true);
-                }
+                //Debug.Log("Mouse Clicked");
+                Vector3 mousePos =
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-                for (int i = 0; i < zoomableObjs.Length; i++)
-                    zoomableObjs[i].enabled = false;
-                Debug.Log(hit.collider.gameObject.name);
-                for (int i = 0; i < objsToZoom.Length; i++)
-                    objsToZoom[i].SetActive(false);
-                //objToZoom.SetActive(false);
-                fridge.SetActive(true);
-                returnArrow.SetActive(true);
-                noTextCollidersGeneral.SetActive(false);
-                noTextColliderFridge.SetActive(true);
-                inspectionTextGeneral.SetActive(false);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+                if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false)
+                {
+                    if (fridgeMng.rewindApplied == true)
+                    {
+                        //fridgeButtons.SetActive(true);
+                        //activityText.SetActive(true);
+                    }
+                    else if (fridgeMng.rewindApplied == false)
+                    {
+                        //fridgeRewindButton.SetActive(true);
+                    }
+
+                    for (int i = 0; i < zoomableObjs.Length; i++)
+                        zoomableObjs[i].enabled = false;
+                    Debug.Log(hit.collider.gameObject.name);
+                    for (int i = 0; i < objsToZoom.Length; i++)
+                        objsToZoom[i].SetActive(false);
+                    //objToZoom.SetActive(false);
+                    fridge.SetActive(true);
+                    returnArrow.SetActive(true);
+                    noTextCollidersGeneral.SetActive(false);
+                    noTextColliderFridge.SetActive(true);
+                    inspectionTextGeneral.SetActive(false);
+                }            
             }
         }
     }
