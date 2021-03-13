@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class introController : MonoBehaviour
 {
+    public ThoughtManager thought;
+
+    public Text thoughtText;
+
     public Animator cameraAnim;
 
     public GameObject directionalButton;
@@ -23,7 +27,29 @@ public class introController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0) &&  isLocked == false)
+        {
+            Vector3 mousePos =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if (hit.collider.CompareTag("NoTag"))
+            {
+                thought.ShowThought();
+
+                switch (currentPanel)
+                {
+                    case 0:
+                        thoughtText.text = "Just gonna put something on before leaving.";
+                        break;
+                    case 1:
+                        thoughtText.text = "What's this doing here?";
+                        break;
+                }
+            }           
+        }
     }
 
     public void ButtonBehaviour(int i)
