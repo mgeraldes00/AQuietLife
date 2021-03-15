@@ -12,6 +12,7 @@ public class ObjectiveManager : MonoBehaviour
     public GameObject[] list1;
     public GameObject[] list2;
 
+    public Animator listGlobal;
     public Animator list1Ctrl;
     public Animator list2Ctrl;
     public Animator background;
@@ -39,6 +40,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         if (hasPlate == true)
         {
+            ShowList();
             scratchListPart1[0].SetActive(true);
             listScratch.SetActive(true);
             StartCoroutine(resetScratch());
@@ -46,6 +48,7 @@ public class ObjectiveManager : MonoBehaviour
 
         if (hasBread == true)
         {
+            ShowList();
             scratchListPart1[1].SetActive(true);
             listScratch.SetActive(true);
             StartCoroutine(resetScratch());
@@ -53,6 +56,7 @@ public class ObjectiveManager : MonoBehaviour
 
         if (hasKnife == true)
         {
+            ShowList();
             scratchListPart1[2].SetActive(true);
             listScratch.SetActive(true);
             StartCoroutine(resetScratch());
@@ -61,6 +65,7 @@ public class ObjectiveManager : MonoBehaviour
 
         if (inventory.hamUsed == true && hasHam == true)
         {
+            //ShowList();
             scratchListPart2[0].SetActive(true);
             listScratch.SetActive(true);
             StartCoroutine(resetScratch());
@@ -68,7 +73,9 @@ public class ObjectiveManager : MonoBehaviour
 
         if (part1Complete == true)
         {
-            list1Ctrl.SetTrigger("ObjectivesDone");
+            //ShowList();
+            listGlobal.SetBool("Clicked", true);
+            //list1Ctrl.SetTrigger("ObjectivesDone");
             StartCoroutine(newObjectives());          
             for (int i = 0; i < list2.Length; i++)
                 list2[i].SetActive(true);
@@ -77,11 +84,15 @@ public class ObjectiveManager : MonoBehaviour
 
     IEnumerator newObjectives()
     {
+        yield return new WaitForSeconds(0.2f);
+        list1Ctrl.SetTrigger("ObjectivesDone");
         yield return new WaitForSeconds(2);
         for (int i = 0; i < list1.Length; i++)
             list1[i].SetActive(true);
         list2Ctrl.SetTrigger("ObjectivesDone");
         background.SetTrigger("ObjectivesDone");
+        yield return new WaitForSeconds(0.5f);
+        //listGlobal.SetTrigger("NewList");
     }
 
     IEnumerator resetScratch()
@@ -92,5 +103,17 @@ public class ObjectiveManager : MonoBehaviour
         hasBread = false;
         hasKnife = false;
         hasHam = false;
+    }
+
+    IEnumerator HideList()
+    {
+        yield return new WaitForSeconds(1.5f);
+        listGlobal.SetBool("Clicked", false);
+    }
+
+    public void ShowList()
+    {
+        listGlobal.SetBool("Clicked", true);
+        StartCoroutine(HideList());
     }
 }

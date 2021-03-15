@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class CameraCtrl : MonoBehaviour
 {
     public GameManager gameMng;
+    public MicrowaveManager microwave;
 
     public Animator cameraAnim;
+    public Animator microwaveAnim;
 
     public Button[] directionalButtons;
 
@@ -67,6 +69,8 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == 1)
                     {
                         cameraAnim.SetTrigger("Return");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("RotateLeft");
                         directionalButtons[1].enabled = true;
                     }
                     if (currentPanel == 0)
@@ -87,6 +91,8 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("RotateRight");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("Return");
                         directionalButtons[1].enabled = false;
                     }
                     currentPanel++;
