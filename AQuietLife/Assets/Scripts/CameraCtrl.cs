@@ -16,6 +16,11 @@ public class CameraCtrl : MonoBehaviour
     [SerializeField]
     private int currentPanel;
 
+    [SerializeField]
+    public int currentView;
+
+    public GameObject dirButtons;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,15 @@ public class CameraCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentView == 1)
+        {
+            dirButtons.SetActive(false);
+        }
+        if (currentView == 0)
+        {
+            dirButtons.SetActive(true);
+        }
+
         /*Vector3 mousePos =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);

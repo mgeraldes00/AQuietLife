@@ -6,19 +6,20 @@ public class CloseUpMicrowave : MonoBehaviour
 {
     public GameManager gameMng;
     public MicrowaveManager microMng;
+    public CameraCtrl zoom;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
+    //public GameObject noTextCollidersGeneral;
     //public GameObject noTextColliderMicrowave;
-    public GameObject inspectionTextGeneral;
+    //public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject microwave;
     //public GameObject microwaveButtons;
-    public GameObject activityText;
+    //public GameObject activityText;
     //public GameObject microwaveRewindButton;
 
     public GameObject microwaveGeneral;
-    public GameObject microwaveWorking;
+    //public GameObject microwaveWorking;
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -33,8 +34,8 @@ public class CloseUpMicrowave : MonoBehaviour
     {
         if (microMng.working == false)
         {
-            microwaveWorking.SetActive(false);
-            microwaveGeneral.SetActive(true);
+            //microwaveWorking.SetActive(false);
+            //microwaveGeneral.SetActive(true);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -66,9 +67,10 @@ public class CloseUpMicrowave : MonoBehaviour
                 //objToZoom.SetActive(false);
                 microwave.SetActive(true);
                 returnArrow.SetActive(true);
-                noTextCollidersGeneral.SetActive(false);
+                //noTextCollidersGeneral.SetActive(false);
                 //noTextColliderMicrowave.SetActive(true);
-                inspectionTextGeneral.SetActive(false);
+                //inspectionTextGeneral.SetActive(false);
+                zoom.currentView++;
             }
         }
     }
