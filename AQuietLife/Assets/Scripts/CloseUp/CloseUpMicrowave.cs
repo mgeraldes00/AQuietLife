@@ -47,7 +47,8 @@ public class CloseUpMicrowave : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
+                && zoom.currentView == 0)
             {
                 if (microMng.rewindApplied == true)
                 {
