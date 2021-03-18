@@ -38,7 +38,8 @@ public class CloseUpDrawers : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Drawers") && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("Drawers") && gameMng.isLocked == false
+                && zoom.currentView == 0)
             {
                 if (drawerMng.rewindApplied == true)
                 {
