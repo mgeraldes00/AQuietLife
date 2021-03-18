@@ -203,7 +203,6 @@ public class MicrowaveManager : MonoBehaviour
         //activityText.SetActive(false);
         //microwaveRewindButton.SetActive(false);
         //microwaveButtons.SetActive(false);
-        zoom.currentView--;
     }
 
     public void OpenAndUnlock()

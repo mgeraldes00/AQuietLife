@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DrawerManager : MonoBehaviour
 {
-    public ClockManager clock;
+    //public ClockManager clock;
     public InventoryManager inventory;
     public GameManager gameMng;
     public ObjectiveManager objective;
@@ -14,17 +14,17 @@ public class DrawerManager : MonoBehaviour
 
     public Text thoughtText;
 
-    public GameObject drawersGeneral;
-    public GameObject drawersMiddleDoorOpen;
-    public GameObject drawersMiddleDoorOpenNoKnife;
+    //public GameObject drawersGeneral;
+    //public GameObject drawersMiddleDoorOpen;
+    //public GameObject drawersMiddleDoorOpenNoKnife;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderDrawers;
-    public GameObject interactionText;
-    public GameObject activityText;
-    public GameObject drawerRewindButton;
-    public GameObject drawerButtons;
+    //public GameObject noTextCollidersGeneral;
+    //public GameObject noTextColliderDrawers;
+    //public GameObject interactionText;
+    //public GameObject activityText;
+    //public GameObject drawerRewindButton;
+    //public GameObject drawerButtons;
     public GameObject drawers;
     public GameObject spoon;
     public GameObject knife;
@@ -64,7 +64,7 @@ public class DrawerManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Nothing"))
+            /*if (hit.collider.CompareTag("Nothing"))
             {
                 if (doorCenterOpen == true && knifeTaken == false)
                 {
@@ -94,7 +94,7 @@ public class DrawerManager : MonoBehaviour
                 activityText.SetActive(false);
                 drawerRewindButton.SetActive(false);
                 drawerButtons.SetActive(false);
-            }
+            }*/
 
             /*if (hit.collider.CompareTag("Drawers"))
             {
@@ -113,7 +113,7 @@ public class DrawerManager : MonoBehaviour
             {
                 doorCenterAnim.SetBool("DrawerCenterOpen", true);
                 doorCenterOpen = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
                 LockAndUnlock();
                 for (int i = 0; i <= interactableColliders.Length; i++)
                     interactableColliders[i].enabled = true;
@@ -137,9 +137,9 @@ public class DrawerManager : MonoBehaviour
         }
     }
 
-    public void ButtonBehaviour(int i)
+    public void ButtonBehaviour()
     {
-        if (isLocked == false && hasTime == true)
+        /*if (isLocked == false && hasTime == true)
         {
             switch (i)
             {
@@ -204,8 +204,36 @@ public class DrawerManager : MonoBehaviour
                     clock.Drain();
                     break;
             }
+        }*/
+
+        if (doorCenterOpen == true && knifeTaken == false)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            //drawersMiddleDoorOpen.SetActive(true);
         }
 
+        if (doorCenterOpen == true && knifeTaken == true)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            //drawersMiddleDoorOpenNoKnife.SetActive(true);
+        }
+
+        if (doorCenterOpen == false && knifeTaken == false)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            //drawersGeneral.SetActive(true);
+        }
+
+        drawers.SetActive(false);
+        returnArrow.SetActive(false);
+        //noTextCollidersGeneral.SetActive(true);
+        //noTextColliderDrawers.SetActive(false);
+        //activityText.SetActive(false);
+        //drawerRewindButton.SetActive(false);
+        //drawerButtons.SetActive(false);
     }
 
     public void LockAndUnlock()

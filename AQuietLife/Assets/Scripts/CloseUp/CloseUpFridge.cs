@@ -7,16 +7,17 @@ public class CloseUpFridge : MonoBehaviour
 {
     public GameManager gameMng;
     public FridgeManager fridgeMng;
+    public CameraCtrl zoom;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderFridge;
-    public GameObject inspectionTextGeneral;
+    //public GameObject noTextCollidersGeneral;
+    //public GameObject noTextColliderFridge;
+    //public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject fridge;
-    public GameObject fridgeButtons;
-    public GameObject activityText;
-    public GameObject fridgeRewindButton;
+    //public GameObject fridgeButtons;
+    //public GameObject activityText;
+    //public GameObject fridgeRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -40,7 +41,8 @@ public class CloseUpFridge : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-                if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false)
+                if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false
+                    && zoom.currentView == 0)
                 {
                     if (fridgeMng.rewindApplied == true)
                     {
@@ -60,9 +62,10 @@ public class CloseUpFridge : MonoBehaviour
                     //objToZoom.SetActive(false);
                     fridge.SetActive(true);
                     returnArrow.SetActive(true);
-                    noTextCollidersGeneral.SetActive(false);
-                    noTextColliderFridge.SetActive(true);
-                    inspectionTextGeneral.SetActive(false);
+                    //noTextCollidersGeneral.SetActive(false);
+                    //noTextColliderFridge.SetActive(true);
+                    //inspectionTextGeneral.SetActive(false);
+                    zoom.currentView++;
                 }            
             }
         }

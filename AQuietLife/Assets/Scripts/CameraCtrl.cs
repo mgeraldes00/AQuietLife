@@ -117,6 +117,11 @@ public class CameraCtrl : MonoBehaviour
         }
     }
 
+    public void BackToGeneral()
+    {
+        currentView--;
+    }
+
     IEnumerator EndTransition()
     {
         yield return new WaitForSeconds(1.0f);

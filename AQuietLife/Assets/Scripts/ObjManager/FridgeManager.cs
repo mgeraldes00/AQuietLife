@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class FridgeManager : MonoBehaviour
 {
-    public ClockManager clock;
+    //public ClockManager clock;
+    //public CameraCtrl zoom;
     public InventoryManager inventory;
     public GameManager gameMng;
     public ObjectiveManager objective;
@@ -14,18 +15,19 @@ public class FridgeManager : MonoBehaviour
 
     public Text thoughtText;
 
-    public GameObject fridgeGeneral;
-    public GameObject fridgeDoor1Open;
-    public GameObject fridgeDoor2Open;
-    public GameObject fridgeDoor12Open;
+    //public GameObject fridgeGeneral;
+    //public GameObject fridgeDoor1Open;
+    //public GameObject fridgeDoor2Open;
+    //public GameObject fridgeDoor12Open;
+    public GameObject[] doors;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderFridge;
-    public GameObject interactionText;
-    public GameObject activityText;
-    public GameObject fridgeRewindButton;
-    public GameObject fridgeButtons;
+    //public GameObject noTextCollidersGeneral;
+    //public GameObject noTextColliderFridge;
+    //public GameObject interactionText;
+    //public GameObject activityText;
+    //public GameObject fridgeRewindButton;
+    //public GameObject fridgeButtons;
     public GameObject fridge;
     public GameObject ham;
     public GameObject hamLess;
@@ -68,7 +70,7 @@ public class FridgeManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Nothing"))
+            /*if (hit.collider.CompareTag("Nothing"))
             {
                 if (doorLeftOpen == true && doorRightOpen == false)
                 {
@@ -102,7 +104,7 @@ public class FridgeManager : MonoBehaviour
                 activityText.SetActive(false);
                 fridgeRewindButton.SetActive(false);
                 fridgeButtons.SetActive(false);
-            }
+            }*/
 
             if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
                 && doorLeftOpen == false)
@@ -110,7 +112,7 @@ public class FridgeManager : MonoBehaviour
                 doorLeftAnim.SetBool("Open", true);
                 doorLeftOpen = true;
                 frozenBread.SetActive(true);
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
                 LockAndUnlock();
             }
 
@@ -122,7 +124,7 @@ public class FridgeManager : MonoBehaviour
                 ham.SetActive(true);
                 isTrapped = false;
                 doorRightOpen = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
                 LockAndUnlock();
 
                 for (int i = 0; i <= interactableColliders.Length; i++)
@@ -140,7 +142,7 @@ public class FridgeManager : MonoBehaviour
             {
                 doorRightAnim.SetBool("BreadBoxDoorOpen", true);
                 doorRightOpen = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
                 LockAndUnlock();
             }
 
@@ -173,6 +175,53 @@ public class FridgeManager : MonoBehaviour
                 objective.hasHam = true;
             }
         }
+    }
+
+    public void ButtonBehaviour()
+    {
+        for (int i = 0; i < doors.Length; i++)
+            doors[i].SetActive(false);
+
+        if (doorLeftOpen == true && doorRightOpen == false)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            doors[3].SetActive(true);
+            doors[0].SetActive(true);
+            //fridgeDoor1Open.SetActive(true);
+        }
+        if (doorLeftOpen == false && doorRightOpen == true)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            doors[1].SetActive(true);
+            doors[2].SetActive(true);
+            //fridgeDoor2Open.SetActive(true);
+        }
+        if (doorLeftOpen == true && doorRightOpen == true)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            doors[3].SetActive(true);
+            doors[2].SetActive(true);
+            //fridgeDoor12Open.SetActive(true);
+        }
+        if (doorLeftOpen == false && doorRightOpen == false)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            doors[1].SetActive(true);
+            doors[0].SetActive(true);
+            //fridgeGeneral.SetActive(true);
+        }
+     
+        fridge.SetActive(false);
+        returnArrow.SetActive(false);
+        //noTextCollidersGeneral.SetActive(true);
+        //noTextColliderFridge.SetActive(false);
+        //activityText.SetActive(false);
+        //fridgeRewindButton.SetActive(false);
+        //fridgeButtons.SetActive(false);
     }
 
     public void LockAndUnlock()

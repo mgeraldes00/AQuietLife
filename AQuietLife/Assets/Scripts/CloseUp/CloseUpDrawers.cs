@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class CloseUpDrawers : MonoBehaviour
 {
+    public CameraCtrl zoom;
     public GameManager gameMng;
     public DrawerManager drawerMng;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderDrawers;
-    public GameObject inspectionTextGeneral;
+    //public GameObject noTextCollidersGeneral;
+    //public GameObject noTextColliderDrawers;
+    //public GameObject inspectionTextGeneral;
     public GameObject[] objsToZoom;
     public GameObject drawers;
-    public GameObject drawerButtons;
-    public GameObject activityText;
-    public GameObject drawerRewindButton;
+    //public GameObject drawerButtons;
+    //public GameObject activityText;
+    //public GameObject drawerRewindButton;
 
     public BoxCollider2D[] zoomableObjs;
 
@@ -52,14 +53,15 @@ public class CloseUpDrawers : MonoBehaviour
                 for (int i = 0; i < zoomableObjs.Length; i++)
                     zoomableObjs[i].enabled = false;
                 Debug.Log(hit.collider.gameObject.name);
-                for (int i = 0; i < objsToZoom.Length; i++)
-                    objsToZoom[i].SetActive(false);
+                /*for (int i = 0; i < objsToZoom.Length; i++)
+                    objsToZoom[i].SetActive(false);*/
                 //objToZoom.SetActive(false);
                 drawers.SetActive(true);
                 returnArrow.SetActive(true);
-                noTextCollidersGeneral.SetActive(false);
-                noTextColliderDrawers.SetActive(true);
-                inspectionTextGeneral.SetActive(false);
+                //noTextCollidersGeneral.SetActive(false);
+                //noTextColliderDrawers.SetActive(true);
+                //inspectionTextGeneral.SetActive(false);
+                zoom.currentView++;
             }
         }
     }
