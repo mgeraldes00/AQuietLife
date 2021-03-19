@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class introController : MonoBehaviour
 {
@@ -10,13 +11,19 @@ public class introController : MonoBehaviour
     public Text thoughtText;
 
     public Animator cameraAnim;
+    public Animator shutterAnim;
+    public Animator deathAnim;
 
     public GameObject directionalButton;
+    public GameObject sceneCloseUp;
+
+    public GameObject[] deathScreen;
 
     [SerializeField]
     private int currentPanel;
 
     private bool isLocked;
+    private bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +34,8 @@ public class introController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) &&  isLocked == false)
+        if (Input.GetMouseButtonDown(0) &&  isLocked == false 
+            && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 mousePos =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -45,10 +53,26 @@ public class introController : MonoBehaviour
                         thoughtText.text = "Just gonna put something on before leaving.";
                         break;
                     case 1:
+                        thoughtText.text = "Need some light in here.";
+                        break;
+                    case 2:
                         thoughtText.text = "What's this doing here?";
+                        cameraAnim.SetTrigger("ZoomIn");
+                        isLocked = true;
+                        StartCoroutine(EndTransition());
+                        break;
+                    case 3:
+                        Die();
                         break;
                 }
-            }           
+            }
+            
+            if (hit.collider.CompareTag("Nothing"))
+            {
+                shutterAnim.SetTrigger("Open");
+                isLocked = true;
+                StartCoroutine(EndTransition());
+            }
         }
     }
 
@@ -64,7 +88,7 @@ public class introController : MonoBehaviour
                         cameraAnim.SetTrigger("turn");
                         directionalButton.SetActive(false);
                     }
-                    currentPanel++;
+                    //currentPanel++;
                     isLocked = true;
                     StartCoroutine(EndTransition());
                     break;
@@ -72,9 +96,31 @@ public class introController : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+        isLocked = true;
+        isDead = true;
+        deathScreen[0].SetActive(true);
+        //Destroy(scene);
+        Destroy(sceneCloseUp);
+        StartCoroutine(DeathProcess());
+    }
+
     IEnumerator EndTransition()
     {
         yield return new WaitForSeconds(1.0f);
         isLocked = false;
+        currentPanel++;
+    }
+
+    IEnumerator DeathProcess()
+    {
+        yield return new WaitForSeconds(2);
+        /*for (int i = 0; i < 4; i++)
+            deathScreen[i].SetActive(true);
+        deathAnim.SetTrigger("Death");
+        yield return new WaitForSeconds(1);
+        deathScreen[4].SetActive(false);*/
+        Application.Quit();
     }
 }
