@@ -32,7 +32,7 @@ public class ThoughtManager : MonoBehaviour
 
     IEnumerator TimeToDisappear()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
         balloon.SetTrigger("Disappear");
         isThinking = false;
     }

@@ -4,20 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class introController : MonoBehaviour
+public class IntroController : MonoBehaviour
 {
     public ThoughtManager thought;
 
     public Text thoughtText;
 
     public Animator cameraAnim;
+    public Animator fadeAnim;
     public Animator shutterAnim;
     public Animator deathAnim;
 
+    public GameObject returnArrow;
+    public GameObject[] introTextObj;
     public GameObject directionalButton;
+    public GameObject introCover;
     public GameObject sceneCloseUp;
 
+    public GameObject[] phone;
     public GameObject[] deathScreen;
+
+    public BoxCollider2D[] firstPanelCollide;
 
     [SerializeField]
     private int currentPanel;
@@ -25,10 +32,23 @@ public class introController : MonoBehaviour
     private bool isLocked;
     private bool isDead;
 
+    private float delay = 0.04f;
+    private float dotDelay = 1.0f;
+
+    /*[SerializeField]
+    private string introText;
+    [SerializeField]
+    private string introTextPart2;*/
+    [SerializeField]
+    private string[] introText;
+
+    private string currentText = "";
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentPanel = -2;
+        StartCoroutine(IntroStart());
     }
 
     // Update is called once per frame
@@ -49,6 +69,11 @@ public class introController : MonoBehaviour
 
                 switch (currentPanel)
                 {
+                    case -1:
+                        phone[0].SetActive(false);
+                        returnArrow.SetActive(true);
+                        thoughtText.text = "I'm so tired...";
+                        break;
                     case 0:
                         thoughtText.text = "Just gonna put something on before leaving.";
                         break;
@@ -69,9 +94,18 @@ public class introController : MonoBehaviour
             
             if (hit.collider.CompareTag("Nothing"))
             {
-                shutterAnim.SetTrigger("Open");
-                isLocked = true;
-                StartCoroutine(EndTransition());
+                switch (currentPanel)
+                {
+                    case 0:
+                        thought.ShowThought();
+                        thoughtText.text = "Need some light in here.";
+                        break;
+                    case 1:                     
+                        shutterAnim.SetTrigger("Open");
+                        isLocked = true;
+                        StartCoroutine(EndTransition());
+                        break;
+                }            
             }
         }
     }
@@ -82,10 +116,19 @@ public class introController : MonoBehaviour
         {
             switch (i)
             {
+                case 0:
+                    phone[1].SetActive(false);
+                    returnArrow.SetActive(false);
+                    directionalButton.SetActive(true);
+                    for (int b = 0; b < firstPanelCollide.Length; b++)
+                        firstPanelCollide[b].enabled = true;
+                    currentPanel++;
+                    break;
                 case 1:
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("turn");
+                        fadeAnim.SetTrigger("Transition");
                         directionalButton.SetActive(false);
                     }
                     //currentPanel++;
@@ -122,5 +165,31 @@ public class introController : MonoBehaviour
         yield return new WaitForSeconds(1);
         deathScreen[4].SetActive(false);*/
         Application.Quit();
+    }
+
+    IEnumerator IntroStart()
+    {
+        yield return new WaitForSeconds(2.0f);
+        for (int i = 0; i < introText[0].Length; i++)
+        {
+            currentText = introText[0].Substring(0, i);
+            introTextObj[0].GetComponent<Text>().text = currentText;
+            yield return new WaitForSeconds(delay);
+        }
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < introText[1].Length; i++)
+        {
+            currentText = introText[1].Substring(0, i);
+            introTextObj[1].GetComponent<Text>().text = currentText;
+            yield return new WaitForSeconds(delay);
+        }
+        for (int i = 0; i < introText[2].Length; i++)
+        {
+            currentText = introText[2].Substring(0, i);
+            introTextObj[2].GetComponent<Text>().text = currentText;
+            yield return new WaitForSeconds(dotDelay);
+        }
+        introCover.SetActive(false);
+        currentPanel++;
     }
 }
