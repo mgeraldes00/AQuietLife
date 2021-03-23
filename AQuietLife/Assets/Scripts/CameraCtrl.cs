@@ -25,7 +25,7 @@ public class CameraCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        currentPanel = -1;       
     }
 
     // Update is called once per frame
@@ -37,9 +37,9 @@ public class CameraCtrl : MonoBehaviour
         }
         if (currentView == 0)
         {
-            dirButtons.SetActive(true);
+            dirButtons.SetActive(true);          
         }
-
+      
         /*Vector3 mousePos =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -90,7 +90,7 @@ public class CameraCtrl : MonoBehaviour
                     }
                     if (currentPanel == 0)
                     {
-                        cameraAnim.SetTrigger("RotateLeft");
+                        cameraAnim.SetTrigger("Return");
                         directionalButtons[0].enabled = false;
                     }
                     currentPanel--;
@@ -101,7 +101,7 @@ public class CameraCtrl : MonoBehaviour
                 case 1:
                     if (currentPanel == -1)
                     {
-                        cameraAnim.SetTrigger("Return");
+                        cameraAnim.SetTrigger("RotateRight");
                         directionalButtons[0].enabled = true;
                     }
                     if (currentPanel == 0)

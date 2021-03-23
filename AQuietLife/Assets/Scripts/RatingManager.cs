@@ -62,7 +62,7 @@ public class RatingManager : MonoBehaviour
 
     IEnumerator ShowRating()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         ratingAnim.SetTrigger("LevelEnd");
         yield return new WaitForSeconds(1);
         if (gameMng.numOfIngredients == 1 && gameMng.glovesUsed == 2)
@@ -80,7 +80,7 @@ public class RatingManager : MonoBehaviour
 
     IEnumerator ShowGloveText()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < gloveText.Length; i++)
         {
             currentText = gloveText.Substring(0, i);

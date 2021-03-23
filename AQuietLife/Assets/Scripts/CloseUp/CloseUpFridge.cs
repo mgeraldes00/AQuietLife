@@ -34,7 +34,7 @@ public class CloseUpFridge : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                //Debug.Log("Mouse Clicked");
+                Debug.Log("Mouse Clicked");
                 Vector3 mousePos =
                     Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);

@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class BreadBoxManager : MonoBehaviour
 {
-    public ClockManager clock;
+    //public ClockManager clock;
     public InventoryManager inventory;
     public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpBreadBox closeUp;
 
-    public GameObject breadBoxGeneral;
+    /*public GameObject breadBoxGeneral;
     public GameObject breadBoxDoorOpen;
     public GameObject breadBoxNoBreadCenter;
     public GameObject breadBoxNoBreadRight;
-    public GameObject breadBoxNoBread;
+    public GameObject breadBoxNoBread;*/
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderBreadBox;
-    public GameObject interactionText;
-    public GameObject activityText;
-    public GameObject breadBoxButtons;
-    public GameObject breadBoxRewindButton;
+    //public GameObject noTextCollidersGeneral;
+    //public GameObject noTextColliderBreadBox;
+    //public GameObject interactionText;
+    //public GameObject activityText;
+    //public GameObject breadBoxButtons;
+    //public GameObject breadBoxRewindButton;
     public GameObject breadBox;
     public GameObject bread;
     public GameObject breadInteract1;
@@ -61,7 +61,7 @@ public class BreadBoxManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Nothing"))
+            /*if (hit.collider.CompareTag("Nothing"))
             {
                 if (doorOpen == true && bread1Taken == false)
                 {
@@ -91,7 +91,7 @@ public class BreadBoxManager : MonoBehaviour
                 activityText.SetActive(false);
                 breadBoxRewindButton.SetActive(false);
                 breadBoxButtons.SetActive(false);
-            }
+            }*/
 
             /*if (hit.collider.CompareTag("BreadBox"))
             {
@@ -105,7 +105,7 @@ public class BreadBoxManager : MonoBehaviour
                 inventory.GloveOffInventory();
                 isTrapped = false;
                 doorOpen = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
                 LockAndUnlock();
 
                 for (int i = 0; i <= interactableColliders.Length; i++)
@@ -121,7 +121,7 @@ public class BreadBoxManager : MonoBehaviour
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 doorOpen = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
                 LockAndUnlock();
             }
 
@@ -139,9 +139,9 @@ public class BreadBoxManager : MonoBehaviour
         }
     }
 
-    public void ButtonBehaviour(int i)
+    public void ButtonBehaviour()
     {
-        if (isLocked == false && hasTime == true)
+        /*if (isLocked == false && hasTime == true)
         {
             switch (i)
             {
@@ -170,7 +170,36 @@ public class BreadBoxManager : MonoBehaviour
                     clock.Drain();
                     break;                
             }
+        }*/
+
+        if (doorOpen == true && bread1Taken == false)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            //breadBoxDoorOpen.SetActive(true);
         }
+
+        if (doorOpen == true && bread1Taken == true)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            //breadBoxNoBreadRight.SetActive(true);
+        }
+
+        if (doorOpen == false && bread1Taken == false)
+        {
+            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+                closeUp.zoomableObjs[i].enabled = true;
+            //breadBoxGeneral.SetActive(true);
+        }
+
+        breadBox.SetActive(false);
+        returnArrow.SetActive(false);
+        //noTextCollidersGeneral.SetActive(true);
+        //noTextColliderBreadBox.SetActive(false);
+        //activityText.SetActive(false);
+        //breadBoxRewindButton.SetActive(false);
+        //breadBoxButtons.SetActive(false);
     }
 
     public void LockAndUnlock()
