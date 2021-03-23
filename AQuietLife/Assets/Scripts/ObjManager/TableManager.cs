@@ -5,30 +5,30 @@ using UnityEngine.UI;
 
 public class TableManager : MonoBehaviour
 {
-    public ClockManager clock;
+    //public ClockManager clock;
     public InventoryManager inventory;
     public ThoughtManager thought;
     public GameManager gameMng;
-    public CloseUpTable closeUp;
+    //public CloseUpTable closeUp;
     public ObjectiveManager objective;
 
     public Text thoughtText;
 
-    public GameObject tableGeneral;
+    /*public GameObject tableGeneral;
     public GameObject tableGeneralWPlate;
     public GameObject tableGeneralWKnife;
     public GameObject tableGeneralWPlateKnife;
     public GameObject tableGeneralWPlateBread;
     public GameObject tableGeneralWPlateKnifeBread;
     public GameObject tableGeneralWPlateKnifeBreadUncut;
-    public GameObject tableGeneralWPlateKnifeBreadHam;
+    public GameObject tableGeneralWPlateKnifeBreadHam;*/
 
     public BoxCollider2D tableCollider;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
-    public GameObject noTextColliderTable;
-    public GameObject interactionText;
+    //public GameObject noTextCollidersGeneral;
+    //public GameObject noTextColliderTable;
+    //public GameObject interactionText;
     public GameObject table;
     public GameObject plate;
     public GameObject bread;
@@ -65,7 +65,7 @@ public class TableManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Nothing"))
+            /*if (hit.collider.CompareTag("Nothing"))
             {
                 if (plateOnTable == true && breadOnTable == false 
                     && frozenBreadOnTable == false && knifeOnTable == false)
@@ -133,14 +133,14 @@ public class TableManager : MonoBehaviour
                 returnArrow.SetActive(false);
                 noTextCollidersGeneral.SetActive(true);
                 noTextColliderTable.SetActive(false);
-            }
+            }*/
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasPlate == true)
             {
                 plate.SetActive(true);
                 inventory.PlateOffInventory();
                 plateOnTable = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasBread == true)
@@ -148,7 +148,7 @@ public class TableManager : MonoBehaviour
                 bread.SetActive(true);
                 inventory.BreadOffInventory();
                 breadOnTable = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasFrozenBread == true)
@@ -156,7 +156,7 @@ public class TableManager : MonoBehaviour
                 bread.SetActive(true);
                 inventory.FrozenBreadOffInventory();
                 frozenBreadOnTable = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasKnife == true)
@@ -164,7 +164,7 @@ public class TableManager : MonoBehaviour
                 knife.SetActive(true);
                 inventory.KnifeOffInventory();
                 knifeOnTable = true;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasBreadInPlate == true)
@@ -175,7 +175,7 @@ public class TableManager : MonoBehaviour
                 plateOnTable = true;
                 breadOnTable = true;
                 plateTaken = false;
-                interactionText.SetActive(false);
+                //interactionText.SetActive(false);
             }
 
             if (hit.collider.CompareTag("TableClose") && inventory.hasHam == true)

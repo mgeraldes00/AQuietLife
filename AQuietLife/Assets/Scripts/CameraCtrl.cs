@@ -9,6 +9,7 @@ public class CameraCtrl : MonoBehaviour
     public MicrowaveManager microwave;
 
     public Animator cameraAnim;
+    public Animator fadeAnim;
     public Animator microwaveAnim;
 
     public Button[] directionalButtons;
@@ -94,6 +95,7 @@ public class CameraCtrl : MonoBehaviour
                     }
                     currentPanel--;
                     gameMng.isLocked = true;
+                    fadeAnim.SetTrigger("Transition");
                     StartCoroutine(EndTransition());
                     break;
                 case 1:
@@ -111,6 +113,7 @@ public class CameraCtrl : MonoBehaviour
                     }
                     currentPanel++;
                     gameMng.isLocked = true;
+                    fadeAnim.SetTrigger("Transition");
                     StartCoroutine(EndTransition());
                     break;
             }
