@@ -35,7 +35,7 @@ public class PointerManager : MonoBehaviour
             || hit.collider.CompareTag("CabinetBreach"))
         {
             Debug.Log("Hovering");
-            Cursor.SetCursor(examineTexture, hotSpot, curMode);
+            //Cursor.SetCursor(examineTexture, hotSpot, curMode);
         }
 
         if (hit.collider.CompareTag("CabinetDoor1")
@@ -49,26 +49,26 @@ public class PointerManager : MonoBehaviour
             || hit.collider.CompareTag("FridgeDoor1")
             || hit.collider.CompareTag("FridgeDoor2"))
         {
-            Cursor.SetCursor(interactTexture, hotSpot, curMode);
+           // Cursor.SetCursor(interactTexture, hotSpot, curMode);
         }
 
         if (hit.collider.CompareTag("Plate")
             || hit.collider.CompareTag("Bread1")
             || hit.collider.CompareTag("Knife"))
         {
-            Cursor.SetCursor(pickUpTexture, hotSpot, curMode);
+            //Cursor.SetCursor(pickUpTexture, hotSpot, curMode);
         }
 
         if (hit.collider.CompareTag("Door"))
         {
-            Cursor.SetCursor(doorTexture, hotSpot, curMode);
-            if (gameMng.isLocked == true)
-                Cursor.SetCursor(defaultTexture, hotSpot, curMode);
+            //Cursor.SetCursor(doorTexture, hotSpot, curMode);
+            //if (gameMng.isLocked == true)
+                //Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }
 
         if (hit.collider.CompareTag("NoTag") || gameMng.isDead == true)
         {
-            Cursor.SetCursor(defaultTexture, hotSpot, curMode);
+            //Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }       
     }
 
@@ -77,7 +77,7 @@ public class PointerManager : MonoBehaviour
         if (gameObject.tag == "Cabinet")
         {
             Debug.Log("Hovering");
-            Cursor.SetCursor(examineTexture, hotSpot, curMode);
+            //Cursor.SetCursor(examineTexture, hotSpot, curMode);
         }
     }
 
