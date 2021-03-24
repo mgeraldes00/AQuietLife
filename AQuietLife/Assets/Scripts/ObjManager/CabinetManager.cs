@@ -7,7 +7,7 @@ public class CabinetManager : MonoBehaviour
 {
     //public ClockManager clock;
     public Clock wave;
-    public AudioCtrl audioCtrl;
+    public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
     public InventoryManager inventory;
     public Eyelids eyelids;

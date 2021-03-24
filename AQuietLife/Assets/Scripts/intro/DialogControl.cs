@@ -73,14 +73,14 @@ public class DialogControl : MonoBehaviour
 
     IEnumerator DialogStart()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < introText.Length; i++)
         {
             currentText = introText.Substring(0, i);
             introTextObj.GetComponent<Text>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         //introCover.SetActive(false);
         fadeAnim.SetTrigger("FadeIn");
         sequenceNum++;

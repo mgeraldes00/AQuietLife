@@ -50,6 +50,7 @@ public class IntroController : MonoBehaviour
     {
         currentPanel = -2;
         StartCoroutine(IntroStart());
+        StartCoroutine(StartAlarm());
     }
 
     // Update is called once per frame
@@ -74,6 +75,7 @@ public class IntroController : MonoBehaviour
                         phone[0].SetActive(false);
                         returnArrow.SetActive(true);
                         thoughtText.text = "I'm so tired...";
+                        FindObjectOfType<AudioCtrl>().Stop("Alarm");
                         break;
                     case 0:
                         thoughtText.text = "Just gonna put something on before leaving.";
@@ -148,6 +150,7 @@ public class IntroController : MonoBehaviour
         //Destroy(scene);
         Destroy(sceneCloseUp);
         StartCoroutine(DeathProcess());
+        FindObjectOfType<AudioCtrl>().Play("Explosion");
     }
 
     IEnumerator EndTransition()
@@ -194,5 +197,11 @@ public class IntroController : MonoBehaviour
         }
         introCover.SetActive(false);
         currentPanel++;
+    }
+
+    IEnumerator StartAlarm()
+    {
+        yield return new WaitForSeconds(6.5f);
+        FindObjectOfType<AudioCtrl>().Play("Alarm");
     }
 }

@@ -418,6 +418,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
   m_PrefabInstance: {fileID: 182411880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &317683869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317683871}
+  - component: {fileID: 317683870}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &317683870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317683869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20285a7d00414d648994b8d5760a4211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioButtons: []
+  sounds:
+  - name: Alarm
+    clip: {fileID: 8300000, guid: 413a7121e9da4ae4aa04f2037380b10b, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: c6622b489d419cc42846b4a9e1b155dc, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &317683871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317683869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &439811152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,7 +517,7 @@ PrefabInstance:
     - target: {fileID: 6435017492031017415, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f986c2169ff176e4f9069ee595d84a19, type: 3}
+      objectReference: {fileID: 21300000, guid: e5e1279f025aedc4c964462c3430f7e8, type: 3}
     - target: {fileID: 6435017492956124616, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -468,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 6435017492956124623, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f986c2169ff176e4f9069ee595d84a19, type: 3}
+      objectReference: {fileID: 21300000, guid: e5e1279f025aedc4c964462c3430f7e8, type: 3}
     - target: {fileID: 6435017493723806300, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -920,6 +977,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347985, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5e1279f025aedc4c964462c3430f7e8, type: 3}
     - target: {fileID: 3578828616572347990, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Name
       value: ReturnArrow
