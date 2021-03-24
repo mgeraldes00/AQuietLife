@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -159,12 +160,14 @@ public class IntroController : MonoBehaviour
     IEnumerator DeathProcess()
     {
         yield return new WaitForSeconds(2);
+        //Debug.Log("EXIT");
         /*for (int i = 0; i < 4; i++)
             deathScreen[i].SetActive(true);
         deathAnim.SetTrigger("Death");
         yield return new WaitForSeconds(1);
         deathScreen[4].SetActive(false);*/
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene("Dialog");
     }
 
     IEnumerator IntroStart()

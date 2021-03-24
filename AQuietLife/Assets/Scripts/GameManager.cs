@@ -206,6 +206,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Quit");
                 Application.Quit();
                 break;
+            case (4):
+                SceneManager.LoadScene("Intro");
+                break;
         }
     }
 
