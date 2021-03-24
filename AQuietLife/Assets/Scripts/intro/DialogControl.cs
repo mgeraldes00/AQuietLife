@@ -11,8 +11,10 @@ public class DialogControl : MonoBehaviour
     public GameObject returnArrow;
 
     public Animator fadeAnim;
+    public Animator explosiveAnim;
 
     public SpriteRenderer[] dialog;
+    public SpriteRenderer explosiveChar;
 
     private float delay = 0.1f;
 
@@ -38,18 +40,23 @@ public class DialogControl : MonoBehaviour
         {
             case 1:
                 dialog[0].enabled = false;
+                dialog[1].enabled = true;
                 break;
             case 2:
                 dialog[1].enabled = false;
+                dialog[2].enabled = true;
                 break;
             case 3:
                 dialog[2].enabled = false;
+                dialog[3].enabled = true;
                 break;
             case 4:
                 dialog[3].enabled = false;
+                dialog[4].enabled = true;
                 break;
             case 5:
                 dialog[4].enabled = false;
+                dialog[5].enabled = true;
                 break;
             case 6:
                 dialog[5].enabled = false;
@@ -78,13 +85,18 @@ public class DialogControl : MonoBehaviour
         fadeAnim.SetTrigger("FadeIn");
         sequenceNum++;
         yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < dialog.Length; i++)
-            dialog[i].enabled = true;
+        introTextObj.SetActive(false);
+        explosiveChar.enabled = true;
+        explosiveAnim.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1.0f);
+        dialog[0].enabled = true;
         returnArrow.SetActive(true);
     }
 
     IEnumerator TransitionToLevel()
     {
+        yield return new WaitForSeconds(0.5f);
+        fadeAnim.SetTrigger("FadeOut");
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("Kitchen");
     }
