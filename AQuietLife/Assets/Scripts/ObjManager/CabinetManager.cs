@@ -260,13 +260,16 @@ public class CabinetManager : MonoBehaviour
 
     public void Rewind()
     {
-        eyelids.Close();
-        //rewindAudio.Play();
-        StartCoroutine(TimeToOpen());
-        //cabinetButtons.SetActive(true);
-        //cabinetRewindButton.SetActive(false);
-        //activityText.SetActive(true);
-        //rewindApplied = true;
+        if (isLocked == false && hasTime == true && gameMng.isLocked == false)
+        {
+            eyelids.Close();
+            //rewindAudio.Play();
+            StartCoroutine(TimeToOpen());
+            //cabinetButtons.SetActive(true);
+            //cabinetRewindButton.SetActive(false);
+            //activityText.SetActive(true);
+            //rewindApplied = true;
+        }
     }
 
     public void ButtonBehaviour()
