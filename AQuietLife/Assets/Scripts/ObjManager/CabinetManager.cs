@@ -50,6 +50,7 @@ public class CabinetManager : MonoBehaviour
     public Animator plateAnim;
 
     public Animator pointer;
+    public Animator rewindText;
 
     private Animator anim;
 
@@ -461,6 +462,7 @@ public class CabinetManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
             eyelids.pointer.SetBool("Moving", true);
+            rewindText.SetBool("Working", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
             audioCtrl.audioButtons[2].SetBool("Play", true);
@@ -473,6 +475,7 @@ public class CabinetManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
             eyelids.pointer.SetBool("Moving", true);
+            rewindText.SetBool("Working", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
             audioCtrl.audioButtons[2].SetBool("Play", true);

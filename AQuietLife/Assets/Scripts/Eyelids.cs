@@ -10,6 +10,7 @@ public class Eyelids : MonoBehaviour
     public Animator eyelids;
     public Animator timer;
     public Animator pointer;
+    public Animator text;
 
     public AudioSource tick;
     public AudioSource tickReverse;
@@ -61,7 +62,7 @@ public class Eyelids : MonoBehaviour
         timer.SetBool("Rewind", false);
         tick.Stop();*/
         yield return new WaitForSeconds(0.2f);
-        eyelids.SetTrigger("Open");
+        text.SetBool("Working", false);
         timer.SetTrigger("RewindEnd");
         pointer.SetBool("Moving", false);
         slider.SetActive(false);
@@ -69,6 +70,8 @@ public class Eyelids : MonoBehaviour
             waveform[i].enabled = false;
         for (int b = 0; b < ctrlButtons.Length; b++)
             ctrlButtons[b].SetActive(false);
+        yield return new WaitForSeconds(1.2f);
+        eyelids.SetTrigger("Open");     
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
     }
