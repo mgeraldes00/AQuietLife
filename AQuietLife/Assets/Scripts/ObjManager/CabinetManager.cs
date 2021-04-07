@@ -454,7 +454,7 @@ public class CabinetManager : MonoBehaviour
         //waveform.enabled = false;*/
         if (rewindOnce != true)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             eyelids.pointer.SetTrigger("CabinetRewind");
             rewindReverseAudio.Play();
             eyelids.timer.SetTrigger("Pressed");
@@ -465,7 +465,8 @@ public class CabinetManager : MonoBehaviour
             rewindText.SetBool("Working", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
-            audioCtrl.audioButtons[2].SetBool("Play", true);
+            //audioCtrl.audioButtons[2].SetBool("Play", true);
+            audioCtrl.pressedButtons[2].SetActive(true);
             slider.SetActive(true);
             waveformCabinet.enabled = true;
             rewindAudio.Play();
@@ -478,7 +479,8 @@ public class CabinetManager : MonoBehaviour
             rewindText.SetBool("Working", true);
             for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);
-            audioCtrl.audioButtons[2].SetBool("Play", true);
+            //audioCtrl.audioButtons[2].SetBool("Play", true);
+            audioCtrl.pressedButtons[2].SetActive(true);
             slider.SetActive(true);
             waveformCabinet.enabled = true;
             rewindAudio.Play();

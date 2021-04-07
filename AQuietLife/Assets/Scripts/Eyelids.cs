@@ -8,6 +8,7 @@ public class Eyelids : MonoBehaviour
     public GameManager gameMng;
 
     public Animator eyelids;
+    public Animator timerSmall;
     public Animator timer;
     public Animator pointer;
     public Animator text;
@@ -21,6 +22,7 @@ public class Eyelids : MonoBehaviour
     public GameObject returnArrow;
 
     public Image[] waveform;
+    public Image[] rewindClock;
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +39,24 @@ public class Eyelids : MonoBehaviour
     public void Close()
     {
         eyelids.SetTrigger("Close");
-        timer.SetTrigger("RewindStart");
-        timer.SetBool("Rewind", true);
-        //StartCoroutine(TimerPress());
+        //timerSmall.SetTrigger("RewindStart");
+        timerSmall.SetBool("Rewind", true);
+        StartCoroutine(StartRewind());
     }
 
     public void Open()
     {
         timer.SetTrigger("Pressed");
         StartCoroutine(TimerPress());        
+    }
+
+    IEnumerator StartRewind()
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < rewindClock.Length; i++)
+            rewindClock[i].enabled = true;
+        timer.SetBool("Rewind", true);
+        timer.SetTrigger("RewindStart");
     }
 
     IEnumerator TimerPress()
@@ -64,6 +75,7 @@ public class Eyelids : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         text.SetBool("Working", false);
         timer.SetTrigger("RewindEnd");
+        timerSmall.SetBool("Rewind", false);
         pointer.SetBool("Moving", false);
         slider.SetActive(false);
         for (int i = 0; i < waveform.Length; i++)
