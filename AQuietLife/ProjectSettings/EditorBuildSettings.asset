@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Context.unity
     guid: 62505c250c587f843a977d5a28ce7f69
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro.unity
     guid: 1c5cf37e3be81a64ba042fce4abd3635
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dialog.unity
     guid: 747e191deda1d1446a230e698d78b7dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Kitchen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
