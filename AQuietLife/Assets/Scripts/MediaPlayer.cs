@@ -41,6 +41,7 @@ public class MediaPlayer : MonoBehaviour
                 pressedButtons[1].SetActive(false);
                 pressedButtons[2].SetActive(false);
                 pressedButtons[3].SetActive(false);
+                pressedButtons[4].SetActive(false);
                 eyelids.pointer.speed = 1.5f;
                 pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 1.5f);
                 break;
@@ -54,6 +55,7 @@ public class MediaPlayer : MonoBehaviour
                 pressedButtons[1].SetActive(true);
                 pressedButtons[2].SetActive(false);
                 pressedButtons[3].SetActive(false);
+                pressedButtons[4].SetActive(false);
                 eyelids.pointer.StartPlayback();
                 eyelids.pointer.speed = -1.5f;
                 pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 0.5f);
@@ -68,6 +70,7 @@ public class MediaPlayer : MonoBehaviour
                 pressedButtons[1].SetActive(false);
                 pressedButtons[2].SetActive(true);
                 pressedButtons[3].SetActive(false);
+                pressedButtons[4].SetActive(false);
                 eyelids.pointer.speed = 1.0f;
                 break;
             case 3:
@@ -80,6 +83,7 @@ public class MediaPlayer : MonoBehaviour
                 pressedButtons[1].SetActive(false);
                 pressedButtons[2].SetActive(false);
                 pressedButtons[3].SetActive(true);
+                pressedButtons[4].SetActive(false);
                 eyelids.pointer.speed = 0.0f;
                 break;
             case 4:
@@ -93,6 +97,7 @@ public class MediaPlayer : MonoBehaviour
                 pressedButtons[1].SetActive(false);
                 pressedButtons[2].SetActive(false);
                 pressedButtons[3].SetActive(false);
+                pressedButtons[4].SetActive(true);
                 eyelids.Open();
                 break;
         }

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Eyelids : MonoBehaviour
 {
     public GameManager gameMng;
+    public MediaPlayer media;
 
     public Animator eyelids;
+    public Animator cover;
     public Animator timerSmall;
     public Animator timer;
     public Animator pointer;
@@ -50,6 +52,11 @@ public class Eyelids : MonoBehaviour
         StartCoroutine(TimerPress());        
     }
 
+    public void Uncover()
+    {
+        cover.SetBool("FirstRewind", true);
+    }
+
     IEnumerator StartRewind()
     {
         yield return new WaitForSeconds(1f);
@@ -74,16 +81,22 @@ public class Eyelids : MonoBehaviour
         tick.Stop();*/
         yield return new WaitForSeconds(0.2f);
         text.SetBool("Working", false);
-        timer.SetTrigger("RewindEnd");
-        timerSmall.SetBool("Rewind", false);
+        timer.SetTrigger("RewindEnd");       
         pointer.SetBool("Moving", false);
         slider.SetActive(false);
         for (int i = 0; i < waveform.Length; i++)
             waveform[i].enabled = false;
         for (int b = 0; b < ctrlButtons.Length; b++)
             ctrlButtons[b].SetActive(false);
-        yield return new WaitForSeconds(1.2f);
-        eyelids.SetTrigger("Open");     
+        for (int c = 0; c < media.pressedButtons.Length; c++)
+            media.pressedButtons[c].SetActive(false);
+        yield return new WaitForSeconds(1.5f);       
+        for (int i = 0; i < rewindClock.Length; i++)
+            rewindClock[i].enabled = false;     
+        yield return new WaitForSeconds(0.5f);
+        eyelids.SetTrigger("Open");
+        timerSmall.SetBool("Rewind", false);
+        yield return new WaitForSeconds(0.5f);
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
     }

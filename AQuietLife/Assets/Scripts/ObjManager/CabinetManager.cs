@@ -458,6 +458,8 @@ public class CabinetManager : MonoBehaviour
             eyelids.pointer.SetTrigger("CabinetRewind");
             rewindReverseAudio.Play();
             eyelids.timer.SetTrigger("Pressed");
+            waveformCabinet.enabled = true;
+            eyelids.Uncover();
             rewindOnce = true;
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
@@ -468,7 +470,7 @@ public class CabinetManager : MonoBehaviour
             //audioCtrl.audioButtons[2].SetBool("Play", true);
             audioCtrl.pressedButtons[2].SetActive(true);
             slider.SetActive(true);
-            waveformCabinet.enabled = true;
+            //waveformCabinet.enabled = true;
             rewindAudio.Play();
         }
         else if (rewindOnce == true)
