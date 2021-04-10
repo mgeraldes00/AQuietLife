@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CabinetManager : MonoBehaviour
 {
     //public ClockManager clock;
+    public CameraCtrl zoom;
     public Clock wave;
     public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
@@ -191,6 +192,7 @@ public class CabinetManager : MonoBehaviour
                 glove.SetActive(true);
                 //interactionText.SetActive(false);
                 LockAndUnlock();
+                zoom.InteractionTransition();
             }
 
             if (hit.collider.CompareTag("CabinetDoor2") && door2Open == true)
@@ -381,6 +383,12 @@ public class CabinetManager : MonoBehaviour
             //abinetGeneral.SetActive(true);
         }
 
+        StartCoroutine(TimeToTransition());
+    }
+
+    IEnumerator TimeToTransition()
+    {
+        yield return new WaitForSeconds(0.1f);
         cabinet.SetActive(false);
         returnArrow.SetActive(false);
         //noTextCollidersGeneral.SetActive(true);
@@ -465,8 +473,9 @@ public class CabinetManager : MonoBehaviour
             eyelids.timer.SetTrigger("Pressed");
             eyelids.pointer.SetBool("Moving", true);
             rewindText.SetBool("Working", true);
-            for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
-                eyelids.ctrlButtons[i].SetActive(true);
+            /*for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
+                eyelids.ctrlButtons[i].SetActive(true);*/
+            eyelids.mediaFunction = true;
             //audioCtrl.audioButtons[2].SetBool("Play", true);
             audioCtrl.pressedButtons[2].SetActive(true);
             slider.SetActive(true);
@@ -479,8 +488,9 @@ public class CabinetManager : MonoBehaviour
             eyelids.timer.SetTrigger("Pressed");
             eyelids.pointer.SetBool("Moving", true);
             rewindText.SetBool("Working", true);
-            for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
-                eyelids.ctrlButtons[i].SetActive(true);
+            /*for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
+                eyelids.ctrlButtons[i].SetActive(true);*/
+            eyelids.mediaFunction = true;
             //audioCtrl.audioButtons[2].SetBool("Play", true);
             audioCtrl.pressedButtons[2].SetActive(true);
             slider.SetActive(true);

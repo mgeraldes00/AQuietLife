@@ -120,6 +120,16 @@ public class CameraCtrl : MonoBehaviour
         }
     }
 
+    public void ObjectTransition()
+    {
+        fadeAnim.SetTrigger("TransitionObj");
+    }
+
+    public void InteractionTransition()
+    {
+        fadeAnim.SetTrigger("Transition");
+    }
+
     public void BackToGeneral()
     {
         currentView--;
@@ -127,7 +137,7 @@ public class CameraCtrl : MonoBehaviour
 
     IEnumerator EndTransition()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         gameMng.isLocked = false;
     }
 }

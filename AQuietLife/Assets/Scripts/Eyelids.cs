@@ -13,6 +13,7 @@ public class Eyelids : MonoBehaviour
     public Animator timerSmall;
     public Animator timer;
     public Animator pointer;
+    public Animator mediaPlayer;
     public Animator text;
 
     public AudioSource tick;
@@ -26,10 +27,12 @@ public class Eyelids : MonoBehaviour
     public Image[] waveform;
     public Image[] rewindClock;
 
+    public bool mediaFunction;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        mediaFunction = false;
     }
 
     // Update is called once per frame
@@ -59,11 +62,13 @@ public class Eyelids : MonoBehaviour
 
     IEnumerator StartRewind()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < rewindClock.Length; i++)
             rewindClock[i].enabled = true;
         timer.SetBool("Rewind", true);
         timer.SetTrigger("RewindStart");
+        yield return new WaitForSeconds(1.0f);
+        mediaPlayer.SetBool("Rewinding", true);
     }
 
     IEnumerator TimerPress()
@@ -86,8 +91,10 @@ public class Eyelids : MonoBehaviour
         slider.SetActive(false);
         for (int i = 0; i < waveform.Length; i++)
             waveform[i].enabled = false;
-        for (int b = 0; b < ctrlButtons.Length; b++)
-            ctrlButtons[b].SetActive(false);
+        /*for (int b = 0; b < ctrlButtons.Length; b++)
+            ctrlButtons[b].SetActive(false);*/
+        mediaFunction = false;
+        mediaPlayer.SetBool("Rewinding", false);
         for (int c = 0; c < media.pressedButtons.Length; c++)
             media.pressedButtons[c].SetActive(false);
         yield return new WaitForSeconds(1.5f);       
