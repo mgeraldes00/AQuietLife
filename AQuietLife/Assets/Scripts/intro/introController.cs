@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class IntroController : MonoBehaviour
@@ -15,6 +16,7 @@ public class IntroController : MonoBehaviour
     public Animator fadeAnim;
     public Animator shutterAnim;
     public Animator deathAnim;
+    public Animator speechBalloon;
 
     public GameObject returnArrow;
     public GameObject[] introTextObj;
@@ -149,6 +151,7 @@ public class IntroController : MonoBehaviour
         deathScreen[0].SetActive(true);
         //Destroy(scene);
         Destroy(sceneCloseUp);
+        introTextObj[3].SetActive(true);
         StartCoroutine(DeathProcess());
         FindObjectOfType<AudioCtrl>().Play("Explosion");
     }
@@ -162,7 +165,7 @@ public class IntroController : MonoBehaviour
 
     IEnumerator DeathProcess()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         //Debug.Log("EXIT");
         /*for (int i = 0; i < 4; i++)
             deathScreen[i].SetActive(true);
@@ -170,7 +173,25 @@ public class IntroController : MonoBehaviour
         yield return new WaitForSeconds(1);
         deathScreen[4].SetActive(false);*/
         //Application.Quit();
-        SceneManager.LoadScene("Dialog");
+        //SceneManager.LoadScene("Dialog");
+        for (int i = 0; i < introText[3].Length; i++)
+        {
+            currentText = introText[3].Substring(0, i);
+            introTextObj[3].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(delay * 3);         
+        }
+        yield return new WaitForSeconds(2.0f);
+        introTextObj[3].SetActive(false);
+        FindObjectOfType<AudioCtrl>().Play("Past");
+        yield return new WaitForSeconds(5.0f);
+        speechBalloon.SetTrigger("Past");
+        yield return new WaitForSeconds(1.0f);
+        for (int i = 0; i < introText[4].Length; i++)
+        {
+            currentText = introText[4].Substring(0, i);
+            introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(delay);
+        }
     }
 
     IEnumerator IntroStart()
@@ -201,7 +222,7 @@ public class IntroController : MonoBehaviour
 
     IEnumerator StartAlarm()
     {
-        yield return new WaitForSeconds(6.5f);
+        yield return new WaitForSeconds(6f);
         FindObjectOfType<AudioCtrl>().Play("Alarm");
     }
 }
