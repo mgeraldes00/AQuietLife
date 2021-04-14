@@ -720,7 +720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &30444873
 Transform:
   m_ObjectHideFlags: 0
@@ -11362,7 +11362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMng: {fileID: 1037535894}
-  microwave: {fileID: 357619417}
+  microwave: {fileID: 988433941}
   cameraAnim: {fileID: 519420030}
   fadeAnim: {fileID: 816583563}
   microwaveAnim: {fileID: 205098649}

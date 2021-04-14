@@ -19,6 +19,7 @@ public class IntroController : MonoBehaviour
     public Animator speechBalloon;
 
     public GameObject returnArrow;
+    public GameObject cursorImg;
     public GameObject[] introTextObj;
     public GameObject directionalButton;
     public GameObject introCover;
@@ -29,11 +30,11 @@ public class IntroController : MonoBehaviour
 
     public BoxCollider2D[] firstPanelCollide;
 
-    [SerializeField]
-    private int currentPanel;
+    public int currentPanel;
 
     private bool isLocked;
-    private bool isDead;
+
+    public bool isDead;
 
     private float delay = 0.04f;
     private float dotDelay = 1.0f;
@@ -51,6 +52,8 @@ public class IntroController : MonoBehaviour
     void Start()
     {
         currentPanel = -2;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(IntroStart());
         StartCoroutine(StartAlarm());
     }
@@ -149,6 +152,8 @@ public class IntroController : MonoBehaviour
         isLocked = true;
         isDead = true;
         deathScreen[0].SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         //Destroy(scene);
         Destroy(sceneCloseUp);
         introTextObj[3].SetActive(true);
@@ -200,29 +205,35 @@ public class IntroController : MonoBehaviour
         for (int i = 0; i < introText[0].Length; i++)
         {
             currentText = introText[0].Substring(0, i);
-            introTextObj[0].GetComponent<Text>().text = currentText;
+            introTextObj[0].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < introText[1].Length; i++)
         {
             currentText = introText[1].Substring(0, i);
-            introTextObj[1].GetComponent<Text>().text = currentText;
+            introTextObj[1].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
         for (int i = 0; i < introText[2].Length; i++)
         {
             currentText = introText[2].Substring(0, i);
-            introTextObj[2].GetComponent<Text>().text = currentText;
+            introTextObj[2].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(dotDelay);
         }
         introCover.SetActive(false);
         currentPanel++;
+        yield return new WaitForSeconds(1.0f);
+        cursorImg.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        cursorImg.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     IEnumerator StartAlarm()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5.8f);
         FindObjectOfType<AudioCtrl>().Play("Alarm");
     }
 }
