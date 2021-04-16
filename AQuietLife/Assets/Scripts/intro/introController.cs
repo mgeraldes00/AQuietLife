@@ -72,15 +72,12 @@ public class IntroController : MonoBehaviour
 
             if (hit.collider.CompareTag("NoTag"))
             {
-                thought.ShowThought();
+                
 
                 switch (currentPanel)
                 {
                     case -1:
-                        phone[0].SetActive(false);
-                        returnArrow.SetActive(true);
-                        thoughtText.text = "I'm so tired...";
-                        FindObjectOfType<AudioCtrl>().Stop("Alarm");
+                        
                         break;
                     case 0:
                         thoughtText.text = "Just gonna put something on before leaving.";
@@ -116,6 +113,16 @@ public class IntroController : MonoBehaviour
                 }            
             }
         }
+    }
+
+    public void PhoneOff()
+    {
+        thought.ShowThought();
+        phone[0].SetActive(false);
+        phone[2].SetActive(true);
+        returnArrow.SetActive(true);
+        thoughtText.text = "I'm so tired...";
+        FindObjectOfType<AudioCtrl>().Stop("Alarm");
     }
 
     public void ButtonBehaviour(int i)

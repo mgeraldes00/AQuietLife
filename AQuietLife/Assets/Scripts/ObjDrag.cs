@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ObjDrag : MonoBehaviour
 {
+    public IntroController intro;
+
     private Vector3 mousePosition;
     private Rigidbody2D rb;
     private Vector2 direction;
-    private float moveSpeed = 100f;
+    private float moveSpeed = 700f;
 
     // Use this for initialization
     void Start()
@@ -24,7 +26,7 @@ public class ObjDrag : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (Input.GetMouseButton(0) && hit.collider.CompareTag("Table"))
+        if (Input.GetMouseButton(0) && hit.collider.CompareTag("NoTag"))
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (mousePosition - transform.position).normalized;
@@ -34,5 +36,11 @@ public class ObjDrag : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Slide");
+        intro.PhoneOff();
     }
 }

@@ -55,7 +55,7 @@ public class IntroCursor : MonoBehaviour
             }
         }
 
-        if (hit.collider == null || gameMng.isDead == true)
+        if (hit.collider.CompareTag("Ham") || gameMng.isDead == true)
         {
             Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }
