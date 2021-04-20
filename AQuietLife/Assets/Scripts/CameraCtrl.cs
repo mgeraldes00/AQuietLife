@@ -12,7 +12,7 @@ public class CameraCtrl : MonoBehaviour
     public Animator fadeAnim;
     public Animator microwaveAnim;
 
-    public Button[] directionalButtons;
+    public GameObject[] directionalButtons;
 
     [SerializeField]
     private int currentPanel;
@@ -86,12 +86,12 @@ public class CameraCtrl : MonoBehaviour
                         cameraAnim.SetTrigger("Return");
                         if (microwave.working == true)
                             microwaveAnim.SetTrigger("RotateLeft");
-                        directionalButtons[1].enabled = true;
+                        directionalButtons[1].SetActive(true);
                     }
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("Return");
-                        directionalButtons[0].enabled = false;
+                        directionalButtons[0].SetActive(false);
                     }
                     currentPanel--;
                     gameMng.isLocked = true;
@@ -102,14 +102,14 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == -1)
                     {
                         cameraAnim.SetTrigger("RotateRight");
-                        directionalButtons[0].enabled = true;
+                        directionalButtons[0].SetActive(true);
                     }
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("RotateRight");
                         if (microwave.working == true)
                             microwaveAnim.SetTrigger("Return");
-                        directionalButtons[1].enabled = false;
+                        directionalButtons[1].SetActive(false);
                     }
                     currentPanel++;
                     gameMng.isLocked = true;
