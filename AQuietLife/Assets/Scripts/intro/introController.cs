@@ -204,6 +204,8 @@ public class IntroController : MonoBehaviour
             introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
+        yield return new WaitForSeconds(30.0f);
+        SceneManager.LoadScene("Dialog");
     }
 
     IEnumerator IntroStart()

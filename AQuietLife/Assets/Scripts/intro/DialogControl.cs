@@ -30,6 +30,8 @@ public class DialogControl : MonoBehaviour
     void Start()
     {
         sequenceNum = -1;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         StartCoroutine(DialogStart());
     }
 

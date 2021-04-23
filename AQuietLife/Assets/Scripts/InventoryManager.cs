@@ -45,7 +45,7 @@ public class InventoryManager : MonoBehaviour
         numOfGloves = 0;
 
         //gloveIcon.enabled = false;
-        for (int i = 0; i < gloveIcons.Length; i++)
+        /*for (int i = 0; i < gloveIcons.Length; i++)
             gloveIcons[i].enabled = false;
         plateIcon.enabled = false;
         breadIcon.enabled = false;
@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < breadCutIcon.Length; i++)
             breadCutIcon[i].enabled = false;
         for (int i = 0; i < hamBreadIcon.Length; i++)
-            hamBreadIcon[i].enabled = false;
+            hamBreadIcon[i].enabled = false;*/
     }
 
     // Update is called once per frame
@@ -109,14 +109,14 @@ public class InventoryManager : MonoBehaviour
 
     public void PlateInInventory()
     {
-        plateIcon.enabled = true;
+        //plateIcon.enabled = true;
         hasPlate = true;
         hasObject = true;
     }
 
     public void PlateOffInventory()
     {
-        plateIcon.enabled = false;
+        //plateIcon.enabled = false;
         hasPlate = false;
         hasObject = false;
         plateUsed = true;
@@ -124,14 +124,14 @@ public class InventoryManager : MonoBehaviour
 
     public void BreadInInventory()
     {
-        breadIcon.enabled = true;
+        //breadIcon.enabled = true;
         hasBread = true;
         hasObject = true;
     }
 
     public void BreadOffInventory()
     {
-        breadIcon.enabled = false;
+        //breadIcon.enabled = false;
         hasBread = false;
         hasObject = false;
         breadUsed = true;
@@ -139,14 +139,14 @@ public class InventoryManager : MonoBehaviour
 
     public void FrozenBreadInInventory()
     {
-        breadIcon.enabled = true;
+        //breadIcon.enabled = true;
         hasFrozenBread = true;
         hasObject = true;
     }
 
     public void FrozenBreadOffInventory()
     {
-        breadIcon.enabled = false;
+        //breadIcon.enabled = false;
         hasFrozenBread = false;
         hasObject = false;
         frozenBreadUsed = true;
@@ -154,8 +154,8 @@ public class InventoryManager : MonoBehaviour
 
     public void PlateBreadUncutInInventory()
     {
-        for (int i = 0; i < breadPlateUncutIcon.Length; i++)
-            breadPlateUncutIcon[i].enabled = true;
+        /*for (int i = 0; i < breadPlateUncutIcon.Length; i++)
+            breadPlateUncutIcon[i].enabled = true;**/
         hasFrozenBreadInPlate = true;
         plateUsed = false;
         frozenBreadUsed = false;
@@ -164,8 +164,8 @@ public class InventoryManager : MonoBehaviour
 
     public void PlateBreadUncutOffInventory()
     {
-        for (int i = 0; i < breadPlateUncutIcon.Length; i++)
-            breadPlateUncutIcon[i].enabled = false;
+        /*for (int i = 0; i < breadPlateUncutIcon.Length; i++)
+            breadPlateUncutIcon[i].enabled = false;*/
         hasFrozenBreadInPlate = false;
         frozenBreadPlateUsed = true;
         hasObject = false;
@@ -173,16 +173,16 @@ public class InventoryManager : MonoBehaviour
 
     public void PlateBreadUncutUnfrozenInInventory()
     {
-        for (int i = 0; i < breadPlateUncutIcon.Length; i++)
-            breadPlateUncutIcon[i].enabled = true;
+        /*for (int i = 0; i < breadPlateUncutIcon.Length; i++)
+            breadPlateUncutIcon[i].enabled = true;*/
         hasBreadInPlate = true;
         hasObject = true;
     }
 
     public void PlateBreadUncutUnfrozenOffInventory()
     {
-        for (int i = 0; i < breadPlateUncutIcon.Length; i++)
-            breadPlateUncutIcon[i].enabled = false;
+        /*for (int i = 0; i < breadPlateUncutIcon.Length; i++)
+            breadPlateUncutIcon[i].enabled = false;*/
         hasBreadInPlate = false;
         plateUsed = true;
         breadUsed = true;
@@ -191,14 +191,14 @@ public class InventoryManager : MonoBehaviour
 
     public void KnifeInInventory()
     {
-        knifeIcon.enabled = true;
+        //knifeIcon.enabled = true;
         hasKnife = true;
         hasObject = true;
     }
 
     public void KnifeOffInventory()
     {
-        knifeIcon.enabled = false;
+        //knifeIcon.enabled = false;
         hasKnife = false;
         hasObject = false;
         knifeUsed = true;
@@ -206,22 +206,22 @@ public class InventoryManager : MonoBehaviour
 
     public void BreadCutInInventory()
     {
-        for (int i = 0; i < hamBreadIcon.Length; i++)
-            hamBreadIcon[i].enabled = true;
+        /*for (int i = 0; i < hamBreadIcon.Length; i++)
+            hamBreadIcon[i].enabled = true;*/
         hasPlateWBread = true;
         hasObject = true;
     }
 
     public void HamInInventory()
     {
-        hamIcon.enabled = true;
+        //hamIcon.enabled = true;
         hasHam = true;
         hasObject = true;
     }
 
     public void HamOffInventory()
     {
-        hamIcon.enabled = false;
+        //hamIcon.enabled = false;
         hasHam = false;
         hasObject = false;
         hamUsed = true;
