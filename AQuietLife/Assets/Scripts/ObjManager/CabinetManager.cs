@@ -216,7 +216,7 @@ public class CabinetManager : MonoBehaviour
                 //Do nothing
             }
 
-            if (hit.collider.CompareTag("Plate") && inventory.hasObject != true 
+            /*if (hit.collider.CompareTag("Plate") && inventory.hasObject != true 
                 && gameMng.isLocked == false)
             {
                 plateInteract.SetActive(false);
@@ -224,7 +224,7 @@ public class CabinetManager : MonoBehaviour
                 plateTaken = true;
                 objective.hasPlate = true;
                 gameMng.pickUpText.SetActive(false);
-            }
+            }*/
 
             if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
             {

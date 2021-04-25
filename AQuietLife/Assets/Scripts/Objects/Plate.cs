@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Plate : MonoBehaviour, IPointerClickHandler
 {
@@ -15,11 +16,15 @@ public class Plate : MonoBehaviour, IPointerClickHandler
         {
             Destroy(gameObject);
         }
+
+        if (plateSelected == false)
+            GetComponent<Image>().color = new Color32(255, 255, 255, 0);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         plateSelected = true;
+        GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         FindObjectOfType<Glove>().gloveSelected = false;
     }
 
