@@ -8,9 +8,15 @@ public class Glove : MonoBehaviour, IPointerClickHandler
 {
     public bool hasGlove;
     public bool gloveSelected;
+    public bool gloveUsed;
 
     private void Update()
     {
+        if (gloveUsed == true)
+        {
+            Destroy(gameObject);
+        }
+
         if (gloveSelected == false)
             GetComponent<Image>().color = new Color32(255, 255, 255, 0);
     }
