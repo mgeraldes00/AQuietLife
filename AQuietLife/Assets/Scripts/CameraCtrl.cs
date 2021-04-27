@@ -133,6 +133,7 @@ public class CameraCtrl : MonoBehaviour
     public void BackToGeneral()
     {
         currentView--;
+        cameraAnim.SetTrigger("Return");
     }
 
     IEnumerator EndTransition()

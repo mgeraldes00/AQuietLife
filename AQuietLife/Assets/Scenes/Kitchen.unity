@@ -809,7 +809,6 @@ MonoBehaviour:
   wave: {fileID: 1623902535}
   audioCtrl: {fileID: 1044302606}
   audioSlider: {fileID: 213464029}
-  inventory: {fileID: 1888950853}
   eyelids: {fileID: 422866154}
   gloveMng: {fileID: 0}
   objective: {fileID: 1316763220}
@@ -820,16 +819,9 @@ MonoBehaviour:
   returnArrow: {fileID: 1479651714}
   glove: {fileID: 203634170}
   cabinetRewindButton: {fileID: 782673415}
-  cabinet: {fileID: 30444872}
   plate: {fileID: 204289917}
   plateInteract: {fileID: 1556863922}
   glass: {fileID: 1303974461}
-  door1Anim: {fileID: 63329179}
-  door2Anim: {fileID: 591996503}
-  door3Anim: {fileID: 40884019}
-  door4Anim: {fileID: 234841200}
-  glassAnim: {fileID: 1303974462}
-  plateAnim: {fileID: 204289918}
   pointer: {fileID: 1204984827}
   rewindText: {fileID: 1228386082}
   waveform: {fileID: 579754932}
@@ -2848,7 +2840,6 @@ MonoBehaviour:
   wave: {fileID: 1623902535}
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 213464029}
-  inventory: {fileID: 1888950853}
   eyelids: {fileID: 422866154}
   gloveMng: {fileID: 106106062}
   objective: {fileID: 1316763220}
@@ -2859,16 +2850,9 @@ MonoBehaviour:
   returnArrow: {fileID: 625711726}
   glove: {fileID: 106106059}
   cabinetRewindButton: {fileID: 1803538595}
-  cabinet: {fileID: 115204094}
   plate: {fileID: 920608905}
   plateInteract: {fileID: 2109960089}
   glass: {fileID: 502431603}
-  door1Anim: {fileID: 1409471185}
-  door2Anim: {fileID: 1018073073}
-  door3Anim: {fileID: 1217040141}
-  door4Anim: {fileID: 1892218177}
-  glassAnim: {fileID: 502431606}
-  plateAnim: {fileID: 920608906}
   pointer: {fileID: 1497787818}
   rewindText: {fileID: 0}
   waveform: {fileID: 579754932}
@@ -4258,7 +4242,6 @@ MonoBehaviour:
   wave: {fileID: 0}
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
-  inventory: {fileID: 0}
   eyelids: {fileID: 0}
   gloveMng: {fileID: 0}
   objective: {fileID: 0}
@@ -4269,16 +4252,9 @@ MonoBehaviour:
   returnArrow: {fileID: 0}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 0}
-  cabinet: {fileID: 172258686}
   plate: {fileID: 0}
   plateInteract: {fileID: 0}
   glass: {fileID: 0}
-  door1Anim: {fileID: 0}
-  door2Anim: {fileID: 0}
-  door3Anim: {fileID: 0}
-  door4Anim: {fileID: 0}
-  glassAnim: {fileID: 0}
-  plateAnim: {fileID: 0}
   pointer: {fileID: 0}
   rewindText: {fileID: 0}
   waveform: {fileID: 0}
@@ -9055,6 +9031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406754939}
   - component: {fileID: 406754940}
+  - component: {fileID: 406754941}
   m_Layer: 0
   m_Name: cabinet
   m_TagString: Cabinet
@@ -9093,16 +9070,57 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   cabinetMng: {fileID: 30444875}
   returnArrow: {fileID: 1479651714}
-  objsToZoom:
-  - {fileID: 1820337637}
-  - {fileID: 678093791}
-  - {fileID: 119907829}
-  - {fileID: 1834527243}
-  - {fileID: 1020085049}
-  cabinet: {fileID: 30444872}
   cabinetRewindButton: {fileID: 782673415}
+  cabinet: {fileID: 265428079}
   zoomableObjs:
-  - {fileID: 265428079}
+  - {fileID: 1820337640}
+  - {fileID: 678093794}
+  - {fileID: 1834527246}
+  - {fileID: 1020085052}
+--- !u!114 &406754941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406754938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e0ae9caad770f44818ab67d2db34f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoom: {fileID: 519420033}
+  wave: {fileID: 1623902535}
+  audioCtrl: {fileID: 1044302606}
+  audioSlider: {fileID: 213464029}
+  eyelids: {fileID: 422866154}
+  gloveMng: {fileID: 0}
+  objective: {fileID: 0}
+  gameMng: {fileID: 1037535894}
+  closeUp: {fileID: 406754940}
+  thought: {fileID: 1938436214}
+  thoughtText: {fileID: 332918231}
+  returnArrow: {fileID: 1479651714}
+  glove: {fileID: 0}
+  cabinetRewindButton: {fileID: 782673415}
+  plate: {fileID: 0}
+  plateInteract: {fileID: 0}
+  glass: {fileID: 0}
+  pointer: {fileID: 1204984827}
+  rewindText: {fileID: 1228386082}
+  waveform: {fileID: 0}
+  waveformCabinet: {fileID: 1497621681}
+  slider: {fileID: 1715857557}
+  rewindAudio: {fileID: 213464030}
+  rewindReverseAudio: {fileID: 1267429636}
+  doorSound: {fileID: 0}
+  isLocked: 0
+  rewindOnce: 0
+  rewindApplied: 0
+  plateTaken: 0
+  door2Open: 0
+  door4Open: 0
+  hasTime: 0
 --- !u!1 &409937033
 GameObject:
   m_ObjectHideFlags: 0
@@ -14507,9 +14525,10 @@ GameObject:
   m_Component:
   - component: {fileID: 678093792}
   - component: {fileID: 678093793}
+  - component: {fileID: 678093794}
   m_Layer: 0
   m_Name: top_do_2
-  m_TagString: Untagged
+  m_TagString: CabinetDoor2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14579,6 +14598,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &678093794
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678093791}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.76, y: 2.75}
+    newSize: {x: 1.76, y: 2.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.76, y: 2.75}
+  m_EdgeRadius: 0
 --- !u!1 &683932658
 GameObject:
   m_ObjectHideFlags: 0
@@ -16310,7 +16355,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 3.68
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -16328,7 +16373,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30444875}
+      - m_Target: {fileID: 406754941}
         m_TargetAssemblyTypeName: CabinetManager, Assembly-CSharp
         m_MethodName: Rewind
         m_Mode: 1
@@ -16340,7 +16385,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 30444875}
+      - m_Target: {fileID: 406754941}
         m_TargetAssemblyTypeName: CabinetManager, Assembly-CSharp
         m_MethodName: RewindLock
         m_Mode: 1
@@ -19854,9 +19899,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1020085050}
   - component: {fileID: 1020085051}
+  - component: {fileID: 1020085052}
   m_Layer: 0
   m_Name: top_do_5
-  m_TagString: Untagged
+  m_TagString: CabinetDoor4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19926,6 +19972,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1020085052
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020085049}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.91, y: 2.8}
+    newSize: {x: 1.91, y: 2.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.91, y: 2.8}
+  m_EdgeRadius: 0
 --- !u!1 &1023488279
 GameObject:
   m_ObjectHideFlags: 0
@@ -20821,18 +20893,8 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   cabinetMng: {fileID: 115204095}
   returnArrow: {fileID: 625711726}
-  objsToZoom:
-  - {fileID: 1240014752}
-  - {fileID: 1152466442}
-  - {fileID: 1827042726}
-  - {fileID: 1466444739}
-  - {fileID: 597596279}
-  - {fileID: 1130944793}
-  - {fileID: 919641275}
-  - {fileID: 250648225}
-  - {fileID: 1271890519}
-  cabinet: {fileID: 115204094}
   cabinetRewindButton: {fileID: 1803538595}
+  cabinet: {fileID: 115204094}
   zoomableObjs:
   - {fileID: 409937037}
   - {fileID: 1806896496}
@@ -32135,7 +32197,6 @@ MonoBehaviour:
   wave: {fileID: 0}
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
-  inventory: {fileID: 0}
   eyelids: {fileID: 0}
   gloveMng: {fileID: 0}
   objective: {fileID: 0}
@@ -32146,16 +32207,9 @@ MonoBehaviour:
   returnArrow: {fileID: 0}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 0}
-  cabinet: {fileID: 1688383526}
   plate: {fileID: 1285107637}
   plateInteract: {fileID: 0}
   glass: {fileID: 0}
-  door1Anim: {fileID: 0}
-  door2Anim: {fileID: 0}
-  door3Anim: {fileID: 0}
-  door4Anim: {fileID: 0}
-  glassAnim: {fileID: 0}
-  plateAnim: {fileID: 1285107640}
   pointer: {fileID: 0}
   rewindText: {fileID: 0}
   waveform: {fileID: 0}
@@ -34220,9 +34274,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1820337638}
   - component: {fileID: 1820337639}
+  - component: {fileID: 1820337640}
   m_Layer: 0
   m_Name: top_do_1
-  m_TagString: Untagged
+  m_TagString: CabinetDoor1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34292,6 +34347,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1820337640
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820337637}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.55, y: 2.79}
+    newSize: {x: 1.55, y: 2.79}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.55, y: 2.79}
+  m_EdgeRadius: 0
 --- !u!1 &1823586040
 GameObject:
   m_ObjectHideFlags: 0
@@ -35024,9 +35105,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1834527244}
   - component: {fileID: 1834527245}
+  - component: {fileID: 1834527246}
   m_Layer: 0
   m_Name: top_do_4
-  m_TagString: Untagged
+  m_TagString: CabinetDoor3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35096,6 +35178,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1834527246
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834527243}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.83, y: 2.73}
+    newSize: {x: 1.83, y: 2.73}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.83, y: 2.73}
+  m_EdgeRadius: 0
 --- !u!1 &1846854469
 GameObject:
   m_ObjectHideFlags: 0
@@ -40121,7 +40229,7 @@ PrefabInstance:
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 30444875}
+      objectReference: {fileID: 406754941}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
       value: ButtonBehaviour

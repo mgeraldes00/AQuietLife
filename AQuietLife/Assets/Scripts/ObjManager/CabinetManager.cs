@@ -10,7 +10,7 @@ public class CabinetManager : MonoBehaviour
     public Clock wave;
     public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
-    public InventoryManager inventory;
+    //public InventoryManager inventory;
     public Eyelids eyelids;
     public GloveManager gloveMng;
     public ObjectiveManager objective;
@@ -38,17 +38,10 @@ public class CabinetManager : MonoBehaviour
     public GameObject glove;
     public GameObject cabinetRewindButton;
     //public GameObject cabinetButtons;    
-    public GameObject cabinet;
+    //public GameObject cabinet;
     public GameObject plate;
     public GameObject plateInteract;
     public GameObject glass;
-
-    public Animator door1Anim;
-    public Animator door2Anim;
-    public Animator door3Anim;
-    public Animator door4Anim;
-    public Animator glassAnim;
-    public Animator plateAnim;
 
     public Animator pointer;
     public Animator rewindText;
@@ -101,81 +94,6 @@ public class CabinetManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            /*if (hit.collider.CompareTag("Nothing"))
-            {
-                if (door2Open == true && door4Open == false && gloveMng.gloveTaken == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor2Open.SetActive(true);
-                }
-                if (door2Open == true && door4Open == false && gloveMng.gloveTaken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor2OpenGlove.SetActive(true);
-                }
-                if (door4Open == true && door2Open == false && plateTaken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor4Open.SetActive(true);
-                }
-                if (door2Open == true && door4Open == true && plateTaken == false && gloveMng.gloveTaken == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor24Open.SetActive(true);
-                }
-                if (door2Open == true && door4Open == true && plateTaken == false && gloveMng.gloveTaken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor24OpenGlovePlate.SetActive(true);
-                }
-                if (door4Open == true && door2Open == false && plateTaken == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor4OpenNoPlate.SetActive(true);
-                }
-                if (door2Open == true && door4Open == true && plateTaken == true && gloveMng.gloveTaken == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor24OpenNoPlate.SetActive(true);
-                }
-                if (door2Open == true && door4Open == true && plateTaken == true && gloveMng.gloveTaken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetDoor24OpenGloveNoPlate.SetActive(true);
-                }
-                if (door2Open == false && door4Open == false && plateTaken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    cabinetGeneral.SetActive(true);
-                } 
-                
-                cabinet.SetActive(false);
-                returnArrow.SetActive(false);
-                noTextCollidersGeneral.SetActive(true);
-                noTextColliderCabinet.SetActive(false);
-                activityText.SetActive(false);
-                cabinetRewindButton.SetActive(false);
-                cabinetButtons.SetActive(false);
-            }*/
-
-            /*if (hit.collider.CompareTag("Cabinet"))
-            {
-                //door1Anim.SetTrigger("Door1OpenFull");
-                //plate.SetActive(true);
-                //glass.SetActive(true);
-                //StartCoroutine(CabinetRewind());
-                cabinetButtons.SetActive(true);
-            }*/
-
             if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false 
                 || hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
@@ -186,7 +104,7 @@ public class CabinetManager : MonoBehaviour
             if (hit.collider.CompareTag("CabinetDoor2") && door2Open == false 
                 && gameMng.isLocked == false)
             {
-                door2Anim.SetBool("Door2Open", true);
+                //door2Anim.SetBool("Door2Open", true);
                 door2Open = true;
                 doorSound.Play();
                 glove.SetActive(true);
@@ -203,7 +121,7 @@ public class CabinetManager : MonoBehaviour
             if (hit.collider.CompareTag("CabinetDoor4") && door4Open == false 
                 && gameMng.isLocked == false)
             {
-                door4Anim.SetBool("Door4Open", true);
+                //door4Anim.SetBool("Door4Open", true);
                 door4Open = true;
                 plateInteract.SetActive(true);
                 doorSound.Play();
@@ -241,24 +159,6 @@ public class CabinetManager : MonoBehaviour
                 anim.Play("Base Layer.cabinetOpen", 0, 0.25f);
             }
         }*/
-    }
-
-    IEnumerator CabinetRewind()
-    {
-        yield return new WaitForSeconds(2);
-        glassAnim.SetTrigger("GlassTaken");
-
-        yield return new WaitForSeconds(2);
-        glass.SetActive(false);
-
-        yield return new WaitForSeconds(2);
-        door3Anim.SetTrigger("Door3OpenFull");
-
-        yield return new WaitForSeconds(2);
-        plateAnim.SetTrigger("PlateTaken");
-
-        yield return new WaitForSeconds(2);
-        plate.SetActive(false);
     }
 
     public void Rewind()
@@ -328,7 +228,7 @@ public class CabinetManager : MonoBehaviour
             }
         }*/
 
-        if (door2Open == true && door4Open == false && gloveMng.gloveTaken == true)
+        /*if (door2Open == true && door4Open == false && gloveMng.gloveTaken == true)
         {
             for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                 closeUp.zoomableObjs[i].enabled = true;
@@ -381,21 +281,17 @@ public class CabinetManager : MonoBehaviour
             for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                 closeUp.zoomableObjs[i].enabled = true;
             //abinetGeneral.SetActive(true);
-        }
+        }*/
 
+        closeUp.Normalize();
         StartCoroutine(TimeToTransition());
     }
 
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        cabinet.SetActive(false);
         returnArrow.SetActive(false);
-        //noTextCollidersGeneral.SetActive(true);
-        //noTextColliderCabinet.SetActive(false);
-        //activityText.SetActive(false);
         cabinetRewindButton.SetActive(false);
-        //cabinetButtons.SetActive(false);
     }
 
     public void LockAndUnlock()

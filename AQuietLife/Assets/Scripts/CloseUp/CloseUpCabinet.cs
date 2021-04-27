@@ -12,12 +12,13 @@ public class CloseUpCabinet : MonoBehaviour
     //public GameObject noTextCollidersGeneral;
     //public GameObject noTextColliderCabinet;
     //public GameObject inspectionTextGeneral;
-    public GameObject[] objsToZoom;
-    public GameObject cabinet;
+    //public GameObject[] objsToZoom;
+    //public GameObject cabinet;
     public GameObject cabinetRewindButton;
     //public GameObject activityText;
     //public GameObject cabinetButtons;
 
+    public BoxCollider2D cabinet;
     public BoxCollider2D[] zoomableObjs;
 
     // Start is called before the first frame update
@@ -43,10 +44,10 @@ public class CloseUpCabinet : MonoBehaviour
             {
                 Debug.Log(hit.collider.gameObject.name);
                 zoom.ObjectTransition();
+                zoom.cameraAnim.SetTrigger("ZoomCabinet");
                 StartCoroutine(TimeToZoom());
             }
         }
-
     }
 
     IEnumerator TimeToZoom()
@@ -62,12 +63,13 @@ public class CloseUpCabinet : MonoBehaviour
             cabinetRewindButton.SetActive(true);
         }
 
+        cabinet.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = false;       
+            zoomableObjs[i].enabled = true;     
         /*for (int i = 0; i < objsToZoom.Length; i++)
             objsToZoom[i].SetActive(false);*/
         //objToZoom.SetActive(false);
-        cabinet.SetActive(true);
+        //cabinet.SetActive(true);
         //cabinetRewindButton.SetActive(true);
         returnArrow.SetActive(true);
         //noTextCollidersGeneral.SetActive(false);
@@ -75,5 +77,12 @@ public class CloseUpCabinet : MonoBehaviour
         //noTextColliderCabinet.SetActive(true);
         //cabinetButtons.SetActive(true);       
         zoom.currentView++;
+    }
+
+    public void Normalize()
+    {
+        cabinet.enabled = true;
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = false;
     }
 }
