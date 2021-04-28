@@ -7,6 +7,7 @@ public class CabinetManager : MonoBehaviour
 {
     //public ClockManager clock;
     public CameraCtrl zoom;
+    public Hands hands;
     public Clock wave;
     public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
@@ -29,6 +30,9 @@ public class CabinetManager : MonoBehaviour
     public GameObject cabinetDoor2OpenGlove;
     public GameObject cabinetDoor24OpenGloveNoPlate;
     public GameObject cabinetDoor24OpenGlovePlate;*/
+
+    public GameObject[] doors;
+    public GameObject[] objects;
 
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral;
@@ -94,21 +98,48 @@ public class CabinetManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false 
-                || hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
             {
-                Debug.Log("Game Over");
-                gameMng.Die();
+                if (hands.numOfGloves != 0)
+                {
+                    doors[2].SetActive(false);
+                    doors[3].SetActive(true);
+                    hands.UseGlove();
+                }
+
+                if (hands.numOfGloves == 0)
+                {
+                    Debug.Log("Game Over");
+                    gameMng.Die();
+                }
+            }
+
+            if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
+            {
+                if (hands.numOfGloves != 0)
+                {
+                    doors[4].SetActive(false);
+                    doors[5].SetActive(true);
+                    hands.UseGlove();
+                }
+
+                if (hands.numOfGloves == 0)
+                {
+                    Debug.Log("Game Over");
+                    gameMng.Die();
+                }
             }
 
             if (hit.collider.CompareTag("CabinetDoor2") && door2Open == false 
                 && gameMng.isLocked == false)
             {
                 //door2Anim.SetBool("Door2Open", true);
+                doors[0].SetActive(false);
+                doors[1].SetActive(true);
+                objects[0].SetActive(true);
                 door2Open = true;
-                doorSound.Play();
-                glove.SetActive(true);
-                //interactionText.SetActive(false);
+                //doorSound.Play();
+                //glove.SetActive(true);
                 LockAndUnlock();
                 zoom.InteractionTransition();
             }
