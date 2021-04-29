@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
     public GameObject pickUpTextFinal;
     public GameObject exitText;
     public GameObject returnArrow;
-    public GameObject startTutorial;
-    public GameObject gloveTutorial;
-    public GameObject objectTutorial;
-    public GameObject finalTutorial;
+    //public GameObject startTutorial;
+    //public GameObject gloveTutorial;
+    //public GameObject objectTutorial;
+    //public GameObject finalTutorial;
     public GameObject noTextCollidersGeneral;
 
     public Animator kitchenClock;
@@ -58,10 +58,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {        
-        isLocked = true;
+        //isLocked = true;
         numOfIngredients = 0;
         glovesUsed = 0;
-        startTutorial.SetActive(true);
+        //startTutorial.SetActive(true);
     }
 
     // Update is called once per frame
@@ -216,14 +216,14 @@ public class GameManager : MonoBehaviour
     {
         returnArrow.SetActive(true);
         isLocked = false;
-        gloveTutorial.SetActive(false);
-        objectTutorial.SetActive(false);
-        finalTutorial.SetActive(false);
+        //gloveTutorial.SetActive(false);
+        //objectTutorial.SetActive(false);
+        //finalTutorial.SetActive(false);
     }
 
     public void UnlockStart()
     {
-        startTutorial.SetActive(false);
+        //startTutorial.SetActive(false);
         isLocked = false;
         kitchenClock.SetBool("Active", true);
         StartCoroutine(TimeTillLock());
@@ -231,19 +231,19 @@ public class GameManager : MonoBehaviour
 
     public void ShowTutorial()
     {
-        objectTutorial.SetActive(true);
+        //objectTutorial.SetActive(true);
         Lock();
     }
 
     public void ShowGloveTutorial()
     {
-        gloveTutorial.SetActive(true);
+        //gloveTutorial.SetActive(true);
         Lock();
     }
 
     public void ShowFinalTutorial()
     {
-        finalTutorial.SetActive(true);
+        //finalTutorial.SetActive(true);
         Lock();
     }
 
