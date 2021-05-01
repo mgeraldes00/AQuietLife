@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public TableManager table;
     public ClockManager clock;
 
-    public Text thoughtText;
+    public TextMeshProUGUI thoughtText;
 
     public GameObject[] context;
     public GameObject[] contextButtons;
@@ -57,8 +57,8 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
-        //isLocked = true;
+    {
+        UnlockStart();
         numOfIngredients = 0;
         glovesUsed = 0;
         //startTutorial.SetActive(true);

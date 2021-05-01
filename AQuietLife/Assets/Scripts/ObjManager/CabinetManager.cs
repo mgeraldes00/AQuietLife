@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CabinetManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CabinetManager : MonoBehaviour
     public CloseUpCabinet closeUp;
     public ThoughtManager thought;
 
-    public Text thoughtText;
+    public TextMeshProUGUI thoughtText;
 
     /*public GameObject cabinetGeneral;
     public GameObject cabinetDoor2Open;
@@ -105,6 +106,7 @@ public class CabinetManager : MonoBehaviour
                     doors[2].SetActive(false);
                     doors[3].SetActive(true);
                     hands.UseGlove();
+                    zoom.InteractionTransition();
                 }
 
                 if (hands.numOfGloves == 0)
@@ -121,6 +123,7 @@ public class CabinetManager : MonoBehaviour
                     doors[4].SetActive(false);
                     doors[5].SetActive(true);
                     hands.UseGlove();
+                    zoom.InteractionTransition();
                 }
 
                 if (hands.numOfGloves == 0)
@@ -153,11 +156,15 @@ public class CabinetManager : MonoBehaviour
                 && gameMng.isLocked == false)
             {
                 //door4Anim.SetBool("Door4Open", true);
+                doors[6].SetActive(false);
+                doors[7].SetActive(true);
+                objects[1].SetActive(true);
                 door4Open = true;
-                plateInteract.SetActive(true);
-                doorSound.Play();
+                //plateInteract.SetActive(true);
+                //doorSound.Play();
                 //interactionText.SetActive(false);
                 LockAndUnlock();
+                zoom.InteractionTransition();
             }
 
             if (hit.collider.CompareTag("CabinetDoor4") && door4Open == true)

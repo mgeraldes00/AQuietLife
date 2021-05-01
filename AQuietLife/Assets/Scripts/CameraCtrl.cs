@@ -127,13 +127,13 @@ public class CameraCtrl : MonoBehaviour
 
     public void InteractionTransition()
     {
-        fadeAnim.SetTrigger("Transition");
+        fadeAnim.SetTrigger("TransitionInteract");
     }
 
     public void BackToGeneral()
     {
         currentView--;
-        cameraAnim.SetTrigger("Return");
+        cameraAnim.SetTrigger("Return2");
     }
 
     IEnumerator EndTransition()
