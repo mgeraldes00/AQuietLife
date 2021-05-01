@@ -8667,7 +8667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &375497279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8734,8 +8734,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -29782,7 +29782,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453661478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14709598564370f4c82f5d942a9bf0ce, type: 3}
   m_Name: 
@@ -43010,8 +43010,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7863672715086403426, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: textObj
+      value: 
+      objectReference: {fileID: 375497278}
     - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -76,7 +76,12 @@ public class GameManager : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers") 
+        if (hit.collider == null)
+        {
+            //Nothing
+        }
+
+        else if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers") 
             || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox")
             || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave"))
         {
@@ -84,12 +89,12 @@ public class GameManager : MonoBehaviour
             //inspectionText.SetActive(true);          
         }
 
-        if (hit.collider.CompareTag("CabinetBreach"))
+        else if (hit.collider.CompareTag("CabinetBreach"))
         {
             //inspectionText.SetActive(true);
         }
 
-        if (hit.collider.CompareTag("CabinetDoor1") 
+        else if (hit.collider.CompareTag("CabinetDoor1") 
             || hit.collider.CompareTag("CabinetDoor2") && cabinet.door2Open == false
             || hit.collider.CompareTag("CabinetDoor3") 
             || hit.collider.CompareTag("CabinetDoor4") && cabinet.door4Open == false
@@ -103,7 +108,7 @@ public class GameManager : MonoBehaviour
             //interactionText.SetActive(true);
         }
 
-        if (hit.collider.CompareTag("Plate") && inventory.hasObject == true
+        else if (hit.collider.CompareTag("Plate") && inventory.hasObject == true
             || hit.collider.CompareTag("Bread1") && inventory.hasObject == true
             || hit.collider.CompareTag("Knife") && inventory.hasObject == true)
         {
@@ -112,12 +117,12 @@ public class GameManager : MonoBehaviour
             thoughtText.text = "Need to place this somewhere first.";
         }
 
-        if (hit.collider.CompareTag("Plate") && objective.part1Complete == true)
+        else if (hit.collider.CompareTag("Plate") && objective.part1Complete == true)
         {
             //pickUpTextFinal.SetActive(true);
         }
 
-        if (hit.collider.CompareTag("TableClose")
+        else if (hit.collider.CompareTag("TableClose")
             && cabinet.plateTaken == true && table.plateOnTable == false
             || hit.collider.CompareTag("TableClose")
             && breadBox.bread1Taken == true && table.breadOnTable == false
@@ -127,12 +132,12 @@ public class GameManager : MonoBehaviour
             //tableInteractionText.SetActive(true);
         }
 
-        if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
+        else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
         {
             //exitText.SetActive(true);
         }
 
-        if (hit.collider.CompareTag("NoTag"))
+        else if (hit.collider.CompareTag("NoTag"))
         {
             inspectionText.SetActive(false);
             interactionText.SetActive(false);

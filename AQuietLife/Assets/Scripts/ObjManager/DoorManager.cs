@@ -50,7 +50,8 @@ public class DoorManager : MonoBehaviour
                 {
                     //FindObjectOfType<AudioSource>().Play();
                     thought.ShowThought();
-                    thoughtText.text = "Can't leave now, gotta make something to eat.";
+                    thought.text = "Can't leave now, gotta make something to eat..";
+                    //thoughtText.text = "Can't leave now, gotta make something to eat.";
                     //SceneManager.LoadScene("MainMenu");
                 }
             }     
