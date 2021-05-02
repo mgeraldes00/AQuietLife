@@ -8,8 +8,9 @@ public class BreadBoxManager : MonoBehaviour
     public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpBreadBox closeUp;
+    public ThoughtManager thought;
 
-    public GameObject door;
+    public GameObject[] door;
     public GameObject[] objects;
 
     public GameObject returnArrow;
@@ -19,15 +20,9 @@ public class BreadBoxManager : MonoBehaviour
     //public GameObject activityText;
     //public GameObject breadBoxButtons;
     //public GameObject breadBoxRewindButton;
-    public GameObject breadBox;
     public GameObject bread;
     public GameObject breadInteract1;
     public GameObject breadInteract2;
-
-    public BoxCollider2D[] interactableColliders;
-
-    public Animator doorAnim;
-    public Animator breadAnim;
 
     private bool isLocked;
     private bool isTrapped;
@@ -60,26 +55,22 @@ public class BreadBoxManager : MonoBehaviour
             if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false
                 && gameMng.isLocked == false)
             {
-                doorAnim.SetBool("BreadBoxDoorOpen", true);
-                isTrapped = false;
-                doorOpen = true;
-                //interactionText.SetActive(false);
-                LockAndUnlock();
+                if (!FindObjectOfType<Glove>()
+                    || FindObjectOfType<Glove>().gloveSelected == false)
+                {
+                    Debug.Log("Game Over");
+                    gameMng.Die();
+                }
 
-                for (int i = 0; i <= interactableColliders.Length; i++)
-                    interactableColliders[i].enabled = true;
-            }
-            if (hit.collider.CompareTag("BreadBoxDoor") 
-                && isTrapped == true && gameMng.isLocked == false)
-            {
-                gameMng.Die();
-            }
-            else if (hit.collider.CompareTag("BreadBoxDoor") && isTrapped == false)
-            {
-                doorAnim.SetBool("BreadBoxDoorOpen", true);
-                doorOpen = true;
-                //interactionText.SetActive(false);
-                LockAndUnlock();
+                if (FindObjectOfType<Glove>().gloveSelected == true)
+                {
+                    door[0].SetActive(false);
+                    door[1].SetActive(true);
+                    objects[0].SetActive(true);
+                    objects[1].SetActive(true);
+                    FindObjectOfType<Glove>().gloveUsed = true;
+                    zoom.InteractionTransition();
+                }                
             }
 
             if (hit.collider.CompareTag("Bread1")

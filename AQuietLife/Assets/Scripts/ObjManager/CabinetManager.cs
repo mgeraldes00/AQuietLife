@@ -185,7 +185,7 @@ public class CabinetManager : MonoBehaviour
             if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
             {
                 thought.ShowThought();
-                thoughtText.text = "Someone didn't close this properly...";
+                thought.text = "Someone didn't close this properly...";
             }
         }
 

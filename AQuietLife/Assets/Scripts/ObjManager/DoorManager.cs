@@ -12,8 +12,6 @@ public class DoorManager : MonoBehaviour
     public InventoryManager inventory;
     public ThoughtManager thought;
 
-    public TextMeshProUGUI thoughtText;
-
     public RatingManager rating;
 
     public AudioSource doorOpen;
