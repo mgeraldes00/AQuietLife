@@ -13,19 +13,14 @@ public class CloseUpBreadBox : MonoBehaviour
     //public GameObject noTextCollidersGeneral;
     //public GameObject noTextColliderBreadBox;
     //public GameObject inspectionTextGeneral;
-    public GameObject[] objsToZoom;
-    public GameObject breadBox;
+    //public GameObject[] objsToZoom;
+    //public GameObject breadBox;
     //public GameObject breadBoxButtons;
     //public GameObject activityText;
     //public GameObject breadBoxRewindButton;
 
+    public BoxCollider2D breadBox;
     public BoxCollider2D[] zoomableObjs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,30 +39,30 @@ public class CloseUpBreadBox : MonoBehaviour
                 if (hit.collider.CompareTag("BreadBox") && gameMng.isLocked == false
                     && zoom.currentView == 0)
                 {
-                    if (breadBoxMng.rewindApplied == true)
-                    {
-                        //breadBoxButtons.SetActive(true);
-                        //activityText.SetActive(true);
-                    }
-                    else if (breadBoxMng.rewindApplied == false)
-                    {
-                        //breadBoxRewindButton.SetActive(true);
-                    }
-
-                    for (int i = 0; i < zoomableObjs.Length; i++)
-                        zoomableObjs[i].enabled = false;
                     Debug.Log(hit.collider.gameObject.name);
-                    /*for (int i = 0; i < objsToZoom.Length; i++)
-                        objsToZoom[i].SetActive(false);*/
-                    //objToZoom.SetActive(false);
-                    breadBox.SetActive(true);
-                    returnArrow.SetActive(true);
-                    //noTextCollidersGeneral.SetActive(false);
-                    //noTextColliderBreadBox.SetActive(true);
-                    //inspectionTextGeneral.SetActive(false);
-                    zoom.currentView++;
+                    zoom.ObjectTransition();
+                    zoom.cameraAnim.SetTrigger("ZoomBreadbox");
+                    StartCoroutine(TimeToZoom());
                 }         
             }
         }
+    }
+
+    IEnumerator TimeToZoom()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //breadBoxRewindButton.SetActive(true);
+        breadBox.enabled = false;
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = true;       
+        returnArrow.SetActive(true);
+        zoom.currentView++;
+    }
+
+    public void Normalize()
+    {
+        breadBox.enabled = true;
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = false;
     }
 }

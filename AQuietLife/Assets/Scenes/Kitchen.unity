@@ -434,12 +434,6 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   breadBoxMng: {fileID: 944029206}
   returnArrow: {fileID: 625711726}
-  objsToZoom:
-  - {fileID: 115084021}
-  - {fileID: 365055152}
-  - {fileID: 957834156}
-  - {fileID: 1628325562}
-  - {fileID: 208642932}
   breadBox: {fileID: 944029203}
   zoomableObjs:
   - {fileID: 1240014756}
@@ -8607,6 +8601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373251367}
   - component: {fileID: 373251368}
+  - component: {fileID: 373251369}
   m_Layer: 0
   m_Name: breadbox
   m_TagString: BreadBox
@@ -8643,13 +8638,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoom: {fileID: 519420033}
   gameMng: {fileID: 1037535894}
-  breadBoxMng: {fileID: 1173174167}
+  breadBoxMng: {fileID: 0}
   returnArrow: {fileID: 1479651714}
-  objsToZoom:
-  - {fileID: 1732993785}
-  breadBox: {fileID: 1173174165}
+  breadBox: {fileID: 2065790816}
   zoomableObjs:
-  - {fileID: 2065790816}
+  - {fileID: 1732993788}
+--- !u!114 &373251369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373251366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dd8a2db07c11f4a98f9666e8570383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoom: {fileID: 519420033}
+  gameMng: {fileID: 1037535894}
+  objective: {fileID: 0}
+  closeUp: {fileID: 373251368}
+  door: {fileID: 0}
+  objects: []
+  returnArrow: {fileID: 0}
+  breadBox: {fileID: 0}
+  bread: {fileID: 0}
+  breadInteract1: {fileID: 0}
+  breadInteract2: {fileID: 0}
+  interactableColliders: []
+  doorAnim: {fileID: 0}
+  breadAnim: {fileID: 0}
+  rewindApplied: 0
+  bread1Taken: 0
+  doorOpen: 0
+  hasTime: 0
 --- !u!1 &375497278
 GameObject:
   m_ObjectHideFlags: 0
@@ -20281,10 +20304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dd8a2db07c11f4a98f9666e8570383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1888950853}
+  zoom: {fileID: 0}
   gameMng: {fileID: 1037535894}
   objective: {fileID: 1316763220}
   closeUp: {fileID: 17542670}
+  door: {fileID: 0}
+  objects: []
   returnArrow: {fileID: 625711726}
   breadBox: {fileID: 944029203}
   bread: {fileID: 1990689367}
@@ -21346,8 +21371,8 @@ MonoBehaviour:
   inventory: {fileID: 1888950853}
   objective: {fileID: 1316763220}
   thought: {fileID: 1938436214}
-  cabinet: {fileID: 115204095}
-  breadBox: {fileID: 944029206}
+  cabinet: {fileID: 406754941}
+  breadBox: {fileID: 373251369}
   drawers: {fileID: 21656951}
   fridge: {fileID: 811611868}
   microwave: {fileID: 357619417}
@@ -23534,10 +23559,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dd8a2db07c11f4a98f9666e8570383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1888950853}
+  zoom: {fileID: 0}
   gameMng: {fileID: 1037535894}
   objective: {fileID: 1316763220}
   closeUp: {fileID: 373251368}
+  door: {fileID: 0}
+  objects: []
   returnArrow: {fileID: 1479651714}
   breadBox: {fileID: 1173174165}
   bread: {fileID: 2126513737}
@@ -34774,6 +34801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732993786}
   - component: {fileID: 1732993787}
+  - component: {fileID: 1732993788}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -34846,6 +34874,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1732993788
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732993785}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.2, y: 1.66}
+    newSize: {x: 2.2, y: 1.66}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.84, y: 0.87}
+  m_EdgeRadius: 0
 --- !u!1 &1745811373
 GameObject:
   m_ObjectHideFlags: 0
@@ -42419,7 +42473,7 @@ PrefabInstance:
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 1173174167}
+      objectReference: {fileID: 373251369}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
       value: ButtonBehaviour

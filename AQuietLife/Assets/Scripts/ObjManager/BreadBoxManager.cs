@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class BreadBoxManager : MonoBehaviour
 {
-    //public ClockManager clock;
-    public InventoryManager inventory;
+    public CameraCtrl zoom;
     public GameManager gameMng;
     public ObjectiveManager objective;
     public CloseUpBreadBox closeUp;
 
-    /*public GameObject breadBoxGeneral;
-    public GameObject breadBoxDoorOpen;
-    public GameObject breadBoxNoBreadCenter;
-    public GameObject breadBoxNoBreadRight;
-    public GameObject breadBoxNoBread;*/
+    public GameObject door;
+    public GameObject[] objects;
 
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral;
@@ -61,48 +57,10 @@ public class BreadBoxManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            /*if (hit.collider.CompareTag("Nothing"))
-            {
-                if (doorOpen == true && bread1Taken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    breadBoxDoorOpen.SetActive(true);
-                }
-
-                if (doorOpen == true && bread1Taken == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    breadBoxNoBreadRight.SetActive(true);
-                }
-
-                if (doorOpen == false && bread1Taken == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    breadBoxGeneral.SetActive(true);
-                }  
-                
-                breadBox.SetActive(false);
-                returnArrow.SetActive(false);
-                noTextCollidersGeneral.SetActive(true);
-                noTextColliderBreadBox.SetActive(false);
-                activityText.SetActive(false);
-                breadBoxRewindButton.SetActive(false);
-                breadBoxButtons.SetActive(false);
-            }*/
-
-            /*if (hit.collider.CompareTag("BreadBox"))
-            {
-                breadBoxButtons.SetActive(true);
-            }*/
-
             if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false
-                && inventory.hasGlove == true && gameMng.isLocked == false)
+                && gameMng.isLocked == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
-                inventory.GloveOffInventory();
                 isTrapped = false;
                 doorOpen = true;
                 //interactionText.SetActive(false);
@@ -112,12 +70,11 @@ public class BreadBoxManager : MonoBehaviour
                     interactableColliders[i].enabled = true;
             }
             if (hit.collider.CompareTag("BreadBoxDoor") 
-                && inventory.hasGlove == false && isTrapped == true
-                && gameMng.isLocked == false)
+                && isTrapped == true && gameMng.isLocked == false)
             {
                 gameMng.Die();
             }
-            else if (hit.collider.CompareTag("BreadBoxDoor") && inventory.hasGlove == false && isTrapped == false)
+            else if (hit.collider.CompareTag("BreadBoxDoor") && isTrapped == false)
             {
                 doorAnim.SetBool("BreadBoxDoorOpen", true);
                 doorOpen = true;
@@ -126,12 +83,9 @@ public class BreadBoxManager : MonoBehaviour
             }
 
             if (hit.collider.CompareTag("Bread1")
-                && inventory.hasObject != true && inventory.plateUsed == true
-                && inventory.breadUsed != true
                 && gameMng.isLocked == false)
             {
                 breadInteract1.SetActive(false);
-                inventory.BreadInInventory();
                 bread1Taken = true;
                 objective.hasBread = true;
                 gameMng.pickUpText.SetActive(false);
@@ -141,65 +95,15 @@ public class BreadBoxManager : MonoBehaviour
 
     public void ButtonBehaviour()
     {
-        /*if (isLocked == false && hasTime == true)
-        {
-            switch (i)
-            {
-                case (0):
-                default:
-                    breadBoxButtons.SetActive(true);
-                    breadBoxRewindButton.SetActive(false);
-                    activityText.SetActive(true);
-                    rewindApplied = true;
-                    break;
-                case (1):
-                    bread.SetActive(true);
-                    doorAnim.SetTrigger("DoorPart1");
-                    breadAnim.SetTrigger("BreadIdle");
-                    clock.Drain();
-                    break;
-                case (2):
-                    bread.SetActive(true);
-                    doorAnim.SetTrigger("DoorPart2");
-                    breadAnim.SetTrigger("BreadTaken");
-                    clock.Drain();
-                    break;
-                case (3):
-                    bread.SetActive(false);
-                    doorAnim.SetTrigger("DoorPart3");
-                    clock.Drain();
-                    break;                
-            }
-        }*/
+        closeUp.Normalize();
+        StartCoroutine(TimeToTransition());
+    }
 
-        if (doorOpen == true && bread1Taken == false)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            //breadBoxDoorOpen.SetActive(true);
-        }
-
-        if (doorOpen == true && bread1Taken == true)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            //breadBoxNoBreadRight.SetActive(true);
-        }
-
-        if (doorOpen == false && bread1Taken == false)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            //breadBoxGeneral.SetActive(true);
-        }
-
-        breadBox.SetActive(false);
+    IEnumerator TimeToTransition()
+    {
+        yield return new WaitForSeconds(0.1f);
         returnArrow.SetActive(false);
-        //noTextCollidersGeneral.SetActive(true);
-        //noTextColliderBreadBox.SetActive(false);
-        //activityText.SetActive(false);
-        //breadBoxRewindButton.SetActive(false);
-        //breadBoxButtons.SetActive(false);
+        //rewindButton.SetActive(false);
     }
 
     public void LockAndUnlock()
