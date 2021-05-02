@@ -8,7 +8,7 @@ public class CabinetManager : MonoBehaviour
 {
     //public ClockManager clock;
     public CameraCtrl zoom;
-    public Hands hands;
+    //public Hands hands;
     public Clock wave;
     public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
@@ -101,15 +101,15 @@ public class CabinetManager : MonoBehaviour
 
             if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
             {
-                if (hands.numOfGloves != 0)
+                if (FindObjectOfType<Glove>().gloveSelected == true)
                 {
                     doors[2].SetActive(false);
                     doors[3].SetActive(true);
-                    hands.UseGlove();
+                    FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
 
-                if (hands.numOfGloves == 0)
+                if (FindObjectOfType<Glove>().gloveSelected == false)
                 {
                     Debug.Log("Game Over");
                     gameMng.Die();
@@ -118,15 +118,15 @@ public class CabinetManager : MonoBehaviour
 
             if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
-                if (hands.numOfGloves != 0)
+                if (FindObjectOfType<Glove>().gloveSelected == true)
                 {
                     doors[4].SetActive(false);
                     doors[5].SetActive(true);
-                    hands.UseGlove();
+                    FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
 
-                if (hands.numOfGloves == 0)
+                if (FindObjectOfType<Glove>().gloveSelected == false)
                 {
                     Debug.Log("Game Over");
                     gameMng.Die();
