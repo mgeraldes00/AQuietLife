@@ -9,6 +9,7 @@ public class BreadBoxManager : MonoBehaviour
     public ObjectiveManager objective;
     public CloseUpBreadBox closeUp;
     public ThoughtManager thought;
+    public ObjectSelection select;
 
     public GameObject[] door;
     public GameObject[] objects;
@@ -51,18 +52,17 @@ public class BreadBoxManager : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
+         
             if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false
                 && gameMng.isLocked == false)
             {
-                if (!FindObjectOfType<Glove>()
-                    || FindObjectOfType<Glove>().gloveSelected == false)
+                if (select.usingNothing == true)
                 {
                     Debug.Log("Game Over");
                     gameMng.Die();
                 }
 
-                if (FindObjectOfType<Glove>().gloveSelected == true)
+                if (select.usingGlove == true)
                 {
                     door[0].SetActive(false);
                     door[1].SetActive(true);
@@ -70,7 +70,17 @@ public class BreadBoxManager : MonoBehaviour
                     objects[1].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
-                }                
+                }
+
+                if (select.usingStoveCloth == true)
+                {
+                    door[0].SetActive(false);
+                    door[1].SetActive(true);
+                    objects[0].SetActive(true);
+                    objects[1].SetActive(true);
+                    FindObjectOfType<StoveCloth>().gloveUsed = true;
+                    zoom.InteractionTransition();
+                }
             }
 
             if (hit.collider.CompareTag("Bread1")

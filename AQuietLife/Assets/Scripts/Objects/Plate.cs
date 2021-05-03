@@ -1,35 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Plate : MonoBehaviour, IPointerClickHandler
 {
+    private ObjectSelection select;
+
     public bool hasPlate;
-    public bool plateSelected;
     public bool plateUsed;
+
+    private void Awake()
+    {
+        hasPlate = true;
+        select = GameObject.FindGameObjectWithTag("ObjectSelection").GetComponent<ObjectSelection>();
+    }
 
     private void Update()
     {
         if (plateUsed == true)
         {
+            select.DeselectAll();
             Destroy(gameObject);
         }
 
-        if (plateSelected == false)
+        if (select.usingPlate == false)
             GetComponent<Image>().color = new Color32(255, 255, 255, 0);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        plateSelected = true;
+        select.usingPlate = true;
         GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        FindObjectOfType<Glove>().gloveSelected = false;
+        DeselectRest();
     }
 
-    private void Awake()
+    private void DeselectRest()
     {
-        hasPlate = true;
+        select.usingGlove = false;
+        select.usingStoveCloth = false;
     }
 }

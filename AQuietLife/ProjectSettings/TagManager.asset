@@ -35,6 +35,8 @@ TagManager:
   - Ham
   - Direction
   - Direction2
+  - StoveCloth
+  - ObjectSelection
   layers:
   - Default
   - TransparentFX

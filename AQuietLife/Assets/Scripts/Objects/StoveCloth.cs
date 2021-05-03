@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Glove : MonoBehaviour, IPointerClickHandler
+public class StoveCloth : MonoBehaviour, IPointerClickHandler
 {
     private ObjectSelection select;
 
@@ -23,20 +23,20 @@ public class Glove : MonoBehaviour, IPointerClickHandler
             Destroy(gameObject);
         }
 
-        if (select.usingGlove == false)
+        if (select.usingStoveCloth == false)
             GetComponent<Image>().color = new Color32(255, 255, 255, 0);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        select.usingGlove = true;
+        select.usingStoveCloth = true;
         GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         DeselectRest();
     }
-
+    
     private void DeselectRest()
     {
         select.usingPlate = false;
-        select.usingStoveCloth = false;
+        select.usingGlove = false;
     }
 }

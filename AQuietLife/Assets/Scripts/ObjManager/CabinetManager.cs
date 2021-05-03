@@ -19,6 +19,7 @@ public class CabinetManager : MonoBehaviour
     public GameManager gameMng;
     public CloseUpCabinet closeUp;
     public ThoughtManager thought;
+    public ObjectSelection select;
 
     public TextMeshProUGUI thoughtText;
 
@@ -101,38 +102,52 @@ public class CabinetManager : MonoBehaviour
 
             if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
             {
-                if (!FindObjectOfType<Glove>()
-                    || FindObjectOfType<Glove>().gloveSelected == false)
+                if (select.usingNothing == true)
                 {
                     Debug.Log("Game Over");
                     gameMng.Die();
                 }
 
-                if (FindObjectOfType<Glove>().gloveSelected == true)
+                if (select.usingGlove == true)
                 {
                     doors[2].SetActive(false);
                     doors[3].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
+
+                if (select.usingStoveCloth == true)
+                {
+                    doors[2].SetActive(false);
+                    doors[3].SetActive(true);
+                    FindObjectOfType<StoveCloth>().gloveUsed = true;
+                    zoom.InteractionTransition();
+                }
             }
 
             if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
-                if (!FindObjectOfType<Glove>()
-                    || FindObjectOfType<Glove>().gloveSelected == false)
+                if (select.usingNothing == true)
                 {
                     Debug.Log("Game Over");
                     gameMng.Die();
                 }
 
-                if (FindObjectOfType<Glove>().gloveSelected == true)
+                if (select.usingGlove == true)
                 {
                     doors[4].SetActive(false);
                     doors[5].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
-                }     
+                }
+
+                if (select.usingStoveCloth == true)
+                {
+                    doors[4].SetActive(false);
+                    doors[5].SetActive(true);
+                    FindObjectOfType<StoveCloth>().gloveUsed = true;
+                    zoom.InteractionTransition();
+                }
             }
 
             if (hit.collider.CompareTag("CabinetDoor2") && door2Open == false 
