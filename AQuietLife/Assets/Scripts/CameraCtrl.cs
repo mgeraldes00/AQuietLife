@@ -39,39 +39,6 @@ public class CameraCtrl : MonoBehaviour
         {
             dirButtons.SetActive(true);          
         }
-      
-        /*Vector3 mousePos =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-        if (hit.collider.CompareTag("Direction")
-            || hit.collider.CompareTag("Direction2"))
-        {
-            //Highlight arrow
-        }
-
-        if (Input.GetMouseButtonDown(0) && gameMng.isLocked == false)
-        {
-            if (hit.collider.CompareTag("Direction")
-                || hit.collider.CompareTag("Direction2"))
-            {
-                switch (currentPanel)
-                {
-                    case -1:
-                        cameraAnim.SetTrigger("Return");
-                        currentPanel++;
-                        break;
-                    case 0:
-
-                        break;
-                    case 1:
-
-                        break;
-                }
-            }
-        }*/
     }
 
     public void ButtonBehaviour(int i)
@@ -81,17 +48,23 @@ public class CameraCtrl : MonoBehaviour
             switch (i)
             {
                 case 0:
+                    if (currentPanel == -1)
+                    {
+                        cameraAnim.SetTrigger("Return");
+                    }
+                    if (currentPanel == 0)
+                    {
+                        cameraAnim.SetTrigger("Return");
+                    }
                     if (currentPanel == 1)
                     {
                         cameraAnim.SetTrigger("Return");
                         if (microwave.working == true)
                             microwaveAnim.SetTrigger("RotateLeft");
-                        directionalButtons[1].SetActive(true);
                     }
-                    if (currentPanel == 0)
+                    if (currentPanel == 2)
                     {
                         cameraAnim.SetTrigger("Return");
-                        directionalButtons[0].SetActive(false);
                     }
                     currentPanel--;
                     gameMng.isLocked = true;
@@ -102,14 +75,20 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == -1)
                     {
                         cameraAnim.SetTrigger("RotateRight");
-                        directionalButtons[0].SetActive(true);
                     }
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("RotateRight");
                         if (microwave.working == true)
                             microwaveAnim.SetTrigger("Return");
-                        directionalButtons[1].SetActive(false);
+                    }
+                    if (currentPanel == 1)
+                    {
+                        cameraAnim.SetTrigger("RotateRight");
+                    }
+                    if (currentPanel == 2)
+                    {
+                        cameraAnim.SetTrigger("RotateRight");
                     }
                     currentPanel++;
                     gameMng.isLocked = true;
@@ -139,6 +118,10 @@ public class CameraCtrl : MonoBehaviour
     IEnumerator EndTransition()
     {
         yield return new WaitForSeconds(0.5f);
+        if (currentPanel == 3)
+            currentPanel = -1;
+        if (currentPanel == -2)
+            currentPanel = 2;
         gameMng.isLocked = false;
     }
 }
