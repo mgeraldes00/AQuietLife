@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject scene;
     public GameObject sceneCloseUp;
+    public GameObject canvas;
 
     public GameObject timeText;
     public GameObject inspectionText;
@@ -178,8 +179,10 @@ public class GameManager : MonoBehaviour
         isLocked = true;
         isDead = true;
         deathScreen[0].SetActive(true);
+        deathScreen[5].SetActive(true);
         //Destroy(scene);
         Destroy(sceneCloseUp);
+        Destroy(canvas);
         StartCoroutine(DeathProcess());
     }
 
@@ -278,10 +281,11 @@ public class GameManager : MonoBehaviour
     IEnumerator DeathProcess()
     {
         yield return new WaitForSeconds(2);
-        for (int i = 0; i < 4; i++)
-            deathScreen[i].SetActive(true);       
         deathAnim.SetTrigger("Death");
         yield return new WaitForSeconds(1);
         deathScreen[4].SetActive(false);
+        yield return new WaitForSeconds(1);
+        deathScreen[1].SetActive(true);
+        deathScreen[2].SetActive(true);
     }
 }

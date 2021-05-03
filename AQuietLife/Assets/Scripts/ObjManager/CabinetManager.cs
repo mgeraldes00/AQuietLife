@@ -101,6 +101,13 @@ public class CabinetManager : MonoBehaviour
 
             if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
             {
+                if (!FindObjectOfType<Glove>()
+                    || FindObjectOfType<Glove>().gloveSelected == false)
+                {
+                    Debug.Log("Game Over");
+                    gameMng.Die();
+                }
+
                 if (FindObjectOfType<Glove>().gloveSelected == true)
                 {
                     doors[2].SetActive(false);
@@ -108,29 +115,24 @@ public class CabinetManager : MonoBehaviour
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
-
-                if (FindObjectOfType<Glove>().gloveSelected == false)
-                {
-                    Debug.Log("Game Over");
-                    gameMng.Die();
-                }
             }
 
             if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
+                if (!FindObjectOfType<Glove>()
+                    || FindObjectOfType<Glove>().gloveSelected == false)
+                {
+                    Debug.Log("Game Over");
+                    gameMng.Die();
+                }
+
                 if (FindObjectOfType<Glove>().gloveSelected == true)
                 {
                     doors[4].SetActive(false);
                     doors[5].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
-                }
-
-                if (FindObjectOfType<Glove>().gloveSelected == false)
-                {
-                    Debug.Log("Game Over");
-                    gameMng.Die();
-                }
+                }     
             }
 
             if (hit.collider.CompareTag("CabinetDoor2") && door2Open == false 
