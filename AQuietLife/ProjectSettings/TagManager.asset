@@ -37,6 +37,7 @@ TagManager:
   - Direction2
   - StoveCloth
   - ObjectSelection
+  - Freezer
   layers:
   - Default
   - TransparentFX

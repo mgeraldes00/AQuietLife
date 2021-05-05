@@ -7,6 +7,7 @@ public class CameraCtrl : MonoBehaviour
 {
     public GameManager gameMng;
     public MicrowaveManager microwave;
+    public FridgeManager fridge;
 
     public Animator cameraAnim;
     public Animator fadeAnim;
@@ -33,11 +34,13 @@ public class CameraCtrl : MonoBehaviour
     {
         if (currentView == 1)
         {
-            dirButtons.SetActive(false);
+            directionalButtons[0].SetActive(false);
+            directionalButtons[1].SetActive(false);
         }
         if (currentView == 0)
         {
-            dirButtons.SetActive(true);          
+            directionalButtons[0].SetActive(true);
+            directionalButtons[1].SetActive(true);
         }
     }
 
@@ -95,6 +98,20 @@ public class CameraCtrl : MonoBehaviour
                     fadeAnim.SetTrigger("Transition");
                     StartCoroutine(EndTransition());
                     break;
+                case 2:
+                    cameraAnim.SetTrigger("Alt");
+                    ObjectTransition();
+                    directionalButtons[2].SetActive(false);
+                    directionalButtons[3].SetActive(true);
+                    fridge.lookAtFridge = false;
+                    break;
+                case 3:
+                    cameraAnim.SetTrigger("Alt");
+                    ObjectTransition();
+                    directionalButtons[2].SetActive(true);
+                    directionalButtons[3].SetActive(false);
+                    fridge.lookAtFridge = true;
+                    break;   
             }
         }
     }

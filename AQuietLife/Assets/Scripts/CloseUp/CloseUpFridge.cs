@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,23 +8,20 @@ public class CloseUpFridge : MonoBehaviour
     public FridgeManager fridgeMng;
     public CameraCtrl zoom;
 
+    public GameObject[] directionArrows;
+
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral;
     //public GameObject noTextColliderFridge;
     //public GameObject inspectionTextGeneral;
-    public GameObject[] objsToZoom;
-    public GameObject fridge;
+    //public GameObject[] objsToZoom;
+    //public GameObject fridge;
     //public GameObject fridgeButtons;
     //public GameObject activityText;
     //public GameObject fridgeRewindButton;
 
+    public BoxCollider2D[] fridge;
     public BoxCollider2D[] zoomableObjs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,30 +40,48 @@ public class CloseUpFridge : MonoBehaviour
                 if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false
                     && zoom.currentView == 0)
                 {
-                    if (fridgeMng.rewindApplied == true)
-                    {
-                        //fridgeButtons.SetActive(true);
-                        //activityText.SetActive(true);
-                    }
-                    else if (fridgeMng.rewindApplied == false)
-                    {
-                        //fridgeRewindButton.SetActive(true);
-                    }
-
-                    for (int i = 0; i < zoomableObjs.Length; i++)
-                        zoomableObjs[i].enabled = false;
                     Debug.Log(hit.collider.gameObject.name);
-                    for (int i = 0; i < objsToZoom.Length; i++)
-                        objsToZoom[i].SetActive(false);
-                    //objToZoom.SetActive(false);
-                    fridge.SetActive(true);
-                    returnArrow.SetActive(true);
-                    //noTextCollidersGeneral.SetActive(false);
-                    //noTextColliderFridge.SetActive(true);
-                    //inspectionTextGeneral.SetActive(false);
-                    zoom.currentView++;
-                }            
+                    zoom.ObjectTransition();
+                    zoom.cameraAnim.SetTrigger("ZoomFridge");
+                    directionArrows[0].SetActive(true);
+                    fridgeMng.lookAtFridge = true;
+                    StartCoroutine(TimeToZoom());
+                }
+
+                if (hit.collider.CompareTag("Freezer") && gameMng.isLocked == false
+                    && zoom.currentView == 0)
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    zoom.ObjectTransition();
+                    zoom.cameraAnim.SetTrigger("ZoomFreezer");
+                    directionArrows[1].SetActive(true);
+                    fridgeMng.lookAtFridge = false;
+                    StartCoroutine(TimeToZoom());
+                }
             }
         }
+    }
+
+    IEnumerator TimeToZoom()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //fridgeRewindButton.SetActive(true);
+        fridge[0].enabled = false;
+        fridge[1].enabled = false;
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = true;
+        returnArrow.SetActive(true);
+        fridgeMng.EnableObjs();
+        zoom.currentView++;
+    }
+
+    public void Normalize()
+    {
+        fridge[0].enabled = true;
+        fridge[1].enabled = true;
+        directionArrows[0].SetActive(false);
+        directionArrows[1].SetActive(false);
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = false;
     }
 }

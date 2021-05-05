@@ -1,44 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FridgeManager : MonoBehaviour
 {
-    //public ClockManager clock;
-    //public CameraCtrl zoom;
-    public InventoryManager inventory;
+    public CameraCtrl zoom;
     public GameManager gameMng;
-    public ObjectiveManager objective;
     public CloseUpFridge closeUp;
     public ThoughtManager thought;
+    public ObjectSelection select;
 
-    public Text thoughtText;
-
-    //public GameObject fridgeGeneral;
-    //public GameObject fridgeDoor1Open;
-    //public GameObject fridgeDoor2Open;
-    //public GameObject fridgeDoor12Open;
     public GameObject[] doors;
+    public GameObject[] objects;
 
     public GameObject returnArrow;
-    //public GameObject noTextCollidersGeneral;
-    //public GameObject noTextColliderFridge;
-    //public GameObject interactionText;
-    //public GameObject activityText;
     //public GameObject fridgeRewindButton;
-    //public GameObject fridgeButtons;
-    public GameObject fridge;
-    public GameObject ham;
-    public GameObject hamLess;
-    public GameObject cheese;
-    public GameObject frozenBread;
-
-    public BoxCollider2D[] interactableColliders;
-
-    public Animator doorLeftAnim;
-    public Animator doorRightAnim;
-    public Animator cheeseAnim;
 
     private bool isLocked;
     private bool isTrapped;
@@ -48,14 +24,13 @@ public class FridgeManager : MonoBehaviour
     public bool frozenBreadTaken;
     public bool doorLeftOpen;
     public bool doorRightOpen;
-    public bool hasTime;
+    public bool lookAtFridge;
 
     // Start is called before the first frame update
     void Start()
     {
         isLocked = false;
         isTrapped = true;
-        hasTime = true;
     }
 
     // Update is called once per frame
@@ -70,179 +45,93 @@ public class FridgeManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            /*if (hit.collider.CompareTag("Nothing"))
-            {
-                if (doorLeftOpen == true && doorRightOpen == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    fridgeDoor1Open.SetActive(true);
-                }
-                if (doorLeftOpen == false && doorRightOpen == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    fridgeDoor2Open.SetActive(true);
-                }
-                if (doorLeftOpen == true && doorRightOpen == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    fridgeDoor12Open.SetActive(true);
-                }
-                if (doorLeftOpen == false && doorRightOpen == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    fridgeGeneral.SetActive(true);
-                }
-
-                fridge.SetActive(false);
-                returnArrow.SetActive(false);
-                noTextCollidersGeneral.SetActive(true);
-                noTextColliderFridge.SetActive(false);
-                activityText.SetActive(false);
-                fridgeRewindButton.SetActive(false);
-                fridgeButtons.SetActive(false);
-            }*/
-
             if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
-                && doorLeftOpen == false)
+                && lookAtFridge == true)
             {
-                doorLeftAnim.SetBool("Open", true);
-                doorLeftOpen = true;
-                frozenBread.SetActive(true);
-                //interactionText.SetActive(false);
-                LockAndUnlock();
+                if (doorLeftOpen == false)
+                {
+                    doors[2].SetActive(false);
+                    doors[3].SetActive(true);
+                    LockAndUnlock(doorLeftOpen);
+                }               
             }
 
             if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
-                && inventory.hasGlove == true && gameMng.isLocked == false)
+                && gameMng.isLocked == false && lookAtFridge == false)
             {
-                doorRightAnim.SetBool("Open", true);
-                inventory.GloveOffInventory();
-                ham.SetActive(true);
-                isTrapped = false;
-                doorRightOpen = true;
-                //interactionText.SetActive(false);
-                LockAndUnlock();
+                if (isTrapped == true)
+                {
+                    if (select.usingNothing == true)
+                    {
+                        Debug.Log("Game Over");
+                        gameMng.Die();
+                    }
 
-                for (int i = 0; i <= interactableColliders.Length; i++)
-                    interactableColliders[i].enabled = true;
-            }
+                    if (select.usingGlove == true)
+                    {
+                        doors[0].SetActive(false);
+                        doors[1].SetActive(true);
+                        objects[0].SetActive(true);
+                        FindObjectOfType<Glove>().gloveUsed = true;
+                        zoom.InteractionTransition();
+                    }
 
-            if (hit.collider.CompareTag("FridgeDoor2") && isTrapped == true
-                && inventory.hasGlove == false && gameMng.isLocked == false)
-            {
-                Debug.Log("Game Over");
-                gameMng.Die();
-            }
-            else if (hit.collider.CompareTag("FridgeDoor2") && inventory.hasGlove == false 
-                && isTrapped == false)
-            {
-                doorRightAnim.SetBool("BreadBoxDoorOpen", true);
-                doorRightOpen = true;
-                //interactionText.SetActive(false);
-                LockAndUnlock();
-            }
-
-            if (hit.collider.CompareTag("Bread1")
-                && inventory.plateUsed == false)
-            {
-                thought.ShowThought();
-                thoughtText.text = "Should find something to place this in first.";
-            }
-
-            if (hit.collider.CompareTag("Bread1")
-                && inventory.hasObject != true && inventory.plateUsed == true
-                && inventory.breadUsed != true
-                && gameMng.isLocked == false)
-            {
-                frozenBread.SetActive(false);
-                inventory.FrozenBreadInInventory();
-                frozenBreadTaken = true;
-                objective.hasBread = true;
-                gameMng.pickUpText.SetActive(false);
-            }
-
-            if (hit.collider.CompareTag("Ham") && gameMng.isLocked == false
-                && inventory.hasObject != true && objective.part1Complete == true)
-            {
-                ham.SetActive(false);
-                hamLess.SetActive(true);
-                inventory.HamInInventory();
-                hamTaken = true;
-                objective.hasHam = true;
+                    if (select.usingStoveCloth == true)
+                    {
+                        doors[0].SetActive(false);
+                        doors[1].SetActive(true);
+                        objects[0].SetActive(true);
+                        FindObjectOfType<StoveCloth>().gloveUsed = true;
+                        zoom.InteractionTransition();
+                    }
+                }
+                
+                if (isTrapped == false)
+                {
+                    doors[0].SetActive(false);
+                    doors[1].SetActive(true);
+                    LockAndUnlock(doorRightOpen);
+                }
             }
         }
     }
 
     public void ButtonBehaviour()
     {
-        for (int i = 0; i < doors.Length; i++)
-            doors[i].SetActive(false);
-
-        if (doorLeftOpen == true && doorRightOpen == false)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            doors[3].SetActive(true);
-            doors[0].SetActive(true);
-            //fridgeDoor1Open.SetActive(true);
-        }
-        if (doorLeftOpen == false && doorRightOpen == true)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            doors[1].SetActive(true);
-            doors[2].SetActive(true);
-            //fridgeDoor2Open.SetActive(true);
-        }
-        if (doorLeftOpen == true && doorRightOpen == true)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            doors[3].SetActive(true);
-            doors[2].SetActive(true);
-            //fridgeDoor12Open.SetActive(true);
-        }
-        if (doorLeftOpen == false && doorRightOpen == false)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            doors[1].SetActive(true);
-            doors[0].SetActive(true);
-            //fridgeGeneral.SetActive(true);
-        }
-     
-        fridge.SetActive(false);
-        returnArrow.SetActive(false);
-        //noTextCollidersGeneral.SetActive(true);
-        //noTextColliderFridge.SetActive(false);
-        //activityText.SetActive(false);
-        //fridgeRewindButton.SetActive(false);
-        //fridgeButtons.SetActive(false);
+        closeUp.Normalize();
+        StartCoroutine(TimeToTransition());
     }
 
-    public void LockAndUnlock()
+    IEnumerator TimeToTransition()
     {
-        if (isLocked == false && hasTime == true)
+        yield return new WaitForSeconds(0.1f);
+        returnArrow.SetActive(false);
+        //rewindButton.SetActive(false);
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void EnableObjs()
+    {
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public void LockAndUnlock(bool doorOpen)
+    {
+        if (isLocked == false)
         {
             returnArrow.SetActive(false);
             isLocked = true;
-            StartCoroutine(Unlock());
+            StartCoroutine(Unlock(doorOpen));
         }
     }
 
-    public void NoMoreTime()
-    {
-        hasTime = false;
-    }
-
-    IEnumerator Unlock()
+    IEnumerator Unlock(bool doorOpen)
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
+        doorOpen = true;
         returnArrow.SetActive(true);
     }
 }
