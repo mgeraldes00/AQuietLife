@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasGlove: 0
-  gloveSelected: 0
   gloveUsed: 0
 --- !u!1 &4115984506497945653
 GameObject:

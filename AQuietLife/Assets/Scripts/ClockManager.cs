@@ -33,9 +33,6 @@ public class ClockManager : MonoBehaviour
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             Debug.Log("Time's Up!");
-            cabinet.NoMoreTime();
-            breadBox.NoMoreTime();
-            drawers.NoMoreTime();
         }
 
         if (draining == true || drainingMore == true)

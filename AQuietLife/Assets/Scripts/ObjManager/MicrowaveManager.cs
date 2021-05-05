@@ -5,19 +5,15 @@ using UnityEngine.UI;
 
 public class MicrowaveManager : MonoBehaviour
 {
-    //public ClockManager clock;
     public CameraCtrl zoom;
-    public InventoryManager inventory;
     public ThoughtManager thought;
     public GameManager gameMng;
-    public ObjectiveManager objective;
+    //public ObjectiveManager objective;
     public CloseUpMicrowave closeUp;
+    public ObjectSelection select;
 
-    public Text thoughtText;
-
-    public GameObject microwaveGeneral;
-    public GameObject microwaveDoorOpen;
-    public GameObject microwaveWorking;
+    public GameObject[] door;
+    public GameObject[] objects;
 
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral; //Activate on final
@@ -26,19 +22,18 @@ public class MicrowaveManager : MonoBehaviour
     //public GameObject activityText;
     //public GameObject microwaveRewindButton;
     //public GameObject microwaveButtons;
-    public GameObject microwave;
-    public GameObject Bread;
+    //public GameObject breadObj;
 
     //public BoxCollider2D[] interactableColliders;
-    public BoxCollider2D structure;
-    public BoxCollider2D bread;
+    //public BoxCollider2D structure;
+    //public BoxCollider2D bread;
 
-    public Animator doorAnim; //Activate on final
+    //public Animator doorAnim; //Activate on final
 
     public AudioSource microwaveWork;
 
+    [SerializeField]
     private bool isLocked;
-    //private bool isTrapped;
     private bool breadPlaced;
     [SerializeField]
     private bool worked;
@@ -53,7 +48,6 @@ public class MicrowaveManager : MonoBehaviour
     void Start()
     {
         isLocked = false;
-        //isTrapped = true;
         hasTime = true;       
     }
 
@@ -62,16 +56,16 @@ public class MicrowaveManager : MonoBehaviour
     {
         if (working == true)
         {
-            doorAnim.SetTrigger("KeepLit");
+            //doorAnim.SetTrigger("KeepLit");
         }
 
         if (doorOpen == true)
         {
-            doorAnim.SetBool("PrevOpen", true);
+            //doorAnim.SetBool("PrevOpen", true);
         }
         if (doorOpen == false)
         {
-            doorAnim.SetBool("PrevOpen", false);
+            //doorAnim.SetBool("PrevOpen", false);
         }
 
         if (Input.GetMouseButtonDown(0) && isLocked == false)
@@ -83,81 +77,58 @@ public class MicrowaveManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Nothing"))
-            {
-                if (doorOpen == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    microwaveDoorOpen.SetActive(true);
-                }
-                if (working == true)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    microwaveWorking.SetActive(true);
-                }
-                if (doorOpen == false && working == false)
-                {
-                    for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                        closeUp.zoomableObjs[i].enabled = true;
-                    microwaveGeneral.SetActive(true);
-                }
-
-                microwave.SetActive(false);
-                returnArrow.SetActive(false);
-                //noTextCollidersGeneral.SetActive(true);
-                //noTextColliderMicrowave.SetActive(false);
-                //activityText.SetActive(false);
-                //microwaveRewindButton.SetActive(false);
-                //microwaveButtons.SetActive(false);
-            }
-
             if (hit.collider.CompareTag("MicrowaveDoor") && gameMng.isLocked == false
                 && doorOpen == false && working == false)
             {
-                if (worked == true)
-                    bread.enabled = true;
-                doorAnim.SetTrigger("Open");
+                //if (worked == true)
+                    //bread.enabled = true;
+                //doorAnim.SetTrigger("Open");
                 //doorOpen = true;
-                structure.enabled = true;
+                //structure.enabled = true;
                 OpenAndUnlock();
+                //doorOpen = true;
+                door[0].SetActive(false);
+                door[1].SetActive(true);
+                zoom.InteractionTransition();
             }
 
             if (hit.collider.CompareTag("MicrowaveDoor") && gameMng.isLocked == false
                 && doorOpen == true)
             {
-                if (worked == true)
-                    bread.enabled = false;
-                doorAnim.SetTrigger("Close");
+                //if (worked == true)
+                //bread.enabled = false;
+                //doorAnim.SetTrigger("Close");
                 //doorAnim.SetBool("PrevOpen", false);
                 //doorOpen = false;
                 CloseAndUnlock();
+                //doorOpen = false;
+                door[0].SetActive(true);
+                door[1].SetActive(false);
+                zoom.InteractionTransition();
             }
 
-            if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
-                && doorOpen == true && inventory.hasFrozenBreadInPlate == true)
+            if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false
+                && doorOpen == true)
             {
-                Bread.SetActive(true);
+                //breadObj.SetActive(true);
                 breadPlaced = true;
-                inventory.PlateBreadUncutOffInventory();
                 //doorAnim.SetBool("Open", false);
                 //doorOpen = false;
                 //LockAndUnlock();
             }
 
-            if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
-                && doorOpen == true && inventory.hasFrozenBread == true)
+            if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false
+                && doorOpen == true)
             {
                 thought.ShowThought();
-                thoughtText.text = "Better place this in a plate first.";
+                thought.text = "Better place this in a plate first.";
             }
 
             if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
                 && doorOpen == false && breadPlaced == true && worked == false)
             {
                 //Start audio
-                doorAnim.SetBool("Working", true);
+                //doorAnim.SetBool("Working", true);
                 working = true;
                 worked = true;
                 microwaveWork.Play();
@@ -168,46 +139,27 @@ public class MicrowaveManager : MonoBehaviour
             if (hit.collider.CompareTag("Bread1") && gameMng.isLocked == false
                 && worked == true)
             {
-                inventory.PlateBreadUncutUnfrozenInInventory();
-                Bread.SetActive(false);
+                //breadObj.SetActive(false);
             }
         }
     }
 
     public void ButtonBehaviour()
     {
-        if (doorOpen == true)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            microwaveDoorOpen.SetActive(true);
-        }
-        if (working == true)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            microwaveWorking.SetActive(true);
-        }
-        if (doorOpen == false && working == false)
-        {
-            for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                closeUp.zoomableObjs[i].enabled = true;
-            microwaveGeneral.SetActive(true);
-        }
+        closeUp.Normalize();
+        StartCoroutine(TimeToTransition());
+    }
 
-        //microwaveGeneral.SetActive(true);
-        microwave.SetActive(false);
+    IEnumerator TimeToTransition()
+    {
+        yield return new WaitForSeconds(0.1f);
         returnArrow.SetActive(false);
-        //noTextCollidersGeneral.SetActive(true);
-        //noTextColliderMicrowave.SetActive(false);
-        //activityText.SetActive(false);
-        //microwaveRewindButton.SetActive(false);
-        //microwaveButtons.SetActive(false);
+        //rewindButton.SetActive(false);
     }
 
     public void OpenAndUnlock()
     {
-        if (isLocked == false && hasTime == true)
+        if (isLocked == false)
         {
             returnArrow.SetActive(false);
             isLocked = true;
@@ -217,17 +169,12 @@ public class MicrowaveManager : MonoBehaviour
 
     public void CloseAndUnlock()
     {
-        if (isLocked == false && hasTime == true)
+        if (isLocked == false)
         {
             returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(CloseUnlock());
         }
-    }
-
-    public void NoMoreTime()
-    {
-        hasTime = false;
     }
 
     IEnumerator OpenUnlock()
@@ -249,7 +196,7 @@ public class MicrowaveManager : MonoBehaviour
     IEnumerator Unfreeze()
     {
         yield return new WaitForSeconds(10);
-        doorAnim.SetBool("Working", false);
+        //doorAnim.SetBool("Working", false);
         working = false;
     }
 }

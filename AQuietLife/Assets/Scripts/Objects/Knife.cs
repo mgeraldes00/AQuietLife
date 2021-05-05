@@ -2,43 +2,43 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StoveCloth : MonoBehaviour, IPointerClickHandler
+public class Knife : MonoBehaviour, IPointerClickHandler
 {
     private ObjectSelection select;
 
-    public bool hasGlove;
-    public bool gloveUsed;
+    public bool hasKnife;
+    public bool knifeUsed;
 
     private void Awake()
     {
-        hasGlove = true;
+        hasKnife = true;
         select = GameObject.FindGameObjectWithTag("ObjectSelection").GetComponent<ObjectSelection>();
     }
 
     private void Update()
     {
-        if (gloveUsed == true)
+        if (knifeUsed == true)
         {
             select.DeselectAll();
             Destroy(gameObject);
         }
 
-        if (select.usingStoveCloth == false)
+        if (select.usingKnife == false)
             GetComponent<Image>().color = new Color32(255, 255, 255, 0);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        select.usingStoveCloth = true;
+        select.usingKnife = true;
         GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         DeselectRest();
     }
-    
+
     private void DeselectRest()
     {
         select.usingPlate = false;
         select.usingBread = false;
+        select.usingStoveCloth = false;
         select.usingGlove = false;
-        select.usingKnife = false;
     }
 }

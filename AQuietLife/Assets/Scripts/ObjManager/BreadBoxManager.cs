@@ -83,13 +83,15 @@ public class BreadBoxManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("Bread1")
-                && gameMng.isLocked == false)
+            if (hit.collider.CompareTag("Bread1") && bread1Taken == false
+                && gameMng.isLocked == false && select.usingKnife == true)
             {
-                breadInteract1.SetActive(false);
                 bread1Taken = true;
-                objective.hasBread = true;
-                gameMng.pickUpText.SetActive(false);
+                objects[3].SetActive(true);
+                objects[2].SetActive(true);
+                objects[1].GetComponent<BoxCollider2D>().enabled = false;
+                FindObjectOfType<Knife>().knifeUsed = true;
+                zoom.InteractionTransition();
             }
         }
     }
@@ -115,11 +117,6 @@ public class BreadBoxManager : MonoBehaviour
             isLocked = true;
             StartCoroutine(Unlock());
         }
-    }
-
-    public void NoMoreTime()
-    {
-        hasTime = false;
     }
 
     IEnumerator Unlock()

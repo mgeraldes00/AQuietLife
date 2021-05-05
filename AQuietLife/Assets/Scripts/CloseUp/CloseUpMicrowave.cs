@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,22 +12,17 @@ public class CloseUpMicrowave : MonoBehaviour
     //public GameObject noTextCollidersGeneral;
     //public GameObject noTextColliderMicrowave;
     //public GameObject inspectionTextGeneral;
-    public GameObject[] objsToZoom;
-    public GameObject microwave;
+    //public GameObject[] objsToZoom;
+    //public GameObject microwave;
     //public GameObject microwaveButtons;
     //public GameObject activityText;
     //public GameObject microwaveRewindButton;
 
-    public GameObject microwaveGeneral;
+    //public GameObject microwaveGeneral;
     //public GameObject microwaveWorking;
 
+    public BoxCollider2D microwave;
     public BoxCollider2D[] zoomableObjs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -53,30 +47,29 @@ public class CloseUpMicrowave : MonoBehaviour
                 if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
                     && zoom.currentView == 0)
                 {
-                    if (microMng.rewindApplied == true)
-                    {
-                        //fridgeButtons.SetActive(true);
-                        //activityText.SetActive(true);
-                    }
-                    else if (microMng.rewindApplied == false)
-                    {
-                        //fridgeRewindButton.SetActive(true);
-                    }
-
-                    for (int i = 0; i < zoomableObjs.Length; i++)
-                        zoomableObjs[i].enabled = false;
                     Debug.Log(hit.collider.gameObject.name);
-                    for (int i = 0; i < objsToZoom.Length; i++)
-                        objsToZoom[i].SetActive(false);
-                    //objToZoom.SetActive(false);
-                    microwave.SetActive(true);
-                    returnArrow.SetActive(true);
-                    //noTextCollidersGeneral.SetActive(false);
-                    //noTextColliderMicrowave.SetActive(true);
-                    //inspectionTextGeneral.SetActive(false);
-                    zoom.currentView++;
+                    zoom.ObjectTransition();
+                    zoom.cameraAnim.SetTrigger("ZoomMicrowave");
+                    StartCoroutine(TimeToZoom());
                 }           
             }
         }
+    }
+
+    IEnumerator TimeToZoom()
+    {
+        yield return new WaitForSeconds(0.1f);
+        microwave.enabled = false;
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = true;
+        returnArrow.SetActive(true);
+        zoom.currentView++;
+    }
+
+    public void Normalize()
+    {
+        microwave.enabled = true;
+        for (int i = 0; i < zoomableObjs.Length; i++)
+            zoomableObjs[i].enabled = false;
     }
 }
