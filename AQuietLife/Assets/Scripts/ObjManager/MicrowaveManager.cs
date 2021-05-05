@@ -54,20 +54,6 @@ public class MicrowaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (working == true)
-        {
-            //doorAnim.SetTrigger("KeepLit");
-        }
-
-        if (doorOpen == true)
-        {
-            //doorAnim.SetBool("PrevOpen", true);
-        }
-        if (doorOpen == false)
-        {
-            //doorAnim.SetBool("PrevOpen", false);
-        }
-
         if (Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");
@@ -89,6 +75,7 @@ public class MicrowaveManager : MonoBehaviour
                 //doorOpen = true;
                 door[0].SetActive(false);
                 door[1].SetActive(true);
+                objects[1].SetActive(true);
                 zoom.InteractionTransition();
             }
 
@@ -104,17 +91,18 @@ public class MicrowaveManager : MonoBehaviour
                 //doorOpen = false;
                 door[0].SetActive(true);
                 door[1].SetActive(false);
+                objects[1].SetActive(false);
+                objects[2].SetActive(true);
                 zoom.InteractionTransition();
             }
 
             if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false
-                && doorOpen == true)
+                && doorOpen == true && select.usingPlateWFrozenBread)
             {
-                //breadObj.SetActive(true);
+                objects[0].SetActive(true);
+                objects[1].SetActive(false);
                 breadPlaced = true;
-                //doorAnim.SetBool("Open", false);
-                //doorOpen = false;
-                //LockAndUnlock();
+                FindObjectOfType<PlateWFrozenBread>().frozenBreadWPlateUsed = true;
             }
 
             if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false
@@ -129,6 +117,8 @@ public class MicrowaveManager : MonoBehaviour
             {
                 //Start audio
                 //doorAnim.SetBool("Working", true);
+                door[0].SetActive(false);
+                door[2].SetActive(true);
                 working = true;
                 worked = true;
                 microwaveWork.Play();
@@ -206,5 +196,7 @@ public class MicrowaveManager : MonoBehaviour
         yield return new WaitForSeconds(10);
         //doorAnim.SetBool("Working", false);
         working = false;
+        door[2].SetActive(false);
+        door[0].SetActive(true);
     }
 }

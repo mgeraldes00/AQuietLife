@@ -155,8 +155,7 @@ public class CabinetManager : MonoBehaviour
             {
                 //door2Anim.SetBool("Door2Open", true);
                 doors[0].SetActive(false);
-                doors[1].SetActive(true);
-                objects[0].SetActive(true);
+                doors[1].SetActive(true);        
                 door2Open = true;
                 //doorSound.Play();
                 //glove.SetActive(true);
@@ -175,7 +174,7 @@ public class CabinetManager : MonoBehaviour
                 //door4Anim.SetBool("Door4Open", true);
                 doors[6].SetActive(false);
                 doors[7].SetActive(true);
-                objects[1].SetActive(true);
+                objects[0].SetActive(true); ;
                 door4Open = true;
                 //plateInteract.SetActive(true);
                 //doorSound.Play();

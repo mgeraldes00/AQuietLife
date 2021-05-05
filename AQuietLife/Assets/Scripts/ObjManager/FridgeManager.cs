@@ -48,17 +48,6 @@ public class FridgeManager : MonoBehaviour
             if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
                 && lookAtFridge == true)
             {
-                if (doorLeftOpen == false)
-                {
-                    doors[2].SetActive(false);
-                    doors[3].SetActive(true);
-                    LockAndUnlock(doorLeftOpen);
-                }               
-            }
-
-            if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
-                && gameMng.isLocked == false && lookAtFridge == false)
-            {
                 if (isTrapped == true)
                 {
                     if (select.usingNothing == true)
@@ -69,27 +58,48 @@ public class FridgeManager : MonoBehaviour
 
                     if (select.usingGlove == true)
                     {
-                        doors[0].SetActive(false);
-                        doors[1].SetActive(true);
-                        objects[0].SetActive(true);
+                        doors[2].SetActive(false);
+                        doors[3].SetActive(true);
+                        objects[1].SetActive(true);
                         FindObjectOfType<Glove>().gloveUsed = true;
                         zoom.InteractionTransition();
                     }
 
                     if (select.usingStoveCloth == true)
                     {
-                        doors[0].SetActive(false);
-                        doors[1].SetActive(true);
-                        objects[0].SetActive(true);
+                        doors[2].SetActive(false);
+                        doors[3].SetActive(true);
+                        objects[1].SetActive(true);
                         FindObjectOfType<StoveCloth>().gloveUsed = true;
                         zoom.InteractionTransition();
                     }
                 }
-                
+
                 if (isTrapped == false)
+                {
+                    doors[2].SetActive(false);
+                    doors[3].SetActive(true);
+                    LockAndUnlock(doorRightOpen);
+                }
+
+                if (doorLeftOpen == false)
+                {
+                    doors[2].SetActive(false);
+                    doors[3].SetActive(true);
+                    objects[1].SetActive(true);
+                    LockAndUnlock(doorLeftOpen);
+                }               
+            }
+
+            if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
+                && gameMng.isLocked == false && lookAtFridge == false)
+            {
+                if (doorRightOpen == false)
                 {
                     doors[0].SetActive(false);
                     doors[1].SetActive(true);
+                    objects[0].SetActive(true);
+                    zoom.InteractionTransition();
                     LockAndUnlock(doorRightOpen);
                 }
             }
