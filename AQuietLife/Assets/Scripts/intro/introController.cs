@@ -10,8 +10,6 @@ public class IntroController : MonoBehaviour
 {
     public ThoughtManager thought;
 
-    public Text thoughtText;
-
     public Animator cameraAnim;
     public Animator fadeAnim;
     public Animator shutterAnim;
@@ -72,21 +70,22 @@ public class IntroController : MonoBehaviour
 
             if (hit.collider.CompareTag("NoTag"))
             {
-                
-
                 switch (currentPanel)
                 {
                     case -1:
                         
                         break;
                     case 0:
-                        thoughtText.text = "Just gonna put something on before leaving.";
+                        thought.ShowThought();
+                        thought.text = "Just gonna put something on before leaving..";
                         break;
                     case 1:
-                        thoughtText.text = "Need some light in here.";
+                        thought.ShowThought();
+                        thought.text = "Need some light in here..";
                         break;
                     case 2:
-                        thoughtText.text = "What's this doing here?";
+                        thought.ShowThought();
+                        thought.text = "What's this doing here?.";
                         cameraAnim.SetTrigger("ZoomIn");
                         isLocked = true;
                         StartCoroutine(EndTransition());
@@ -103,7 +102,7 @@ public class IntroController : MonoBehaviour
                 {
                     case 0:
                         thought.ShowThought();
-                        thoughtText.text = "Need some light in here.";
+                        thought.text = "Need some light in here..";
                         break;
                     case 1:                     
                         shutterAnim.SetTrigger("Open");
@@ -121,7 +120,7 @@ public class IntroController : MonoBehaviour
         phone[0].SetActive(false);
         phone[2].SetActive(true);
         returnArrow.SetActive(true);
-        thoughtText.text = "I'm so tired...";
+        thought.text = "I'm so tired....";
         FindObjectOfType<AudioCtrl>().Stop("Alarm");
     }
 
@@ -195,16 +194,40 @@ public class IntroController : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         introTextObj[3].SetActive(false);
         FindObjectOfType<AudioCtrl>().Play("Past");
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(8.0f);
         speechBalloon.SetTrigger("Past");
         yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < introText[4].Length; i++)
         {
             currentText = introText[4].Substring(0, i);
             introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(delay);      
+        }
+        yield return new WaitForSeconds(1.0f);
+        currentText = "";
+        introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
+        yield return new WaitForSeconds(5.0f);
+        speechBalloon.SetTrigger("L2R");
+        yield return new WaitForSeconds(1.0f);
+        for (int i = 0; i < introText[5].Length; i++)
+        {
+            currentText = introText[5].Substring(0, i);
+            introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
-        yield return new WaitForSeconds(30.0f);
+        yield return new WaitForSeconds(3.0f);
+        currentText = "";
+        introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
+        yield return new WaitForSeconds(3.0f);
+        speechBalloon.SetTrigger("RTT");
+        yield return new WaitForSeconds(1.0f);
+        for (int i = 0; i < introText[6].Length; i++)
+        {
+            currentText = introText[6].Substring(0, i);
+            introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(delay);
+        }
+        yield return new WaitForSeconds(6.0f);
         SceneManager.LoadScene("Dialog");
     }
 
