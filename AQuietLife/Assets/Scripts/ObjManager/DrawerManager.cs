@@ -96,8 +96,8 @@ public class DrawerManager : MonoBehaviour
 
                 if (select.usingStoveCloth == true)
                 {
-                    doors[0].SetActive(false);
-                    doors[1].SetActive(true);
+                    doors[4].SetActive(false);
+                    doors[5].SetActive(true);
                     FindObjectOfType<StoveCloth>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
@@ -133,6 +133,14 @@ public class DrawerManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         returnArrow.SetActive(false);
         //rewindButton.SetActive(false);
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void EnableObjs()
+    {
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void LockAndUnlock()

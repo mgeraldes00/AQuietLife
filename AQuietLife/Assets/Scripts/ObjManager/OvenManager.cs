@@ -11,9 +11,6 @@ public class OvenManager : MonoBehaviour
     public GameObject[] objects;
 
     public GameObject returnArrow;
-    public GameObject cloth;
-
-    public BoxCollider2D glove;
 
     private bool isLocked;
 
@@ -31,9 +28,16 @@ public class OvenManager : MonoBehaviour
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        glove.enabled = false;
         returnArrow.SetActive(false);
         //rewindButton.SetActive(false);
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void EnableObjs()
+    {
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void LockAndUnlock()

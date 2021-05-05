@@ -6,7 +6,7 @@ public class CloseUpOven : MonoBehaviour
 {
     public CameraCtrl zoom;
     public GameManager gameMng;
-    //public OvenManager breadBoxMng;
+    public OvenManager ovenMng;
 
     public GameObject returnArrow;
 
@@ -34,6 +34,7 @@ public class CloseUpOven : MonoBehaviour
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
         returnArrow.SetActive(true);
+        ovenMng.EnableObjs();
         zoom.currentView++;
     }
 

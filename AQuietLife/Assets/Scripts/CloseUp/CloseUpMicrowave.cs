@@ -63,6 +63,7 @@ public class CloseUpMicrowave : MonoBehaviour
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
         returnArrow.SetActive(true);
+        microMng.EnableObjs();
         zoom.currentView++;
     }
 

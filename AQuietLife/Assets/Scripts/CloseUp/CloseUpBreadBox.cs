@@ -54,7 +54,7 @@ public class CloseUpBreadBox : MonoBehaviour
         breadBox.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;       
-        returnArrow.SetActive(true);
+        returnArrow.SetActive(true);breadBoxMng.EnableObjs();
         zoom.currentView++;
     }
 

@@ -75,7 +75,8 @@ public class CloseUpCabinet : MonoBehaviour
         //noTextCollidersGeneral.SetActive(false);
         //inspectionTextGeneral.SetActive(false);
         //noTextColliderCabinet.SetActive(true);
-        //cabinetButtons.SetActive(true);       
+        //cabinetButtons.SetActive(true);
+        cabinetMng.EnableObjs();
         zoom.currentView++;
     }
 
