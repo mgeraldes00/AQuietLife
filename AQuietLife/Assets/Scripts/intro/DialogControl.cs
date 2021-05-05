@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DialogControl : MonoBehaviour
 {
@@ -79,7 +80,7 @@ public class DialogControl : MonoBehaviour
         for (int i = 0; i < introText.Length; i++)
         {
             currentText = introText.Substring(0, i);
-            introTextObj.GetComponent<Text>().text = currentText;
+            introTextObj.GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
         yield return new WaitForSeconds(1.5f);
