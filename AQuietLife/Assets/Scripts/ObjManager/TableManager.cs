@@ -224,7 +224,6 @@ public class TableManager : MonoBehaviour
                 ham.SetActive(false);
                 inventory.BreadCutInInventory();
                 plateTaken = true;
-                gameMng.pickUpTextFinal.SetActive(false);
             }
         }
     }

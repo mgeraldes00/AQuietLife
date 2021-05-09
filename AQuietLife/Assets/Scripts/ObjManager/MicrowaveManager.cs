@@ -72,17 +72,28 @@ public class MicrowaveManager : MonoBehaviour
             {
                 if (doorOpen == false && working == false)
                 {
-                    //if (worked == true)
-                    //bread.enabled = true;
-                    //doorAnim.SetTrigger("Open");
-                    //doorOpen = true;
-                    //structure.enabled = true;
-                    OpenAndUnlock();
-                    //doorOpen = true;
-                    door[0].SetActive(false);
-                    door[1].SetActive(true);
-                    objects[1].SetActive(true);
-                    zoom.InteractionTransition();
+                    if (worked == false)
+                    {
+                        //if (worked == true)
+                        //bread.enabled = true;
+                        //doorAnim.SetTrigger("Open");
+                        //doorOpen = true;
+                        //structure.enabled = true;
+                        OpenAndUnlock();
+                        //doorOpen = true;
+                        door[0].SetActive(false);
+                        door[1].SetActive(true);
+                        objects[1].SetActive(true);
+                        zoom.InteractionTransition();
+                    }
+
+                    if (worked == true)
+                    {
+                        OpenAndUnlock();
+                        door[0].SetActive(false);
+                        door[1].SetActive(true);
+                        zoom.InteractionTransition();
+                    }                    
                 }
 
                 if (doorOpen == true)
@@ -128,7 +139,6 @@ public class MicrowaveManager : MonoBehaviour
                 door[0].SetActive(false);
                 door[2].SetActive(true);
                 working = true;
-                worked = true;
                 microwaveWork.Play();
                 //StartCoroutine(Unfreeze());
                 gameMng.StartCoroutine(Unfreeze());
@@ -198,6 +208,7 @@ public class MicrowaveManager : MonoBehaviour
         yield return new WaitForSeconds(10);
         //doorAnim.SetBool("Working", false);
         working = false;
+        worked = true;
         door[2].SetActive(false);
         door[0].SetActive(true);
     }

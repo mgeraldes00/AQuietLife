@@ -8,7 +8,6 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public InventoryManager inventory;
-    public ObjectiveManager objective;
     public ThoughtManager thought;
     public CabinetManager cabinet;
     public BreadBoxManager breadBox;
@@ -16,9 +15,6 @@ public class GameManager : MonoBehaviour
     public FridgeManager fridge;
     public MicrowaveManager microwave;
     public TableManager table;
-    public ClockManager clock;
-
-    public TextMeshProUGUI thoughtText;
 
     public GameObject[] context;
     public GameObject[] contextButtons;
@@ -28,18 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject sceneCloseUp;
     public GameObject canvas;
 
-    public GameObject timeText;
-    public GameObject inspectionText;
-    public GameObject tableInteractionText;
-    public GameObject interactionText;
-    public GameObject pickUpText;
-    public GameObject pickUpTextFinal;
-    public GameObject exitText;
     public GameObject returnArrow;
-    //public GameObject startTutorial;
-    //public GameObject gloveTutorial;
-    //public GameObject objectTutorial;
-    //public GameObject finalTutorial;
     public GameObject noTextCollidersGeneral;
 
     public Animator kitchenClock;
@@ -68,9 +53,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.GetComponent<Text>().text =
-            "" + clock.GetComponent<ClockManager>().pTime;
-
         Vector3 mousePos =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -115,12 +97,7 @@ public class GameManager : MonoBehaviour
         {
             //pickUpText.SetActive(true);
             thought.ShowThought();
-            thoughtText.text = "Need to place this somewhere first.";
-        }
-
-        else if (hit.collider.CompareTag("Plate") && objective.part1Complete == true)
-        {
-            //pickUpTextFinal.SetActive(true);
+            thought.text = "Need to place this somewhere first.";
         }
 
         else if (hit.collider.CompareTag("TableClose")
@@ -140,12 +117,7 @@ public class GameManager : MonoBehaviour
 
         else if (hit.collider.CompareTag("NoTag"))
         {
-            inspectionText.SetActive(false);
-            interactionText.SetActive(false);
-            pickUpText.SetActive(false);
-            pickUpTextFinal.SetActive(false);
-            tableInteractionText.SetActive(false);
-            exitText.SetActive(false);
+
         }
 
         /*if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Table") ||
@@ -156,14 +128,6 @@ public class GameManager : MonoBehaviour
             inspectionText.SetActive(false);
             noTextCollidersGeneral.SetActive(false);
         }*/
-
-        if (objective.hasPlate == true && firstObject == false ||
-            objective.hasBread == true && firstObject == false ||
-            objective.hasKnife == true && firstObject == false)
-        {
-            firstObject = true;
-            ShowTutorial();
-        }
 
         if (inventory.hamUsed == true && allObjectives == false)
         {
