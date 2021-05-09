@@ -37,8 +37,11 @@ public class FrozenBread : MonoBehaviour, IPointerClickHandler
     private void DeselectRest()
     {
         select.usingPlate = false;
+        select.usingPlateW1Ing = false;
         select.usingKnife = false;
         select.usingBread = false;
+        select.usingPlateWFrozenBread = false;
+        select.usingHam = false;
         select.usingStoveCloth = false;
         select.usingGlove = false;
     }

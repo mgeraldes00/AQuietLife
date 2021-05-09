@@ -37,10 +37,11 @@ public class Ham : MonoBehaviour, IPointerClickHandler
     private void DeselectRest()
     {
         select.usingPlate = false;
-        select.usingPlateWFrozenBread = false;
         select.usingPlateW1Ing = false;
         select.usingKnife = false;
         select.usingBread = false;
+        select.usingFrozenBread = false;
+        select.usingPlateWBread = false;
         select.usingStoveCloth = false;
         select.usingGlove = false;
     }

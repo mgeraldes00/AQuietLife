@@ -39,7 +39,12 @@ public class CloseUpCabinet : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("Cabinet") && gameMng.isLocked == false
+            if (hit.collider == null)
+            {
+                //Nothing
+            }
+
+            else if (hit.collider.CompareTag("Cabinet") && gameMng.isLocked == false
                 && zoom.currentView == 0)
             {
                 Debug.Log(hit.collider.gameObject.name);

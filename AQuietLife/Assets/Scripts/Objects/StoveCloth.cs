@@ -37,8 +37,12 @@ public class StoveCloth : MonoBehaviour, IPointerClickHandler
     private void DeselectRest()
     {
         select.usingPlate = false;
-        select.usingBread = false;
-        select.usingGlove = false;
+        select.usingPlateW1Ing = false;
         select.usingKnife = false;
+        select.usingBread = false;
+        select.usingFrozenBread = false;
+        select.usingHam = false;
+        select.usingPlateWFrozenBread = false;
+        select.usingGlove = false;
     }
 }

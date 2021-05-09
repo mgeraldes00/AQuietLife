@@ -52,8 +52,13 @@ public class BreadBoxManager : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-         
-            if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false
+
+            if (hit.collider == null)
+            {
+                //Nothing
+            }
+
+            else if (hit.collider.CompareTag("BreadBoxDoor") && doorOpen == false
                 && gameMng.isLocked == false)
             {
                 if (select.usingNothing == true)
@@ -83,7 +88,7 @@ public class BreadBoxManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("Bread1") && bread1Taken == false
+            else if (hit.collider.CompareTag("Bread1") && bread1Taken == false
                 && gameMng.isLocked == false && select.usingKnife == true)
             {
                 bread1Taken = true;

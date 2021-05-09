@@ -45,7 +45,12 @@ public class FridgeManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
+            if (hit.collider == null)
+            {
+                //Nothing
+            }
+
+            else if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
                 && lookAtFridge == true)
             {
                 if (isTrapped == true)
@@ -91,7 +96,7 @@ public class FridgeManager : MonoBehaviour
                 }               
             }
 
-            if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
+            else if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
                 && gameMng.isLocked == false && lookAtFridge == false)
             {
                 if (doorRightOpen == false)

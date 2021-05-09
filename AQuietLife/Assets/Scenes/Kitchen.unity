@@ -1101,9 +1101,6 @@ MonoBehaviour:
   returnArrow: {fileID: 1479651714}
   glove: {fileID: 203634170}
   cabinetRewindButton: {fileID: 782673415}
-  plate: {fileID: 204289917}
-  plateInteract: {fileID: 1556863922}
-  glass: {fileID: 1303974461}
   pointer: {fileID: 1204984827}
   rewindText: {fileID: 1228386082}
   waveform: {fileID: 579754932}
@@ -3206,9 +3203,6 @@ MonoBehaviour:
   returnArrow: {fileID: 625711726}
   glove: {fileID: 106106059}
   cabinetRewindButton: {fileID: 1803538595}
-  plate: {fileID: 920608905}
-  plateInteract: {fileID: 2109960089}
-  glass: {fileID: 502431603}
   pointer: {fileID: 1497787818}
   rewindText: {fileID: 0}
   waveform: {fileID: 579754932}
@@ -4917,9 +4911,6 @@ MonoBehaviour:
   returnArrow: {fileID: 0}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 0}
-  plate: {fileID: 0}
-  plateInteract: {fileID: 0}
-  glass: {fileID: 0}
   pointer: {fileID: 0}
   rewindText: {fileID: 0}
   waveform: {fileID: 0}
@@ -6520,7 +6511,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7291,10 +7282,9 @@ GameObject:
   m_Component:
   - component: {fileID: 250813413}
   - component: {fileID: 250813414}
-  - component: {fileID: 250813415}
   m_Layer: 0
   m_Name: countrer_empty
-  m_TagString: Drawers
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7364,32 +7354,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &250813415
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250813412}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.62, y: -0.72}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.39, y: 3.6}
-    newSize: {x: 12.39, y: 3.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.27, y: 2.8}
-  m_EdgeRadius: 0
 --- !u!1 &251723461
 GameObject:
   m_ObjectHideFlags: 0
@@ -10319,9 +10283,6 @@ MonoBehaviour:
   returnArrow: {fileID: 1479651714}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 782673415}
-  plate: {fileID: 0}
-  plateInteract: {fileID: 0}
-  glass: {fileID: 0}
   pointer: {fileID: 1204984827}
   rewindText: {fileID: 1228386082}
   waveform: {fileID: 0}
@@ -31671,7 +31632,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -37790,9 +37751,6 @@ MonoBehaviour:
   returnArrow: {fileID: 0}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 0}
-  plate: {fileID: 1285107637}
-  plateInteract: {fileID: 0}
-  glass: {fileID: 0}
   pointer: {fileID: 0}
   rewindText: {fileID: 0}
   waveform: {fileID: 0}
@@ -42948,7 +42906,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

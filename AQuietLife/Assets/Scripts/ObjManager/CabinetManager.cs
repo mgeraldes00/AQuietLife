@@ -45,9 +45,9 @@ public class CabinetManager : MonoBehaviour
     public GameObject cabinetRewindButton;
     //public GameObject cabinetButtons;    
     //public GameObject cabinet;
-    public GameObject plate;
-    public GameObject plateInteract;
-    public GameObject glass;
+    //public GameObject plate;
+    //public GameObject plateInteract;
+    //public GameObject glass;
 
     public Animator pointer;
     public Animator rewindText;
@@ -100,7 +100,12 @@ public class CabinetManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
+            if (hit.collider == null)
+            {
+                //Nothing
+            }
+
+            else if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
             {
                 if (select.usingNothing == true)
                 {
@@ -125,7 +130,7 @@ public class CabinetManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
+            else if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
                 if (select.usingNothing == true)
                 {
@@ -150,69 +155,55 @@ public class CabinetManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("CabinetDoor2") && door2Open == false 
+            else if (hit.collider.CompareTag("CabinetDoor2") && gameMng.isLocked == false)
+            {
+                if (door2Open == false)
+                {
+                    //door2Anim.SetBool("Door2Open", true);
+                    doors[0].SetActive(false);
+                    doors[1].SetActive(true);
+                    door2Open = true;
+                    //doorSound.Play();
+                    //glove.SetActive(true);
+                    LockAndUnlock();
+                    zoom.InteractionTransition();
+                }
+
+                if (door2Open == true)
+                {
+                    //Do nothing
+                }
+            } 
+
+            else if (hit.collider.CompareTag("CabinetDoor4") && door4Open == false 
                 && gameMng.isLocked == false)
             {
-                //door2Anim.SetBool("Door2Open", true);
-                doors[0].SetActive(false);
-                doors[1].SetActive(true);        
-                door2Open = true;
-                //doorSound.Play();
-                //glove.SetActive(true);
-                LockAndUnlock();
-                zoom.InteractionTransition();
+                if (door4Open == false)
+                {
+                    //door4Anim.SetBool("Door4Open", true);
+                    doors[6].SetActive(false);
+                    doors[7].SetActive(true);
+                    objects[0].SetActive(true); ;
+                    door4Open = true;
+                    //plateInteract.SetActive(true);
+                    //doorSound.Play();
+                    //interactionText.SetActive(false);
+                    LockAndUnlock();
+                    zoom.InteractionTransition();
+                }
+
+                if (door4Open == true)
+                {
+                    //Do nothing
+                }
             }
 
-            if (hit.collider.CompareTag("CabinetDoor2") && door2Open == true)
-            {
-                //Do nothing
-            }
-
-            if (hit.collider.CompareTag("CabinetDoor4") && door4Open == false 
-                && gameMng.isLocked == false)
-            {
-                //door4Anim.SetBool("Door4Open", true);
-                doors[6].SetActive(false);
-                doors[7].SetActive(true);
-                objects[0].SetActive(true); ;
-                door4Open = true;
-                //plateInteract.SetActive(true);
-                //doorSound.Play();
-                //interactionText.SetActive(false);
-                LockAndUnlock();
-                zoom.InteractionTransition();
-            }
-
-            if (hit.collider.CompareTag("CabinetDoor4") && door4Open == true)
-            {
-                //Do nothing
-            }
-
-            /*if (hit.collider.CompareTag("Plate") && inventory.hasObject != true 
-                && gameMng.isLocked == false)
-            {
-                plateInteract.SetActive(false);
-                inventory.PlateInInventory();
-                plateTaken = true;
-                objective.hasPlate = true;
-                gameMng.pickUpText.SetActive(false);
-            }*/
-
-            if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
+            else if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
             {
                 thought.ShowThought();
                 thought.text = "Someone didn't close this properly...";
             }
         }
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (anim != null)
-            {
-                // play Bounce but start at a quarter of the way though
-                anim.Play("Base Layer.cabinetOpen", 0, 0.25f);
-            }
-        }*/
     }
 
     public void Rewind()
@@ -389,8 +380,8 @@ public class CabinetManager : MonoBehaviour
         isLocked = false;
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
-        plate.SetActive(false);
-        glass.SetActive(false);
+        //plate.SetActive(false);
+        //glass.SetActive(false);
     }
 
     IEnumerator UnlockRewind()

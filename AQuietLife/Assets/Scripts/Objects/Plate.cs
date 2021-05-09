@@ -36,7 +36,13 @@ public class Plate : MonoBehaviour, IPointerClickHandler
 
     private void DeselectRest()
     {
-        select.usingGlove = false;
+        select.usingPlateWBread = false;
+        select.usingPlateW1Ing = false;
+        select.usingKnife = false;
+        select.usingBread = false;
+        select.usingFrozenBread = false;
+        select.usingHam = false;
         select.usingStoveCloth = false;
+        select.usingGlove = false;
     }
 }

@@ -40,6 +40,8 @@ public class PlateWFrozenBread : MonoBehaviour, IPointerClickHandler
         select.usingPlateW1Ing = false;
         select.usingKnife = false;
         select.usingBread = false;
+        select.usingPlateWBread = false;
+        select.usingHam = false;
         select.usingStoveCloth = false;
         select.usingGlove = false;
     }

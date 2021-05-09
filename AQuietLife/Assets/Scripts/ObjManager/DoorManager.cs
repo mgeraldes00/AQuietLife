@@ -36,7 +36,12 @@ public class DoorManager : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-                if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
+                if (hit.collider == null)
+                {
+                    //Nothing
+                }
+
+                else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
                 {
                     //FindObjectOfType<AudioSource>().Play();
                     doorOpen.Play();
@@ -44,7 +49,7 @@ public class DoorManager : MonoBehaviour
                     //SceneManager.LoadScene("MainMenu");
                 }
 
-                if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == false)
+                else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == false)
                 {
                     //FindObjectOfType<AudioSource>().Play();
                     thought.ShowThought();

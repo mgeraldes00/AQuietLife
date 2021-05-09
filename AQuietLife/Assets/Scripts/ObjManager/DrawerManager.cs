@@ -51,7 +51,12 @@ public class DrawerManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("DrawerDoor1") && gameMng.isLocked == false)
+            if (hit.collider == null)
+            {
+                //Nothing
+            }
+
+            else if (hit.collider.CompareTag("DrawerDoor1") && gameMng.isLocked == false)
             {
                 if (select.usingNothing == true)
                 {
@@ -78,7 +83,7 @@ public class DrawerManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("DrawerDoor3") && gameMng.isLocked == false)
+            else if (hit.collider.CompareTag("DrawerDoor3") && gameMng.isLocked == false)
             {
                 if (select.usingNothing == true)
                 {
@@ -103,7 +108,7 @@ public class DrawerManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("DrawerDoor2") && doorCenterOpen == false
+            else if (hit.collider.CompareTag("DrawerDoor2") && doorCenterOpen == false
                 && gameMng.isLocked == false)
             {
                 doors[2].SetActive(false);
@@ -112,12 +117,6 @@ public class DrawerManager : MonoBehaviour
                 doorCenterOpen = true;
                 LockAndUnlock();
                 zoom.InteractionTransition();
-            }
-
-            if (hit.collider.CompareTag("CabinetBreach") && gameMng.isLocked == false)
-            {
-                thought.ShowThought();
-                thought.text = "I cleaned this yesterday...";
             }
         }
     }

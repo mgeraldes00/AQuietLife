@@ -37,7 +37,12 @@ public class CloseUpFridge : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-                if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false
+                if (hit.collider == null)
+                {
+                    //Nothing
+                }
+
+                else if (hit.collider.CompareTag("Fridge") && gameMng.isLocked == false
                     && zoom.currentView == 0)
                 {
                     Debug.Log(hit.collider.gameObject.name);
@@ -48,7 +53,7 @@ public class CloseUpFridge : MonoBehaviour
                     StartCoroutine(TimeToZoom());
                 }
 
-                if (hit.collider.CompareTag("Freezer") && gameMng.isLocked == false
+                else if (hit.collider.CompareTag("Freezer") && gameMng.isLocked == false
                     && zoom.currentView == 0)
                 {
                     Debug.Log(hit.collider.gameObject.name);

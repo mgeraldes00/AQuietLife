@@ -37,7 +37,11 @@ public class Knife : MonoBehaviour, IPointerClickHandler
     private void DeselectRest()
     {
         select.usingPlate = false;
+        select.usingPlateW1Ing = false;
+        select.usingPlateWFrozenBread = false;
         select.usingBread = false;
+        select.usingFrozenBread = false;
+        select.usingHam = false;
         select.usingStoveCloth = false;
         select.usingGlove = false;
     }

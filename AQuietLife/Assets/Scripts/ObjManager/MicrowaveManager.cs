@@ -63,56 +63,64 @@ public class MicrowaveManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("MicrowaveDoor") && gameMng.isLocked == false
-                && doorOpen == false && working == false)
+            if (hit.collider == null)
             {
-                //if (worked == true)
+                //Nothing
+            }
+
+            else if (hit.collider.CompareTag("MicrowaveDoor") && gameMng.isLocked == false)
+            {
+                if (doorOpen == false && working == false)
+                {
+                    //if (worked == true)
                     //bread.enabled = true;
-                //doorAnim.SetTrigger("Open");
-                //doorOpen = true;
-                //structure.enabled = true;
-                OpenAndUnlock();
-                //doorOpen = true;
-                door[0].SetActive(false);
-                door[1].SetActive(true);
-                objects[1].SetActive(true);
-                zoom.InteractionTransition();
+                    //doorAnim.SetTrigger("Open");
+                    //doorOpen = true;
+                    //structure.enabled = true;
+                    OpenAndUnlock();
+                    //doorOpen = true;
+                    door[0].SetActive(false);
+                    door[1].SetActive(true);
+                    objects[1].SetActive(true);
+                    zoom.InteractionTransition();
+                }
+
+                if (doorOpen == true)
+                {
+                    //if (worked == true)
+                    //bread.enabled = false;
+                    //doorAnim.SetTrigger("Close");
+                    //doorAnim.SetBool("PrevOpen", false);
+                    //doorOpen = false;
+                    CloseAndUnlock();
+                    //doorOpen = false;
+                    door[0].SetActive(true);
+                    door[1].SetActive(false);
+                    objects[1].SetActive(false);
+                    objects[2].SetActive(true);
+                    zoom.InteractionTransition();
+                }
+                
             }
 
-            if (hit.collider.CompareTag("MicrowaveDoor") && gameMng.isLocked == false
-                && doorOpen == true)
+            else if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false)
             {
-                //if (worked == true)
-                //bread.enabled = false;
-                //doorAnim.SetTrigger("Close");
-                //doorAnim.SetBool("PrevOpen", false);
-                //doorOpen = false;
-                CloseAndUnlock();
-                //doorOpen = false;
-                door[0].SetActive(true);
-                door[1].SetActive(false);
-                objects[1].SetActive(false);
-                objects[2].SetActive(true);
-                zoom.InteractionTransition();
+                if (doorOpen == true && select.usingPlateWFrozenBread == true)
+                {
+                    objects[0].SetActive(true);
+                    objects[1].SetActive(false);
+                    breadPlaced = true;
+                    FindObjectOfType<PlateWFrozenBread>().frozenBreadWPlateUsed = true;
+                }  
+
+                if (doorOpen == true)
+                {
+                    thought.ShowThought();
+                    thought.text = "Better place this in a plate first.";
+                }
             }
 
-            if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false
-                && doorOpen == true && select.usingPlateWFrozenBread)
-            {
-                objects[0].SetActive(true);
-                objects[1].SetActive(false);
-                breadPlaced = true;
-                FindObjectOfType<PlateWFrozenBread>().frozenBreadWPlateUsed = true;
-            }
-
-            if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false
-                && doorOpen == true)
-            {
-                thought.ShowThought();
-                thought.text = "Better place this in a plate first.";
-            }
-
-            if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
+            else if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
                 && doorOpen == false && breadPlaced == true && worked == false)
             {
                 //Start audio
@@ -124,12 +132,6 @@ public class MicrowaveManager : MonoBehaviour
                 microwaveWork.Play();
                 //StartCoroutine(Unfreeze());
                 gameMng.StartCoroutine(Unfreeze());
-            }
-
-            if (hit.collider.CompareTag("Bread1") && gameMng.isLocked == false
-                && worked == true)
-            {
-                //breadObj.SetActive(false);
             }
         }
     }

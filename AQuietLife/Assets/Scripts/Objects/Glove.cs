@@ -37,6 +37,12 @@ public class Glove : MonoBehaviour, IPointerClickHandler
     private void DeselectRest()
     {
         select.usingPlate = false;
+        select.usingPlateW1Ing = false;
+        select.usingKnife = false;
+        select.usingBread = false;
+        select.usingFrozenBread = false;
+        select.usingHam = false;
         select.usingStoveCloth = false;
+        select.usingPlateWFrozenBread = false;
     }
 }
