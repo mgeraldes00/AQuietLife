@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BreadBoxManager : MonoBehaviour
 {
     public CameraCtrl zoom;
     public GameManager gameMng;
-    public ObjectiveManager objective;
+    public MediaPlayer audioCtrl;
+    public AudioSlider audioSlider;
+    public Eyelids eyelids;
     public CloseUpBreadBox closeUp;
     public ThoughtManager thought;
     public ObjectSelection select;
@@ -15,19 +18,22 @@ public class BreadBoxManager : MonoBehaviour
     public GameObject[] objects;
 
     public GameObject returnArrow;
-    //public GameObject noTextCollidersGeneral;
-    //public GameObject noTextColliderBreadBox;
-    //public GameObject interactionText;
-    //public GameObject activityText;
-    //public GameObject breadBoxButtons;
-    //public GameObject breadBoxRewindButton;
-    public GameObject bread;
-    public GameObject breadInteract1;
-    public GameObject breadInteract2;
+    public GameObject breadBoxRewindButton;
 
+    public Image waveformBreadBox;
+
+    public GameObject slider;
+
+    public AudioSource rewindAudio;
+    public AudioSource rewindReverseAudio;
+
+    public Animator rewindAnim;
+
+    [SerializeField]
     private bool isLocked;
-    private bool isTrapped;
-    
+    [SerializeField]
+    private bool rewindOnce;
+
     public bool rewindApplied;
     public bool bread1Taken;
     public bool doorOpen;
@@ -37,7 +43,6 @@ public class BreadBoxManager : MonoBehaviour
     void Start()
     {
         isLocked = false;
-        isTrapped = true;
         hasTime = true;
     }
 
@@ -101,6 +106,17 @@ public class BreadBoxManager : MonoBehaviour
         }
     }
 
+    public void Rewind()
+    {
+        if (isLocked == false && gameMng.isLocked == false)
+        {
+            audioCtrl.rewindAudio = rewindAudio;
+            audioSlider.rewindAudio = rewindAudio;
+            eyelids.timerSmall = rewindAnim;
+            StartCoroutine(TimeToOpen());
+        }
+    }
+
     public void ButtonBehaviour()
     {
         closeUp.Normalize();
@@ -111,7 +127,7 @@ public class BreadBoxManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         returnArrow.SetActive(false);
-        //rewindButton.SetActive(false);
+        breadBoxRewindButton.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -132,11 +148,54 @@ public class BreadBoxManager : MonoBehaviour
         }
     }
 
+    public void RewindLock()
+    {
+        if (isLocked == false && gameMng.isLocked == false)
+        {
+            returnArrow.SetActive(false);
+            isLocked = true;
+            gameMng.isLocked = true;
+        }
+    }
+
     IEnumerator Unlock()
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
         returnArrow.SetActive(true);
-        bread.SetActive(false);
+    }
+
+    IEnumerator TimeToOpen()
+    {
+        yield return new WaitForSeconds(0.1f);
+        eyelids.Close();
+        if (rewindOnce != true)
+        {
+            yield return new WaitForSeconds(3);
+            eyelids.pointer.SetTrigger("CabinetRewind");
+            rewindReverseAudio.Play();
+            eyelids.timer.SetTrigger("Pressed");
+            waveformBreadBox.enabled = true;
+            eyelids.Uncover();
+            rewindOnce = true;
+            yield return new WaitForSeconds(2);
+            eyelids.timer.SetTrigger("Pressed");
+            eyelids.pointer.SetBool("Moving", true);
+            eyelids.mediaFunction = true;
+            audioCtrl.pressedButtons[2].SetActive(true);
+            slider.SetActive(true);
+            rewindAudio.Play();
+        }
+        else if (rewindOnce == true)
+        {
+            yield return new WaitForSeconds(2);
+            eyelids.timer.SetTrigger("Pressed");
+            eyelids.pointer.SetBool("Moving", true);
+            eyelids.mediaFunction = true;
+            audioCtrl.pressedButtons[2].SetActive(true);
+            slider.SetActive(true);
+            waveformBreadBox.enabled = true;
+            rewindAudio.Play();
+        }
     }
 }

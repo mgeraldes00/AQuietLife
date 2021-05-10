@@ -37,23 +37,33 @@ public class AudioSlider : MonoBehaviour
         timeLineOnDrag = false;
     }*/
 
+    public AudioSource rewindAudio;
+
     public Slider TimeLine;
     // Flag to know if we are draging the Timeline handle
     private bool TimeLineOnDrag = false;
 
+    private void Start()
+    {
+        rewindAudio = null;
+    }
+
     void Update()
     {
-        if (TimeLineOnDrag)
+        if (rewindAudio != null)
         {
+            if (TimeLineOnDrag)
+            {
 
-            GetComponent<AudioSource>().timeSamples = (int)(GetComponent<AudioSource>().clip.samples * TimeLine.value);
+                rewindAudio.timeSamples = (int)(rewindAudio.clip.samples * TimeLine.value);
 
-        }
+            }
 
-        else
-        {
-            TimeLine.value = (float)GetComponent<AudioSource>().timeSamples / (float)GetComponent<AudioSource>().clip.samples;
-        }
+            else
+            {
+                TimeLine.value = (float)rewindAudio.timeSamples / (float)rewindAudio.clip.samples;
+            }
+        }      
     }
 
     // Called by the event trigger when the drag begin
@@ -61,14 +71,14 @@ public class AudioSlider : MonoBehaviour
     {
         TimeLineOnDrag = true;
 
-        GetComponent<AudioSource>().Pause();
+        rewindAudio.Pause();
     }
 
 
     // Called at the end of the drag of the TimeLine
     public void TimeLineOnEndDrag()
     {
-        GetComponent<AudioSource>().Play();
+        rewindAudio.Play();
 
         TimeLineOnDrag = false;
     }

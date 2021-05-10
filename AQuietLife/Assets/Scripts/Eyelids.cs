@@ -29,18 +29,6 @@ public class Eyelids : MonoBehaviour
 
     public bool mediaFunction;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        mediaFunction = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Close()
     {
         eyelids.SetTrigger("Close");
@@ -85,7 +73,7 @@ public class Eyelids : MonoBehaviour
         timer.SetBool("Rewind", false);
         tick.Stop();*/
         yield return new WaitForSeconds(0.2f);
-        text.SetBool("Working", false);
+        //text.SetBool("Working", false);
         timer.SetTrigger("RewindEnd");       
         pointer.SetBool("Moving", false);
         slider.SetActive(false);

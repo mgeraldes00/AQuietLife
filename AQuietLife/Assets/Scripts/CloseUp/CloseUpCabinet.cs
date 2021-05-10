@@ -21,12 +21,6 @@ public class CloseUpCabinet : MonoBehaviour
     public BoxCollider2D cabinet;
     public BoxCollider2D[] zoomableObjs;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

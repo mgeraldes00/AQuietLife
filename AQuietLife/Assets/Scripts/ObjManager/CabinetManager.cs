@@ -6,13 +6,10 @@ using TMPro;
 
 public class CabinetManager : MonoBehaviour
 {
-    //public ClockManager clock;
     public CameraCtrl zoom;
-    //public Hands hands;
     public Clock wave;
     public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
-    //public InventoryManager inventory;
     public Eyelids eyelids;
     public GloveManager gloveMng;
     public ObjectiveManager objective;
@@ -20,8 +17,6 @@ public class CabinetManager : MonoBehaviour
     public CloseUpCabinet closeUp;
     public ThoughtManager thought;
     public ObjectSelection select;
-
-    public TextMeshProUGUI thoughtText;
 
     /*public GameObject cabinetGeneral;
     public GameObject cabinetDoor2Open;
@@ -50,7 +45,7 @@ public class CabinetManager : MonoBehaviour
     //public GameObject glass;
 
     public Animator pointer;
-    public Animator rewindText;
+    public Animator rewindAnim;
 
     private Animator anim;
 
@@ -208,10 +203,12 @@ public class CabinetManager : MonoBehaviour
 
     public void Rewind()
     {
-        if (isLocked == false && hasTime == true && gameMng.isLocked == false)
-        {
-            eyelids.Close();
+        if (isLocked == false && gameMng.isLocked == false)
+        {     
             //rewindAudio.Play();
+            audioCtrl.rewindAudio = rewindAudio;
+            audioSlider.rewindAudio = rewindAudio;
+            eyelids.timerSmall = rewindAnim;
             StartCoroutine(TimeToOpen());
             //cabinetButtons.SetActive(true);
             //cabinetRewindButton.SetActive(false);
@@ -360,7 +357,7 @@ public class CabinetManager : MonoBehaviour
 
     public void RewindLock()
     {
-        if (isLocked == false && hasTime == true && gameMng.isLocked == false)
+        if (isLocked == false && gameMng.isLocked == false)
         {
             returnArrow.SetActive(false);
             isLocked = true;
@@ -409,6 +406,8 @@ public class CabinetManager : MonoBehaviour
         slider.SetActive(false);
         waveformCabinet.enabled = false;
         //waveform.enabled = false;*/
+        yield return new WaitForSeconds(0.1f);
+        eyelids.Close();
         if (rewindOnce != true)
         {
             yield return new WaitForSeconds(3);
@@ -421,7 +420,6 @@ public class CabinetManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
             eyelids.pointer.SetBool("Moving", true);
-            rewindText.SetBool("Working", true);
             /*for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);*/
             eyelids.mediaFunction = true;
@@ -436,7 +434,6 @@ public class CabinetManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
             eyelids.pointer.SetBool("Moving", true);
-            rewindText.SetBool("Working", true);
             /*for (int i = 0; i < eyelids.ctrlButtons.Length; i++)
                 eyelids.ctrlButtons[i].SetActive(true);*/
             eyelids.mediaFunction = true;

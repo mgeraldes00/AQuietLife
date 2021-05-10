@@ -9,14 +9,7 @@ public class CloseUpBreadBox : MonoBehaviour
     public BreadBoxManager breadBoxMng;
 
     public GameObject returnArrow;
-    //public GameObject noTextCollidersGeneral;
-    //public GameObject noTextColliderBreadBox;
-    //public GameObject inspectionTextGeneral;
-    //public GameObject[] objsToZoom;
-    //public GameObject breadBox;
-    //public GameObject breadBoxButtons;
-    //public GameObject activityText;
-    //public GameObject breadBoxRewindButton;
+    public GameObject breadBoxRewindButton;
 
     public BoxCollider2D breadBox;
     public BoxCollider2D[] zoomableObjs;
@@ -55,7 +48,7 @@ public class CloseUpBreadBox : MonoBehaviour
     IEnumerator TimeToZoom()
     {
         yield return new WaitForSeconds(0.1f);
-        //breadBoxRewindButton.SetActive(true);
+        breadBoxRewindButton.SetActive(true);
         breadBox.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;       
