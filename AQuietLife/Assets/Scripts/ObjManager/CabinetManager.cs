@@ -112,6 +112,7 @@ public class CabinetManager : MonoBehaviour
                 {
                     doors[2].SetActive(false);
                     doors[3].SetActive(true);
+                    objects[1].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
@@ -120,6 +121,7 @@ public class CabinetManager : MonoBehaviour
                 {
                     doors[2].SetActive(false);
                     doors[3].SetActive(true);
+                    objects[1].SetActive(true);
                     FindObjectOfType<StoveCloth>().gloveUsed = true;
                     zoom.InteractionTransition();
                 }
@@ -410,9 +412,10 @@ public class CabinetManager : MonoBehaviour
         eyelids.Close();
         if (rewindOnce != true)
         {
-            yield return new WaitForSeconds(3);
-            eyelids.pointer.SetTrigger("CabinetRewind");
+            yield return new WaitForSeconds(2.0f);
             rewindReverseAudio.Play();
+            yield return new WaitForSeconds(1);
+            eyelids.pointer.SetTrigger("CabinetRewind"); 
             eyelids.timer.SetTrigger("Pressed");
             waveformCabinet.enabled = true;
             eyelids.Uncover();
@@ -439,6 +442,7 @@ public class CabinetManager : MonoBehaviour
             eyelids.mediaFunction = true;
             //audioCtrl.audioButtons[2].SetBool("Play", true);
             audioCtrl.pressedButtons[2].SetActive(true);
+            audioCtrl.MoreRewind();
             slider.SetActive(true);
             waveformCabinet.enabled = true;
             rewindAudio.Play();

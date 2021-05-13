@@ -38,6 +38,7 @@ TagManager:
   - StoveCloth
   - ObjectSelection
   - Freezer
+  - Scene
   layers:
   - Default
   - TransparentFX

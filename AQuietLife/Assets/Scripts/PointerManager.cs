@@ -29,7 +29,12 @@ public class PointerManager : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers")
+        if (hit.collider == null)
+        {
+            //Nothing
+        }
+
+        else if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers")
             || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox")
             || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave")
             || hit.collider.CompareTag("CabinetBreach"))
@@ -38,7 +43,7 @@ public class PointerManager : MonoBehaviour
             //Cursor.SetCursor(examineTexture, hotSpot, curMode);
         }
 
-        if (hit.collider.CompareTag("CabinetDoor1")
+        else if (hit.collider.CompareTag("CabinetDoor1")
             || hit.collider.CompareTag("CabinetDoor2")
             || hit.collider.CompareTag("CabinetDoor3")
             || hit.collider.CompareTag("CabinetDoor4")
@@ -52,21 +57,21 @@ public class PointerManager : MonoBehaviour
            // Cursor.SetCursor(interactTexture, hotSpot, curMode);
         }
 
-        if (hit.collider.CompareTag("Plate")
+        else if (hit.collider.CompareTag("Plate")
             || hit.collider.CompareTag("Bread1")
             || hit.collider.CompareTag("Knife"))
         {
             //Cursor.SetCursor(pickUpTexture, hotSpot, curMode);
         }
 
-        if (hit.collider.CompareTag("Door"))
+        else if (hit.collider.CompareTag("Door"))
         {
             //Cursor.SetCursor(doorTexture, hotSpot, curMode);
             //if (gameMng.isLocked == true)
                 //Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }
 
-        if (hit.collider.CompareTag("NoTag") || gameMng.isDead == true)
+        else if (hit.collider.CompareTag("NoTag") || gameMng.isDead == true)
         {
             //Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }       

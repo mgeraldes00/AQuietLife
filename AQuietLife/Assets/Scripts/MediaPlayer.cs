@@ -12,18 +12,6 @@ public class MediaPlayer : MonoBehaviour
 
     public GameObject[] pressedButtons;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ButtonBehaviour(int i)
     {
         var pitchBendGroup = Resources.Load<UnityEngine.Audio.AudioMixerGroup>("Pitch Bend Mixer");
@@ -104,5 +92,11 @@ public class MediaPlayer : MonoBehaviour
                     break;
             }
         }      
+    }
+
+    public void MoreRewind()
+    {
+        rewindAudio.pitch = 1.0f;
+        eyelids.pointer.speed = 1.0f;
     }
 }
