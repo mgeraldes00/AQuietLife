@@ -12,6 +12,8 @@ public class FridgeManager : MonoBehaviour
 
     public GameObject[] doors;
     public GameObject[] objects;
+    public GameObject[] moreObjects;
+    public GameObject[] objectsFreezer;
 
     public GameObject returnArrow;
     public GameObject returnArrowZoom;
@@ -86,7 +88,10 @@ public class FridgeManager : MonoBehaviour
                     {
                         doors[2].SetActive(false);
                         doors[3].SetActive(true);
-                        objects[1].SetActive(true);
+                        for (int i = 0; i < objects.Length; i++)
+                            objects[i].SetActive(true);
+                        for (int i = 0; i < moreObjects.Length; i++)
+                            moreObjects[i].SetActive(true);
                         zoom.InteractionTransition();
                         openingBottomDoor = true;
                         LockAndUnlock();
@@ -96,7 +101,10 @@ public class FridgeManager : MonoBehaviour
                     {
                         doors[2].SetActive(true);
                         doors[3].SetActive(false);
-                        objects[1].SetActive(false);
+                        for (int i = 0; i < objects.Length; i++)
+                            objects[i].SetActive(false);
+                        for (int i = 0; i < moreObjects.Length; i++)
+                            moreObjects[i].SetActive(false);
                         zoom.InteractionTransition();
                         closingBottomDoor = true;
                         LockAndUnlockFromOpen();
@@ -111,7 +119,8 @@ public class FridgeManager : MonoBehaviour
                 {
                     doors[0].SetActive(false);
                     doors[1].SetActive(true);
-                    objects[0].SetActive(true);
+                    for (int i = 0; i < objectsFreezer.Length; i++)
+                        objectsFreezer[i].SetActive(true);
                     zoom.InteractionTransition();
                     openingTopDoor = true;
                     LockAndUnlock();
@@ -121,21 +130,23 @@ public class FridgeManager : MonoBehaviour
                 {
                     doors[0].SetActive(true);
                     doors[1].SetActive(false);
-                    objects[0].SetActive(false);
+                    for (int i = 0; i < objectsFreezer.Length; i++)
+                        objectsFreezer[i].SetActive(false);
                     zoom.InteractionTransition();
                     closingTopDoor = true;
                     LockAndUnlockFromOpen();
                 }
             }
 
-            else if (hit.collider.gameObject.name == "fridge_shelf")
+            else if (hit.collider.gameObject.name == "fridge_shelf" && zoom.currentView == 1)
             {
-                Debug.Log("shelf");
                 returnArrow.SetActive(false);
                 returnArrowZoom.SetActive(true);
+                for (int i = 0; i < moreObjects.Length; i++)
+                    moreObjects[i].GetComponent<BoxCollider2D>().enabled = true;
                 closeUp.directionArrows[0].SetActive(false);
                 zoom.cameraAnim.SetTrigger("ZoomFridge");
-                zoom.currentView++;
+                StartCoroutine(ZoomZoom());
             }
         }
     }
@@ -151,6 +162,8 @@ public class FridgeManager : MonoBehaviour
         {
             returnArrow.SetActive(true);
             returnArrowZoom.SetActive(false);
+            for (int i = 0; i < moreObjects.Length; i++)
+                moreObjects[i].GetComponent<BoxCollider2D>().enabled = false;
             closeUp.directionArrows[0].SetActive(true);
         }
     }
@@ -228,5 +241,11 @@ public class FridgeManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         returnArrow.SetActive(true);
+    }
+
+    IEnumerator ZoomZoom()
+    {
+        yield return new WaitForSeconds(0.1f);
+        zoom.currentView++;
     }
 }
