@@ -128,7 +128,7 @@ public class CameraCtrl : MonoBehaviour
 
     public void BackToGeneral()
     {
-        currentView--;
+        StartCoroutine(RestoreView());
         cameraAnim.SetTrigger("Return2");
     }
 
@@ -140,5 +140,11 @@ public class CameraCtrl : MonoBehaviour
         if (currentPanel == -2)
             currentPanel = 2;
         gameMng.isLocked = false;
+    }
+
+    IEnumerator RestoreView()
+    {
+        yield return new WaitForSeconds(0.1f);
+        currentView--;
     }
 }

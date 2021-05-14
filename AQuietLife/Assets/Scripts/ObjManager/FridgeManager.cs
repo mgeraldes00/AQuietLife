@@ -14,10 +14,16 @@ public class FridgeManager : MonoBehaviour
     public GameObject[] objects;
 
     public GameObject returnArrow;
+    public GameObject returnArrowZoom;
     //public GameObject fridgeRewindButton;
 
-    private bool isLocked;
-    private bool isTrapped;
+    [SerializeField] private bool isLocked;
+    [SerializeField] private bool isTrapped;
+
+    [SerializeField] private bool openingTopDoor;
+    [SerializeField] private bool openingBottomDoor;
+    [SerializeField] private bool closingTopDoor;
+    [SerializeField] private bool closingBottomDoor;
 
     public bool rewindApplied;
     public bool hamTaken;
@@ -63,40 +69,42 @@ public class FridgeManager : MonoBehaviour
 
                     if (select.usingGlove == true)
                     {
-                        doors[2].SetActive(false);
-                        doors[3].SetActive(true);
-                        objects[1].SetActive(true);
                         FindObjectOfType<Glove>().gloveUsed = true;
-                        zoom.InteractionTransition();
+                        StartCoroutine(Untrap());
                     }
 
                     if (select.usingStoveCloth == true)
                     {
-                        doors[2].SetActive(false);
-                        doors[3].SetActive(true);
-                        objects[1].SetActive(true);
                         FindObjectOfType<StoveCloth>().gloveUsed = true;
-                        zoom.InteractionTransition();
+                        StartCoroutine(Untrap());
                     }
                 }
 
                 if (isTrapped == false)
                 {
-                    doors[2].SetActive(false);
-                    doors[3].SetActive(true);
-                    LockAndUnlock(doorRightOpen);
-                }
+                    if (doorLeftOpen == false)
+                    {
+                        doors[2].SetActive(false);
+                        doors[3].SetActive(true);
+                        objects[1].SetActive(true);
+                        zoom.InteractionTransition();
+                        openingBottomDoor = true;
+                        LockAndUnlock();
+                    }
 
-                if (doorLeftOpen == false)
-                {
-                    doors[2].SetActive(false);
-                    doors[3].SetActive(true);
-                    objects[1].SetActive(true);
-                    LockAndUnlock(doorLeftOpen);
-                }               
+                    if (doorLeftOpen == true)
+                    {
+                        doors[2].SetActive(true);
+                        doors[3].SetActive(false);
+                        objects[1].SetActive(false);
+                        zoom.InteractionTransition();
+                        closingBottomDoor = true;
+                        LockAndUnlockFromOpen();
+                    }
+                }                   
             }
 
-            else if (hit.collider.CompareTag("FridgeDoor2") && doorRightOpen == false
+            else if (hit.collider.CompareTag("FridgeDoor2")
                 && gameMng.isLocked == false && lookAtFridge == false)
             {
                 if (doorRightOpen == false)
@@ -105,16 +113,46 @@ public class FridgeManager : MonoBehaviour
                     doors[1].SetActive(true);
                     objects[0].SetActive(true);
                     zoom.InteractionTransition();
-                    LockAndUnlock(doorRightOpen);
+                    openingTopDoor = true;
+                    LockAndUnlock();
                 }
+
+                if (doorRightOpen == true)
+                {
+                    doors[0].SetActive(true);
+                    doors[1].SetActive(false);
+                    objects[0].SetActive(false);
+                    zoom.InteractionTransition();
+                    closingTopDoor = true;
+                    LockAndUnlockFromOpen();
+                }
+            }
+
+            else if (hit.collider.gameObject.name == "fridge_shelf")
+            {
+                Debug.Log("shelf");
+                returnArrow.SetActive(false);
+                returnArrowZoom.SetActive(true);
+                closeUp.directionArrows[0].SetActive(false);
+                zoom.cameraAnim.SetTrigger("ZoomFridge");
+                zoom.currentView++;
             }
         }
     }
 
     public void ButtonBehaviour()
     {
-        closeUp.Normalize();
-        StartCoroutine(TimeToTransition());
+        if (zoom.currentView == 1)
+        {
+            closeUp.Normalize();
+            StartCoroutine(TimeToTransition());
+        }
+        else
+        {
+            returnArrow.SetActive(true);
+            returnArrowZoom.SetActive(false);
+            closeUp.directionArrows[0].SetActive(true);
+        }
     }
 
     IEnumerator TimeToTransition()
@@ -132,21 +170,63 @@ public class FridgeManager : MonoBehaviour
             objects[i].GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    public void LockAndUnlock(bool doorOpen)
+    public void LockAndUnlock()
     {
         if (isLocked == false)
         {
             returnArrow.SetActive(false);
             isLocked = true;
-            StartCoroutine(Unlock(doorOpen));
+            StartCoroutine(Unlock());
         }
     }
 
-    IEnumerator Unlock(bool doorOpen)
+    public void LockAndUnlockFromOpen()
     {
-        yield return new WaitForSeconds(2);
+        if (isLocked == false)
+        {
+            returnArrow.SetActive(false);
+            isLocked = true;
+            StartCoroutine(UnlockFromOpen());
+        }
+    }
+
+    IEnumerator Untrap()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isTrapped = false;
+    }
+
+    IEnumerator Unlock()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (openingTopDoor == true)
+            doorRightOpen = true;
+        if (openingBottomDoor == true)
+            doorLeftOpen = true;  
         isLocked = false;
-        doorOpen = true;
+        returnArrow.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        openingTopDoor = false;
+        openingBottomDoor = false;
+    }
+
+    IEnumerator UnlockFromOpen()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (closingTopDoor == true)
+            doorRightOpen = false;
+        if (closingBottomDoor == true)
+            doorLeftOpen = false;
+        isLocked = false;
+        returnArrow.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        closingTopDoor = false;
+        closingBottomDoor = false;
+    }
+
+    IEnumerator ShowArrow()
+    {
+        yield return new WaitForSeconds(1.0f);
         returnArrow.SetActive(true);
     }
 }

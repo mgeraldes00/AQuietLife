@@ -123,8 +123,15 @@ public class DrawerManager : MonoBehaviour
 
     public void ButtonBehaviour()
     {
-        closeUp.Normalize();
-        StartCoroutine(TimeToTransition());
+        if (zoom.currentView == 1)
+        {
+            closeUp.Normalize();
+            StartCoroutine(TimeToTransition());
+        }
+        else
+        {
+
+        }
     }
 
     IEnumerator TimeToTransition()
