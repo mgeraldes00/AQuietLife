@@ -71,12 +71,14 @@ public class FridgeManager : MonoBehaviour
 
                     if (select.usingGlove == true)
                     {
+                        FindObjectOfType<AudioCtrl>().Play("Disarm");
                         FindObjectOfType<Glove>().gloveUsed = true;
                         StartCoroutine(Untrap());
                     }
 
                     if (select.usingStoveCloth == true)
                     {
+                        FindObjectOfType<AudioCtrl>().Play("Disarm");
                         FindObjectOfType<StoveCloth>().gloveUsed = true;
                         StartCoroutine(Untrap());
                     }
