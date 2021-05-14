@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public GameObject returnArrow;
     public GameObject noTextCollidersGeneral;
 
+    public GameObject audioMng;
+
     public Animator kitchenClock;
     public Animator deathAnim;
 
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instantiate(audioMng);
         UnlockStart();
         numOfIngredients = 0;
         glovesUsed = 0;
@@ -145,8 +148,8 @@ public class GameManager : MonoBehaviour
         deathScreen[0].SetActive(true);
         deathScreen[5].SetActive(true);
         //Destroy(scene);
-        Destroy(sceneCloseUp);
-        Destroy(canvas);
+        //Destroy(sceneCloseUp);
+        canvas.SetActive(false);
         StartCoroutine(DeathProcess());
     }
 

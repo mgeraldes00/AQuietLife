@@ -4455,6 +4455,7 @@ GameObject:
   - component: {fileID: 330755880}
   - component: {fileID: 330755881}
   - component: {fileID: 330755882}
+  - component: {fileID: 330755883}
   m_Layer: 0
   m_Name: _ayo
   m_TagString: Untagged
@@ -4553,6 +4554,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.24, y: 6.76}
   m_EdgeRadius: 0
+--- !u!114 &330755883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330755879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30c268d1f074a94f9d855b4a1812826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemButton: {fileID: 1818831345527574544, guid: 91f01d681d24614489a592f9a62b4201, type: 3}
 --- !u!1 &332327030
 GameObject:
   m_ObjectHideFlags: 0
@@ -14779,7 +14793,7 @@ GameObject:
   - component: {fileID: 1037535894}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14818,6 +14832,7 @@ MonoBehaviour:
   canvas: {fileID: 1759471815}
   returnArrow: {fileID: 1479651714}
   noTextCollidersGeneral: {fileID: 262078039}
+  audioMng: {fileID: 760849871664034019, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
   kitchenClock: {fileID: 1250836745}
   deathAnim: {fileID: 1902078082}
   isLocked: 0
@@ -24720,10 +24735,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1772929782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30c268d1f074a94f9d855b4a1812826, type: 3}
+  m_Script: {fileID: 11500000, guid: f1be23d1f9dc04943bc8f889180f6f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: d73081e1ea4933343ba749b93c30faa5, type: 3}
+  isTrapped: 0
 --- !u!1 &1788219042
 GameObject:
   m_ObjectHideFlags: 0
@@ -26508,6 +26524,7 @@ MonoBehaviour:
   usingBread: 0
   usingFrozenBread: 0
   usingHam: 0
+  usingMayo: 0
   usingGlove: 0
   usingStoveCloth: 0
 --- !u!1 &1891098003
