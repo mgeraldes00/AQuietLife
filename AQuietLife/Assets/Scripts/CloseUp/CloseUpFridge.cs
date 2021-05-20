@@ -22,6 +22,7 @@ public class CloseUpFridge : MonoBehaviour
 
     public BoxCollider2D[] fridge;
     public BoxCollider2D[] zoomableObjs;
+    public EdgeCollider2D bottomDoor;
 
     // Update is called once per frame
     void Update()
@@ -75,6 +76,7 @@ public class CloseUpFridge : MonoBehaviour
         fridge[1].enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
+        bottomDoor.enabled = true;
         returnArrow.SetActive(true);
         fridgeMng.EnableObjs();
         zoom.currentView++;
@@ -88,5 +90,6 @@ public class CloseUpFridge : MonoBehaviour
         directionArrows[1].SetActive(false);
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = false;
+        bottomDoor.enabled = false;
     }
 }

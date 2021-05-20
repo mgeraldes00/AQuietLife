@@ -59,7 +59,7 @@ public class FridgeManager : MonoBehaviour
             }
 
             else if (hit.collider.CompareTag("FridgeDoor1") && gameMng.isLocked == false
-                && lookAtFridge == true)
+                && lookAtFridge == true && zoom.currentView == 1)
             {
                 if (isTrapped == true)
                 {
@@ -111,7 +111,7 @@ public class FridgeManager : MonoBehaviour
                         closingBottomDoor = true;
                         LockAndUnlockFromOpen();
                     }
-                }                   
+                }
             }
 
             else if (hit.collider.CompareTag("FridgeDoor2")
@@ -144,8 +144,9 @@ public class FridgeManager : MonoBehaviour
             {
                 returnArrow.SetActive(false);
                 returnArrowZoom.SetActive(true);
+                doors[8].GetComponent<BoxCollider2D>().enabled = false;
                 for (int i = 0; i < moreObjects.Length; i++)
-                    moreObjects[i].GetComponent<BoxCollider2D>().enabled = true;
+                    moreObjects[i].GetComponent<EdgeCollider2D>().enabled = true;
                 closeUp.directionArrows[0].SetActive(false);
                 zoom.cameraAnim.SetTrigger("ZoomFridge");
                 StartCoroutine(ZoomZoom());
@@ -164,8 +165,9 @@ public class FridgeManager : MonoBehaviour
         {
             returnArrow.SetActive(true);
             returnArrowZoom.SetActive(false);
+            doors[8].GetComponent<BoxCollider2D>().enabled = true;
             for (int i = 0; i < moreObjects.Length; i++)
-                moreObjects[i].GetComponent<BoxCollider2D>().enabled = false;
+                moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
             closeUp.directionArrows[0].SetActive(true);
         }
     }
@@ -217,7 +219,7 @@ public class FridgeManager : MonoBehaviour
         if (openingTopDoor == true)
             doorRightOpen = true;
         if (openingBottomDoor == true)
-            doorLeftOpen = true;  
+            doorLeftOpen = true;
         isLocked = false;
         returnArrow.SetActive(true);
         yield return new WaitForSeconds(0.5f);
