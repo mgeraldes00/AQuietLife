@@ -19571,6 +19571,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1759471819}
     m_Modifications:
+    - target: {fileID: 1549372997871117345, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549372997871117345, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549372997871117345, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1549372997871117356, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19658,6 +19670,10 @@ PrefabInstance:
     - target: {fileID: 1549372997871117357, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
       propertyPath: m_Name
       value: TurnFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549372997871117358, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}

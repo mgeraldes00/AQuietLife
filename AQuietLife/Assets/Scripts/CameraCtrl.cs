@@ -71,7 +71,7 @@ public class CameraCtrl : MonoBehaviour
                     }
                     currentPanel--;
                     gameMng.isLocked = true;
-                    fadeAnim.SetTrigger("Transition");
+                    fadeAnim.SetTrigger("TransitionLeft");
                     StartCoroutine(EndTransition());
                     break;
                 case 1:
@@ -95,7 +95,7 @@ public class CameraCtrl : MonoBehaviour
                     }
                     currentPanel++;
                     gameMng.isLocked = true;
-                    fadeAnim.SetTrigger("Transition");
+                    fadeAnim.SetTrigger("TransitionRight");
                     StartCoroutine(EndTransition());
                     break;
                 case 2:
