@@ -72,6 +72,7 @@ public class CameraCtrl : MonoBehaviour
                     currentPanel--;
                     gameMng.isLocked = true;
                     fadeAnim.SetTrigger("TransitionLeft");
+                    FindObjectOfType<AudioCtrl>().Play("PageTurn");
                     StartCoroutine(EndTransition());
                     break;
                 case 1:
@@ -96,6 +97,7 @@ public class CameraCtrl : MonoBehaviour
                     currentPanel++;
                     gameMng.isLocked = true;
                     fadeAnim.SetTrigger("TransitionRight");
+                    FindObjectOfType<AudioCtrl>().Play("PageTurnRight");
                     StartCoroutine(EndTransition());
                     break;
                 case 2:

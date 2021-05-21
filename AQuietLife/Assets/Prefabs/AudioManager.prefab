@@ -63,3 +63,21 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Disarm
+    clip: {fileID: 8300000, guid: 3dbf2999d6961654592a0b3d979eb8c3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PageTurn
+    clip: {fileID: 8300000, guid: afb8eb4dc1501844aabe7cbdd07f316d, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PageTurnRight
+    clip: {fileID: 8300000, guid: 31d40d86f581ecb43bba9a1e47ea78f7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

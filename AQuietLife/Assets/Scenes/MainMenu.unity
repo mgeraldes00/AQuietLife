@@ -281,26 +281,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 760849871664034016, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
-      propertyPath: sounds.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 760849871664034016, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
-      propertyPath: sounds.Array.data[3].name
-      value: Disarm
-      objectReference: {fileID: 0}
-    - target: {fileID: 760849871664034016, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
-      propertyPath: sounds.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3dbf2999d6961654592a0b3d979eb8c3, type: 3}
-    - target: {fileID: 760849871664034016, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
-      propertyPath: sounds.Array.data[3].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 760849871664034016, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
-      propertyPath: sounds.Array.data[3].pitch
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 760849871664034017, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
