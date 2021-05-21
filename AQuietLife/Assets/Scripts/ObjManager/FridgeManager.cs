@@ -149,9 +149,9 @@ public class FridgeManager : MonoBehaviour
                     moreObjects[i].GetComponent<EdgeCollider2D>().enabled = true;
                 closeUp.directionArrows[0].SetActive(false);
                 zoom.cameraAnim.SetTrigger("ZoomFridge");
-                thought.ShowThought();
+                thought.KeepThought();
                 thought.text = 
-                    "Bought this OJ pack earlier, should be unopened, unless someone drank from it in the last minutes....";
+                    "Got this OJ pack earlier. Should be unopened, unless someone already drank from it....";
                 StartCoroutine(ZoomZoom());
             }
         }
@@ -172,6 +172,7 @@ public class FridgeManager : MonoBehaviour
             for (int i = 0; i < moreObjects.Length; i++)
                 moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
             closeUp.directionArrows[0].SetActive(true);
+            thought.HideThought();
         }
     }
 

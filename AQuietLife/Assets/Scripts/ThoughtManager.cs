@@ -27,12 +27,38 @@ public class ThoughtManager : MonoBehaviour
             isThinking = true;
             StartCoroutine(ShowText());
             StartCoroutine(TimeToDisappear());
-        }                 
+        }
+    }
+
+    public void KeepThought()
+    {
+        if (isThinking == false)
+        {
+            balloon.SetTrigger("Appear");
+            isThinking = true;
+            StartCoroutine(ShowText());
+        }
+    }
+
+    public void HideThought()
+    {
+        StartCoroutine(InstantDissappear());
+    }
+
+    IEnumerator InstantDissappear()
+    {
+        yield return new WaitForSeconds(0.1f);
+        balloon.SetTrigger("Disappear");
+        text = "";
+        currentText = "";
+        isThinking = false;
+        yield return new WaitForSeconds(1.0f);
+        textObj.GetComponent<TextMeshProUGUI>().text = currentText;
     }
 
     IEnumerator ShowText()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         for (int i = 0; i < text.Length; i++)
         {
             currentText = text.Substring(0, i);
@@ -43,7 +69,7 @@ public class ThoughtManager : MonoBehaviour
 
     IEnumerator TimeToDisappear()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.5f);
         balloon.SetTrigger("Disappear");
         text = "";
         currentText = "";
