@@ -2796,7 +2796,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &202460649
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5278,9 +5278,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 357345087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30c268d1f074a94f9d855b4a1812826, type: 3}
+  m_Script: {fileID: 11500000, guid: 31d3efcb9b101e84195e2affd67b4cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thought: {fileID: 1938436214}
   itemButton: {fileID: 7518009508766018017, guid: 541a49fd28b00bb4fa053b46128a7b1d, type: 3}
 --- !u!61 &357345089
 BoxCollider2D:
@@ -6946,13 +6947,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437193060}
-  m_LocalRotation: {x: 0, y: 0.9396927, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 0.885, y: -2.203, z: -0.3}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.833, y: -2.08, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 746380006}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 140, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &437193062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6993,7 +6994,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: da00baca68b3d6746bb44261d6f78a0e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c77f8216131a6bc4d905666059e72046, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7020,13 +7021,12 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.07
   m_Points:
-  - {x: 0.58, y: -2.29}
-  - {x: 1.07, y: -2.08}
-  - {x: 1.09, y: 1.66}
-  - {x: 0.39, y: 2.18}
-  - {x: -0.24, y: 1.86}
-  - {x: 0.58, y: 1.47}
-  - {x: 0.54, y: -2.24}
+  - {x: -0.25, y: -1.24}
+  - {x: -0.24, y: 0.77}
+  - {x: 0.13, y: 1.57}
+  - {x: 0.23, y: 0.37}
+  - {x: -0.12, y: 0.37}
+  - {x: -0.15, y: -1.24}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -17851,6 +17851,8 @@ EdgeCollider2D:
   - {x: -0.64, y: 3.26}
   - {x: 0.21, y: 3.26}
   - {x: 0.21, y: 0.68}
+  - {x: -0.36, y: -0.34}
+  - {x: -0.41, y: -2.71}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -20031,6 +20033,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1321760637}
   - component: {fileID: 1321760638}
+  - component: {fileID: 1321760640}
+  - component: {fileID: 1321760639}
   m_Layer: 0
   m_Name: knife_w_butter
   m_TagString: Untagged
@@ -20091,7 +20095,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e663ad35fbf8bcc44a5d47721fa0f99e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -20103,6 +20107,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1321760639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321760636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d3efcb9b101e84195e2affd67b4cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thought: {fileID: 1938436214}
+  itemButton: {fileID: 7518009508766018017, guid: 541a49fd28b00bb4fa053b46128a7b1d, type: 3}
+--- !u!61 &1321760640
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321760636}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.6, y: 0.78}
+    newSize: {x: 3.6, y: 0.78}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.58, y: 4.86}
+  m_EdgeRadius: 0
 --- !u!1 &1330719495
 GameObject:
   m_ObjectHideFlags: 0
@@ -22552,9 +22596,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1504344362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30c268d1f074a94f9d855b4a1812826, type: 3}
+  m_Script: {fileID: 11500000, guid: 31d3efcb9b101e84195e2affd67b4cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thought: {fileID: 1938436214}
   itemButton: {fileID: 7518009508766018017, guid: 541a49fd28b00bb4fa053b46128a7b1d, type: 3}
 --- !u!61 &1504344366
 BoxCollider2D:
@@ -25281,7 +25326,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &1724137862
 BoxCollider2D:
   m_ObjectHideFlags: 0
