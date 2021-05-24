@@ -1036,6 +1036,8 @@ GameObject:
   m_Component:
   - component: {fileID: 78655325}
   - component: {fileID: 78655326}
+  - component: {fileID: 78655327}
+  - component: {fileID: 78655328}
   m_Layer: 0
   m_Name: _nife
   m_TagString: Untagged
@@ -1096,7 +1098,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c8ef26c07dad92241bbe60c831b88088, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1108,6 +1110,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &78655327
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78655324}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.6, y: 0.78}
+    newSize: {x: 3.6, y: 0.78}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.6, y: 0.78}
+  m_EdgeRadius: 0
+--- !u!114 &78655328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78655324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d3efcb9b101e84195e2affd67b4cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thought: {fileID: 1938436214}
+  itemButton: {fileID: 7518009508766018017, guid: 541a49fd28b00bb4fa053b46128a7b1d, type: 3}
 --- !u!1 &90470828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,6 +4391,7 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   miscMng: {fileID: 260551705}
   returnArrow: {fileID: 1479651714}
+  currentObj: {fileID: 260551704}
   zoomableObjs:
   - {fileID: 1321760640}
   zoomTrigger: ZoomSink
@@ -15236,6 +15279,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1019528734}
   - component: {fileID: 1019528735}
+  - component: {fileID: 1019528737}
+  - component: {fileID: 1019528736}
+  - component: {fileID: 1019528738}
   m_Layer: 0
   m_Name: dish_washer_opened
   m_TagString: Untagged
@@ -15311,6 +15357,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1019528736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019528733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814d1aac812be9e4591eb3595c7b9d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoom: {fileID: 519420033}
+  gameMng: {fileID: 1037535894}
+  closeUp: {fileID: 1019528737}
+  thought: {fileID: 1938436214}
+  doors:
+  - {fileID: 2012881422}
+  objects:
+  - {fileID: 78655324}
+  returnArrow: {fileID: 1479651714}
+  isActive: 0
+  isOpen: 0
+--- !u!114 &1019528737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019528733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720d561d055f5f438fcd400d83fb584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoom: {fileID: 519420033}
+  gameMng: {fileID: 1037535894}
+  dishwasherMng: {fileID: 1019528736}
+  returnArrow: {fileID: 1479651714}
+  dishWasher: {fileID: 1019528738}
+  zoomableObjs:
+  - {fileID: 78655327}
+  zoomTrigger: ZoomDishwasher
+--- !u!61 &1019528738
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019528733}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.68, y: 2.33}
+    newSize: {x: 3.68, y: 2.33}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.11, y: 2.13}
+  m_EdgeRadius: 0
 --- !u!1 &1020085049
 GameObject:
   m_ObjectHideFlags: 0
@@ -20812,6 +20927,7 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   miscMng: {fileID: 1371511020}
   returnArrow: {fileID: 1479651714}
+  currentObj: {fileID: 1371511021}
   zoomableObjs:
   - {fileID: 1507566756}
   zoomTrigger: ZoomOven
@@ -27808,7 +27924,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 578606aebd1622941909710d0501b34d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -32409,7 +32525,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -32566,6 +32682,30 @@ PrefabInstance:
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Transition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[9].m_TargetAssemblyTypeName
+      value: DishWasherManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[9].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[9].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[9].m_Target
+      value: 
+      objectReference: {fileID: 1019528736}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[9].m_MethodName
+      value: ButtonBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[9].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347985, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Sprite

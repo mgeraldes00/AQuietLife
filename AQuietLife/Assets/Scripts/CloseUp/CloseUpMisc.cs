@@ -11,6 +11,7 @@ public class CloseUpMisc : MonoBehaviour
 
     public GameObject returnArrow;
 
+    public BoxCollider2D currentObj;
     public BoxCollider2D[] zoomableObjs;
 
     [SerializeField] private string zoomTrigger;
@@ -31,6 +32,7 @@ public class CloseUpMisc : MonoBehaviour
     IEnumerator TimeToZoom()
     {
         yield return new WaitForSeconds(0.1f);
+        currentObj.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
         returnArrow.SetActive(true);
@@ -40,6 +42,7 @@ public class CloseUpMisc : MonoBehaviour
 
     public void Normalize()
     {
+        currentObj.enabled = true;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = false;
     }
