@@ -120,7 +120,7 @@ public class CameraCtrl : MonoBehaviour
 
     public void ObjectTransition()
     {
-        fadeAnim.SetTrigger("TransitionObj");
+        //fadeAnim.SetTrigger("TransitionObj");
     }
 
     public void InteractionTransition()
