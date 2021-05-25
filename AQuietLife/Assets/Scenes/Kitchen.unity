@@ -17785,7 +17785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1195592602
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21376,6 +21376,7 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   phone: {fileID: 1412018182}
   actualPhone: {fileID: 852777968}
+  rend: {fileID: 1195592601}
   screens:
   - {fileID: 504230178}
   - {fileID: 547443068}
@@ -21384,6 +21385,9 @@ MonoBehaviour:
   - {fileID: 1914631162}
   - {fileID: 569242113}
   - {fileID: 1891098003}
+  blurValue: 0
+  phoneSelect: 0
+  isLocked: 0
 --- !u!1 &1412311368
 GameObject:
   m_ObjectHideFlags: 0
