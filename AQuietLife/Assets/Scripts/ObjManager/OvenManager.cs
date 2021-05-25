@@ -35,7 +35,7 @@ public class OvenManager : MonoBehaviour
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        returnArrow.SetActive(false);
+        //returnArrow.SetActive(false);
         //rewindButton.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
@@ -51,7 +51,7 @@ public class OvenManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(Unlock());
         }
@@ -61,6 +61,6 @@ public class OvenManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 }

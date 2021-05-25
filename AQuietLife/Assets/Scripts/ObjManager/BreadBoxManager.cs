@@ -149,7 +149,7 @@ public class BreadBoxManager : MonoBehaviour
     {
         if (isLocked == false && hasTime == true)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(Unlock());
         }
@@ -159,17 +159,22 @@ public class BreadBoxManager : MonoBehaviour
     {
         if (isLocked == false && gameMng.isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             gameMng.isLocked = true;
         }
+    }
+
+    public void RewindUnlock()
+    {
+        isLocked = false;
     }
 
     IEnumerator Unlock()
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 
     IEnumerator TimeToOpen()
@@ -200,6 +205,7 @@ public class BreadBoxManager : MonoBehaviour
             eyelids.pointer.SetBool("Moving", true);
             eyelids.mediaFunction = true;
             audioCtrl.pressedButtons[2].SetActive(true);
+            audioCtrl.MoreRewind();
             slider.SetActive(true);
             waveformBreadBox.enabled = true;
             rewindAudio.Play();

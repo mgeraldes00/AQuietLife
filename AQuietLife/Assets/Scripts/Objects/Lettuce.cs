@@ -47,9 +47,9 @@ public class Lettuce : MonoBehaviour, IPointerClickHandler
         select.usingFrozenBread = false;
 
         select.usingButter = false;
-        select.usingTomato = false;
         select.usingHam = false;
         select.usingMayo = false;
+        select.usingTomato = false;
         select.usingBottle = false;
         select.usingMilk = false;
         select.usingJuice = false;

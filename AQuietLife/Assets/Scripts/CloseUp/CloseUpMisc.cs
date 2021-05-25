@@ -35,7 +35,7 @@ public class CloseUpMisc : MonoBehaviour
         currentObj.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         miscMng.EnableObjs();
         zoom.currentView++;
     }

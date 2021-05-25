@@ -124,7 +124,7 @@ public class MicrowaveManager : MonoBehaviour
                     FindObjectOfType<PlateWFrozenBread>().frozenBreadWPlateUsed = true;
                 }  
 
-                if (doorOpen == true)
+                if (doorOpen == true && select.usingFrozenBread == true)
                 {
                     thought.ShowThought();
                     thought.text = "Better place this in a plate first.";
@@ -178,7 +178,7 @@ public class MicrowaveManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(OpenUnlock());
         }
@@ -188,7 +188,7 @@ public class MicrowaveManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(CloseUnlock());
         }
@@ -198,7 +198,7 @@ public class MicrowaveManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         doorOpen = true;
     }
 
@@ -206,7 +206,7 @@ public class MicrowaveManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         doorOpen = false;
     }
 

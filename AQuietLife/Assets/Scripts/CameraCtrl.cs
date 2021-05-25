@@ -127,7 +127,7 @@ public class CameraCtrl : MonoBehaviour
         {
             StartCoroutine(RestoreView());
 
-            returnArrows[0].SetTrigger("Hide");
+            returnArrows[0].SetBool("Hide 0", true);
             for (int i = 0; i < directionalArrows.Length; i++)
                 directionalArrows[i].SetTrigger("Show");
         } 
@@ -149,5 +149,6 @@ public class CameraCtrl : MonoBehaviour
         currentView--;
         yield return new WaitForSeconds(0.5f);
         returnButtons[0].SetActive(true);
+        returnArrows[0].SetBool("Hide 0", false);
     }
 }

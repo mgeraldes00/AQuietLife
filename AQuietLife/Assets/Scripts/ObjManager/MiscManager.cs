@@ -51,7 +51,7 @@ public class MiscManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(Unlock());
         }
@@ -61,6 +61,6 @@ public class MiscManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 }

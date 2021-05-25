@@ -33,7 +33,7 @@ public class CloseUpOven : MonoBehaviour
         //oven.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         ovenMng.EnableObjs();
         zoom.currentView++;
     }

@@ -47,10 +47,10 @@ public class Milk : MonoBehaviour, IPointerClickHandler
         select.usingFrozenBread = false;
 
         select.usingButter = false;
-        select.usingTomato = false;
         select.usingHam = false;
         select.usingMayo = false;
         select.usingLettuce = false;
+        select.usingTomato = false;
         select.usingBottle = false;
         select.usingJuice = false;
 

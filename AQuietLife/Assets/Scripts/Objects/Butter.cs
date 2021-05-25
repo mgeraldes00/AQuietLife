@@ -46,10 +46,10 @@ public class Butter : MonoBehaviour, IPointerClickHandler
         select.usingGlass = false;
         select.usingFrozenBread = false;
 
-        select.usingTomato = false;
         select.usingHam = false;
         select.usingMayo = false;
         select.usingLettuce = false;
+        select.usingTomato = false;
         select.usingBottle = false;
         select.usingMilk = false;
         select.usingJuice = false;

@@ -59,7 +59,7 @@ public class CloseUpDrawers : MonoBehaviour
         drawers.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         drawerMng.EnableObjs();
         zoom.currentView++;
     }

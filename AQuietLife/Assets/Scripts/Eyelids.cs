@@ -34,6 +34,7 @@ public class Eyelids : MonoBehaviour
         eyelids.SetTrigger("Close");
         //timerSmall.SetTrigger("RewindStart");
         timerSmall.SetBool("Rewind", true);
+        media.dirButtons.SetActive(false);
         StartCoroutine(StartRewind());
     }
 
@@ -45,7 +46,7 @@ public class Eyelids : MonoBehaviour
 
     public void Uncover()
     {
-        cover.SetBool("FirstRewind", true);
+        cover.SetTrigger("FirstRewind");
     }
 
     IEnumerator StartRewind()

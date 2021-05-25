@@ -31,7 +31,7 @@ public class CloseUpDishWasher : MonoBehaviour
         //dishWasher.enabled = false;
         /*for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;*/
-        returnArrow.SetTrigger("Show");
+        //returnArrow.SetTrigger("Show");
         //dishwasherMng.EnableObjs();
         dishwasherMng.isActive = true;
         zoom.currentView++;

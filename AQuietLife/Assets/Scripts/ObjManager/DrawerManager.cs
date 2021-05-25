@@ -137,7 +137,7 @@ public class DrawerManager : MonoBehaviour
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        returnArrow.SetActive(false);
+        //returnArrow.SetActive(false);
         //rewindButton.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
@@ -163,7 +163,7 @@ public class DrawerManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(UnlockLonger());
         }
@@ -173,14 +173,14 @@ public class DrawerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 
     IEnumerator UnlockLonger()
     {
         yield return new WaitForSeconds(4);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 
     IEnumerator TakeSpoon()

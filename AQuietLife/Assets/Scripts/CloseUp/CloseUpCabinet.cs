@@ -70,7 +70,7 @@ public class CloseUpCabinet : MonoBehaviour
         //objToZoom.SetActive(false);
         //cabinet.SetActive(true);
         //cabinetRewindButton.SetActive(true);
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         //noTextCollidersGeneral.SetActive(false);
         //inspectionTextGeneral.SetActive(false);
         //noTextColliderCabinet.SetActive(true);

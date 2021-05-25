@@ -4,16 +4,14 @@ using UnityEngine.EventSystems;
 public class PickupFrozenBread : MonoBehaviour
 {
     private InventorySimple inventory;
-    private Spawn spawn;
     public GameObject itemButton;
 
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
-        spawn = GameObject.FindGameObjectWithTag("TableClose").GetComponent<Spawn>();
     }
 
-    private void OnMouseDown()
+    public void PickBread()
     {
         for (int i = 0; i < inventory.slots.Length; i++)
         {

@@ -11,10 +11,12 @@ public class MediaPlayer : MonoBehaviour
     //public Animator[] audioButtons;
 
     public GameObject[] pressedButtons;
+    public GameObject dirButtons;
 
     public void ButtonBehaviour(int i)
     {
-        var pitchBendGroup = Resources.Load<UnityEngine.Audio.AudioMixerGroup>("Pitch Bend Mixer");
+        var pitchBendGroup = 
+            Resources.Load<UnityEngine.Audio.AudioMixerGroup>("Pitch Bend Mixer");
         rewindAudio.outputAudioMixerGroup = pitchBendGroup;
 
         if (eyelids.mediaFunction == true)
@@ -33,7 +35,7 @@ public class MediaPlayer : MonoBehaviour
                     pressedButtons[3].SetActive(false);
                     pressedButtons[4].SetActive(false);
                     eyelids.pointer.speed = 1.5f;
-                    pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 1.5f);
+                    //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 1.5f);
                     break;
                 case 1:
                     rewindAudio.pitch = -1.5f;
@@ -48,7 +50,7 @@ public class MediaPlayer : MonoBehaviour
                     pressedButtons[4].SetActive(false);
                     eyelids.pointer.StartPlayback();
                     eyelids.pointer.speed = -1.5f;
-                    pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 0.5f);
+                    //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 0.5f);
                     break;
                 case 2:
                     rewindAudio.pitch = 1.0f;
@@ -77,6 +79,7 @@ public class MediaPlayer : MonoBehaviour
                     eyelids.pointer.speed = 0.0f;
                     break;
                 case 4:
+                    dirButtons.SetActive(true);
                     rewindAudio.pitch = 0.0f;
                     rewindAudio.Stop();
                     /*audioButtons[0].SetBool("FF", false);

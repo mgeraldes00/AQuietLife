@@ -46,8 +46,13 @@ public class Bottle : MonoBehaviour, IPointerClickHandler
         select.usingGlass = false;
         select.usingFrozenBread = false;
 
+        select.usingButter = false;
         select.usingHam = false;
         select.usingMayo = false;
+        select.usingLettuce = false;
+        select.usingTomato = false;
+        select.usingMilk = false;
+        select.usingJuice = false;
 
         select.usingStoveCloth = false;
         select.usingGlove = false;
