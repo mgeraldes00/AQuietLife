@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
-public class ThoughtManager : MonoBehaviour
+public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Animator balloon;
 
@@ -76,5 +78,16 @@ public class ThoughtManager : MonoBehaviour
         isThinking = false;
         yield return new WaitForSeconds(1.0f);
         textObj.GetComponent<TextMeshProUGUI>().text = currentText;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Thinking");
+        balloon.SetBool("OverBalloon", true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        balloon.SetBool("OverBalloon", false);
     }
 }

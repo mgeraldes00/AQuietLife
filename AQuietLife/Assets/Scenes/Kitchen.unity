@@ -7133,6 +7133,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: 03d897c80dd892743977915fd48bddde, type: 3}
   isTrapped: 0
+--- !u!114 &439192100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+  m_PrefabInstance: {fileID: 7863672714865670839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &440149822
 GameObject:
   m_ObjectHideFlags: 0
@@ -16558,6 +16569,7 @@ MonoBehaviour:
   doorLeftOpen: 0
   doorRightOpen: 0
   lookAtFridge: 0
+  onFridge: 0
 --- !u!1 &1113950054
 GameObject:
   m_ObjectHideFlags: 0
@@ -29503,6 +29515,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: c22a0141276926f4482213e2eb8673d5, type: 3}
+--- !u!114 &1947916454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+  m_PrefabInstance: {fileID: 7863672714865670839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1959722811
 GameObject:
   m_ObjectHideFlags: 0
@@ -32827,6 +32850,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1759471819}
     m_Modifications:
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: thoughtImg
+      value: 
+      objectReference: {fileID: 1947916454}
+    - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: thoughtTxt
+      value: 
+      objectReference: {fileID: 439192100}
+    - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
