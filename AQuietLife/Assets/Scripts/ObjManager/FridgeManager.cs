@@ -15,8 +15,10 @@ public class FridgeManager : MonoBehaviour
     public GameObject[] moreObjects;
     public GameObject[] objectsFreezer;
 
-    public GameObject returnArrow;
-    public GameObject returnArrowZoom;
+    public Animator returnArrow;
+    public Animator returnArrowZoom;
+    public GameObject arrow;
+    public GameObject arrowZoom;
     //public GameObject fridgeRewindButton;
 
     [SerializeField] private bool isLocked;
@@ -33,12 +35,14 @@ public class FridgeManager : MonoBehaviour
     public bool doorLeftOpen;
     public bool doorRightOpen;
     public bool lookAtFridge;
+    public bool onFridge;
 
     // Start is called before the first frame update
     void Start()
     {
         isLocked = false;
         isTrapped = true;
+        onFridge = false;
     }
 
     // Update is called once per frame
@@ -142,12 +146,13 @@ public class FridgeManager : MonoBehaviour
 
             else if (hit.collider.gameObject.name == "fridge_shelf" && zoom.currentView == 1)
             {
-                returnArrow.SetActive(false);
-                returnArrowZoom.SetActive(true);
+                //arrow.SetActive(false);
+                //arrowZoom.SetActive(true);
                 doors[8].GetComponent<BoxCollider2D>().enabled = false;
                 for (int i = 0; i < moreObjects.Length; i++)
                     moreObjects[i].GetComponent<EdgeCollider2D>().enabled = true;
-                closeUp.directionArrows[0].SetActive(false);
+                //closeUp.directionArrows[0].SetActive(false);
+                closeUp.dirArrows[0].SetTrigger("Hide");
                 zoom.cameraAnim.SetTrigger("ZoomFridge");
                 thought.KeepThought();
                 thought.text = 
@@ -166,23 +171,26 @@ public class FridgeManager : MonoBehaviour
         }
         else
         {
-            returnArrow.SetActive(true);
-            returnArrowZoom.SetActive(false);
+            //returnArrow.SetTrigger("Show");
+            //arrowZoom.SetActive(false);
             doors[8].GetComponent<BoxCollider2D>().enabled = true;
             for (int i = 0; i < moreObjects.Length; i++)
                 moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
-            closeUp.directionArrows[0].SetActive(true);
+            //closeUp.directionArrows[0].SetActive(true);
+            closeUp.dirArrows[0].SetTrigger("Show");
             thought.HideThought();
+            StartCoroutine(BackZoom());
         }
     }
 
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        returnArrow.SetActive(false);
+        //returnArrow.SetActive(false);
         //rewindButton.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        onFridge = false;
     }
 
     public void EnableObjs()
@@ -195,7 +203,7 @@ public class FridgeManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(Unlock());
         }
@@ -205,7 +213,7 @@ public class FridgeManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(UnlockFromOpen());
         }
@@ -213,7 +221,7 @@ public class FridgeManager : MonoBehaviour
 
     IEnumerator Untrap()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForEndOfFrame();
         isTrapped = false;
     }
 
@@ -225,7 +233,7 @@ public class FridgeManager : MonoBehaviour
         if (openingBottomDoor == true)
             doorLeftOpen = true;
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         openingTopDoor = false;
         openingBottomDoor = false;
@@ -239,7 +247,7 @@ public class FridgeManager : MonoBehaviour
         if (closingBottomDoor == true)
             doorLeftOpen = false;
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         closingTopDoor = false;
         closingBottomDoor = false;
@@ -248,12 +256,18 @@ public class FridgeManager : MonoBehaviour
     IEnumerator ShowArrow()
     {
         yield return new WaitForSeconds(1.0f);
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 
     IEnumerator ZoomZoom()
     {
         yield return new WaitForSeconds(0.1f);
         zoom.currentView++;
+    }
+
+    IEnumerator BackZoom()
+    {
+        yield return new WaitForSeconds(0.1f);
+        zoom.currentView--;
     }
 }

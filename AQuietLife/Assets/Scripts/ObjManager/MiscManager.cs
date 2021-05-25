@@ -36,7 +36,7 @@ public class MiscManager : MonoBehaviour
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        returnArrow.SetActive(false);
+        //returnArrow.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
     }

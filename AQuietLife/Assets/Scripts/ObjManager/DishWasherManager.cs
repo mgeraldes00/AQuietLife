@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DishWasherManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class DishWasherManager : MonoBehaviour
     public GameObject[] doors;
     public GameObject[] objects;
 
-    public GameObject returnArrow;
+    public Animator returnArrow;
 
     public bool isActive;
 
@@ -27,7 +28,7 @@ public class DishWasherManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (isActive == true)
+        if (!EventSystem.current.IsPointerOverGameObject() && isActive == true)
         {
             StartCoroutine(OpenDoor());
             if (isOpen != true)
@@ -67,7 +68,7 @@ public class DishWasherManager : MonoBehaviour
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        returnArrow.SetActive(false);
+        returnArrow.SetTrigger("Hide");
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -76,7 +77,7 @@ public class DishWasherManager : MonoBehaviour
     {
         if (isLocked == false)
         {
-            returnArrow.SetActive(false);
+            //returnArrow.SetActive(false);
             isLocked = true;
             StartCoroutine(Unlock());
         }
@@ -86,7 +87,7 @@ public class DishWasherManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         isLocked = false;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
     }
 
     IEnumerator OpenDoor()

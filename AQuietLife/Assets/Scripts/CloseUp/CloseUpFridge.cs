@@ -10,6 +10,8 @@ public class CloseUpFridge : MonoBehaviour
 
     public GameObject[] directionArrows;
 
+    public Animator[] dirArrows;
+
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral;
     //public GameObject noTextColliderFridge;
@@ -47,9 +49,11 @@ public class CloseUpFridge : MonoBehaviour
                     && zoom.currentView == 0)
                 {
                     Debug.Log(hit.collider.gameObject.name);
+                    fridgeMng.onFridge = true;
                     zoom.ObjectTransition();
                     zoom.cameraAnim.SetTrigger("ZoomFridge");
-                    directionArrows[0].SetActive(true);
+                    //directionArrows[0].SetActive(true);
+                    dirArrows[0].SetTrigger("Show");
                     fridgeMng.lookAtFridge = true;
                     StartCoroutine(TimeToZoom());
                 }
@@ -58,9 +62,11 @@ public class CloseUpFridge : MonoBehaviour
                     && zoom.currentView == 0)
                 {
                     Debug.Log(hit.collider.gameObject.name);
+                    fridgeMng.onFridge = true;
                     zoom.ObjectTransition();
                     zoom.cameraAnim.SetTrigger("ZoomFreezer");
-                    directionArrows[1].SetActive(true);
+                    //directionArrows[1].SetActive(true);
+                    dirArrows[1].SetTrigger("Show");
                     fridgeMng.lookAtFridge = false;
                     StartCoroutine(TimeToZoom());
                 }
@@ -77,19 +83,28 @@ public class CloseUpFridge : MonoBehaviour
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;
         bottomDoor.enabled = true;
-        returnArrow.SetActive(true);
+        //returnArrow.SetActive(true);
         fridgeMng.EnableObjs();
         zoom.currentView++;
     }
 
     public void Normalize()
     {
-        fridge[0].enabled = true;
-        fridge[1].enabled = true;
-        directionArrows[0].SetActive(false);
-        directionArrows[1].SetActive(false);
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = false;
-        bottomDoor.enabled = false;
+        if (fridgeMng.onFridge != true)
+        {
+            //Nothing
+        }
+        else if (fridgeMng.onFridge == true)
+        {
+            fridge[0].enabled = true;
+            fridge[1].enabled = true;
+            if (fridgeMng.lookAtFridge == true)
+                dirArrows[0].SetTrigger("Hide");
+            if (fridgeMng.lookAtFridge == false)
+                dirArrows[1].SetTrigger("Hide");
+            for (int i = 0; i < zoomableObjs.Length; i++)
+                zoomableObjs[i].enabled = false;
+            bottomDoor.enabled = false;
+        } 
     }
 }

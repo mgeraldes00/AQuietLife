@@ -11,9 +11,15 @@ public class CameraCtrl : MonoBehaviour
 
     public Animator cameraAnim;
     public Animator fadeAnim;
+
+    public Animator[] directionalArrows;
+    public Animator[] upDownArrows;
+    public Animator[] returnArrows;
+
     public Animator microwaveAnim;
 
     public GameObject[] directionalButtons;
+    public GameObject[] returnButtons;
 
     [SerializeField]
     private int currentPanel;
@@ -27,21 +33,6 @@ public class CameraCtrl : MonoBehaviour
     void Start()
     {
         currentPanel = -1;       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (currentView == 1)
-        {
-            directionalButtons[0].SetActive(false);
-            directionalButtons[1].SetActive(false);
-        }
-        if (currentView == 0)
-        {
-            directionalButtons[0].SetActive(true);
-            directionalButtons[1].SetActive(true);
-        }
     }
 
     public void ButtonBehaviour(int i)
@@ -102,16 +93,14 @@ public class CameraCtrl : MonoBehaviour
                     break;
                 case 2:
                     cameraAnim.SetTrigger("Alt");
-                    ObjectTransition();
-                    directionalButtons[2].SetActive(false);
-                    directionalButtons[3].SetActive(true);
+                    upDownArrows[0].SetTrigger("Hide");
+                    upDownArrows[1].SetTrigger("Show");
                     fridge.lookAtFridge = false;
                     break;
                 case 3:
                     cameraAnim.SetTrigger("Alt");
-                    ObjectTransition();
-                    directionalButtons[2].SetActive(true);
-                    directionalButtons[3].SetActive(false);
+                    upDownArrows[0].SetTrigger("Show");
+                    upDownArrows[1].SetTrigger("Hide");
                     fridge.lookAtFridge = true;
                     break;   
             }
@@ -121,6 +110,9 @@ public class CameraCtrl : MonoBehaviour
     public void ObjectTransition()
     {
         //fadeAnim.SetTrigger("TransitionObj");
+        for (int i = 0; i < directionalArrows.Length; i++)
+            directionalArrows[i].SetTrigger("Hide");
+        returnArrows[0].SetTrigger("Show");
     }
 
     public void InteractionTransition()
@@ -130,8 +122,15 @@ public class CameraCtrl : MonoBehaviour
 
     public void BackToGeneral()
     {
-        StartCoroutine(RestoreView());
         cameraAnim.SetTrigger("Return2");
+        if (currentView == 1)
+        {
+            StartCoroutine(RestoreView());
+
+            returnArrows[0].SetTrigger("Hide");
+            for (int i = 0; i < directionalArrows.Length; i++)
+                directionalArrows[i].SetTrigger("Show");
+        } 
     }
 
     IEnumerator EndTransition()
@@ -148,5 +147,7 @@ public class CameraCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         currentView--;
+        yield return new WaitForSeconds(0.5f);
+        returnButtons[0].SetActive(true);
     }
 }

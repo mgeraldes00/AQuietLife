@@ -8,7 +8,7 @@ public class CloseUpDishWasher : MonoBehaviour
     public GameManager gameMng;
     public DishWasherManager dishwasherMng;
 
-    public GameObject returnArrow;
+    public Animator returnArrow;
 
     public BoxCollider2D dishWasher;
     public BoxCollider2D[] zoomableObjs;
@@ -31,7 +31,7 @@ public class CloseUpDishWasher : MonoBehaviour
         //dishWasher.enabled = false;
         /*for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;*/
-        returnArrow.SetActive(true);
+        returnArrow.SetTrigger("Show");
         //dishwasherMng.EnableObjs();
         dishwasherMng.isActive = true;
         zoom.currentView++;
