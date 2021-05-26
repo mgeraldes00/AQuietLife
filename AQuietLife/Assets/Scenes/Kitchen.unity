@@ -15243,8 +15243,11 @@ MonoBehaviour:
   objects:
   - {fileID: 78655324}
   returnArrow: {fileID: 3578828615367628757}
+  isWorking: 0
   isActive: 0
+  isLocked: 0
   isOpen: 0
+  startTime: 10
 --- !u!114 &1019528737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15260,6 +15263,7 @@ MonoBehaviour:
   zoom: {fileID: 519420033}
   gameMng: {fileID: 1037535894}
   dishwasherMng: {fileID: 1019528736}
+  thought: {fileID: 1938436214}
   returnArrow: {fileID: 3578828615367628757}
   dishWasher: {fileID: 1019528738}
   zoomableObjs:
@@ -21827,7 +21831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e1a3e934c0d404c8ffd3860c683853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 10
+  startTime: 120
   slider1: {fileID: 1973205392}
   slider2: {fileID: 259553804}
   timerText1: {fileID: 346069287}

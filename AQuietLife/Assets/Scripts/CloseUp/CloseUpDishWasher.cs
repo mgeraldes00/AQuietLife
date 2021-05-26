@@ -7,6 +7,7 @@ public class CloseUpDishWasher : MonoBehaviour
     public CameraCtrl zoom;
     public GameManager gameMng;
     public DishWasherManager dishwasherMng;
+    public ThoughtManager thought;
 
     public Animator returnArrow;
 
@@ -19,9 +20,17 @@ public class CloseUpDishWasher : MonoBehaviour
     {
         if (gameMng.isLocked == false && zoom.currentView == 0)
         {
-            zoom.ObjectTransition();
-            zoom.cameraAnim.SetTrigger(zoomTrigger);
-            StartCoroutine(TimeToZoom());
+            if (dishwasherMng.isWorking == false)
+            {
+                zoom.ObjectTransition();
+                zoom.cameraAnim.SetTrigger(zoomTrigger);
+                StartCoroutine(TimeToZoom());
+            }
+            else if (dishwasherMng.isWorking == true)
+            {
+                thought.ShowThought();
+                thought.text = "Should be done soon..";
+            }
         }
     }
 

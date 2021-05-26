@@ -15,20 +15,28 @@ public class DishWasherManager : MonoBehaviour
 
     public Animator returnArrow;
 
+    public bool isWorking;
     public bool isActive;
 
-    private bool isLocked;
+    [SerializeField]private bool isLocked;
     [SerializeField] private bool isOpen;
+
+    [SerializeField] float startTime;
+    float timer = 0f;
 
     private void Start()
     {
-        isLocked = true;
+        isWorking = true;
+        isLocked = false;
         closeUp.dishWasher = closeUp.dishWasher.GetComponent<BoxCollider2D>();
+
+        StartCoroutine(TimeToFinish());
     }
 
     private void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject() && isActive == true)
+        if (!EventSystem.current.IsPointerOverGameObject() && isActive == true
+            && isLocked == false)
         {
             StartCoroutine(OpenDoor());
             if (isOpen != true)
@@ -40,7 +48,7 @@ public class DishWasherManager : MonoBehaviour
                 for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                     closeUp.zoomableObjs[i].enabled = true;
             }
-            else
+            else if (isOpen == true)
             {
                 doors[0].SetActive(true);
                 closeUp.dishWasher.size = new Vector2(3.11f, 2.13f);
@@ -48,7 +56,10 @@ public class DishWasherManager : MonoBehaviour
 
                 for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                     closeUp.zoomableObjs[i].enabled = false;
-            }  
+            }
+
+            zoom.InteractionTransition();
+            LockAndUnlock();
         } 
     }
 
@@ -85,7 +96,7 @@ public class DishWasherManager : MonoBehaviour
 
     IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         isLocked = false;
         //returnArrow.SetActive(true);
     }
@@ -97,5 +108,24 @@ public class DishWasherManager : MonoBehaviour
             isOpen = true;
         else
             isOpen = false;
+    }
+
+    IEnumerator TimeToFinish()
+    {
+        timer = startTime;
+        {
+            do
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+            while (timer > 0);
+
+            if (timer <= 0)
+            {
+                Debug.Log("Done washing!");
+                isWorking = false;
+            }
+        }
     }
 }
