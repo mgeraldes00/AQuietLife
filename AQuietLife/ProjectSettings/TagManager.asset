@@ -39,6 +39,8 @@ TagManager:
   - ObjectSelection
   - Freezer
   - Scene
+  - DoorLeft
+  - DoorRight
   layers:
   - Default
   - TransparentFX

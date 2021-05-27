@@ -5,19 +5,28 @@ using UnityEngine.EventSystems;
 
 public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    private CameraCtrl cam;
+
     public Animator arrow;
+
+    public Animator otherArrow;
 
     public bool isOver = false;
 
-    [SerializeField] private bool hasClicked;
     [SerializeField] private bool isDirectional;
+
+    private void Start()
+    {
+        cam = FindObjectOfType<CameraCtrl>();
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isDirectional == true && hasClicked == false)
+        if (isDirectional == true && cam.hasClicked == false)
         {
             arrow.SetTrigger("Clicked");
-            hasClicked = true;
+            otherArrow.SetTrigger("Clicked");
+            cam.hasClicked = true;
             StartCoroutine(Unlock());
         }       
     }
@@ -37,6 +46,6 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     IEnumerator Unlock()
     {
         yield return new WaitForSeconds(1.5f);
-        hasClicked = false;
+        cam.hasClicked = false;
     }
 }

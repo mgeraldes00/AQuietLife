@@ -29,6 +29,8 @@ public class CameraCtrl : MonoBehaviour
 
     public GameObject dirButtons;
 
+    public bool hasClicked;
+
     // Start is called before the first frame update
     void Start()
     {

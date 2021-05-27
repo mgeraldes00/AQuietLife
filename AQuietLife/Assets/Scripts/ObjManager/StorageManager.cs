@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class StorageManager : MonoBehaviour
 {
@@ -6,6 +7,11 @@ public class StorageManager : MonoBehaviour
     [SerializeField] private Rigidbody2D[] rb;
     private Vector2 direction;
     [SerializeField] private float moveSpeed = 10f;
+
+    public GameObject[] objects;
+
+    public bool leftDoorCol;
+    public bool rightDoorCol;
 
     // Update is called once per frame
     void Update()
@@ -42,8 +48,24 @@ public class StorageManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ButtonBehaviour()
     {
-        Debug.Log("Slide");
+        FindObjectOfType<CloseUpStorage>().Normalize();
+        StartCoroutine(TimeToTransition());
+    }
+
+    IEnumerator TimeToTransition()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //returnArrow.SetActive(false);
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public IEnumerator EnableObjs()
+    {
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = true;
     }
 }
