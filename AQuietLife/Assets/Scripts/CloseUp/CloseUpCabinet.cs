@@ -60,6 +60,7 @@ public class CloseUpCabinet : MonoBehaviour
         else if (cabinetMng.rewindApplied == false)
         {
             cabinetRewindButton.SetActive(true);
+            cabinetRewindButton.GetComponent<Animator>().SetBool("Visible", true);
         }
 
         cabinet.enabled = false;

@@ -132,11 +132,12 @@ public class BreadBoxManager : MonoBehaviour
 
     IEnumerator TimeToTransition()
     {
-        yield return new WaitForSeconds(0.1f);
-        //returnArrow.SetActive(false);
-        breadBoxRewindButton.SetActive(false);
+        yield return new WaitForEndOfFrame();
+        breadBoxRewindButton.GetComponent<Animator>().SetBool("Visible", false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        breadBoxRewindButton.SetActive(false);
     }
 
     public void EnableObjs()

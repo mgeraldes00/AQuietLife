@@ -32,8 +32,9 @@ public class Eyelids : MonoBehaviour
     public void Close()
     {
         eyelids.SetTrigger("Close");
+        returnArrow.GetComponent<Animator>().SetBool("Hide 0", true);
         //timerSmall.SetTrigger("RewindStart");
-        timerSmall.SetBool("Rewind", true);
+        timerSmall.SetBool("Visible", false);
         media.dirButtons.SetActive(false);
         StartCoroutine(StartRewind());
     }
@@ -51,6 +52,8 @@ public class Eyelids : MonoBehaviour
 
     IEnumerator StartRewind()
     {
+        yield return new WaitForEndOfFrame();
+        returnArrow.GetComponent<Animator>().SetBool("Hide 0", false);
         yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < rewindClock.Length; i++)
             rewindClock[i].enabled = true;
@@ -91,9 +94,10 @@ public class Eyelids : MonoBehaviour
             rewindClock[i].enabled = false;     
         yield return new WaitForSeconds(0.5f);
         eyelids.SetTrigger("Open");
-        timerSmall.SetBool("Rewind", false);
         yield return new WaitForSeconds(0.5f);
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
+        timerSmall.SetBool("Visible", true);
+        returnArrow.GetComponent<Animator>().SetTrigger("Show");
     }
 }

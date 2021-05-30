@@ -340,11 +340,13 @@ public class CabinetManager : MonoBehaviour
 
     IEnumerator TimeToTransition()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForEndOfFrame();
         //returnArrow.SetActive(false);
-        cabinetRewindButton.SetActive(false);
+        cabinetRewindButton.GetComponent<Animator>().SetBool("Visible", false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        cabinetRewindButton.SetActive(false);
     }
 
     public void EnableObjs()

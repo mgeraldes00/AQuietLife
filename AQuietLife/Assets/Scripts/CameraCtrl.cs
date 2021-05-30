@@ -127,6 +127,7 @@ public class CameraCtrl : MonoBehaviour
         cameraAnim.SetTrigger("Return2");
         if (currentView == 1)
         {
+            gameMng.isLocked = true;
             StartCoroutine(RestoreView());
 
             returnArrows[0].SetBool("Hide 0", true);
@@ -152,5 +153,6 @@ public class CameraCtrl : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         returnButtons[0].SetActive(true);
         returnArrows[0].SetBool("Hide 0", false);
+        gameMng.isLocked = false;
     }
 }
