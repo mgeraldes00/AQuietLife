@@ -36,27 +36,30 @@ public class DoorManager : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-                if (hit.collider == null)
+                if (FindObjectOfType<GameManager>().isLocked != true)
                 {
-                    //Nothing
-                }
+                    if (hit.collider == null)
+                    {
+                        //Nothing
+                    }
 
-                else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
-                {
-                    //FindObjectOfType<AudioSource>().Play();
-                    doorOpen.Play();
-                    rating.EndLevel();
-                    //SceneManager.LoadScene("MainMenu");
-                }
+                    else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
+                    {
+                        //FindObjectOfType<AudioSource>().Play();
+                        doorOpen.Play();
+                        rating.EndLevel();
+                        //SceneManager.LoadScene("MainMenu");
+                    }
 
-                else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == false)
-                {
-                    //FindObjectOfType<AudioSource>().Play();
-                    thought.ShowThought();
-                    thought.text = "Can't leave now, gotta make something to eat..";
-                    //thoughtText.text = "Can't leave now, gotta make something to eat.";
-                    //SceneManager.LoadScene("MainMenu");
-                }
+                    else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == false)
+                    {
+                        //FindObjectOfType<AudioSource>().Play();
+                        thought.ShowThought();
+                        thought.text = "Can't leave now, gotta make something to eat..";
+                        //thoughtText.text = "Can't leave now, gotta make something to eat.";
+                        //SceneManager.LoadScene("MainMenu");
+                    }
+                }     
             }     
         }
     }

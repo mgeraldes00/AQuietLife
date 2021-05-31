@@ -60,23 +60,23 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     IEnumerator ShowText()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSecondsRealtime(0.7f);
         for (int i = 0; i < text.Length; i++)
         {
             currentText = text.Substring(0, i);
             textObj.GetComponent<TextMeshProUGUI>().text = currentText;
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSecondsRealtime(delay);
         }
     }
 
     IEnumerator TimeToDisappear()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSecondsRealtime(3.5f);
         balloon.SetTrigger("Disappear");
         text = "";
         currentText = "";
         isThinking = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         textObj.GetComponent<TextMeshProUGUI>().text = currentText;
     }
 

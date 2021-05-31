@@ -24,7 +24,6 @@ public class CameraCtrl : MonoBehaviour
     [SerializeField]
     private int currentPanel;
 
-    [SerializeField]
     public int currentView;
 
     public GameObject dirButtons;
