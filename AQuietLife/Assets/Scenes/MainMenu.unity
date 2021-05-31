@@ -382,10 +382,12 @@ MonoBehaviour:
   - {fileID: 284179231}
   - {fileID: 1337305658}
   button: {fileID: 1238938519}
+  video: {fileID: 612126428}
   menuText:
   - New Game.
   - Continue.
   - Level Selection.
+  isFirstTime: 0
 --- !u!1 &612126427
 GameObject:
   m_ObjectHideFlags: 0

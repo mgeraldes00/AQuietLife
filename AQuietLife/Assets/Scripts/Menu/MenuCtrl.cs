@@ -10,17 +10,30 @@ public class MenuCtrl : MonoBehaviour
     public GameObject[] buttons;
     public GameObject button;
 
+    [SerializeField] private UnityEngine.Video.VideoPlayer video;
+
     private float delay = 0.2f;
     
     [SerializeField]
     private string[] menuText;
 
+    [SerializeField] private bool isFirstTime;
+
     private string currentText = "";
 
     private void Start()
     {
-        //StartCoroutine(ShowText());
+        if (PlayerPrefs.GetInt("isFirstTime") != 1)
+        {
+            isFirstTime = true;
+        }
+        else
+        {
+            isFirstTime = false;
+            video.playbackSpeed = 5;
+        }
         StartCoroutine(ShowButtons());
+        //StartCoroutine(ShowText());
     }
 
     public void ButtonBehaviour(int i)
@@ -39,6 +52,7 @@ public class MenuCtrl : MonoBehaviour
                 break;
             case (3):
                 Debug.Log("Quit");
+                PlayerPrefs.DeleteKey("isFirstTime");
                 Application.Quit();
                 break;
             case (4):
@@ -72,7 +86,15 @@ public class MenuCtrl : MonoBehaviour
 
     IEnumerator ShowButtons()
     {
-        yield return new WaitForSeconds(8.0f);
-        button.SetActive(true);
+        if (isFirstTime == true)
+        {
+            yield return new WaitForSeconds(7.5f);
+            button.SetActive(true);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.0f);
+            button.SetActive(true);
+        }
     }
 }

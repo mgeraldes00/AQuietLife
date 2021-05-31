@@ -18,8 +18,8 @@ public class CloseUpStorage : MonoBehaviour
     public void Normalize()
     {
         GetComponent<BoxCollider2D>().enabled = true;
-        for (int i = 0; i < doors.Length; i++)
-            doors[i].enabled = false;
+        /*for (int i = 0; i < doors.Length; i++)
+            doors[i].enabled = false;*/
     }
 
     IEnumerator TimeToZoom()

@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public Animator kitchenClock;
     public Animator deathAnim;
 
+    [SerializeField] private Animator fadeAnim;
+
     public bool isLocked;
     public bool firstObject;
     public bool firstGlove;
@@ -254,5 +256,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         deathScreen[1].SetActive(true);
         deathScreen[2].SetActive(true);
+    }
+
+    public IEnumerator BackToMenu()
+    {
+        yield return new WaitForSecondsRealtime(0.01f);
+        Time.timeScale = 1;
+        fadeAnim.SetTrigger("FadeOut");
+        PlayerPrefs.SetInt("isFirstTime", 1);
+        yield return new WaitForSecondsRealtime(1.0f);
+        SceneManager.LoadScene("MainMenu");
     }
 }

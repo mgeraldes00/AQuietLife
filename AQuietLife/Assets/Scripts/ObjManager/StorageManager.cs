@@ -22,7 +22,8 @@ public class StorageManager : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && FindObjectOfType<GameManager>().isLocked == false
+            && FindObjectOfType<CameraCtrl>().currentView == 1)
         {
             if (hit.collider == null)
             {
