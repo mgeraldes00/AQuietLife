@@ -46,10 +46,14 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == -1)
                     {
                         cameraAnim.SetTrigger("Return");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("Return2");
                     }
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("Return");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("Center2");
                     }
                     if (currentPanel == 1)
                     {
@@ -60,6 +64,8 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == 2)
                     {
                         cameraAnim.SetTrigger("Return");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("Return");
                     }
                     currentPanel--;
                     gameMng.isLocked = true;
@@ -71,6 +77,8 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == -1)
                     {
                         cameraAnim.SetTrigger("RotateRight");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("Return3");
                     }
                     if (currentPanel == 0)
                     {
@@ -81,10 +89,14 @@ public class CameraCtrl : MonoBehaviour
                     if (currentPanel == 1)
                     {
                         cameraAnim.SetTrigger("RotateRight");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("RotateLeft");
                     }
                     if (currentPanel == 2)
                     {
                         cameraAnim.SetTrigger("RotateRight");
+                        if (microwave.working == true)
+                            microwaveAnim.SetTrigger("Center");
                     }
                     currentPanel++;
                     gameMng.isLocked = true;

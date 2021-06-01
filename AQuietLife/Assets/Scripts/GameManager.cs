@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     public Animator kitchenClock;
     public Animator deathAnim;
 
+    public AudioMixer musicMix;
+
     [SerializeField] private Animator fadeAnim;
 
     public bool isLocked;
@@ -51,6 +54,7 @@ public class GameManager : MonoBehaviour
         isLocked = true;
         Instantiate(audioMng);
         StartCoroutine(UnlockStart());
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 1));
         numOfIngredients = 0;
         glovesUsed = 0;
         //startTutorial.SetActive(true);
@@ -264,10 +268,11 @@ public class GameManager : MonoBehaviour
     public IEnumerator BackToMenu()
     {
         yield return new WaitForSecondsRealtime(0.01f);
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1.5f, 0));
         Time.timeScale = 1;
         fadeAnim.SetTrigger("FadeOut");
         PlayerPrefs.SetInt("isFirstTime", 1);
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(2.0f);
         SceneManager.LoadScene("MainMenu");
     }
 }
