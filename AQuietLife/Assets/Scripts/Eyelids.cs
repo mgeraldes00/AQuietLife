@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Eyelids : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Eyelids : MonoBehaviour
 
     public AudioSource tick;
     public AudioSource tickReverse;
+
+    public AudioMixer musicMix;
 
     public GameObject[] ctrlButtons;
 
@@ -37,12 +40,14 @@ public class Eyelids : MonoBehaviour
         timerSmall.SetBool("Visible", false);
         media.dirButtons.SetActive(false);
         StartCoroutine(StartRewind());
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
     }
 
     public void Open()
     {
         timer.SetTrigger("Pressed");
-        StartCoroutine(TimerPress());        
+        StartCoroutine(TimerPress());
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 1));
     }
 
     public void Uncover()
