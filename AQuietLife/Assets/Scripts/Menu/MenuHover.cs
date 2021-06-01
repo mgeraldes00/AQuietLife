@@ -11,6 +11,8 @@ public class MenuHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public TMP_Text selectedText;
 
+    [SerializeField] private Animator imgAnim;
+
     public bool isOver = false;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -20,6 +22,8 @@ public class MenuHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             selectedImg.enabled = true;
         if (selectedText != null)
             selectedText.fontStyle = FontStyles.Underline;
+        if (selectedImg == null && selectedText == null)
+            imgAnim.SetTrigger("Enlarge");
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -29,5 +33,7 @@ public class MenuHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             selectedImg.enabled = false;
         if (selectedText != null)
             selectedText.fontStyle = FontStyles.Normal;
+        if (selectedImg == null && selectedText == null)
+            imgAnim.SetTrigger("Normalize");
     }
 }

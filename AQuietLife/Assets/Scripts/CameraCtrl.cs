@@ -33,7 +33,7 @@ public class CameraCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentPanel = -1;       
+        currentPanel = -1;  
     }
 
     public void ButtonBehaviour(int i)

@@ -48,8 +48,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isLocked = true;
         Instantiate(audioMng);
-        UnlockStart();
+        StartCoroutine(UnlockStart());
         numOfIngredients = 0;
         glovesUsed = 0;
         //startTutorial.SetActive(true);
@@ -198,14 +199,6 @@ public class GameManager : MonoBehaviour
         //finalTutorial.SetActive(false);
     }
 
-    public void UnlockStart()
-    {
-        //startTutorial.SetActive(false);
-        isLocked = false;
-        kitchenClock.SetBool("Active", true);
-        StartCoroutine(TimeTillLock());
-    }
-
     public void ShowTutorial()
     {
         //objectTutorial.SetActive(true);
@@ -228,6 +221,16 @@ public class GameManager : MonoBehaviour
     {
         returnArrow.SetActive(false);
         isLocked = true;
+    }
+    
+    IEnumerator UnlockStart()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<AudioCtrl>().Play("PageTurnRight");
+        yield return new WaitForSeconds(1.0f);
+        isLocked = false;
+        kitchenClock.SetBool("Active", true);
+        StartCoroutine(TimeTillLock());
     }
 
     IEnumerator TimeTillLock()
