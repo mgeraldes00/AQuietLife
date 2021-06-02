@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class MenuHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image selectedImg;
 
@@ -35,5 +35,11 @@ public class MenuHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             selectedText.fontStyle = FontStyles.Normal;
         if (selectedImg == null && selectedText == null)
             imgAnim.SetTrigger("Normalize");
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (selectedImg != null)
+            selectedImg.enabled = false;
     }
 }

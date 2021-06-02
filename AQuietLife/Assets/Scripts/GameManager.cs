@@ -271,7 +271,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1.5f, 0));
         Time.timeScale = 1;
         fadeAnim.SetTrigger("FadeOut");
-        PlayerPrefs.SetInt("isFirstTime", 1);
         yield return new WaitForSecondsRealtime(2.0f);
         SceneManager.LoadScene("MainMenu");
     }

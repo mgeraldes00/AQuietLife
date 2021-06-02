@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using TMPro;
 
 public class MenuCtrl : MonoBehaviour
@@ -10,21 +11,29 @@ public class MenuCtrl : MonoBehaviour
     public GameObject[] menuTextObj;
     public GameObject[] buttons;
     public GameObject button;
+    public GameObject options;
     public GameObject returnArrow;
 
-    [SerializeField] private UnityEngine.Video.VideoPlayer video;
+    [SerializeField] private VideoPlayer video;
 
     [SerializeField] private Image back;
+    [SerializeField] private Image backFull;
     [SerializeField] private Image fade;
+    [SerializeField] private Image creditsFull;
 
     [SerializeField] private GameObject[] levelImg;
 
+    [SerializeField] private Animator skipAnim;
+
+    [SerializeField] private VideoPlayer credits;
+
     private float delay = 0.2f;
-    
+
     [SerializeField]
     private string[] menuText;
 
     [SerializeField] private bool isFirstTime;
+    [SerializeField] private bool isCreditsFull;
 
     [SerializeField] private int currentPanel;
 
@@ -35,17 +44,8 @@ public class MenuCtrl : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("isFirstTime") != 1)
-        {
-            isFirstTime = true;
-        }
-        else
-        {
-            isFirstTime = false;
-            video.playbackSpeed = 5;
-        }
+        skipAnim.SetTrigger("Show");
         StartCoroutine(ShowButtons());
-        //StartCoroutine(ShowText());
     }
 
     public void ButtonBehaviour(int i)
@@ -63,6 +63,7 @@ public class MenuCtrl : MonoBehaviour
                 returnArrow.SetActive(true);
                 returnArrow.GetComponent<Animator>().SetTrigger("Switch");
                 StartCoroutine(FadeIn(back));
+                options.SetActive(true);
                 currentPanel = 1;
                 break;
             case (2):
@@ -82,54 +83,82 @@ public class MenuCtrl : MonoBehaviour
                 break;
             case (4):
                 fade.GetComponent<Animator>().SetTrigger("Black");
-                StartCoroutine(NewGame()); 
+                StartCoroutine(NewGame());
                 break;
             case (5):
                 //Return
-                returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                //returnArrow.GetComponent<Animator>().SetTrigger("Return");
                 StartCoroutine(FadeOut(back));
                 if (currentPanel == 2)
                 {
                     for (int b = 0; b < levelImg.Length; b++)
                         levelImg[b].GetComponent<Animator>().SetTrigger("Hide");
                     button.GetComponent<Animator>().SetTrigger("Return");
+                    returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                    StartCoroutine(ChangePanel(0));
                 }
                 else if (currentPanel == 1)
                 {
+                    options.GetComponent<Animator>().SetTrigger("Switch");
+                    //button.SetActive(true);
                     button.GetComponent<Animator>().SetTrigger("Return");
+                    returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                    StartCoroutine(HideObject(options));
+                    StartCoroutine(FadeIn(backFull));      
+                }
+                else if (currentPanel == 3)
+                {
+                    options.SetActive(true);
+                    //options.GetComponent<Animator>().SetTrigger("Return");
+                    StartCoroutine(FadeOut(creditsFull));
+                    back.enabled = true;
+                    StartCoroutine(FadeIn(back));
+                    credits.Stop();
+                    StartCoroutine(ChangePanel(1));
+                    backFull.enabled = true;
                 }
                 break;
             case (6):
+                fade.enabled = true;
                 fade.GetComponent<Animator>().SetTrigger("White");
+                returnArrow.GetComponent<Animator>().SetTrigger("Return");
                 StartCoroutine(Continue("Kitchen"));
                 break;
             case (7):
                 //fade.GetComponent<Animator>().SetTrigger("White");
                 //StartCoroutine(Continue("Bedroom"));
                 break;
-        }
-    }
-
-    IEnumerator ShowText()
-    {
-        yield return new WaitForSeconds(3.0f);
-        for (int i = 0; i < menuText[0].Length; i++)
-        {
-            currentText = menuText[0].Substring(0, i);
-            menuTextObj[0].GetComponent<TextMeshProUGUI>().text = currentText;
-            yield return new WaitForSeconds(delay);
-        }
-        for (int i = 0; i < menuText[1].Length; i++)
-        {
-            currentText = menuText[1].Substring(0, i);
-            menuTextObj[1].GetComponent<TextMeshProUGUI>().text = currentText;
-            yield return new WaitForSeconds(delay);
-        }
-        for (int i = 0; i < menuText[2].Length; i++)
-        {
-            currentText = menuText[2].Substring(0, i);
-            menuTextObj[2].GetComponent<TextMeshProUGUI>().text = currentText;
-            yield return new WaitForSeconds(delay);
+            case (8):
+                if (isFirstTime == true && currentPanel == 0)
+                {
+                    skipAnim.SetTrigger("Hide");
+                    isFirstTime = false;                   
+                    StartCoroutine(FadeIn(backFull));
+                    StartCoroutine(ResetSkip(button, 0));
+                }
+                else if (isCreditsFull == true && currentPanel == 3)
+                {
+                    skipAnim.SetTrigger("Hide");
+                    isCreditsFull = false;
+                    StartCoroutine(FadeIn(creditsFull));
+                    StartCoroutine(ResetSkip(returnArrow, 1));
+                    StartCoroutine(RevealArrow());
+                }
+                break;
+            case (9):
+                //Credits
+                fade.GetComponent<Animator>().SetTrigger("White");
+                StartCoroutine(FadeOut(back));
+                StartCoroutine(FadeOut(backFull));
+                backFull.enabled = false;
+                StartCoroutine(PlayCredits());
+                //button.SetActive(false);
+                options.GetComponent<Animator>().SetTrigger("Switch");
+                returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                isCreditsFull = true;
+                currentPanel = 3;
+                //backFull.enabled = false;
+                break;
         }
     }
 
@@ -147,16 +176,14 @@ public class MenuCtrl : MonoBehaviour
 
     IEnumerator ShowButtons()
     {
-        if (isFirstTime == true)
-        {
-            yield return new WaitForSeconds(7.5f);
-            button.SetActive(true);
-        }
-        else
-        {
-            yield return new WaitForSeconds(1.0f);
-            button.SetActive(true);
-        }
+        yield return new WaitForSeconds(7.5f);
+        button.SetActive(true);
+    }
+
+    IEnumerator ShowOptions()
+    {
+        yield return new WaitForSeconds(1.0f);
+        options.SetActive(true);
     }
 
     IEnumerator FadeIn(Image image)
@@ -182,7 +209,49 @@ public class MenuCtrl : MonoBehaviour
             elapsedTime += Time.deltaTime;
             c.a = 1.0f - Mathf.Clamp01(elapsedTime / fadeTime);
             image.color = c;
-            currentPanel = 0;
+            //currentPanel = 0;
         }
+    }
+
+    IEnumerator PlayCredits()
+    {
+        yield return new WaitForSeconds(0.8f);
+        credits.Play();
+        options.SetActive(false);
+        skipAnim.SetTrigger("Show");
+        yield return new WaitForSeconds(0.3f);
+        fade.enabled = false;
+        back.enabled = false;
+        backFull.enabled = false;
+        returnArrow.SetActive(false);
+    }
+
+    IEnumerator ResetSkip(GameObject gameObject, int i)
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (i == 0)
+            isFirstTime = true;
+        else if (i == 1)
+            isCreditsFull = true;
+        gameObject.SetActive(true);
+        video.Stop();
+    }
+
+    IEnumerator RevealArrow()
+    {
+        yield return new WaitForSeconds(1.0f);
+        returnArrow.GetComponent<Animator>().SetTrigger("Switch");
+    }
+
+    IEnumerator HideObject(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(1.0f);
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator ChangePanel(int i)
+    {
+        yield return new WaitForSeconds(1.0f);
+        currentPanel = i;
     }
 }
