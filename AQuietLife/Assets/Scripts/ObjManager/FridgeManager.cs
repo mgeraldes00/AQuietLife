@@ -173,7 +173,7 @@ public class FridgeManager : MonoBehaviour
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
         }
-        else
+        else if (zoom.currentView == 2 && isLocked == false && gameMng.returnable == true)
         {
             //returnArrow.SetTrigger("Show");
             //arrowZoom.SetActive(false);

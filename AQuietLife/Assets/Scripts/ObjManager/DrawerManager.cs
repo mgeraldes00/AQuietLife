@@ -10,8 +10,9 @@ public class DrawerManager : MonoBehaviour
     public ThoughtManager thought;
     public ObjectSelection select;
 
-    public GameObject[] doors;
-    public GameObject[] objects;
+    //public GameObject[] doors;
+    public GameObject[] openDoor;
+    //public GameObject[] objects;
 
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral;
@@ -27,16 +28,21 @@ public class DrawerManager : MonoBehaviour
 
     //public BoxCollider2D[] interactableColliders;
 
-    private bool isLocked;
+    [SerializeField] private bool isLocked;
+    [SerializeField] private bool[] isTrapped;
 
     public bool rewindApplied;
     public bool knifeTaken;
     public bool doorCenterOpen;
 
+    [SerializeField] private string drawerName;
+
     // Start is called before the first frame update
     void Start()
     {
         isLocked = false;
+        isTrapped[0] = true;
+        isTrapped[1] = true;
     }
 
     // Update is called once per frame
@@ -51,86 +57,128 @@ public class DrawerManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider == null)
+            if (zoom.currentView == 1 && isLocked == false)
             {
-                //Nothing
-            }
-
-            else if (hit.collider.CompareTag("DrawerDoor1") && gameMng.isLocked == false)
-            {
-                if (select.usingNothing == true)
+                if (hit.collider == null)
                 {
-                    Debug.Log("Game Over");
-                    gameMng.Die();
+                    //Nothing
                 }
 
-                if (select.usingGlove == true)
+                else if (hit.collider.CompareTag("DrawerDoor1") && gameMng.isLocked == false)
                 {
-                    doors[0].SetActive(false);
-                    doors[1].SetActive(true);
-                    objects[0].SetActive(true);
-                    FindObjectOfType<Glove>().gloveUsed = true;
+                    if (isTrapped[0] == true)
+                    {
+                        if (select.usingNothing == true)
+                        {
+                            Debug.Log("Game Over");
+                            gameMng.Die();
+                        }
+
+                        if (select.usingGlove == true)
+                        {
+                            //doors[0].SetActive(false);
+                            //doors[1].SetActive(true);
+                            //objects[0].SetActive(true);
+                            FindObjectOfType<AudioCtrl>().Play("Disarm");
+                            FindObjectOfType<Glove>().gloveUsed = true;
+                            StartCoroutine(Untrap(0));
+                            //zoom.InteractionTransition();
+                        }
+
+                        if (select.usingStoveCloth == true)
+                        {
+                            //doors[0].SetActive(false);
+                            //doors[1].SetActive(true);
+                            //objects[0].SetActive(true);
+                            FindObjectOfType<AudioCtrl>().Play("Disarm");
+                            FindObjectOfType<StoveCloth>().gloveUsed = true;
+                            StartCoroutine(Untrap(0));
+                            //zoom.InteractionTransition();
+                        }
+                    }
+                    else if (isTrapped[0] == false)
+                    {
+                        gameMng.returnable = false;
+                        LockAndUnlock();
+                        zoom.InteractionTransition();
+                        StartCoroutine(ShowDoor(openDoor[0]));
+                        zoom.currentView++;
+                    }
+                }
+
+                else if (hit.collider.CompareTag("DrawerDoor3") && gameMng.isLocked == false)
+                {
+                    if (isTrapped[1] == true)
+                    {
+                        if (select.usingNothing == true)
+                        {
+                            Debug.Log("Game Over");
+                            gameMng.Die();
+                        }
+
+                        if (select.usingGlove == true)
+                        {
+                            //doors[4].SetActive(false);
+                            //doors[5].SetActive(true);
+                            FindObjectOfType<AudioCtrl>().Play("Disarm");
+                            FindObjectOfType<Glove>().gloveUsed = true;
+                            StartCoroutine(Untrap(1));
+                            //zoom.InteractionTransition();
+                        }
+
+                        if (select.usingStoveCloth == true)
+                        {
+                            //doors[4].SetActive(false);
+                            //doors[5].SetActive(true);
+                            FindObjectOfType<AudioCtrl>().Play("Disarm");
+                            FindObjectOfType<StoveCloth>().gloveUsed = true;
+                            StartCoroutine(Untrap(1));
+                            //zoom.InteractionTransition();
+                        }
+                    }
+                    else if (isTrapped[1] == false)
+                    {
+                        gameMng.returnable = false;
+                        LockAndUnlock();
+                        zoom.InteractionTransition();
+                        StartCoroutine(ShowDoor(openDoor[2]));
+                        zoom.currentView++;
+                    }
+                }
+
+                else if (hit.collider.CompareTag("DrawerDoor2")
+                    && gameMng.isLocked == false)
+                {
+                    //doors[2].SetActive(false);
+                    //doors[3].SetActive(true);
+                    //objects[1].SetActive(true);
+                    doorCenterOpen = true;
+                    drawerName = "ZoomDrawer2";
+                    gameMng.returnable = false;
+                    LockAndUnlock();
                     zoom.InteractionTransition();
-                }
-
-                if (select.usingStoveCloth == true)
-                {
-                    doors[0].SetActive(false);
-                    doors[1].SetActive(true);
-                    objects[0].SetActive(true);
-                    FindObjectOfType<StoveCloth>().gloveUsed = true;
-                    zoom.InteractionTransition();
-                }
-            }
-
-            else if (hit.collider.CompareTag("DrawerDoor3") && gameMng.isLocked == false)
-            {
-                if (select.usingNothing == true)
-                {
-                    Debug.Log("Game Over");
-                    gameMng.Die();
-                }
-
-                if (select.usingGlove == true)
-                {
-                    doors[4].SetActive(false);
-                    doors[5].SetActive(true);
-                    FindObjectOfType<Glove>().gloveUsed = true;
-                    zoom.InteractionTransition();
-                }
-
-                if (select.usingStoveCloth == true)
-                {
-                    doors[4].SetActive(false);
-                    doors[5].SetActive(true);
-                    FindObjectOfType<StoveCloth>().gloveUsed = true;
-                    zoom.InteractionTransition();
-                }
-            }
-
-            else if (hit.collider.CompareTag("DrawerDoor2") && doorCenterOpen == false
-                && gameMng.isLocked == false)
-            {
-                doors[2].SetActive(false);
-                doors[3].SetActive(true);
-                objects[1].SetActive(true);
-                doorCenterOpen = true;
-                LockAndUnlock();
-                zoom.InteractionTransition();
+                    //zoom.GetComponent<Animator>().SetTrigger("Return2");
+                    StartCoroutine(ShowDoor(openDoor[1]));
+                    zoom.currentView++;
+                }    
             }
         }
     }
 
     public void ButtonBehaviour()
     {
-        if (zoom.currentView == 1)
+        if (zoom.currentView == 1 && isLocked == false)
         {
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
         }
-        else
+        else if (zoom.currentView == 2 && isLocked == false)
         {
-
+            LockAndUnlock();
+            zoom.InteractionTransition();
+            //zoom.GetComponent<Animator>().SetTrigger(drawerName);
+            StartCoroutine(HideDoor());
+            StartCoroutine(BackZoom());
         }
     }
 
@@ -139,14 +187,6 @@ public class DrawerManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         //returnArrow.SetActive(false);
         //rewindButton.SetActive(false);
-        for (int i = 0; i < objects.Length; i++)
-            objects[i].GetComponent<BoxCollider2D>().enabled = false;
-    }
-
-    public void EnableObjs()
-    {
-        for (int i = 0; i < objects.Length; i++)
-            objects[i].GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void LockAndUnlock()
@@ -171,7 +211,7 @@ public class DrawerManager : MonoBehaviour
 
     IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         isLocked = false;
         //returnArrow.SetActive(true);
     }
@@ -186,5 +226,31 @@ public class DrawerManager : MonoBehaviour
     IEnumerator TakeSpoon()
     {
         yield return new WaitForSeconds(2);
+    }
+
+    IEnumerator ShowDoor(GameObject door)
+    {
+
+        yield return new WaitForSeconds(0.2f);
+        door.SetActive(true);
+    }
+
+    IEnumerator HideDoor()
+    {
+        int door = closeUp.currentDrawer;
+        yield return new WaitForSeconds(0.2f);
+        openDoor[door].SetActive(false);
+    }
+
+    IEnumerator BackZoom()
+    {
+        yield return new WaitForSeconds(0.1f);
+        zoom.currentView--;
+    }
+
+    IEnumerator Untrap(int i)
+    {
+        yield return new WaitForEndOfFrame();
+        isTrapped[i] = false;
     }
 }

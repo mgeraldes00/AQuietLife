@@ -135,16 +135,23 @@ public class CameraCtrl : MonoBehaviour
 
     public void BackToGeneral()
     {
-        cameraAnim.SetTrigger("Return2");
-        if (currentView == 1)
+        if (gameMng.returnable == true)
         {
-            gameMng.isLocked = true;
-            StartCoroutine(RestoreView());
+            cameraAnim.SetTrigger("Return2");
+            if (currentView == 1)
+            {
+                gameMng.isLocked = true;
+                StartCoroutine(RestoreView());
 
-            returnArrows[0].SetBool("Hide 0", true);
-            for (int i = 0; i < directionalArrows.Length; i++)
-                directionalArrows[i].SetTrigger("Show");
-        } 
+                returnArrows[0].SetBool("Hide 0", true);
+                for (int i = 0; i < directionalArrows.Length; i++)
+                    directionalArrows[i].SetTrigger("Show");
+            }
+        }
+        else
+        {
+            StartCoroutine(gameMng.LiberateReturn());
+        }
     }
 
     IEnumerator EndTransition()

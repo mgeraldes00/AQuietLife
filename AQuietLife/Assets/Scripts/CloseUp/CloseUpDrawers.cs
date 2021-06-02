@@ -18,8 +18,9 @@ public class CloseUpDrawers : MonoBehaviour
     //public GameObject activityText;
     //public GameObject drawerRewindButton;
 
-    public BoxCollider2D drawers;
-    public BoxCollider2D[] zoomableObjs;
+    public BoxCollider2D[] drawers;
+
+    public int currentDrawer;
 
     // Update is called once per frame
     void Update()
@@ -35,19 +36,37 @@ public class CloseUpDrawers : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-                if (hit.collider == null)
+                if (gameMng.isLocked == false && zoom.currentView == 0)
                 {
-                    //Nothing
-                }
-
-                else if (hit.collider.CompareTag("Drawers") && gameMng.isLocked == false
-                    && zoom.currentView == 0)
-                {
-                    Debug.Log(hit.collider.gameObject.name);
-                    zoom.ObjectTransition();
-                    zoom.cameraAnim.SetTrigger("ZoomDrawers");
-                    StartCoroutine(TimeToZoom());
-                }
+                    if (hit.collider == null)
+                    {
+                        //Nothing
+                    }
+                    else if (hit.collider.CompareTag("DrawerDoor1"))
+                    {
+                        zoom.cameraAnim.SetTrigger("ZoomDrawer");
+                        StartCoroutine(TimeToZoom());
+                        Debug.Log(hit.collider.gameObject.name);
+                        zoom.ObjectTransition();
+                        currentDrawer = 0;
+                    }
+                    else if (hit.collider.CompareTag("DrawerDoor2"))
+                    {
+                        zoom.cameraAnim.SetTrigger("ZoomDrawer2");
+                        StartCoroutine(TimeToZoom());
+                        Debug.Log(hit.collider.gameObject.name);
+                        zoom.ObjectTransition();
+                        currentDrawer = 1;
+                    }
+                    else if (hit.collider.CompareTag("DrawerDoor3"))
+                    {
+                        zoom.cameraAnim.SetTrigger("ZoomDrawer3");
+                        StartCoroutine(TimeToZoom());
+                        Debug.Log(hit.collider.gameObject.name);
+                        zoom.ObjectTransition();
+                        currentDrawer = 2;
+                    }
+                }      
             }           
         }
     }
@@ -56,18 +75,14 @@ public class CloseUpDrawers : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         //drawersRewindButton.SetActive(true);
-        drawers.enabled = false;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = true;
+        //drawers[currentDrawer].enabled = false;
         //returnArrow.SetActive(true);
-        drawerMng.EnableObjs();
+        //drawerMng.EnableObjs();
         zoom.currentView++;
     }
 
     public void Normalize()
     {
-        drawers.enabled = true;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = false;
+        //drawers[currentDrawer].enabled = true;
     }
 }

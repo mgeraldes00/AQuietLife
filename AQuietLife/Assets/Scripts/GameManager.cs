@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Animator fadeAnim;
 
+    public bool returnable;
+
     public bool isLocked;
     public bool firstObject;
     public bool firstGlove;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        returnable = true;
         isLocked = true;
         Instantiate(audioMng);
         StartCoroutine(UnlockStart());
@@ -273,5 +276,11 @@ public class GameManager : MonoBehaviour
         fadeAnim.SetTrigger("FadeOut");
         yield return new WaitForSecondsRealtime(2.0f);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public IEnumerator LiberateReturn()
+    {
+        yield return new WaitForEndOfFrame();
+        returnable = true;
     }
 }

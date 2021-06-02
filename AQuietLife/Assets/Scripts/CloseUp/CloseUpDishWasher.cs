@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CloseUpDishWasher : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class CloseUpDishWasher : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (gameMng.isLocked == false && zoom.currentView == 0)
+        if (gameMng.isLocked == false && zoom.currentView == 0
+            && !EventSystem.current.IsPointerOverGameObject())
         {
             if (dishwasherMng.isWorking == false)
             {
