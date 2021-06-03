@@ -22,6 +22,8 @@ public class CloseUpDrawers : MonoBehaviour
 
     public int currentDrawer;
 
+    public bool isOnDrawer;
+
     // Update is called once per frame
     void Update()
     {
@@ -79,10 +81,12 @@ public class CloseUpDrawers : MonoBehaviour
         //returnArrow.SetActive(true);
         //drawerMng.EnableObjs();
         zoom.currentView++;
+        isOnDrawer = true;
     }
 
     public void Normalize()
     {
         //drawers[currentDrawer].enabled = true;
+        isOnDrawer = false;
     }
 }

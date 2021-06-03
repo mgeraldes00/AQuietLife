@@ -48,7 +48,7 @@ public class DrawerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isLocked == false)
+        if (Input.GetMouseButtonDown(0))
         {
             //Debug.Log("Mouse Clicked");
             Vector3 mousePos =
@@ -57,7 +57,7 @@ public class DrawerManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (zoom.currentView == 1 && isLocked == false)
+            if (zoom.currentView == 1 && isLocked == false && closeUp.isOnDrawer == true)
             {
                 if (hit.collider == null)
                 {
@@ -172,7 +172,8 @@ public class DrawerManager : MonoBehaviour
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
         }
-        else if (zoom.currentView == 2 && isLocked == false && gameMng.returnable == false)
+        else if (zoom.currentView == 2 && isLocked == false && gameMng.returnable == false
+            && closeUp.isOnDrawer == true)
         {
             LockAndUnlock();
             zoom.InteractionTransition();
