@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Audio;
 using TMPro;
 
 public class MenuCtrl : MonoBehaviour
@@ -27,6 +28,8 @@ public class MenuCtrl : MonoBehaviour
 
     [SerializeField] private VideoPlayer credits;
 
+    public AudioMixer musicMix;
+
     private float delay = 0.2f;
 
     [SerializeField]
@@ -34,6 +37,10 @@ public class MenuCtrl : MonoBehaviour
 
     [SerializeField] private bool isFirstTime;
     [SerializeField] private bool isCreditsFull;
+    [SerializeField] private bool hasSkipped;
+    [SerializeField] private bool hasReturned;
+
+    public bool watchingCredits;
 
     [SerializeField] private int currentPanel;
 
@@ -104,7 +111,8 @@ public class MenuCtrl : MonoBehaviour
                     button.GetComponent<Animator>().SetTrigger("Return");
                     returnArrow.GetComponent<Animator>().SetTrigger("Return");
                     StartCoroutine(HideObject(options));
-                    StartCoroutine(FadeIn(backFull));      
+                    StartCoroutine(FadeIn(backFull));
+                    watchingCredits = false;
                 }
                 else if (currentPanel == 3)
                 {
@@ -123,6 +131,7 @@ public class MenuCtrl : MonoBehaviour
                 fade.GetComponent<Animator>().SetTrigger("White");
                 returnArrow.GetComponent<Animator>().SetTrigger("Return");
                 StartCoroutine(Continue("Kitchen"));
+                StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
                 break;
             case (7):
                 //fade.GetComponent<Animator>().SetTrigger("White");
@@ -131,13 +140,16 @@ public class MenuCtrl : MonoBehaviour
             case (8):
                 if (isFirstTime == true && currentPanel == 0)
                 {
+                    hasSkipped = true;
                     skipAnim.SetTrigger("Hide");
-                    isFirstTime = false;                   
+                    isFirstTime = false;
                     StartCoroutine(FadeIn(backFull));
                     StartCoroutine(ResetSkip(button, 0));
                 }
                 else if (isCreditsFull == true && currentPanel == 3)
                 {
+                    hasSkipped = true;
+                    hasReturned = true;
                     skipAnim.SetTrigger("Hide");
                     isCreditsFull = false;
                     StartCoroutine(FadeIn(creditsFull));
@@ -147,6 +159,7 @@ public class MenuCtrl : MonoBehaviour
                 break;
             case (9):
                 //Credits
+                watchingCredits = true;
                 fade.GetComponent<Animator>().SetTrigger("White");
                 StartCoroutine(FadeOut(back));
                 StartCoroutine(FadeOut(backFull));
@@ -176,8 +189,18 @@ public class MenuCtrl : MonoBehaviour
 
     IEnumerator ShowButtons()
     {
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(6.0f);
+        CheckForSkip();
+        yield return new WaitForSeconds(1.5f);
         button.SetActive(true);
+    }
+
+    private void CheckForSkip()
+    {
+        if (hasSkipped == true)
+            hasSkipped = false;
+        else
+            skipAnim.SetTrigger("Hide");
     }
 
     IEnumerator ShowOptions()
@@ -224,6 +247,11 @@ public class MenuCtrl : MonoBehaviour
         back.enabled = false;
         backFull.enabled = false;
         returnArrow.SetActive(false);
+        yield return new WaitForSeconds(9.0f);
+        CheckForSkip();
+        yield return new WaitForSeconds(2.0f);
+        StartCoroutine(ResetSkip(returnArrow, 2));
+        StartCoroutine(RevealArrow());
     }
 
     IEnumerator ResetSkip(GameObject gameObject, int i)
@@ -240,7 +268,18 @@ public class MenuCtrl : MonoBehaviour
     IEnumerator RevealArrow()
     {
         yield return new WaitForSeconds(1.0f);
-        returnArrow.GetComponent<Animator>().SetTrigger("Switch");
+        if (hasSkipped == true)
+            returnArrow.GetComponent<Animator>().SetTrigger("Switch");
+        else
+            CheckForReturn();
+    }
+
+    private void CheckForReturn()
+    {
+        if (hasReturned == true)
+            hasReturned = false;
+        else
+            returnArrow.GetComponent<Animator>().SetTrigger("Switch");
     }
 
     IEnumerator HideObject(GameObject gameObject)
@@ -253,5 +292,11 @@ public class MenuCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         currentPanel = i;
+    }
+
+    IEnumerator ChangeBool(bool thisBool)
+    {
+        yield return new WaitForSeconds(1.0f);
+        thisBool = false;
     }
 }

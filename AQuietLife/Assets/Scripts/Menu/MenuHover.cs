@@ -17,24 +17,30 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isOver = true;
-        if (selectedImg != null)
-            selectedImg.enabled = true;
-        if (selectedText != null)
-            selectedText.fontStyle = FontStyles.Underline;
-        if (selectedImg == null && selectedText == null)
-            imgAnim.SetTrigger("Enlarge");
+        if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+        {
+            isOver = true;
+            if (selectedImg != null)
+                selectedImg.enabled = true;
+            if (selectedText != null)
+                selectedText.fontStyle = FontStyles.Underline;
+            if (selectedImg == null && selectedText == null)
+                imgAnim.SetTrigger("Enlarge");
+        }  
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isOver = false;
-        if (selectedImg != null)
-            selectedImg.enabled = false;
-        if (selectedText != null)
-            selectedText.fontStyle = FontStyles.Normal;
-        if (selectedImg == null && selectedText == null)
-            imgAnim.SetTrigger("Normalize");
+        if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+        {
+            isOver = false;
+            if (selectedImg != null)
+                selectedImg.enabled = false;
+            if (selectedText != null)
+                selectedText.fontStyle = FontStyles.Normal;
+            if (selectedImg == null && selectedText == null)
+                imgAnim.SetTrigger("Normalize");
+        }  
     }
 
     public void OnPointerClick(PointerEventData eventData)
