@@ -172,7 +172,7 @@ public class DrawerManager : MonoBehaviour
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
         }
-        else if (zoom.currentView == 2 && isLocked == false)
+        else if (zoom.currentView == 2 && isLocked == false && gameMng.returnable == false)
         {
             LockAndUnlock();
             zoom.InteractionTransition();

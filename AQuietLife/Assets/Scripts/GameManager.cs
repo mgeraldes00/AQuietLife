@@ -232,9 +232,7 @@ public class GameManager : MonoBehaviour
     
     IEnumerator UnlockStart()
     {
-        yield return new WaitForSeconds(0.5f);
-        FindObjectOfType<AudioCtrl>().Play("PageTurnRight");
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         isLocked = false;
         kitchenClock.SetBool("Active", true);
         StartCoroutine(TimeTillLock());
