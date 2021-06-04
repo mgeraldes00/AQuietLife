@@ -39,7 +39,7 @@ public class PointerManager : MonoBehaviour
             || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave")
             || hit.collider.CompareTag("CabinetBreach"))
         {
-            Debug.Log("Hovering");
+            //Debug.Log("Hovering");
             //Cursor.SetCursor(examineTexture, hotSpot, curMode);
         }
 
@@ -75,19 +75,5 @@ public class PointerManager : MonoBehaviour
         {
             //Cursor.SetCursor(defaultTexture, hotSpot, curMode);
         }       
-    }
-
-    private void OnMouseEnter()
-    {
-        if (gameObject.tag == "Cabinet")
-        {
-            Debug.Log("Hovering");
-            //Cursor.SetCursor(examineTexture, hotSpot, curMode);
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        Cursor.SetCursor(defaultTexture, hotSpot, curMode);
     }
 }

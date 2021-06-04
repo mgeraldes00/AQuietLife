@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public FridgeManager fridge;
     public MicrowaveManager microwave;
     public TableManager table;
+    public PointerManager pointer;
 
     public GameObject[] context;
     public GameObject[] contextButtons;

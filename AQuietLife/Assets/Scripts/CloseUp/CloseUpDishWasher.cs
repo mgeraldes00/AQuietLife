@@ -36,6 +36,18 @@ public class CloseUpDishWasher : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
+
     IEnumerator TimeToZoom()
     {
         yield return new WaitForSeconds(0.1f);

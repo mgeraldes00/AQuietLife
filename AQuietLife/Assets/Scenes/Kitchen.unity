@@ -680,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0224b4db08b5540b28788c4603176f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMng: {fileID: 1037535894}
   zoom: {fileID: 519420033}
   doors:
   - {fileID: 202460649}
@@ -852,7 +853,7 @@ MonoBehaviour:
   defaultTexture: {fileID: 2800000, guid: 331e62a7b18e9b84b8339a3a7f7c01e6, type: 3}
   interactTexture: {fileID: 2800000, guid: 1bd5a9dc800803047ba4112fed834e23, type: 3}
   pickUpTexture: {fileID: 0}
-  examineTexture: {fileID: 0}
+  examineTexture: {fileID: 2800000, guid: b4accac852339c842870f29d03fdb1f6, type: 3}
   doorTexture: {fileID: 0}
   curMode: 0
   hotSpot: {x: 0, y: 0}
@@ -5349,7 +5350,6 @@ GameObject:
   m_Component:
   - component: {fileID: 265428077}
   - component: {fileID: 265428078}
-  - component: {fileID: 265428079}
   m_Layer: 0
   m_Name: counters_open
   m_TagString: Cabinet
@@ -5433,32 +5433,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &265428079
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265428076}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 4.61, y: 3.67}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.2, y: 10.8}
-    newSize: {x: 19.2, y: 10.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.5, y: 2.97}
-  m_EdgeRadius: 0
 --- !u!1 &266828558
 GameObject:
   m_ObjectHideFlags: 0
@@ -8020,6 +7994,7 @@ GameObject:
   - component: {fileID: 406754939}
   - component: {fileID: 406754940}
   - component: {fileID: 406754941}
+  - component: {fileID: 406754942}
   m_Layer: 0
   m_Name: cabinet
   m_TagString: Cabinet
@@ -8059,7 +8034,7 @@ MonoBehaviour:
   cabinetMng: {fileID: 406754941}
   returnArrow: {fileID: 1479651714}
   cabinetRewindButton: {fileID: 782673415}
-  cabinet: {fileID: 265428079}
+  cabinet: {fileID: 406754942}
   zoomableObjs:
   - {fileID: 1820337640}
   - {fileID: 678093794}
@@ -8118,6 +8093,32 @@ MonoBehaviour:
   door2Open: 0
   door4Open: 0
   hasTime: 0
+--- !u!61 &406754942
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406754938}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 4.61, y: 3.67}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.5, y: 2.97}
+  m_EdgeRadius: 0
 --- !u!1 &415373407
 GameObject:
   m_ObjectHideFlags: 0
@@ -17732,6 +17733,7 @@ MonoBehaviour:
   fridge: {fileID: 1109741756}
   microwave: {fileID: 1502380691}
   table: {fileID: 1532251294}
+  pointer: {fileID: 53963619}
   context: []
   contextButtons: []
   deathScreen:

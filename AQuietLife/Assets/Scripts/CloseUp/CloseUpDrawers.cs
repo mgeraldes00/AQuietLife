@@ -89,4 +89,16 @@ public class CloseUpDrawers : MonoBehaviour
         //drawers[currentDrawer].enabled = true;
         isOnDrawer = false;
     }
+
+    private void OnMouseEnter()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
 }

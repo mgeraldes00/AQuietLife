@@ -78,4 +78,16 @@ public class CloseUpMicrowave : MonoBehaviour
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = false;
     }
+
+    private void OnMouseEnter()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
 }

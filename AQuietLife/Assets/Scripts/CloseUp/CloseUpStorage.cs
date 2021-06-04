@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloseUpStorage : MonoBehaviour
 {
+    public GameManager gameMng;
     public CameraCtrl zoom;
 
     [SerializeField] private BoxCollider2D[] doors;
@@ -13,6 +14,18 @@ public class CloseUpStorage : MonoBehaviour
         zoom.cameraAnim.SetTrigger("ZoomStorage");
         zoom.ObjectTransition();
         StartCoroutine(TimeToZoom());
+    }
+
+    private void OnMouseEnter()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor
+            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
     }
 
     public void Normalize()
