@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.Video;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public Animator kitchenClock;
     public Animator deathAnim;
 
+    public AudioSource backMusic;
     public AudioMixer musicMix;
 
     [SerializeField] private Animator fadeAnim;
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
             //Nothing
         }
 
-        else if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers") 
+        else if (hit.collider.CompareTag("Table") || hit.collider.CompareTag("Drawers")
             || hit.collider.CompareTag("Cabinet") || hit.collider.CompareTag("BreadBox")
             || hit.collider.CompareTag("Fridge") || hit.collider.CompareTag("Microwave"))
         {
@@ -90,9 +92,9 @@ public class GameManager : MonoBehaviour
             //inspectionText.SetActive(true);
         }
 
-        else if (hit.collider.CompareTag("CabinetDoor1") 
+        else if (hit.collider.CompareTag("CabinetDoor1")
             || hit.collider.CompareTag("CabinetDoor2") && cabinet.door2Open == false
-            || hit.collider.CompareTag("CabinetDoor3") 
+            || hit.collider.CompareTag("CabinetDoor3")
             || hit.collider.CompareTag("CabinetDoor4") && cabinet.door4Open == false
             || hit.collider.CompareTag("BreadBoxDoor") && breadBox.doorOpen == false
             || hit.collider.CompareTag("DrawerDoor1")
@@ -153,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void Die()
     {
         //SceneManager.LoadScene("GameOver");
+        backMusic.Stop();
         isLocked = true;
         isDead = true;
         deathScreen[0].SetActive(true);
@@ -181,11 +184,13 @@ public class GameManager : MonoBehaviour
                 context[1].SetActive(true);
                 contextButtons[0].SetActive(false);
                 contextButtons[1].SetActive(true);*/
-                SceneManager.LoadScene("MainMenu");
+                deathScreen[6].GetComponent<Animator>().SetTrigger("FadeOut");
+                StartCoroutine(RestartLevel(1));
                 break;
             case (2):
                 //SceneManager.LoadScene("Kitchen");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                deathScreen[6].GetComponent<Animator>().SetTrigger("FadeOut");
+                StartCoroutine(RestartLevel(0));
                 break;
             case (3):
                 Debug.Log("Quit");
@@ -229,7 +234,7 @@ public class GameManager : MonoBehaviour
         returnArrow.SetActive(false);
         isLocked = true;
     }
-    
+
     IEnumerator UnlockStart()
     {
         yield return new WaitForSeconds(1.5f);
@@ -257,11 +262,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DeathProcess()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.9f);
+        deathScreen[5].GetComponent<VideoPlayer>().Play();
+        yield return new WaitForSeconds(0.1f);
         deathAnim.SetTrigger("Death");
         yield return new WaitForSeconds(1);
         deathScreen[4].SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForEndOfFrame();
         deathScreen[1].SetActive(true);
         deathScreen[2].SetActive(true);
     }
@@ -274,6 +281,15 @@ public class GameManager : MonoBehaviour
         fadeAnim.SetTrigger("FadeOut");
         yield return new WaitForSecondsRealtime(2.0f);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    IEnumerator RestartLevel(int i)
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (i == 0)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        else if (i == 1)
+            SceneManager.LoadScene("MainMenu");
     }
 
     public IEnumerator LiberateReturn()
