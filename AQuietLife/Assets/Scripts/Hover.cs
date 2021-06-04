@@ -61,7 +61,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             isOver = true;
             arrow.SetBool("Selected", true);
         }
-        else if (isArrow == false && isPhone == true && gameMng.isLocked == false)
+        else if (isArrow == false && isPhone == false && gameMng.isLocked == false)
             clockSelect.SetActive(true);
         else if (isArrow == false && isPhone == false && selectedText != null)
         {

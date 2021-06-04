@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiscManager : MonoBehaviour
+public class ToasterManager : MonoBehaviour
 {
     public CameraCtrl zoom;
     public GameManager gameMng;
-    public CloseUpMisc closeUp;
+    public CloseUpToaster closeUp;
     public ThoughtManager thought;
 
     public GameObject[] objects;
 
     public GameObject returnArrow;
 
-    private bool isLocked;
+    [SerializeField] private bool isLocked;
+    [SerializeField] private bool isTrapped;
 
     private void Start()
     {
         isLocked = false;
+        isTrapped = true;
     }
 
     public void ButtonBehaviour()
@@ -45,22 +47,5 @@ public class MiscManager : MonoBehaviour
     {
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = true;
-    }
-
-    public void LockAndUnlock()
-    {
-        if (isLocked == false)
-        {
-            //returnArrow.SetActive(false);
-            isLocked = true;
-            StartCoroutine(Unlock());
-        }
-    }
-
-    IEnumerator Unlock()
-    {
-        yield return new WaitForSeconds(2);
-        isLocked = false;
-        //returnArrow.SetActive(true);
     }
 }
