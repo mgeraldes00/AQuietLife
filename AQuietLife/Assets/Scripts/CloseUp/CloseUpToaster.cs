@@ -13,7 +13,6 @@ public class CloseUpToaster : MonoBehaviour
     //public GameObject rewindButton;
 
     public BoxCollider2D toaster;
-    public BoxCollider2D[] zoomableObjs;
 
     private void OnMouseDown()
     {
@@ -24,6 +23,12 @@ public class CloseUpToaster : MonoBehaviour
                 zoom.cameraAnim.SetTrigger("ZoomToaster");
                 StartCoroutine(TimeToZoom());
                 zoom.ObjectTransition();
+                toasterMng.isToaster = true;
+            }
+            else if (gameMng.isLocked == false && zoom.currentView == 1)
+            {
+                toasterMng.ToasterBehaviour();
+                toasterMng.CheckTrap();
             }
         }
     }
@@ -35,32 +40,40 @@ public class CloseUpToaster : MonoBehaviour
             Cursor.SetCursor
             (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
         }
+        else if (gameMng.isLocked == false && zoom.currentView == 1)
+        {
+
+        }
     }
 
     private void OnMouseExit()
     {
-        if (gameMng.isLocked == false && zoom.currentView == 0)
+        if (gameMng.isLocked == false)
         {
             Cursor.SetCursor
             (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
-        }   
+        }
     }
 
     IEnumerator TimeToZoom()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForEndOfFrame();
         toaster.enabled = false;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = true;
-        //returnArrow.SetActive(true);
-        toasterMng.EnableObjs();
         zoom.currentView++;
+        yield return new WaitForSeconds(0.5f);
+        toaster.enabled = true;
+        if (toasterMng.isPlaced == true)
+        {
+            toaster.size = new Vector2(0.32f, 0.8f);
+            toaster.offset = new Vector2(-0.48f, 0);
+        }
+        toasterMng.objects[0].GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void Normalize()
     {
-        toaster.enabled = true;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = false;
+        toaster.size = new Vector2(2.02f, 1.82f);
+        toaster.offset = new Vector2(0.05f, 0.19f);
+        toasterMng.isToaster = false;
     }
 }
