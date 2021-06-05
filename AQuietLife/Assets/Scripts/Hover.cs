@@ -24,34 +24,55 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     [SerializeField] private bool isPhone;
     [SerializeField] private bool isLocked;
 
+    [SerializeField] private int currentLvl;
+
     private void Start()
     {
-        cam = FindObjectOfType<CameraCtrl>();
-        gameMng = FindObjectOfType<GameManager>();
+        if (currentLvl == 0)
+        {
+            cam = null;
+            gameMng = null;
+        }
+        else if (currentLvl == 2)
+        {
+            cam = FindObjectOfType<CameraCtrl>();
+            gameMng = FindObjectOfType<GameManager>();
+        }   
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isDirectional == true && cam.hasClicked == false && isArrow == true
+        if (currentLvl == 0)
+        {
+            if (isDirectional == true && isArrow == true)
+            {
+                arrow.SetTrigger("Clicked");
+                StartCoroutine(Unlock());
+            }
+        }
+        else if (currentLvl == 2)
+        {
+            if (isDirectional == true && cam.hasClicked == false && isArrow == true
             && isPhone == false)
-        {
-            arrow.SetTrigger("Clicked");
-            otherArrow.SetTrigger("Clicked");
-            cam.hasClicked = true;
-            StartCoroutine(Unlock());
-        }
-        else if (isArrow == false && isLocked == false && gameMng.isLocked == false
-            && isPhone == true)
-        {
-            clockSelect.SetActive(false);
-            isLocked = true;
-            StartCoroutine(UnlockClock());
-        }
-        else if (isArrow == false && isLocked == false && gameMng.isLocked == false
-            && isPhone == false)
-        {
-            //Nothing
-        }
+            {
+                arrow.SetTrigger("Clicked");
+                otherArrow.SetTrigger("Clicked");
+                cam.hasClicked = true;
+                StartCoroutine(Unlock());
+            }
+            else if (isArrow == false && isLocked == false && gameMng.isLocked == false
+                && isPhone == true)
+            {
+                clockSelect.SetActive(false);
+                isLocked = true;
+                StartCoroutine(UnlockClock());
+            }
+            else if (isArrow == false && isLocked == false && gameMng.isLocked == false
+                && isPhone == false)
+            {
+                //Nothing
+            }
+        }       
     }
 
     public void OnPointerEnter(PointerEventData eventData)

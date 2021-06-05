@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class IntroController : MonoBehaviour
 {
     public ThoughtManager thought;
+    public IntroCursor cursor;
 
     public Animator cameraAnim;
     public Animator fadeAnim;
@@ -116,12 +117,14 @@ public class IntroController : MonoBehaviour
 
     public void PhoneOff()
     {
+        Cursor.SetCursor(cursor.defaultTexture, cursor.hotSpot, cursor.curMode);
         thought.ShowThought();
         phone[0].SetActive(false);
         phone[2].SetActive(true);
         returnArrow.SetActive(true);
+        returnArrow.GetComponent<Animator>().SetTrigger("Show");
         thought.text = "I'm so tired....";
-        FindObjectOfType<AudioCtrl>().Stop("Alarm");
+        FindObjectOfType<AudioCtrl>().Stop("Alarm");  
     }
 
     public void ButtonBehaviour(int i)
@@ -132,7 +135,7 @@ public class IntroController : MonoBehaviour
             {
                 case 0:
                     phone[1].SetActive(false);
-                    returnArrow.SetActive(false);
+                    returnArrow.GetComponent<Animator>().SetTrigger("Hide 0");
                     directionalButton.SetActive(true);
                     for (int b = 0; b < firstPanelCollide.Length; b++)
                         firstPanelCollide[b].enabled = true;
@@ -142,8 +145,7 @@ public class IntroController : MonoBehaviour
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("turn");
-                        fadeAnim.SetTrigger("Transition");
-                        directionalButton.SetActive(false);
+                        //fadeAnim.SetTrigger("Transition");
                     }
                     //currentPanel++;
                     isLocked = true;
@@ -172,6 +174,7 @@ public class IntroController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         isLocked = false;
         currentPanel++;
+        directionalButton.SetActive(false);
     }
 
     IEnumerator DeathProcess()
@@ -253,10 +256,11 @@ public class IntroController : MonoBehaviour
             introTextObj[2].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(dotDelay);
         }
-        introCover.SetActive(false);
+        introCover.GetComponent<Animator>().SetTrigger("Open");
         currentPanel++;
         yield return new WaitForSeconds(1.0f);
         cursorImg.SetActive(true);
+        introCover.SetActive(false);
         yield return new WaitForSeconds(2.0f);
         cursorImg.SetActive(false);
         Cursor.visible = true;

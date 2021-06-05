@@ -19,45 +19,4 @@ public class IntroCursor : MonoBehaviour
     {
         Cursor.SetCursor(defaultTexture, hotSpot, curMode);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 mousePos =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-        if (hit.collider.CompareTag("NoTag"))
-        {
-            switch (gameMng.currentPanel)
-            {
-                case -1:
-                    Cursor.SetCursor(interactTexture, hotSpot, curMode);
-                    break;
-                case 0:
-
-                    break;
-            }          
-        }
-
-        if (hit.collider.CompareTag("Nothing"))
-        {
-            switch (gameMng.currentPanel)
-            {
-                case 0:
-
-                    break;
-                case 1:
-
-                    break;
-            }
-        }
-
-        if (hit.collider.CompareTag("Ham") || gameMng.isDead == true)
-        {
-            Cursor.SetCursor(defaultTexture, hotSpot, curMode);
-        }
-    }
 }
