@@ -26,7 +26,11 @@ public class ObjDrag : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (Input.GetMouseButton(0) && hit.collider.CompareTag("NoTag"))
+        if (hit.collider == null)
+        {
+            //Nothing
+        }
+        else if (Input.GetMouseButton(0) && hit.collider.CompareTag("NoTag"))
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (mousePosition - transform.position).normalized;

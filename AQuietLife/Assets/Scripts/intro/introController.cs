@@ -17,6 +17,8 @@ public class IntroController : MonoBehaviour
     public Animator deathAnim;
     public Animator speechBalloon;
 
+    public GameObject audioMng;
+
     public GameObject returnArrow;
     public GameObject cursorImg;
     public GameObject[] introTextObj;
@@ -50,6 +52,8 @@ public class IntroController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instantiate(audioMng);
+
         currentPanel = -2;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -69,7 +73,11 @@ public class IntroController : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider.CompareTag("NoTag"))
+            if (hit.collider == null)
+            {
+                //Nothing
+            }
+            else if (hit.collider.CompareTag("NoTag"))
             {
                 switch (currentPanel)
                 {
@@ -85,7 +93,7 @@ public class IntroController : MonoBehaviour
                         thought.text = "Need some light in here..";
                         break;
                     case 2:
-                        thought.ShowThought();
+                        thought.KeepThought();
                         thought.text = "What's this doing here?.";
                         cameraAnim.SetTrigger("ZoomIn");
                         isLocked = true;
@@ -95,9 +103,8 @@ public class IntroController : MonoBehaviour
                         Die();
                         break;
                 }
-            }
-            
-            if (hit.collider.CompareTag("Nothing"))
+            }         
+            else if (hit.collider.CompareTag("Nothing"))
             {
                 switch (currentPanel)
                 {
@@ -136,6 +143,7 @@ public class IntroController : MonoBehaviour
                 case 0:
                     phone[1].SetActive(false);
                     returnArrow.GetComponent<Animator>().SetTrigger("Hide 0");
+                    fadeAnim.SetTrigger("TransitionInteract");
                     directionalButton.SetActive(true);
                     for (int b = 0; b < firstPanelCollide.Length; b++)
                         firstPanelCollide[b].enabled = true;
@@ -145,7 +153,7 @@ public class IntroController : MonoBehaviour
                     if (currentPanel == 0)
                     {
                         cameraAnim.SetTrigger("turn");
-                        //fadeAnim.SetTrigger("Transition");
+                        fadeAnim.SetTrigger("TransitionLeft");
                     }
                     //currentPanel++;
                     isLocked = true;
@@ -195,7 +203,7 @@ public class IntroController : MonoBehaviour
             yield return new WaitForSeconds(delay * 3);         
         }
         yield return new WaitForSeconds(2.0f);
-        introTextObj[3].SetActive(false);
+        deathAnim.SetTrigger("Past");
         FindObjectOfType<AudioCtrl>().Play("Past");
         yield return new WaitForSeconds(8.0f);
         speechBalloon.SetTrigger("Past");
