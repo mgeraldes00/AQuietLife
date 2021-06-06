@@ -15,32 +15,52 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public bool isOver = false;
 
+    [SerializeField] private int currentScene;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+        if (currentScene == 0)
+        {
+            if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+            {
+                isOver = true;
+                if (selectedImg != null)
+                    selectedImg.enabled = true;
+                if (selectedText != null)
+                    selectedText.fontStyle = FontStyles.Underline;
+                if (selectedImg == null && selectedText == null)
+                    imgAnim.SetTrigger("Enlarge");
+            }
+        }
+        else if (currentScene == 1)
         {
             isOver = true;
-            if (selectedImg != null)
-                selectedImg.enabled = true;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Underline;
-            if (selectedImg == null && selectedText == null)
-                imgAnim.SetTrigger("Enlarge");
         }  
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+        if (currentScene == 0)
+        {
+            if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+            {
+                isOver = false;
+                if (selectedImg != null)
+                    selectedImg.enabled = false;
+                if (selectedText != null)
+                    selectedText.fontStyle = FontStyles.Normal;
+                if (selectedImg == null && selectedText == null)
+                    imgAnim.SetTrigger("Normalize");
+            }
+        }
+        else if (currentScene == 1)
         {
             isOver = false;
-            if (selectedImg != null)
-                selectedImg.enabled = false;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Normal;
-            if (selectedImg == null && selectedText == null)
-                imgAnim.SetTrigger("Normalize");
-        }  
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -17509,6 +17509,7 @@ MonoBehaviour:
   isArrow: 1
   isPhone: 0
   isLocked: 0
+  currentLvl: 2
 --- !u!1 &952891961
 GameObject:
   m_ObjectHideFlags: 0
@@ -27440,6 +27441,7 @@ MonoBehaviour:
   - {fileID: 869118679068404720, guid: b221805ba2887714db8e480932109412, type: 3}
   - {fileID: 6120480485660227296, guid: 3856018b974734449bc02fee0f832f04, type: 3}
   - {fileID: 976745285560213368, guid: 5c53826823e6fd04db2b6c1256a7cee7, type: 3}
+  test: 0
 --- !u!61 &1532251296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30665,6 +30667,7 @@ MonoBehaviour:
   isArrow: 1
   isPhone: 0
   isLocked: 0
+  currentLvl: 2
 --- !u!1 &1715857557
 GameObject:
   m_ObjectHideFlags: 0
@@ -33297,6 +33300,7 @@ MonoBehaviour:
   isArrow: 0
   isPhone: 0
   isLocked: 0
+  currentLvl: 0
 --- !u!1 &1843611274
 GameObject:
   m_ObjectHideFlags: 0
@@ -36959,6 +36963,10 @@ PrefabInstance:
       propertyPath: isArrow
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3782898123897063929, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: currentLvl
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5103830346462146371, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Controller
       value: 
@@ -39589,6 +39597,10 @@ PrefabInstance:
       propertyPath: isArrow
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3782898123897063929, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: currentLvl
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
 --- !u!95 &3578828615367628757 stripped
@@ -39635,6 +39647,10 @@ PrefabInstance:
       propertyPath: isArrow
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4268729910187247825, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: currentLvl
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5428824033131264741, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: selectedImg
       value: 
@@ -39654,6 +39670,10 @@ PrefabInstance:
     - target: {fileID: 5428824033131264741, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: isArrow
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428824033131264741, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: currentLvl
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6435017492031017414, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
