@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AudioCtrl : MonoBehaviour
 {
-    public Animator[] audioButtons;
-
     public Sound[] sounds;
 
     public static AudioCtrl instance;
@@ -31,17 +29,6 @@ public class AudioCtrl : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-    }
-
-    void Start()
-    {
-        Play("Ambient");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Play(string name)

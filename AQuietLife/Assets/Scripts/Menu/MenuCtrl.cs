@@ -17,6 +17,8 @@ public class MenuCtrl : MonoBehaviour
 
     [SerializeField] private VideoPlayer video;
 
+    [SerializeField] private GameObject audioMng;
+
     [SerializeField] private Image back;
     [SerializeField] private Image backFull;
     [SerializeField] private Image fade;
@@ -53,6 +55,8 @@ public class MenuCtrl : MonoBehaviour
     {
         skipAnim.SetTrigger("Show");
         StartCoroutine(ShowButtons());
+        Instantiate(audioMng);
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 0.1f, 1));
     }
 
     public void ButtonBehaviour(int i)

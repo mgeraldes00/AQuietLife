@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 using UnityEngine.EventSystems;
 
@@ -16,6 +17,18 @@ public class IntroController : MonoBehaviour
     public Animator shutterAnim;
     public Animator deathAnim;
     public Animator speechBalloon;
+    public Animator rain;
+    public Animator hmmAnim;
+
+    public Image coverFull;
+
+    public AudioSource alarm;
+    public AudioSource rainS;
+    public AudioSource shutter;
+    public AudioSource[] hmm;
+    public AudioSource past;
+
+    public AudioMixer musicMix;
 
     public GameObject audioMng;
 
@@ -25,6 +38,7 @@ public class IntroController : MonoBehaviour
     public GameObject directionalButton;
     public GameObject introCover;
     public GameObject sceneCloseUp;
+    public GameObject skipText;
 
     public GameObject[] phone;
     public GameObject[] deathScreen;
@@ -33,7 +47,7 @@ public class IntroController : MonoBehaviour
 
     public int currentPanel;
 
-    private bool isLocked;
+    [SerializeField] private bool isLocked;
 
     public bool isDead;
 
@@ -48,6 +62,9 @@ public class IntroController : MonoBehaviour
     private string[] introText;
 
     private string currentText = "";
+
+    private YieldInstruction fadeInstruction = new YieldInstruction();
+    private float fadeTime = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +131,7 @@ public class IntroController : MonoBehaviour
                         break;
                     case 1:                     
                         shutterAnim.SetTrigger("Open");
+                        shutter.Play();
                         isLocked = true;
                         StartCoroutine(EndTransition());
                         break;
@@ -131,18 +149,19 @@ public class IntroController : MonoBehaviour
         returnArrow.SetActive(true);
         returnArrow.GetComponent<Animator>().SetTrigger("Show");
         thought.text = "I'm so tired....";
-        FindObjectOfType<AudioCtrl>().Stop("Alarm");  
+        alarm.Stop();  
     }
 
     public void ButtonBehaviour(int i)
     {
-        if (isLocked == false)
+        if (isLocked == false || isDead == true)
         {
             switch (i)
             {
                 case 0:
                     phone[1].SetActive(false);
                     returnArrow.GetComponent<Animator>().SetTrigger("Hide 0");
+                    cameraAnim.SetTrigger("ZoomOut");
                     fadeAnim.SetTrigger("TransitionInteract");
                     directionalButton.SetActive(true);
                     for (int b = 0; b < firstPanelCollide.Length; b++)
@@ -154,10 +173,17 @@ public class IntroController : MonoBehaviour
                     {
                         cameraAnim.SetTrigger("turn");
                         fadeAnim.SetTrigger("TransitionLeft");
+                        rain.SetTrigger("Turn");
                     }
                     //currentPanel++;
                     isLocked = true;
                     StartCoroutine(EndTransition());
+                    break;
+                case 2:
+                    skipText.GetComponent<Animator>().SetTrigger("Hide");
+                    StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1.0f, 0));
+                    StartCoroutine(FadeIn(coverFull));
+                    StartCoroutine(ChangeScene());
                     break;
             }
         }
@@ -168,12 +194,11 @@ public class IntroController : MonoBehaviour
         isLocked = true;
         isDead = true;
         deathScreen[0].SetActive(true);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        rainS.Stop();
         //Destroy(scene);
         Destroy(sceneCloseUp);
-        introTextObj[3].SetActive(true);
         StartCoroutine(DeathProcess());
+        StartCoroutine(PastText());
         FindObjectOfType<AudioCtrl>().Play("Explosion");
     }
 
@@ -195,19 +220,14 @@ public class IntroController : MonoBehaviour
         yield return new WaitForSeconds(1);
         deathScreen[4].SetActive(false);*/
         //Application.Quit();
-        //SceneManager.LoadScene("Dialog");
-        for (int i = 0; i < introText[3].Length; i++)
-        {
-            currentText = introText[3].Substring(0, i);
-            introTextObj[3].GetComponent<TextMeshProUGUI>().text = currentText;
-            yield return new WaitForSeconds(delay * 3);         
-        }
-        yield return new WaitForSeconds(2.0f);
-        deathAnim.SetTrigger("Past");
-        FindObjectOfType<AudioCtrl>().Play("Past");
+        //SceneManager.LoadScene("Dialog"); 
+        //FindObjectOfType<AudioCtrl>().Play("Past");
+        past.Play();
         yield return new WaitForSeconds(8.0f);
         speechBalloon.SetTrigger("Past");
+        hmmAnim.SetTrigger("1"); 
         yield return new WaitForSeconds(1.0f);
+        hmm[0].Play();
         for (int i = 0; i < introText[4].Length; i++)
         {
             currentText = introText[4].Substring(0, i);
@@ -219,7 +239,9 @@ public class IntroController : MonoBehaviour
         introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
         yield return new WaitForSeconds(5.0f);
         speechBalloon.SetTrigger("L2R");
+        hmmAnim.SetTrigger("2");
         yield return new WaitForSeconds(1.0f);
+        hmm[1].Play();
         for (int i = 0; i < introText[5].Length; i++)
         {
             currentText = introText[5].Substring(0, i);
@@ -230,8 +252,9 @@ public class IntroController : MonoBehaviour
         currentText = "";
         introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
         yield return new WaitForSeconds(3.0f);
-        speechBalloon.SetTrigger("RTT");
+        speechBalloon.SetTrigger("RTT");       
         yield return new WaitForSeconds(1.0f);
+        hmm[2].Play();
         for (int i = 0; i < introText[6].Length; i++)
         {
             currentText = introText[6].Substring(0, i);
@@ -240,6 +263,20 @@ public class IntroController : MonoBehaviour
         }
         yield return new WaitForSeconds(6.0f);
         SceneManager.LoadScene("Dialog");
+    }
+
+    IEnumerator PastText()
+    {
+        yield return new WaitForSeconds(6.0f);
+        for (int i = 0; i < introText[3].Length; i++)
+        {
+            currentText = introText[3].Substring(0, i);
+            introTextObj[3].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(delay * 3);
+        }
+        yield return new WaitForSeconds(1.0f);
+        deathAnim.SetTrigger("Past");
+        skipText.GetComponent<Animator>().SetTrigger("Show");
     }
 
     IEnumerator IntroStart()
@@ -278,6 +315,25 @@ public class IntroController : MonoBehaviour
     IEnumerator StartAlarm()
     {
         yield return new WaitForSeconds(5.8f);
-        FindObjectOfType<AudioCtrl>().Play("Alarm");
+        alarm.Play();
+    }
+
+    IEnumerator FadeIn(Image image)
+    {
+        float elapsedTime = 0.0f;
+        Color c = image.color;
+        while (elapsedTime < fadeTime)
+        {
+            yield return fadeInstruction;
+            elapsedTime += Time.deltaTime;
+            c.a = Mathf.Clamp01(elapsedTime / fadeTime);
+            image.color = c;
+        }
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("Dialog");
     }
 }

@@ -9,7 +9,7 @@ public class ObjDrag : MonoBehaviour
     private Vector3 mousePosition;
     private Rigidbody2D rb;
     private Vector2 direction;
-    private float moveSpeed = 700f;
+    private float moveSpeed = 200f;
 
     // Use this for initialization
     void Start()

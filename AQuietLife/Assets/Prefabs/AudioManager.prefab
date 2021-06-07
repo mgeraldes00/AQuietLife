@@ -43,22 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20285a7d00414d648994b8d5760a4211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioButtons: []
   sounds:
-  - name: Alarm
-    clip: {fileID: 8300000, guid: 413a7121e9da4ae4aa04f2037380b10b, type: 3}
-    volume: 0.2
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
   - name: Explosion
-    clip: {fileID: 8300000, guid: c6622b489d419cc42846b4a9e1b155dc, type: 3}
+    clip: {fileID: 8300000, guid: c10f6ba49753a6a49bdd376fb15e60cf, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Past
-    clip: {fileID: 8300000, guid: 142cf26491865d84fb550952256e0892, type: 3}
+    clip: {fileID: 8300000, guid: 1f654b197dedd76448a794fccdc85bcc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -77,6 +70,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PageTurnRight
     clip: {fileID: 8300000, guid: 31d40d86f581ecb43bba9a1e47ea78f7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Scribble
+    clip: {fileID: 8300000, guid: 175fac635dd6a924da180be094d445a0, type: 3}
     volume: 1
     pitch: 1
     loop: 0
