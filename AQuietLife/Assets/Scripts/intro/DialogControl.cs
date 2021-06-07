@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using TMPro;
 
 public class DialogControl : MonoBehaviour
@@ -19,6 +20,10 @@ public class DialogControl : MonoBehaviour
 
     public SpriteRenderer[] dialog;
     public SpriteRenderer explosiveChar;
+
+    public AudioMixer musicMix;
+
+    public GameObject[] hmm;
 
     private float delay = 0.1f;
     private float dialogDelay = 0.02f;
@@ -49,6 +54,7 @@ public class DialogControl : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         StartCoroutine(DialogStart());
+
     }
 
     // Update is called once per frame
@@ -95,65 +101,69 @@ public class DialogControl : MonoBehaviour
             {
                 case 1:
                     HideThought(1);
+                    StartCoroutine(NextText(0, 1, 3));
                     StartCoroutine(Unlock());
                     break;
                 case 2:
-                    KeepThought(0);
-                    text = "Thanks, it'll be good to share the expenses. And don't worry, I'm aware of the situation..";
+                    HideThought(0);
+                    StartCoroutine(NextText(1, 2, 1));
                     StartCoroutine(Unlock());
                     break;
                 case 3:
-                    HideThought(0);
+                    HideThought(1);
+                    StartCoroutine(NextText(0, 3, 3));
                     StartCoroutine(Unlock());
                     break;
                 case 4:
-                    KeepThought(1);
-                    text = "Yeah, but you know... Since the accident 2 months ago, finding suitors has been impossible!.";
+                    HideThought(0);
+                    StartCoroutine(NextText(1, 4, 2));
                     StartCoroutine(Unlock());
                     break;
                 case 5:
                     HideThought(1);
+                    StartCoroutine(NextText(0, 5, 3));
                     StartCoroutine(Unlock());
                     break;
                 case 6:
-                    KeepThought(0);
-                    text = "I can imagine! Luckily, it seems our abilities are a match made in heaven..";
-                    StartCoroutine(Unlock());
-                    break;
-                case 7:
                     HideThought(0);
                     StartCoroutine(Unlock());
-                    break;
-                case 8:
-                    KeepThought(1);
-                    text = "Hope so. I just don't want to go through the same thing again....";
-                    StartCoroutine(Unlock());
-                    break;
-                case 9:
-                    HideThought(1);
-                    StartCoroutine(Unlock());
-                    break;
-                case 10:
-                    KeepThought(0);
-                    text = "Don't worry! You'll see that we will get along very well....";
-                    StartCoroutine(Unlock());
-                    break;
-                case 11:
-                    HideThought(0);
-                    StartCoroutine(Unlock());
-                    break;
-                case 12:
                     skipText.GetComponent<Animator>().SetTrigger("Hide");
-                    for (int i = 0; i < balloons.Length; i++)
-                        balloons[i].SetActive(false);
                     StartCoroutine(TransitionToLevel());
+                    StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
+                    StartCoroutine(Unlock());
                     break;
             }
-        }   
+        }
+    }
+
+    IEnumerator NextText(int i, int b, int c)
+    {
+        yield return new WaitForSeconds(1.0f);
+        KeepThought(i, c);
+        switch (b)
+        {
+            case 1:
+                text = "Thanks, it'll be good to share the expenses. And don't worry, I'm aware of the situation..";
+                break;
+            case 2:
+                text = "Yeah, but you know... Since the accident 2 months ago, finding suitors has been impossible!.";
+                break;
+            case 3:
+                text = "I can imagine! Luckily, it seems our abilities are a match made in heaven..";
+                break;
+            case 4:
+                text = "Hope so. I just don't want to go through the same thing again....";
+                break;
+            case 5:
+                text = "Don't worry! You'll see that we will get along very well....";
+                break;
+        }
     }
 
     IEnumerator DialogStart()
     {
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 10, 1));
         yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < introText.Length; i++)
         {
@@ -169,12 +179,13 @@ public class DialogControl : MonoBehaviour
         introTextObj.SetActive(false);
         explosiveChar.enabled = true;
         explosiveAnim.SetTrigger("FadeIn");
-        yield return new WaitForSeconds(1.0f);
-        KeepThought(1);
+        FindObjectOfType<AudioCtrl>().Play("Scribble");
+        yield return new WaitForSeconds(2.0f);
+        KeepThought(1, 0);
         text = "Welcome! I'm so glad you showed interest in the room. It has been a though few weeks....";
         skipText.SetActive(true);
         skipText.GetComponent<Animator>().SetTrigger("Show");
-        yield return new WaitForSeconds(5.0f);
+        /*yield return new WaitForSeconds(5.0f);
         if (isSkipping == true)
             StartCoroutine(RemoveSkip());
         else
@@ -251,7 +262,8 @@ public class DialogControl : MonoBehaviour
         {
             skipText.GetComponent<Animator>().SetTrigger("Hide");
             StartCoroutine(TransitionToLevel());
-        }
+            StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
+        }*/
     }
 
     IEnumerator TransitionToLevel()
@@ -262,13 +274,13 @@ public class DialogControl : MonoBehaviour
         SceneManager.LoadScene("Kitchen");
     }
 
-    public void KeepThought(int i)
+    public void KeepThought(int i, int b)
     {
         if (isSpeaking == false)
         {
             balloon[i].SetBool("Visible", true);
             isSpeaking = true;
-            StartCoroutine(ShowText(i));
+            StartCoroutine(ShowText(i, b));
         }
     }
 
@@ -288,9 +300,11 @@ public class DialogControl : MonoBehaviour
         textObj[i].GetComponent<TextMeshProUGUI>().text = currentText;
     }
 
-    IEnumerator ShowText(int b)
+    IEnumerator ShowText(int b, int c)
     {
         yield return new WaitForSecondsRealtime(0.7f);
+        if (c <= 2)
+            hmm[c].GetComponent<AudioSource>().Play();
         for (int i = 0; i < text.Length; i++)
         {
             currentText = text.Substring(0, i);
@@ -309,7 +323,7 @@ public class DialogControl : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         isLocked = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         isLocked = false;
     }
 }

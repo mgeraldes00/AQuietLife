@@ -29,6 +29,7 @@ public class IntroController : MonoBehaviour
     public AudioSource past;
 
     public AudioMixer musicMix;
+    public AudioMixer fxMix;
 
     public GameObject audioMng;
 
@@ -70,6 +71,8 @@ public class IntroController : MonoBehaviour
     void Start()
     {
         Instantiate(audioMng);
+
+        StartCoroutine(FadeMixerGroup.StartFade(fxMix, "BackFX", 5, 1));
 
         currentPanel = -2;
         Cursor.visible = false;
@@ -181,7 +184,7 @@ public class IntroController : MonoBehaviour
                     break;
                 case 2:
                     skipText.GetComponent<Animator>().SetTrigger("Hide");
-                    StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1.0f, 0));
+                    StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
                     StartCoroutine(FadeIn(coverFull));
                     StartCoroutine(ChangeScene());
                     break;
@@ -200,6 +203,7 @@ public class IntroController : MonoBehaviour
         StartCoroutine(DeathProcess());
         StartCoroutine(PastText());
         FindObjectOfType<AudioCtrl>().Play("Explosion");
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 10, 1));
     }
 
     IEnumerator EndTransition()
@@ -234,10 +238,10 @@ public class IntroController : MonoBehaviour
             introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);      
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         currentText = "";
         introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
         speechBalloon.SetTrigger("L2R");
         hmmAnim.SetTrigger("2");
         yield return new WaitForSeconds(1.0f);
@@ -248,10 +252,10 @@ public class IntroController : MonoBehaviour
             introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(4.0f);
         currentText = "";
         introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
         speechBalloon.SetTrigger("RTT");       
         yield return new WaitForSeconds(1.0f);
         hmm[2].Play();
@@ -261,7 +265,10 @@ public class IntroController : MonoBehaviour
             introTextObj[4].GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
-        yield return new WaitForSeconds(6.0f);
+        yield return new WaitForSeconds(2.0f);
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
+        skipText.GetComponent<Animator>().SetTrigger("Hide");
+        yield return new WaitForSeconds(2.1f);
         SceneManager.LoadScene("Dialog");
     }
 
@@ -313,7 +320,7 @@ public class IntroController : MonoBehaviour
     }
 
     IEnumerator StartAlarm()
-    {
+    { 
         yield return new WaitForSeconds(5.8f);
         alarm.Play();
     }
@@ -333,7 +340,7 @@ public class IntroController : MonoBehaviour
 
     IEnumerator ChangeScene()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.1f);
         SceneManager.LoadScene("Dialog");
     }
 }

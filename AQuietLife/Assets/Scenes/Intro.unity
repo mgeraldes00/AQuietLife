@@ -1437,7 +1437,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 1.01
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1472,7 +1472,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.9
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1678,7 +1678,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 1.01
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1713,7 +1713,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.9
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2344,7 +2344,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 1.01
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2379,7 +2379,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.9
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2617,6 +2617,7 @@ MonoBehaviour:
   - {fileID: 530823030}
   past: {fileID: 187810660}
   musicMix: {fileID: 24100000, guid: 7c61aa38172069b43b2b8dbeae76023d, type: 2}
+  fxMix: {fileID: 24100000, guid: 5271216ee3189a5439cc38522cea9339, type: 2}
   audioMng: {fileID: 760849871664034019, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
   returnArrow: {fileID: 1456157712}
   cursorImg: {fileID: 1833137932}
@@ -3794,7 +3795,7 @@ AudioSource:
   m_GameObject: {fileID: 1433781691}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6987448771456320592, guid: 5271216ee3189a5439cc38522cea9339, type: 2}
   m_audioClip: {fileID: 8300000, guid: 201e54d5e8e96c4459427a090a2ad0d8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3841,7 +3842,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.7
+      value: 0.9
       inSlope: 0
       outSlope: 0
       tangentMode: 0

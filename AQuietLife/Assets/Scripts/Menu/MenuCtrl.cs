@@ -95,6 +95,7 @@ public class MenuCtrl : MonoBehaviour
             case (4):
                 fade.GetComponent<Animator>().SetTrigger("Black");
                 StartCoroutine(NewGame());
+                StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
                 break;
             case (5):
                 //Return
@@ -181,7 +182,7 @@ public class MenuCtrl : MonoBehaviour
 
     IEnumerator NewGame()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("Intro");
     }
 
