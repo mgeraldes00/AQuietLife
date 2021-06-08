@@ -7,6 +7,8 @@ using TMPro;
 
 public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    private PointerManager pointers;
+
     public Image selectedImg;
 
     public TMP_Text selectedText;
@@ -15,15 +17,23 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public bool isOver = false;
 
+    [SerializeField] private bool isLocked;
+
     [SerializeField] private int currentScene;
+
+    private void Start()
+    {
+        pointers = FindObjectOfType<PointerManager>();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (currentScene == 0)
+        if (currentScene == 0 && isLocked == false)
         {
             if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
                 isOver = true;
+                pointers.ChangeCursor(2);
                 if (selectedImg != null)
                     selectedImg.enabled = true;
                 if (selectedText != null)
@@ -37,16 +47,18 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             isOver = true;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Underline;
+            pointers.ChangeCursor(2);
         }  
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (currentScene == 0)
+        if (currentScene == 0 && isLocked == false)
         {
             if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
                 isOver = false;
+                pointers.ChangeCursor(1);
                 if (selectedImg != null)
                     selectedImg.enabled = false;
                 if (selectedText != null)
@@ -60,6 +72,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             isOver = false;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Normal;
+            pointers.ChangeCursor(1);
         }
     }
 
@@ -67,5 +80,15 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         if (selectedImg != null)
             selectedImg.enabled = false;
+        pointers.ChangeCursor(1);
+        StartCoroutine(Unlock());
+    }
+
+    IEnumerator Unlock()
+    {
+        yield return new WaitForEndOfFrame();
+        isLocked = true;
+        yield return new WaitForSeconds(1.0f);
+        isLocked = false;
     }
 }

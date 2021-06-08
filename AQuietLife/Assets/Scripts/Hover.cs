@@ -8,6 +8,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
 {
     private CameraCtrl cam;
     private GameManager gameMng;
+    private IntroCursor introHover;
 
     public Animator arrow;
 
@@ -32,11 +33,13 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         {
             cam = null;
             gameMng = null;
+            introHover = FindObjectOfType<IntroCursor>();
         }
         else if (currentLvl == 2)
         {
             cam = FindObjectOfType<CameraCtrl>();
             gameMng = FindObjectOfType<GameManager>();
+            introHover = null;
         }   
     }
 
@@ -44,10 +47,11 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     {
         if (currentLvl == 0)
         {
-            if (isDirectional == true && isArrow == true)
+            if (isArrow == true)
             {
                 arrow.SetTrigger("Clicked");
-                StartCoroutine(Unlock());
+                StartCoroutine(UnlockClock());
+                introHover.ChangeCursor(1);
             }
         }
         else if (currentLvl == 2)
@@ -77,10 +81,11 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isArrow == true)
+        if (isArrow == true && isLocked == false)
         {
             isOver = true;
             arrow.SetBool("Selected", true);
+            introHover.ChangeCursor(2);
         }
         else if (isArrow == false && isPhone == false && gameMng.isLocked == false)
             clockSelect.SetActive(true);
@@ -96,6 +101,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         {
             isOver = false;
             arrow.SetBool("Selected", false);
+            introHover.ChangeCursor(1);
         }
         else if (isArrow == false && gameMng.isLocked == false)
             clockSelect.SetActive(false);

@@ -40,6 +40,7 @@ public class IntroController : MonoBehaviour
     public GameObject introCover;
     public GameObject sceneCloseUp;
     public GameObject skipText;
+    public GameObject winder;
 
     public GameObject[] phone;
     public GameObject[] deathScreen;
@@ -47,6 +48,7 @@ public class IntroController : MonoBehaviour
     public BoxCollider2D[] firstPanelCollide;
 
     public int currentPanel;
+    public int currentView;
 
     [SerializeField] private bool isLocked;
 
@@ -75,6 +77,7 @@ public class IntroController : MonoBehaviour
         StartCoroutine(FadeMixerGroup.StartFade(fxMix, "BackFX", 5, 1));
 
         currentPanel = -2;
+        currentView = 0;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(IntroStart());
@@ -113,6 +116,8 @@ public class IntroController : MonoBehaviour
                         thought.text = "Need some light in here..";
                         break;
                     case 2:
+                        currentView = 1;
+                        cursor.ChangeCursor(1);
                         thought.KeepThought();
                         thought.text = "What's this doing here?.";
                         cameraAnim.SetTrigger("ZoomIn");
@@ -134,6 +139,8 @@ public class IntroController : MonoBehaviour
                         break;
                     case 1:                     
                         shutterAnim.SetTrigger("Open");
+                        winder.GetComponent<BoxCollider2D>().enabled = false;
+                        cursor.ChangeCursor(1);
                         shutter.Play();
                         isLocked = true;
                         StartCoroutine(EndTransition());
@@ -145,7 +152,7 @@ public class IntroController : MonoBehaviour
 
     public void PhoneOff()
     {
-        Cursor.SetCursor(cursor.defaultTexture, cursor.hotSpot, cursor.curMode);
+        cursor.ChangeCursor(1);
         thought.ShowThought();
         phone[0].SetActive(false);
         phone[2].SetActive(true);
@@ -167,8 +174,6 @@ public class IntroController : MonoBehaviour
                     cameraAnim.SetTrigger("ZoomOut");
                     fadeAnim.SetTrigger("TransitionInteract");
                     directionalButton.SetActive(true);
-                    for (int b = 0; b < firstPanelCollide.Length; b++)
-                        firstPanelCollide[b].enabled = true;
                     currentPanel++;
                     break;
                 case 1:

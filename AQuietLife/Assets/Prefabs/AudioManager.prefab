@@ -75,7 +75,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Scribble
-    clip: {fileID: 8300000, guid: 175fac635dd6a924da180be094d445a0, type: 3}
+    clip: {fileID: 8300000, guid: 47a625d2735f22a438174ac84a6be664, type: 3}
     volume: 1
     pitch: 1
     loop: 0

@@ -153,6 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 592836783}
+  - component: {fileID: 592836782}
   - component: {fileID: 592836784}
   m_Layer: 0
   m_Name: MenuManager
@@ -161,6 +162,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &592836782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592836781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14709598564370f4c82f5d942a9bf0ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultTexture: {fileID: 2800000, guid: 331e62a7b18e9b84b8339a3a7f7c01e6, type: 3}
+  interactTexture: {fileID: 2800000, guid: 1bd5a9dc800803047ba4112fed834e23, type: 3}
+  pickUpTexture: {fileID: 2800000, guid: a1819275e4e01374baad5e3fd3c6959d, type: 3}
+  examineTexture: {fileID: 2800000, guid: 99c0b960ab55dff44bdd1471b97b3325, type: 3}
+  clickTexture: {fileID: 2800000, guid: c104e6ff01b86fc4a862741f5715bb66, type: 3}
+  doorTexture: {fileID: 0}
+  curMode: 0
+  hotSpot: {x: 0, y: 0}
+  currentCursor: 0
 --- !u!4 &592836783
 Transform:
   m_ObjectHideFlags: 0
