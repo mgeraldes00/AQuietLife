@@ -48,6 +48,24 @@ public class DrawerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (zoom.currentView == 1)
+        {
+            Vector3 mousePos2 =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+            RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+            if (hit2.collider == null)
+                FindObjectOfType<PointerManager>().ChangeCursor(1);
+            else if (hit2.collider.CompareTag("DrawerDoor1")
+                || hit2.collider.CompareTag("DrawerDoor2")
+                || hit2.collider.CompareTag("DrawerDoor3"))
+            {
+                FindObjectOfType<PointerManager>().ChangeCursor(2);
+            }
+        }    
+
         if (Input.GetMouseButtonDown(0))
         {
             //Debug.Log("Mouse Clicked");
@@ -103,6 +121,7 @@ public class DrawerManager : MonoBehaviour
                         zoom.InteractionTransition();
                         StartCoroutine(ShowDoor(openDoor[0]));
                         zoom.currentView++;
+                        FindObjectOfType<PointerManager>().ChangeCursor(1);
                     }
                 }
 
@@ -143,6 +162,7 @@ public class DrawerManager : MonoBehaviour
                         zoom.InteractionTransition();
                         StartCoroutine(ShowDoor(openDoor[2]));
                         zoom.currentView++;
+                        FindObjectOfType<PointerManager>().ChangeCursor(1);
                     }
                 }
 
@@ -160,6 +180,7 @@ public class DrawerManager : MonoBehaviour
                     //zoom.GetComponent<Animator>().SetTrigger("Return2");
                     StartCoroutine(ShowDoor(openDoor[1]));
                     zoom.currentView++;
+                    FindObjectOfType<PointerManager>().ChangeCursor(1);
                 }    
             }
         }

@@ -14,6 +14,8 @@ public class CloseUpBreadBox : MonoBehaviour
     public BoxCollider2D breadBox;
     public BoxCollider2D[] zoomableObjs;
 
+    public bool isBreadBox;
+
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +42,7 @@ public class CloseUpBreadBox : MonoBehaviour
                     zoom.ObjectTransition();
                     zoom.cameraAnim.SetTrigger("ZoomBreadbox");
                     StartCoroutine(TimeToZoom());
+                    isBreadBox = true;
                 }         
             }
         }
@@ -63,17 +66,19 @@ public class CloseUpBreadBox : MonoBehaviour
         breadBox.enabled = true;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = false;
+        isBreadBox = false;
     }
 
     private void OnMouseEnter()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        if (zoom.currentView == 0 && gameMng.isLocked == false)
+            FindObjectOfType<PointerManager>().ChangeCursor(5);
+        else if (zoom.currentView == 1 && gameMng.isLocked == false)
+            FindObjectOfType<PointerManager>().ChangeCursor(2);
     }
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        FindObjectOfType<PointerManager>().ChangeCursor(1);
     }
 }

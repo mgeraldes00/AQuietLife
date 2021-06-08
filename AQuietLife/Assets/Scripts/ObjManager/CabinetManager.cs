@@ -86,6 +86,25 @@ public class CabinetManager : MonoBehaviour
         if (gameMng.isLocked != true)
             isLocked = false;
 
+        Vector3 mousePos2 =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+        RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+        if (closeUp.isCabinet == true)
+        {
+            if (hit2.collider == null)
+                FindObjectOfType<PointerManager>().ChangeCursor(1);
+            else if (hit2.collider.CompareTag("CabinetDoor1") || hit2.collider.CompareTag("CabinetDoor2")
+                || hit2.collider.CompareTag("CabinetDoor3")
+                || hit2.collider.CompareTag("CabinetDoor4")
+                || hit2.collider.CompareTag("CabinetBreach"))
+            {
+                FindObjectOfType<PointerManager>().ChangeCursor(2);
+            }
+        } 
+
         if (Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");

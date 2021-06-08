@@ -156,7 +156,7 @@ public class CameraCtrl : MonoBehaviour
 
     IEnumerator EndTransition()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         if (currentPanel == 3)
             currentPanel = -1;
         if (currentPanel == -2)

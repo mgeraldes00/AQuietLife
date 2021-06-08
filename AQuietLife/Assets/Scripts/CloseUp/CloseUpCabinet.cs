@@ -21,6 +21,8 @@ public class CloseUpCabinet : MonoBehaviour
     public BoxCollider2D cabinet;
     public BoxCollider2D[] zoomableObjs;
 
+    public bool isCabinet;
+
     // Update is called once per frame
     void Update()
     {
@@ -45,6 +47,7 @@ public class CloseUpCabinet : MonoBehaviour
                 zoom.ObjectTransition();
                 zoom.cameraAnim.SetTrigger("ZoomCabinet");
                 StartCoroutine(TimeToZoom());
+                isCabinet = true;
             }
         }
     }
@@ -85,17 +88,19 @@ public class CloseUpCabinet : MonoBehaviour
         cabinet.enabled = true;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = false;
+        isCabinet = false;
     }
 
     private void OnMouseEnter()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        if (zoom.currentView == 0 && gameMng.isLocked == false)
+            FindObjectOfType<PointerManager>().ChangeCursor(5);
+        else if (zoom.currentView == 1 && gameMng.isLocked == false)
+            FindObjectOfType<PointerManager>().ChangeCursor(2);
     }
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        FindObjectOfType<PointerManager>().ChangeCursor(1);
     }
 }

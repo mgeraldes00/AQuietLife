@@ -24,13 +24,37 @@ public class CloseUpDrawers : MonoBehaviour
 
     public bool isOnDrawer;
 
+    public bool isDrawer;
+
     // Update is called once per frame
     void Update()
     {
+        if (zoom.currentView == 0)
+        {
+            Vector3 mousePos2 =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+            RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+            if (hit2.collider == null && isDrawer == true)
+            {
+                FindObjectOfType<PointerManager>().ChangeCursor(1);
+                isDrawer = false;
+            }
+            else if (hit2.collider.CompareTag("DrawerDoor1")
+                || hit2.collider.CompareTag("DrawerDoor2")
+                || hit2.collider.CompareTag("DrawerDoor3"))
+            {
+                FindObjectOfType<PointerManager>().ChangeCursor(5);
+                isDrawer = true;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
-            {
+            {              
                 Debug.Log("Mouse Clicked");
                 Vector3 mousePos =
                     Camera.main.ScreenToWorldPoint(Input.mousePosition);

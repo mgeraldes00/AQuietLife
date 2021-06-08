@@ -19,7 +19,7 @@ public class DoorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -59,8 +59,18 @@ public class DoorManager : MonoBehaviour
                         //thoughtText.text = "Can't leave now, gotta make something to eat.";
                         //SceneManager.LoadScene("MainMenu");
                     }
-                }     
-            }     
+                }
+            }
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        FindObjectOfType<PointerManager>().ChangeCursor(5);
+    }
+
+    private void OnMouseExit()
+    {
+        FindObjectOfType<PointerManager>().ChangeCursor(1);
     }
 }

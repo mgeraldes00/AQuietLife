@@ -9,6 +9,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     private CameraCtrl cam;
     private GameManager gameMng;
     private IntroCursor introHover;
+    private PointerManager pointers;
 
     public Animator arrow;
 
@@ -33,14 +34,16 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         {
             cam = null;
             gameMng = null;
+            pointers = null;
             introHover = FindObjectOfType<IntroCursor>();
         }
         else if (currentLvl == 2)
         {
             cam = FindObjectOfType<CameraCtrl>();
             gameMng = FindObjectOfType<GameManager>();
+            pointers = FindObjectOfType<PointerManager>();
             introHover = null;
-        }   
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -65,7 +68,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
                 StartCoroutine(Unlock());
             }
             else if (isArrow == false && isLocked == false && gameMng.isLocked == false
-                && isPhone == true)
+                && isPhone == false)
             {
                 clockSelect.SetActive(false);
                 isLocked = true;
@@ -76,32 +79,38 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             {
                 //Nothing
             }
-        }       
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (currentLvl == 0)
+            introHover.ChangeCursor(2);
+        else
+            pointers.ChangeCursor(2);
         if (isArrow == true && isLocked == false)
         {
             isOver = true;
             arrow.SetBool("Selected", true);
-            introHover.ChangeCursor(2);
         }
         else if (isArrow == false && isPhone == false && gameMng.isLocked == false)
             clockSelect.SetActive(true);
         else if (isArrow == false && isPhone == false && selectedText != null)
         {
             selectedText.fontStyle = FontStyles.Underline;
-        }           
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (currentLvl == 0)
+            introHover.ChangeCursor(1);
+        else
+            pointers.ChangeCursor(1);
         if (isArrow == true)
         {
             isOver = false;
             arrow.SetBool("Selected", false);
-            introHover.ChangeCursor(1);
         }
         else if (isArrow == false && gameMng.isLocked == false)
             clockSelect.SetActive(false);
