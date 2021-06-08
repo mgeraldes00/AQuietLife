@@ -117,6 +117,7 @@ public class BreadBoxManager : MonoBehaviour
                 objects[2].SetActive(true);
                 objects[1].GetComponent<BoxCollider2D>().enabled = false;
                 FindObjectOfType<Knife>().knifeUsed = true;
+                FindObjectOfType<InventorySimple>().knifeInPossession = false;
                 zoom.InteractionTransition();
             }
         }

@@ -34,6 +34,8 @@ public class CloseUpDishWasher : MonoBehaviour
                 {
                     dishWasher.size = new Vector2(3.11f, 0.4f);
                     dishWasher.offset = new Vector2(0, -0.88f);
+                    for (int i = 0; i < dishwasherMng.objects.Length; i++)
+                        dishwasherMng.objects[i].GetComponent<BoxCollider2D>().enabled = true;
                 }
             }
             else if (dishwasherMng.isWorking == true)

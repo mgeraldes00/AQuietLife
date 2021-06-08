@@ -72,6 +72,7 @@ public class CheeseDomeManager : MonoBehaviour
                 zoom.InteractionTransition();
                 LockAndUnlock();
                 FindObjectOfType<Knife>().knifeUsed = true;
+                FindObjectOfType<InventorySimple>().knifeInPossession = false;
                 StartCoroutine(TakeCheese());
             }
         }

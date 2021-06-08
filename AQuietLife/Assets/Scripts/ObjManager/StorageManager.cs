@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StorageManager : MonoBehaviour
 {
+    public CameraCtrl zoom;
+
     private Vector3 mousePosition;
     [SerializeField] private Rigidbody2D[] rb;
     private Vector2 direction;
-    [SerializeField] private float moveSpeed = 10f;
+    public float moveSpeed = 10f;
+    public float moveSpeed2 = 10.0f;
 
     public GameObject[] objects;
 
@@ -16,49 +20,58 @@ public class StorageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePos =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-        if (Input.GetMouseButton(0) && FindObjectOfType<GameManager>().isLocked == false
-            && FindObjectOfType<CameraCtrl>().currentView == 1)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (hit.collider == null)
-            {
+            Vector3 mousePos =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-            }
-            else if (hit.collider.CompareTag("Direction"))
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if (Input.GetMouseButton(0) && FindObjectOfType<GameManager>().isLocked == false
+                && FindObjectOfType<CameraCtrl>().currentView == 1)
             {
-                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                direction = (mousePosition - transform.position).normalized;
-                rb[0].velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+                if (hit.collider == null)
+                {
+
+                }
+                else if (hit.collider.CompareTag("Direction"))
+                {
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    direction = (mousePosition - transform.position).normalized;
+                    rb[0].velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+                }
+                else if (hit.collider.CompareTag("Direction2"))
+                {
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    direction = (mousePosition - transform.position).normalized;
+                    rb[1].velocity = new Vector2(direction.x * moveSpeed2, direction.y * moveSpeed2);
+                }
+                else
+                {
+                    for (int i = 0; i < rb.Length; i++)
+                        rb[i].velocity = Vector2.zero;
+                }
             }
-            else if (hit.collider.CompareTag("Direction2"))
-            {
-                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                direction = (mousePosition - transform.position).normalized;
-                rb[1].velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-            }
-            else
-            {
-                for (int i = 0; i < rb.Length; i++)
-                    rb[i].velocity = Vector2.zero;
-            }
-        }
+        }     
     }
 
     public void ButtonBehaviour()
     {
-        FindObjectOfType<CloseUpStorage>().Normalize();
-        StartCoroutine(TimeToTransition());
+        if (zoom.currentView == 1)
+        {
+            FindObjectOfType<CloseUpStorage>().Normalize();
+            StartCoroutine(TimeToTransition());
+        }
+        else
+        {
+
+        }
     }
 
     IEnumerator TimeToTransition()
     {
         yield return new WaitForSeconds(0.1f);
-        //returnArrow.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -68,5 +81,12 @@ public class StorageManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public IEnumerator DisableObjs()
+    {
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = false;
     }
 }

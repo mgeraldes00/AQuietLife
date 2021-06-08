@@ -15,18 +15,39 @@ public class StorageDoors : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (currentDoor == "Door1")
+        if (collision.gameObject.name == "LeftTrigger"
+            || collision.gameObject.name == "RightTrigger")
         {
-            storage.leftDoorCol = true;
-        }
-        else if (currentDoor == "Door2")
-        {
-            storage.rightDoorCol = true;
-        }
+            if (currentDoor == "Door1")
+            {
+                storage.leftDoorCol = true;
+                storage.moveSpeed = -10f;
+            }
+            else if (currentDoor == "Door2")
+            {
+                storage.rightDoorCol = true;
+                StartCoroutine(storage.EnableObjs());
+                storage.moveSpeed2 = -10f;
+            }
+        }   
+    }
 
-        if (storage.leftDoorCol && storage.rightDoorCol)
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "LeftTrigger"
+               || collision.gameObject.name == "RightTrigger")
         {
-            StartCoroutine(storage.EnableObjs());
-        }
+            if (currentDoor == "Door1")
+            {
+                storage.leftDoorCol = false;
+                storage.moveSpeed = 10f;
+            }
+            else if (currentDoor == "Door2")
+            {
+                storage.rightDoorCol = false;
+                storage.moveSpeed2 = 10f;
+                StartCoroutine(storage.DisableObjs());
+            }
+        }      
     }
 }

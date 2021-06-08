@@ -11,9 +11,12 @@ public class CloseUpStorage : MonoBehaviour
 
     private void OnMouseDown()
     {
-        zoom.cameraAnim.SetTrigger("ZoomStorage");
-        zoom.ObjectTransition();
-        StartCoroutine(TimeToZoom());
+        if (gameMng.isLocked == false && zoom.currentView == 0)
+        {
+            zoom.cameraAnim.SetTrigger("ZoomStorage");
+            zoom.ObjectTransition();
+            StartCoroutine(TimeToZoom());
+        }          
     }
 
     private void OnMouseEnter()
