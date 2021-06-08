@@ -19,7 +19,7 @@ public class DishWasherManager : MonoBehaviour
     public bool isActive;
 
     [SerializeField]private bool isLocked;
-    [SerializeField] private bool isOpen;
+    public bool isOpen;
 
     [SerializeField] float startTime;
     float timer = 0f;

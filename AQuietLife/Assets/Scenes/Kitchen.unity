@@ -7016,6 +7016,7 @@ MonoBehaviour:
   breadBox: {fileID: 373251370}
   zoomableObjs:
   - {fileID: 1732993788}
+  isBreadBox: 0
 --- !u!114 &373251369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8030,6 +8031,7 @@ MonoBehaviour:
   - {fileID: 1834527246}
   - {fileID: 1020085052}
   - {fileID: 845196419}
+  isCabinet: 0
 --- !u!114 &406754941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17639,7 +17641,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: a2b7506672f166c479fd81814956a54b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -17791,6 +17793,7 @@ MonoBehaviour:
   zoomableObjs:
   - {fileID: 78655327}
   zoomTrigger: ZoomDishwasher
+  isOnWasher: 0
 --- !u!61 &1019528738
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19327,6 +19330,8 @@ MonoBehaviour:
   - {fileID: 1584594072}
   - {fileID: 210361599}
   bottomDoor: {fileID: 1023488282}
+  isOnFridge: 0
+  isFridge: 0
 --- !u!114 &1109741756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19373,6 +19378,7 @@ MonoBehaviour:
   arrowZoom: {fileID: 2010031358}
   isLocked: 0
   isTrapped: 0
+  lookingAtFridgeDoor: 0
   openingTopDoor: 0
   openingBottomDoor: 0
   closingTopDoor: 0
@@ -21264,88 +21270,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!1 &1203221021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1203221022}
-  - component: {fileID: 1203221023}
-  m_Layer: 0
-  m_Name: butter_square
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1203221022
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203221021}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 0.78, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1412311369}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1203221023
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203221021}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1f139d8d948ad264bb20e3aaefd14c27, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.57, y: 2.05}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1204984823
 GameObject:
   m_ObjectHideFlags: 0
@@ -25547,8 +25471,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.312, y: -0.15, z: 0}
   m_LocalScale: {x: 0.09, y: 0.09, z: 1}
-  m_Children:
-  - {fileID: 1203221022}
+  m_Children: []
   m_Father: {fileID: 746380006}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25592,7 +25515,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 843d4243e31142e499da931f5fa40f87, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57cff7b3afc0cdd42b4acb1ca7b3c00c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25620,7 +25543,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.28, y: 4.96}
+    oldSize: {x: 10.35, y: 5.07}
     newSize: {x: 10.28, y: 4.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -26126,7 +26049,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 4.83, y: 0}
   m_SizeDelta: {x: 19.654434, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26775,6 +26698,7 @@ GameObject:
   - component: {fileID: 1502380689}
   - component: {fileID: 1502380690}
   - component: {fileID: 1502380691}
+  - component: {fileID: 1502380692}
   m_Layer: 0
   m_Name: microwave
   m_TagString: Microwave
@@ -26814,10 +26738,11 @@ MonoBehaviour:
   microMng: {fileID: 1502380691}
   zoom: {fileID: 519420033}
   returnArrow: {fileID: 1479651714}
-  microwave: {fileID: 1904389020}
+  microwave: {fileID: 1502380692}
   zoomableObjs:
   - {fileID: 759811527}
   - {fileID: 440149825}
+  isMicrowave: 0
 --- !u!114 &1502380691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26852,6 +26777,32 @@ MonoBehaviour:
   doorOpen: 0
   working: 0
   hasTime: 0
+--- !u!61 &1502380692
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502380688}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.41, y: 1.86}
+    newSize: {x: 3.41, y: 1.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.41, y: 1.86}
+  m_EdgeRadius: 0
 --- !u!1 &1504344362
 GameObject:
   m_ObjectHideFlags: 0
@@ -28037,7 +27988,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5833e3ee9f4a24849b7f9bbcc7ca5223, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -28434,7 +28385,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: a2b7506672f166c479fd81814956a54b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -32968,6 +32919,7 @@ MonoBehaviour:
   toasterMng: {fileID: 1829926599}
   returnArrow: {fileID: 1479651714}
   toaster: {fileID: 1829926601}
+  isOnToaster: 0
 --- !u!61 &1829926601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34407,7 +34359,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1904389018}
   - component: {fileID: 1904389019}
-  - component: {fileID: 1904389020}
   m_Layer: 0
   m_Name: mw_opened
   m_TagString: Microwave
@@ -34485,32 +34436,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1904389020
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904389017}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.41, y: 1.86}
-    newSize: {x: 3.41, y: 1.86}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.41, y: 1.86}
-  m_EdgeRadius: 0
 --- !u!1 &1916232560
 GameObject:
   m_ObjectHideFlags: 0
@@ -35286,6 +35211,7 @@ MonoBehaviour:
   returnArrow: {fileID: 1479651714}
   isLocked: 0
   isTrapped: 0000
+  lookingAtDrawer: 0
   rewindApplied: 0
   knifeTaken: 0
   doorCenterOpen: 0
@@ -35312,6 +35238,7 @@ MonoBehaviour:
   - {fileID: 1926750076}
   currentDrawer: 0
   isOnDrawer: 0
+  isDrawer: 0
 --- !u!1 &1944872721
 GameObject:
   m_ObjectHideFlags: 0
@@ -35838,7 +35765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1973205392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37361,6 +37288,7 @@ MonoBehaviour:
   cheeseMng: {fileID: 2016906914}
   returnArrow: {fileID: 1479651714}
   cheeseDome: {fileID: 2016906916}
+  isOnDome: 0
 --- !u!61 &2016906916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39499,7 +39427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -39635,6 +39563,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[12].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[13].m_TargetAssemblyTypeName
+      value: CheeseDomeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[13].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[13].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[13].m_Target
+      value: 
+      objectReference: {fileID: 2016906914}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[13].m_MethodName
+      value: ButtonBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[13].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347990, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}

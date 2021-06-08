@@ -30,6 +30,7 @@ public class DrawerManager : MonoBehaviour
 
     [SerializeField] private bool isLocked;
     [SerializeField] private bool[] isTrapped;
+    [SerializeField] private bool lookingAtDrawer;
 
     public bool rewindApplied;
     public bool knifeTaken;
@@ -48,7 +49,7 @@ public class DrawerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zoom.currentView == 1)
+        if (zoom.currentView >= 1 && closeUp.isOnDrawer == true)
         {
             Vector3 mousePos2 =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,14 +57,21 @@ public class DrawerManager : MonoBehaviour
 
             RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
 
-            if (hit2.collider == null)
-                FindObjectOfType<PointerManager>().ChangeCursor(1);
-            else if (hit2.collider.CompareTag("DrawerDoor1")
-                || hit2.collider.CompareTag("DrawerDoor2")
-                || hit2.collider.CompareTag("DrawerDoor3"))
+            if (lookingAtDrawer == false)
             {
-                FindObjectOfType<PointerManager>().ChangeCursor(2);
-            }
+                if (hit2.collider == null)
+                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                else if (!hit2.collider.CompareTag("DrawerDoor1")
+                    && !hit2.collider.CompareTag("DrawerDoor2")
+                    && !hit2.collider.CompareTag("DrawerDoor3"))
+                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                else if (hit2.collider.CompareTag("DrawerDoor1")
+                    || hit2.collider.CompareTag("DrawerDoor2")
+                    || hit2.collider.CompareTag("DrawerDoor3"))
+                {
+                    FindObjectOfType<PointerManager>().ChangeCursor(2);
+                }
+            }        
         }    
 
         if (Input.GetMouseButtonDown(0))
@@ -255,6 +263,7 @@ public class DrawerManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         door.SetActive(true);
+        lookingAtDrawer = true;
     }
 
     IEnumerator HideDoor()
@@ -262,6 +271,7 @@ public class DrawerManager : MonoBehaviour
         int door = closeUp.currentDrawer;
         yield return new WaitForSeconds(0.2f);
         openDoor[door].SetActive(false);
+        lookingAtDrawer = false;
     }
 
     IEnumerator BackZoom()

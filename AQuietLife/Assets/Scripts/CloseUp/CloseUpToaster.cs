@@ -14,6 +14,8 @@ public class CloseUpToaster : MonoBehaviour
 
     public BoxCollider2D toaster;
 
+    [SerializeField] private bool isOnToaster;
+
     private void OnMouseDown()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -24,6 +26,7 @@ public class CloseUpToaster : MonoBehaviour
                 StartCoroutine(TimeToZoom());
                 zoom.ObjectTransition();
                 toasterMng.isToaster = true;
+                isOnToaster = true;
             }
             else if (gameMng.isLocked == false && zoom.currentView == 1)
             {
@@ -35,24 +38,15 @@ public class CloseUpToaster : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (gameMng.isLocked == false && zoom.currentView == 0)
-        {
-            Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
-        }
-        else if (gameMng.isLocked == false && zoom.currentView == 1)
-        {
-
-        }
+        if (zoom.currentView == 0 && gameMng.isLocked == false)
+            FindObjectOfType<PointerManager>().ChangeCursor(5);
+        else if (zoom.currentView == 1 && gameMng.isLocked == false && isOnToaster == true)
+            FindObjectOfType<PointerManager>().ChangeCursor(2);
     }
 
     private void OnMouseExit()
     {
-        if (gameMng.isLocked == false)
-        {
-            Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
-        }
+        FindObjectOfType<PointerManager>().ChangeCursor(1);
     }
 
     IEnumerator TimeToZoom()
@@ -75,5 +69,6 @@ public class CloseUpToaster : MonoBehaviour
         toaster.size = new Vector2(2.02f, 1.82f);
         toaster.offset = new Vector2(0.05f, 0.19f);
         toasterMng.isToaster = false;
+        isOnToaster = false;
     }
 }

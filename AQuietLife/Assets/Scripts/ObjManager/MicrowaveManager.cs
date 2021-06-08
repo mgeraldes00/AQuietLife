@@ -54,6 +54,23 @@ public class MicrowaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (zoom.currentView == 1 && closeUp.isMicrowave == true)
+        {
+            Vector3 mousePos2 =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+            RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+            if (hit2.collider == null)
+                FindObjectOfType<PointerManager>().ChangeCursor(1);
+            else if (hit2.collider.CompareTag("Microwave")
+                || hit2.collider.CompareTag("MicrowaveDoor"))
+            {
+                FindObjectOfType<PointerManager>().ChangeCursor(2);
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");

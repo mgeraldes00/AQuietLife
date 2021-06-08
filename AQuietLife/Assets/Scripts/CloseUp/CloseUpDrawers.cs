@@ -23,7 +23,6 @@ public class CloseUpDrawers : MonoBehaviour
     public int currentDrawer;
 
     public bool isOnDrawer;
-
     public bool isDrawer;
 
     // Update is called once per frame
@@ -37,10 +36,13 @@ public class CloseUpDrawers : MonoBehaviour
 
             RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
 
-            if (hit2.collider == null && isDrawer == true)
+            if (hit2.collider == null)
             {
-                FindObjectOfType<PointerManager>().ChangeCursor(1);
-                isDrawer = false;
+                if (isDrawer == true)
+                {
+                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    isDrawer = false;
+                }               
             }
             else if (hit2.collider.CompareTag("DrawerDoor1")
                 || hit2.collider.CompareTag("DrawerDoor2")
@@ -112,17 +114,5 @@ public class CloseUpDrawers : MonoBehaviour
     {
         //drawers[currentDrawer].enabled = true;
         isOnDrawer = false;
-    }
-
-    private void OnMouseEnter()
-    {
-        Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
-    }
-
-    private void OnMouseExit()
-    {
-        Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
     }
 }

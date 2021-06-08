@@ -26,11 +26,38 @@ public class CloseUpFridge : MonoBehaviour
     public BoxCollider2D[] zoomableObjs;
     public EdgeCollider2D bottomDoor;
 
+    public bool isOnFridge;
+    public bool isFridge;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (zoom.currentView == 0)
         {
+            Vector3 mousePos2 =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+            RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+            if (hit2.collider == null)
+            {
+                if (isFridge == true)
+                {
+                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    isFridge = false;
+                }
+            }
+            else if (hit2.collider.CompareTag("Fridge")
+                || hit2.collider.CompareTag("Freezer"))
+            {
+                FindObjectOfType<PointerManager>().ChangeCursor(5);
+                isFridge = true;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {     
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 Debug.Log("Mouse Clicked");
@@ -86,6 +113,7 @@ public class CloseUpFridge : MonoBehaviour
         //returnArrow.SetActive(true);
         fridgeMng.EnableObjs();
         zoom.currentView++;
+        isOnFridge = true;
     }
 
     public void Normalize()
@@ -105,18 +133,7 @@ public class CloseUpFridge : MonoBehaviour
             for (int i = 0; i < zoomableObjs.Length; i++)
                 zoomableObjs[i].enabled = false;
             bottomDoor.enabled = false;
+            isOnFridge = false;
         } 
-    }
-
-    private void OnMouseEnter()
-    {
-        Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
-    }
-
-    private void OnMouseExit()
-    {
-        Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
     }
 }

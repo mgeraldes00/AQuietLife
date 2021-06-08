@@ -17,16 +17,24 @@ public class CloseUpDishWasher : MonoBehaviour
 
     [SerializeField] private string zoomTrigger;
 
+    [SerializeField] private bool isOnWasher;
+
     private void OnMouseDown()
     {
-        if (gameMng.isLocked == false && zoom.currentView == 0
-            && !EventSystem.current.IsPointerOverGameObject())
+        if (gameMng.isLocked == false && zoom.currentView == 0)
         {
             if (dishwasherMng.isWorking == false)
             {
                 zoom.ObjectTransition();
                 zoom.cameraAnim.SetTrigger(zoomTrigger);
                 StartCoroutine(TimeToZoom());
+                isOnWasher = true;
+                FindObjectOfType<PointerManager>().ChangeCursor(2);
+                if (dishwasherMng.isOpen == true)
+                {
+                    dishWasher.size = new Vector2(3.11f, 0.4f);
+                    dishWasher.offset = new Vector2(0, -0.88f);
+                }
             }
             else if (dishwasherMng.isWorking == true)
             {
@@ -38,14 +46,15 @@ public class CloseUpDishWasher : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        if (zoom.currentView == 0 && gameMng.isLocked == false)
+            FindObjectOfType<PointerManager>().ChangeCursor(5);
+        else if (zoom.currentView == 1 && gameMng.isLocked == false && isOnWasher == true)
+            FindObjectOfType<PointerManager>().ChangeCursor(2);
     }
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        FindObjectOfType<PointerManager>().ChangeCursor(1);
     }
 
     IEnumerator TimeToZoom()
@@ -66,5 +75,8 @@ public class CloseUpDishWasher : MonoBehaviour
         /*for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = false;*/
         dishwasherMng.isActive = false;
+        isOnWasher = false;
+        dishWasher.size = new Vector2(3.11f, 2.13f);
+        dishWasher.offset = new Vector2(0, 0);
     }
 }

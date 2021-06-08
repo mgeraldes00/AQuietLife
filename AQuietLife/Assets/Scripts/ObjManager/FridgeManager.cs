@@ -24,6 +24,7 @@ public class FridgeManager : MonoBehaviour
 
     [SerializeField] private bool isLocked;
     [SerializeField] private bool isTrapped;
+    [SerializeField] private bool lookingAtFridgeDoor;
 
     [SerializeField] private bool openingTopDoor;
     [SerializeField] private bool openingBottomDoor;
@@ -51,6 +52,30 @@ public class FridgeManager : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
+            if (zoom.currentView >= 1 && closeUp.isOnFridge == true)
+            {
+                Vector3 mousePos2 =
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+                RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+                if (lookingAtFridgeDoor == false)
+                {
+                    if (hit2.collider == null)
+                        FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    else if (!hit2.collider.CompareTag("FridgeDoor1")
+                        && !hit2.collider.CompareTag("FridgeDoor2"))
+                        FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    else if (hit2.collider.CompareTag("FridgeDoor1")
+                        || hit2.collider.CompareTag("FridgeDoor2")
+                        || hit2.collider.gameObject.name == "fridge_shelf")
+                    {
+                        FindObjectOfType<PointerManager>().ChangeCursor(2);
+                    }
+                }
+            }
+
             if (Input.GetMouseButtonDown(0) && isLocked == false)
             {
                 //Debug.Log("Mouse Clicked");
@@ -209,6 +234,7 @@ public class FridgeManager : MonoBehaviour
         {
             //returnArrow.SetActive(false);
             isLocked = true;
+            lookingAtFridgeDoor = true;
             StartCoroutine(Unlock());
         }
     }
@@ -219,6 +245,7 @@ public class FridgeManager : MonoBehaviour
         {
             //returnArrow.SetActive(false);
             isLocked = true;
+            lookingAtFridgeDoor = false;
             StartCoroutine(UnlockFromOpen());
         }
     }
