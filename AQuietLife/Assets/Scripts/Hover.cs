@@ -25,6 +25,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     [SerializeField] private bool isArrow;
     [SerializeField] private bool isPhone;
     [SerializeField] private bool isLocked;
+    [SerializeField] private bool isGameOver;
 
     [SerializeField] private int currentLvl;
 
@@ -87,15 +88,20 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         if (currentLvl == 0)
             introHover.ChangeCursor(2);
         else
+            if (pointers != null)
+        {
             pointers.ChangeCursor(2);
+        } 
         if (isArrow == true && isLocked == false)
         {
             isOver = true;
             arrow.SetBool("Selected", true);
         }
-        else if (isArrow == false && isPhone == false && gameMng.isLocked == false)
+        else if (isArrow == false && isPhone == false
+            && isGameOver == false)
             clockSelect.SetActive(true);
-        else if (isArrow == false && isPhone == false && selectedText != null)
+        else if (isArrow == false && isPhone == false && selectedText != null
+            && isGameOver == true)
         {
             selectedText.fontStyle = FontStyles.Underline;
         }
@@ -106,15 +112,19 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         if (currentLvl == 0)
             introHover.ChangeCursor(1);
         else
+            if (pointers != null)
+        {
             pointers.ChangeCursor(1);
+        }
         if (isArrow == true)
         {
             isOver = false;
             arrow.SetBool("Selected", false);
         }
-        else if (isArrow == false && gameMng.isLocked == false)
+        else if (isArrow == false && isGameOver == false)
             clockSelect.SetActive(false);
-        else if (isArrow == false && isPhone == false && selectedText != null)
+        else if (isArrow == false && isPhone == false && selectedText != null
+            && isGameOver == true)
             selectedText.fontStyle = FontStyles.Normal;
     }
 

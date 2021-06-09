@@ -29,7 +29,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (currentScene == 0 && isLocked == false)
-        {
+        {   
             if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
                 isOver = true;
@@ -40,6 +40,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
                     selectedText.fontStyle = FontStyles.Underline;
                 if (selectedImg == null && selectedText == null)
                     imgAnim.SetTrigger("Enlarge");
+                FindObjectOfType<AudioCtrl>().Play("MenuSelect");
             }
         }
         else if (currentScene == 1)
@@ -47,15 +48,20 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             isOver = true;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Underline;
-            pointers.ChangeCursor(2);
-        }  
+            if (pointers != null)
+                pointers.ChangeCursor(2);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (currentScene == 0 && isLocked == false)
         {
-            if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
+            if (!FindObjectOfType<MenuCtrl>())
+            {
+
+            }
+            else if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
                 isOver = false;
                 pointers.ChangeCursor(1);
@@ -72,7 +78,8 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             isOver = false;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Normal;
-            pointers.ChangeCursor(1);
+            if (pointers != null)
+                pointers.ChangeCursor(1);
         }
     }
 
@@ -80,8 +87,10 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         if (selectedImg != null)
             selectedImg.enabled = false;
-        pointers.ChangeCursor(1);
+        if (pointers != null)
+            pointers.ChangeCursor(1);
         StartCoroutine(Unlock());
+        FindObjectOfType<AudioCtrl>().Play("MenuClick");
     }
 
     IEnumerator Unlock()

@@ -199,7 +199,7 @@ public class DialogControl : MonoBehaviour
                 if (d == 0)
                     text = "I can imagine! Luckily, it seems our abilities are a match made in heaven..";
                 else
-                    text = "Sure, room's super safe by now. Can't say the same for the rest of the house, though... Best to just sit thight..";
+                    text = "Sure, room's super safe by now. Can't say the same for the rest of the house, though... Better just to sit tight..";
                 break;
             case 4:
                 if (d == 0)
@@ -223,7 +223,7 @@ public class DialogControl : MonoBehaviour
                 text = "(Oh, show's starting!) Sure, sure, surprise me. Anyway, have a good day!.";
                 break;
             case 9:
-                text = "Hey, thanks. Any more requests, you know where to reach me. See you later!.";
+                text = "Hey, thanks. Any more requests, you know how to reach me. See ya later!.";
                 break;
         }
     }

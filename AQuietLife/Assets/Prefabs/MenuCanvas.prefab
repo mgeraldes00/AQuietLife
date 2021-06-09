@@ -474,6 +474,8 @@ MonoBehaviour:
   selectedText: {fileID: 0}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &284179235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,6 +631,8 @@ MonoBehaviour:
   selectedText: {fileID: 0}
   imgAnim: {fileID: 332117486}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &332117484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1311,8 @@ MonoBehaviour:
   selectedText: {fileID: 0}
   imgAnim: {fileID: 597723074}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &597723072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,6 +1632,8 @@ MonoBehaviour:
   selectedText: {fileID: 0}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &1009790745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,6 +2018,8 @@ MonoBehaviour:
   selectedText: {fileID: 0}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &1337305662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,6 +2139,8 @@ MonoBehaviour:
   selectedText: {fileID: 0}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &1337391578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2383,6 +2395,8 @@ MonoBehaviour:
   selectedText: {fileID: 1904547964}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &1389096260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2538,6 +2552,8 @@ MonoBehaviour:
   selectedText: {fileID: 1440249218}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &1440249218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3652,6 +3668,8 @@ MonoBehaviour:
   selectedText: {fileID: 1537276155}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &435878485491025169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3861,6 +3879,8 @@ MonoBehaviour:
   selectedText: {fileID: 58846868}
   imgAnim: {fileID: 0}
   isOver: 0
+  isLocked: 0
+  currentScene: 0
 --- !u!114 &5222701205585787494
 MonoBehaviour:
   m_ObjectHideFlags: 0

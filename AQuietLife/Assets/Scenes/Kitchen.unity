@@ -17485,6 +17485,7 @@ MonoBehaviour:
   isArrow: 1
   isPhone: 0
   isLocked: 0
+  isGameOver: 0
   currentLvl: 2
 --- !u!1 &952891961
 GameObject:
@@ -30708,6 +30709,7 @@ MonoBehaviour:
   isArrow: 1
   isPhone: 0
   isLocked: 0
+  isGameOver: 0
   currentLvl: 2
 --- !u!1 &1715857557
 GameObject:
@@ -33343,6 +33345,7 @@ MonoBehaviour:
   isArrow: 0
   isPhone: 0
   isLocked: 0
+  isGameOver: 0
   currentLvl: 2
 --- !u!1 &1843611274
 GameObject:
@@ -40233,10 +40236,26 @@ PrefabInstance:
       propertyPath: selectedText
       value: 
       objectReference: {fileID: 567091923}
+    - target: {fileID: 2421843943332206336, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
+      propertyPath: currentLvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421843943332206336, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
+      propertyPath: isGameOver
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8823759014807487521, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
       propertyPath: selectedText
       value: 
       objectReference: {fileID: 877138018}
+    - target: {fileID: 8823759014807487521, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
+      propertyPath: currentLvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823759014807487521, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
+      propertyPath: isGameOver
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8871419441176942845, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
       propertyPath: m_Enabled
       value: 1
