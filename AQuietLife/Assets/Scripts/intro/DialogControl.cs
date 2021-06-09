@@ -47,6 +47,8 @@ public class DialogControl : MonoBehaviour
     [SerializeField] private bool isSkipping;
     [SerializeField] private bool isLocked;
 
+    [SerializeField] private int currentDialog;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,61 +103,126 @@ public class DialogControl : MonoBehaviour
             {
                 case 1:
                     HideThought(1);
-                    StartCoroutine(NextText(0, 1, 3));
+                    StartCoroutine(NextText(0, 1, 5, currentDialog));
                     StartCoroutine(Unlock());
                     break;
                 case 2:
                     HideThought(0);
-                    StartCoroutine(NextText(1, 2, 1));
+                    StartCoroutine(NextText(1, 2, 1, currentDialog));
                     StartCoroutine(Unlock());
                     break;
                 case 3:
                     HideThought(1);
-                    StartCoroutine(NextText(0, 3, 3));
+                    StartCoroutine(NextText(0, 3, 5, currentDialog));
                     StartCoroutine(Unlock());
                     break;
                 case 4:
                     HideThought(0);
-                    StartCoroutine(NextText(1, 4, 2));
+                    StartCoroutine(NextText(1, 4, 2, currentDialog));
                     StartCoroutine(Unlock());
                     break;
                 case 5:
                     HideThought(1);
-                    StartCoroutine(NextText(0, 5, 3));
+                    StartCoroutine(NextText(0, 5, 5, currentDialog));
                     StartCoroutine(Unlock());
                     break;
                 case 6:
                     HideThought(0);
                     StartCoroutine(Unlock());
-                    skipText.GetComponent<Animator>().SetTrigger("Hide");
-                    StartCoroutine(TransitionToLevel());
-                    StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
-                    StartCoroutine(Unlock());
+                    if (currentDialog == 0)
+                    {
+                        skipText.GetComponent<Animator>().SetTrigger("Hide");
+                        StartCoroutine(TransitionToLevel());
+                        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
+                    }
+                    else
+                        StartCoroutine(NextText(1, 6, 3, currentDialog));
+                    break;
+                case 7:
+                    if (currentDialog == 1)
+                    {
+                        HideThought(1);
+                        StartCoroutine(NextText(0, 7, 5, currentDialog));
+                        StartCoroutine(Unlock());
+                    }
+                    break;
+                case 8:
+                    if (currentDialog == 1)
+                    {
+                        HideThought(0);
+                        StartCoroutine(NextText(1, 8, 4, currentDialog));
+                        StartCoroutine(Unlock());
+                    }
+                    break;
+                case 9:
+                    if (currentDialog == 1)
+                    {
+                        HideThought(1);
+                        StartCoroutine(NextText(0, 9, 5, currentDialog));
+                        StartCoroutine(Unlock());
+                    }
+                    break;
+                case 10:
+                    if (currentDialog == 1)
+                    {
+                        HideThought(0);
+                        skipText.GetComponent<Animator>().SetTrigger("Hide");
+                        StartCoroutine(TransitionToLevel());
+                        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
+                        StartCoroutine(Unlock());
+                    }
                     break;
             }
         }
     }
 
-    IEnumerator NextText(int i, int b, int c)
+    IEnumerator NextText(int i, int b, int c, int d)
     {
         yield return new WaitForSeconds(1.0f);
         KeepThought(i, c);
         switch (b)
         {
             case 1:
-                text = "Thanks, it'll be good to share the expenses. And don't worry, I'm aware of the situation..";
+                if (d == 0)
+                    text = "Thanks, it'll be good to share the expenses. And don't worry, I'm aware of the situation..";
+                else
+                    text = "Only on special occasions. Don't really risk my life like this, usually..";
                 break;
             case 2:
-                text = "Yeah, but you know... Since the accident 2 months ago, finding suitors has been impossible!.";
+                if (d == 0)
+                    text = "Yeah, but you know... Since the accident 2 months ago, finding suitors has been impossible!.";
+                else
+                    text = "I'm flattered! Oh, is it cool if I turn on the TV right now? It's time for those awesome morning cartoons..";
                 break;
             case 3:
-                text = "I can imagine! Luckily, it seems our abilities are a match made in heaven..";
+                if (d == 0)
+                    text = "I can imagine! Luckily, it seems our abilities are a match made in heaven..";
+                else
+                    text = "Sure, room's super safe by now. Can't say the same for the rest of the house, though... Best to just sit thight..";
                 break;
             case 4:
-                text = "Hope so. I just don't want to go through the same thing again....";
+                if (d == 0)
+                    text = "Hope so. I just don't want to go through the same thing again....";
+                else
+                    text = "Got it. Brought some snacks, so bathroom breaks only! Hey, when exactly will you be back?.";
                 break;
             case 5:
-                text = "Don't worry! You'll see that we will get along very well....";
+                if (d == 0)
+                    text = "Don't worry! You'll see that we will get along very well....";
+                else
+                    text = "Right, I'm already late for class. I'll be home around 6, want me to bring back something?.";
+                break;
+            case 6:
+                text = "Oh! Pass by the kitchen and make me a sandwich on the way back, a drink as well. Would really appreciate it!.";
+                break;
+            case 7:
+                text = "You got it. Any preferences for ingredients? House special maybe?.";
+                break;
+            case 8:
+                text = "(Oh, show's starting!) Sure, sure, surprise me. Anyway, have a good day!.";
+                break;
+            case 9:
+                text = "Hey, thanks. Any more requests, you know where to reach me. See you later!.";
                 break;
         }
     }
@@ -178,11 +245,17 @@ public class DialogControl : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         introTextObj.SetActive(false);
         explosiveChar.enabled = true;
-        explosiveAnim.SetTrigger("FadeIn");
+        if (currentDialog == 0)
+            explosiveAnim.SetTrigger("FadeIn");
+        else
+            explosiveAnim.SetTrigger("FadeIn2");
         FindObjectOfType<AudioCtrl>().Play("Scribble");
         yield return new WaitForSeconds(2.0f);
         KeepThought(1, 0);
-        text = "Welcome! I'm so glad you showed interest in the room. It has been a though few weeks....";
+        if (currentDialog == 0)
+            text = "Welcome! I'm so glad you showed interest in the room. It has been a though few weeks....";
+        else
+            text = "Real tidy place you have here. You always keep it like this?.";
         skipText.SetActive(true);
         skipText.GetComponent<Animator>().SetTrigger("Show");
         /*yield return new WaitForSeconds(5.0f);
@@ -303,7 +376,7 @@ public class DialogControl : MonoBehaviour
     IEnumerator ShowText(int b, int c)
     {
         yield return new WaitForSecondsRealtime(0.7f);
-        if (c <= 2)
+        if (c <= 4)
             hmm[c].GetComponent<AudioSource>().Play();
         for (int i = 0; i < text.Length; i++)
         {
