@@ -35,6 +35,7 @@ public class DrawerManager : MonoBehaviour
     public bool rewindApplied;
     public bool knifeTaken;
     public bool doorCenterOpen;
+    public bool handlePlaced;
 
     [SerializeField] private string drawerName;
 
@@ -177,18 +178,33 @@ public class DrawerManager : MonoBehaviour
                 else if (hit.collider.CompareTag("DrawerDoor2")
                     && gameMng.isLocked == false)
                 {
-                    //doors[2].SetActive(false);
-                    //doors[3].SetActive(true);
-                    //objects[1].SetActive(true);
-                    doorCenterOpen = true;
-                    drawerName = "ZoomDrawer2";
-                    gameMng.returnable = false;
-                    LockAndUnlock();
-                    zoom.InteractionTransition();
-                    //zoom.GetComponent<Animator>().SetTrigger("Return2");
-                    StartCoroutine(ShowDoor(openDoor[1]));
-                    zoom.currentView++;
-                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    if (handlePlaced == false)
+                    {
+                        if (select.usingHandle == true)
+                        {
+                            StartCoroutine(Restore());
+                            FindObjectOfType<Handle>().handleUsed = true;
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        //doors[2].SetActive(false);
+                        //doors[3].SetActive(true);
+                        //objects[1].SetActive(true);
+                        doorCenterOpen = true;
+                        drawerName = "ZoomDrawer2";
+                        gameMng.returnable = false;
+                        LockAndUnlock();
+                        zoom.InteractionTransition();
+                        //zoom.GetComponent<Animator>().SetTrigger("Return2");
+                        StartCoroutine(ShowDoor(openDoor[1]));
+                        zoom.currentView++;
+                        FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    }       
                 }    
             }
         }
@@ -284,5 +300,11 @@ public class DrawerManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         isTrapped[i] = false;
+    }
+
+    IEnumerator Restore()
+    {
+        yield return new WaitForEndOfFrame();
+        handlePlaced = true;
     }
 }

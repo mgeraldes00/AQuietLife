@@ -298,4 +298,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         returnable = true;
     }
+
+    public IEnumerator EndGame()
+    {
+        yield return new WaitForEndOfFrame();
+        fadeAnim.SetTrigger("FadeOut");
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("ThankYou");
+    }
 }
