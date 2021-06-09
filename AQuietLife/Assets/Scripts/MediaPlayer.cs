@@ -24,7 +24,7 @@ public class MediaPlayer : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    rewindAudio.pitch = 1.5f;
+                    rewindAudio.pitch = 3f;
                     /*audioButtons[0].SetBool("FF", true);
                     audioButtons[1].SetBool("FB", false);
                     audioButtons[2].SetBool("Play", false);
@@ -34,11 +34,11 @@ public class MediaPlayer : MonoBehaviour
                     pressedButtons[2].SetActive(false);
                     pressedButtons[3].SetActive(false);
                     pressedButtons[4].SetActive(false);
-                    eyelids.pointer.speed = 1.5f;
-                    //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 1.5f);
+                    eyelids.pointer.speed = 10f;
+                    //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 3f);
                     break;
                 case 1:
-                    rewindAudio.pitch = -1.5f;
+                    rewindAudio.pitch = -3f;
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", true);
                     audioButtons[2].SetBool("Play", false);
@@ -49,8 +49,8 @@ public class MediaPlayer : MonoBehaviour
                     pressedButtons[3].SetActive(false);
                     pressedButtons[4].SetActive(false);
                     eyelids.pointer.StartPlayback();
-                    eyelids.pointer.speed = -1.5f;
-                    //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 0.5f);
+                    eyelids.pointer.speed = -10f;
+                    //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / -3f);
                     break;
                 case 2:
                     rewindAudio.pitch = 1.0f;

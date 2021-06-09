@@ -80,3 +80,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: OpenPhone
+    clip: {fileID: 8300000, guid: 2ba68932b1d47b042a8632a55bfcd31c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PhoneGlide
+    clip: {fileID: 8300000, guid: 695f5ee4c63ff7c4d87ad54e816eb500, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
