@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MediaPlayer : MonoBehaviour
 {
@@ -13,11 +14,13 @@ public class MediaPlayer : MonoBehaviour
     public GameObject[] pressedButtons;
     public GameObject dirButtons;
 
+    public AudioMixer rewindMix;
+
     public void ButtonBehaviour(int i)
     {
         var pitchBendGroup = 
             Resources.Load<UnityEngine.Audio.AudioMixerGroup>("Pitch Bend Mixer");
-        rewindAudio.outputAudioMixerGroup = pitchBendGroup;
+        //rewindAudio.outputAudioMixerGroup = pitchBendGroup;
 
         if (eyelids.mediaFunction == true)
         {
@@ -25,6 +28,7 @@ public class MediaPlayer : MonoBehaviour
             {
                 case 0:
                     rewindAudio.pitch = 3f;
+                    rewindMix.SetFloat("pitchBend", 10.0f);
                     /*audioButtons[0].SetBool("FF", true);
                     audioButtons[1].SetBool("FB", false);
                     audioButtons[2].SetBool("Play", false);
@@ -39,6 +43,7 @@ public class MediaPlayer : MonoBehaviour
                     break;
                 case 1:
                     rewindAudio.pitch = -3f;
+                    rewindMix.SetFloat("pitchBend", 10.0f);
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", true);
                     audioButtons[2].SetBool("Play", false);
@@ -54,6 +59,7 @@ public class MediaPlayer : MonoBehaviour
                     break;
                 case 2:
                     rewindAudio.pitch = 1.0f;
+                    rewindMix.SetFloat("pitchBend", 1.0f);
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", false);
                     audioButtons[2].SetBool("Play", true);
@@ -67,6 +73,7 @@ public class MediaPlayer : MonoBehaviour
                     break;
                 case 3:
                     rewindAudio.pitch = 0.0f;
+                    rewindMix.SetFloat("pitchBend", 0.0f);
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", false);
                     audioButtons[2].SetBool("Play", false);
@@ -100,6 +107,7 @@ public class MediaPlayer : MonoBehaviour
     public void MoreRewind()
     {
         rewindAudio.pitch = 1.0f;
+        rewindMix.SetFloat("pitchBend", 1.0f);
         eyelids.pointer.speed = 1.0f;
     }
 }

@@ -94,12 +94,12 @@ public class Eyelids : MonoBehaviour
         mediaPlayer.SetBool("Rewinding", false);
         for (int c = 0; c < media.pressedButtons.Length; c++)
             media.pressedButtons[c].SetActive(false);
-        yield return new WaitForSeconds(1.5f);       
+        yield return new WaitForSeconds(1.0f);       
         for (int i = 0; i < rewindClock.Length; i++)
             rewindClock[i].enabled = false;     
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         eyelids.SetTrigger("Open");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
         timerSmall.SetBool("Visible", true);

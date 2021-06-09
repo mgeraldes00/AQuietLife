@@ -132,7 +132,8 @@ public class DialogControl : MonoBehaviour
                     if (currentDialog == 0)
                     {
                         skipText.GetComponent<Animator>().SetTrigger("Hide");
-                        StartCoroutine(TransitionToLevel());
+                        //StartCoroutine(TransitionToLevel());
+                        SceneManager.LoadScene("Dialog2");
                         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
                     }
                     else
