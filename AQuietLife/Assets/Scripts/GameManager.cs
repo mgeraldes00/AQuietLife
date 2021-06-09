@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public TableManager table;
     public PointerManager pointer;
 
+    public GameObject introText;
+
     public GameObject[] context;
     public GameObject[] contextButtons;
     public GameObject[] deathScreen;
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
         returnable = true;
         isLocked = true;
         Instantiate(audioMng);
+        fadeAnim.speed = 0.3f;
         StartCoroutine(UnlockStart());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 1));
         numOfIngredients = 0;
@@ -205,6 +208,7 @@ public class GameManager : MonoBehaviour
 
     public void Unlock()
     {
+        
         returnArrow.SetActive(true);
         isLocked = false;
         //gloveTutorial.SetActive(false);
@@ -238,10 +242,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator UnlockStart()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(4.0f);
+        introText.GetComponent<Animator>().SetTrigger("HideIntroText");
+        yield return new WaitForSeconds(2.0f);
+        introText.SetActive(false);
         isLocked = false;
         kitchenClock.SetBool("Active", true);
-        StartCoroutine(TimeTillLock());
+        //StartCoroutine(TimeTillLock());
+        yield return new WaitForSeconds(1.0f);
+        fadeAnim.speed = 1.0f;
     }
 
     IEnumerator TimeTillLock()

@@ -132,8 +132,7 @@ public class DialogControl : MonoBehaviour
                     if (currentDialog == 0)
                     {
                         skipText.GetComponent<Animator>().SetTrigger("Hide");
-                        //StartCoroutine(TransitionToLevel());
-                        SceneManager.LoadScene("Dialog2");
+                        StartCoroutine(TransitionToLevel());
                         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
                     }
                     else
@@ -343,9 +342,15 @@ public class DialogControl : MonoBehaviour
     IEnumerator TransitionToLevel()
     {
         yield return new WaitForSeconds(0.5f);
-        fadeAnim.SetTrigger("FadeOut");
+        if (currentDialog == 0)
+            fadeAnim.SetTrigger("FadeOutAlt");
+        else
+            fadeAnim.SetTrigger("FadeOut");
         yield return new WaitForSeconds(2.0f);
-        SceneManager.LoadScene("Kitchen");
+        if (currentDialog == 0)
+            SceneManager.LoadScene("TransitionText");
+        else
+            SceneManager.LoadScene("Kitchen");
     }
 
     public void KeepThought(int i, int b)

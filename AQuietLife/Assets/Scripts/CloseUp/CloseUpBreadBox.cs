@@ -51,8 +51,8 @@ public class CloseUpBreadBox : MonoBehaviour
     IEnumerator TimeToZoom()
     {
         yield return new WaitForSeconds(0.1f);
-        breadBoxRewindButton.SetActive(true);
-        breadBoxRewindButton.GetComponent<Animator>().SetBool("Visible", true);
+        //breadBoxRewindButton.SetActive(true);
+        //breadBoxRewindButton.GetComponent<Animator>().SetBool("Visible", true);
         breadBox.enabled = false;
         for (int i = 0; i < zoomableObjs.Length; i++)
             zoomableObjs[i].enabled = true;       
