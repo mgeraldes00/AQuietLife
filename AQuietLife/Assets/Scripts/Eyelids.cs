@@ -21,6 +21,7 @@ public class Eyelids : MonoBehaviour
     public AudioSource tickReverse;
 
     public AudioMixer musicMix;
+    public AudioMixer objMix;
 
     public GameObject[] ctrlButtons;
 
@@ -41,6 +42,7 @@ public class Eyelids : MonoBehaviour
         media.dirButtons.SetActive(false);
         StartCoroutine(StartRewind());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
+        StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 0.1f));
     }
 
     public void Open()
@@ -48,6 +50,7 @@ public class Eyelids : MonoBehaviour
         timer.SetTrigger("Pressed");
         StartCoroutine(TimerPress());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 1));
+        StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 1));
     }
 
     public void Uncover()

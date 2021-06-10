@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 
 public class FridgeManager : MonoBehaviour
@@ -15,6 +16,8 @@ public class FridgeManager : MonoBehaviour
     public GameObject[] objects;
     public GameObject[] moreObjects;
     public GameObject[] objectsFreezer;
+
+    public AudioSource alarm;
 
     public Animator returnArrow;
     public Animator returnArrowZoom;
@@ -129,6 +132,7 @@ public class FridgeManager : MonoBehaviour
                             zoom.InteractionTransition();
                             openingBottomDoor = true;
                             LockAndUnlock();
+                            StartCoroutine(TimeToAlarm());
                         }
 
                         if (doorLeftOpen == true)
@@ -142,6 +146,7 @@ public class FridgeManager : MonoBehaviour
                             zoom.InteractionTransition();
                             closingBottomDoor = true;
                             LockAndUnlockFromOpen();
+                            StopCoroutine(TimeToAlarm());
                         }
                     }
                 }
@@ -157,7 +162,7 @@ public class FridgeManager : MonoBehaviour
                             objectsFreezer[i].SetActive(true);
                         zoom.InteractionTransition();
                         openingTopDoor = true;
-                        LockAndUnlock();
+                        LockAndUnlock();    
                     }
 
                     if (doorRightOpen == true)
@@ -168,7 +173,7 @@ public class FridgeManager : MonoBehaviour
                             objectsFreezer[i].SetActive(false);
                         zoom.InteractionTransition();
                         closingTopDoor = true;
-                        LockAndUnlockFromOpen();
+                        LockAndUnlockFromOpen();                      
                     }
                 }
 
@@ -300,5 +305,11 @@ public class FridgeManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         zoom.currentView--;
+    }
+
+    IEnumerator TimeToAlarm()
+    {
+        yield return new WaitForSeconds(30.0f);
+        alarm.Play();
     }
 }
