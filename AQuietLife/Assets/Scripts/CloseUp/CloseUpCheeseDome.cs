@@ -10,7 +10,7 @@ public class CloseUpCheeseDome : MonoBehaviour
     public CheeseDomeManager cheeseMng;
 
     public GameObject returnArrow;
-    //public GameObject rewindButton;
+    public GameObject rewindButton;
 
     public BoxCollider2D cheeseDome;
 
@@ -52,6 +52,8 @@ public class CloseUpCheeseDome : MonoBehaviour
     IEnumerator TimeToZoom()
     {
         yield return new WaitForEndOfFrame();
+        rewindButton.SetActive(true);
+        rewindButton.GetComponent<Animator>().SetBool("Visible", true);
         cheeseDome.enabled = false;
         zoom.currentView++;
         yield return new WaitForSeconds(0.5f);

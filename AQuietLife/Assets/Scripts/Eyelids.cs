@@ -42,7 +42,7 @@ public class Eyelids : MonoBehaviour
         media.dirButtons.SetActive(false);
         StartCoroutine(StartRewind());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
-        StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 0.1f));
+        StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 0.5f));
     }
 
     public void Open()
@@ -50,7 +50,7 @@ public class Eyelids : MonoBehaviour
         timer.SetTrigger("Pressed");
         StartCoroutine(TimerPress());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 1));
-        StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 1));
+        StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 1.0f));
     }
 
     public void Uncover()

@@ -147,6 +147,7 @@ public class FridgeManager : MonoBehaviour
                             closingBottomDoor = true;
                             LockAndUnlockFromOpen();
                             StopCoroutine(TimeToAlarm());
+                            alarm.Stop();
                         }
                     }
                 }
@@ -189,7 +190,7 @@ public class FridgeManager : MonoBehaviour
                     zoom.cameraAnim.SetTrigger("ZoomFridge");
                     thought.KeepThought();
                     thought.text =
-                        "Got this OJ pack earlier. Should be unopened, unless someone already drank from it....";
+                        "Got this milk pack earlier. Hope no one drank from it yet....";
                     StartCoroutine(ZoomZoom());
                 }
             }
