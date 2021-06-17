@@ -64,6 +64,7 @@ public class BinManager : MonoBehaviour
                 zoom.InteractionTransition();
                 StartCoroutine(ShowDoor(openDoor));
                 zoom.currentView++;
+                FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
             }
         }
     }

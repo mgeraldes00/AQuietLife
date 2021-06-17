@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: 6ecc4c7cf094c724eb869a17a48f1410, type: 3}
+  currentObj: 
 --- !u!1 &29787216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,6 +2448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: bb4b7c0de6d27c4409ba1282638e0c78, type: 3}
+  currentObj: 
 --- !u!1 &139249253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,6 +3148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: 46fd460be802d434f842de57dc8dc7c9, type: 3}
+  currentObj: 
 --- !u!1 &198581778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,6 +5115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: 159f7bba167f34f4496cea1187e35c25, type: 3}
   isTrapped: 0
+  currentObj: 
 --- !u!61 &256847422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6140,6 +6144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: 91f01d681d24614489a592f9a62b4201, type: 3}
+  currentObj: 
 --- !u!1 &332327030
 GameObject:
   m_ObjectHideFlags: 0
@@ -8919,6 +8924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: 03d897c80dd892743977915fd48bddde, type: 3}
   isTrapped: 0
+  currentObj: PickDrink
 --- !u!114 &439192100 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
@@ -10427,6 +10433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: de1d1c585f2f9ba4e80db5a226ef4f0f, type: 3}
+  currentObj: 
 --- !u!61 &519329289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11769,6 +11776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
+  currentObj: 
 --- !u!61 &598848326
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11970,6 +11978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: ccc5d2dc6a1918b46889b2ffdd75b910, type: 3}
   isTrapped: 0
+  currentObj: 
 --- !u!1 &613939805
 GameObject:
   m_ObjectHideFlags: 0
@@ -15244,6 +15253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: 6e7ce1f5f64518044841128e8c7cdfe5, type: 3}
+  currentObj: PickPlate
 --- !u!61 &807769744
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15367,6 +15377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: de1d1c585f2f9ba4e80db5a226ef4f0f, type: 3}
+  currentObj: 
 --- !u!61 &810671134
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20256,6 +20267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: ce5d71a45d71cb04998f7a17ed29ce67, type: 3}
+  currentObj: 
 --- !u!1 &1117142222
 GameObject:
   m_ObjectHideFlags: 0
@@ -22116,6 +22128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: a2c5013f40fcb584c8529cbb23bb43c4, type: 3}
+  currentObj: PickDrink
 --- !u!68 &1196342761
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -24192,6 +24205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: 88a1b3ba92d0b2141bbefed5e4db77de, type: 3}
+  currentObj: 
 --- !u!1 &1301152506
 GameObject:
   m_ObjectHideFlags: 0
@@ -25807,6 +25821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
+  currentObj: 
 --- !u!61 &1379416587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26565,6 +26580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: df85892845c38e347a1f30144154bd66, type: 3}
   isTrapped: 0
+  currentObj: 
 --- !u!1 &1416634219
 GameObject:
   m_ObjectHideFlags: 0
@@ -27999,6 +28015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: 46fd460be802d434f842de57dc8dc7c9, type: 3}
+  currentObj: 
 --- !u!1 &1507566753
 GameObject:
   m_ObjectHideFlags: 0
@@ -28122,6 +28139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: b81174190a65a30488defd356b7ca413, type: 3}
+  currentObj: 
 --- !u!1 &1515202915
 GameObject:
   m_ObjectHideFlags: 0
@@ -31374,6 +31392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
+  currentObj: 
 --- !u!61 &1688133310
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33047,6 +33066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: d73081e1ea4933343ba749b93c30faa5, type: 3}
   isTrapped: 0
+  currentObj: 
 --- !u!1 &1788219042
 GameObject:
   m_ObjectHideFlags: 0
@@ -36551,6 +36571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: c22a0141276926f4482213e2eb8673d5, type: 3}
+  currentObj: PickDrink
 --- !u!114 &1947916454 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
@@ -39815,6 +39836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
+  currentObj: 
 --- !u!61 &2092236194
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40328,6 +40350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: 8b9ccc27479d5734aa2db8965eeea84f, type: 3}
+  currentObj: 
 --- !u!1 &2127550339
 GameObject:
   m_ObjectHideFlags: 0

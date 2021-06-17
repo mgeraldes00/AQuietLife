@@ -131,6 +131,7 @@ public class DrawerManager : MonoBehaviour
                         StartCoroutine(ShowDoor(openDoor[0]));
                         zoom.currentView++;
                         FindObjectOfType<PointerManager>().ChangeCursor(1);
+                        FindObjectOfType<AudioCtrl>().Play("OpenDrawer");
                     }
                 }
 
@@ -172,6 +173,7 @@ public class DrawerManager : MonoBehaviour
                         StartCoroutine(ShowDoor(openDoor[2]));
                         zoom.currentView++;
                         FindObjectOfType<PointerManager>().ChangeCursor(1);
+                        FindObjectOfType<AudioCtrl>().Play("OpenDrawer");
                     }
                 }
 
@@ -204,6 +206,7 @@ public class DrawerManager : MonoBehaviour
                         StartCoroutine(ShowDoor(openDoor[1]));
                         zoom.currentView++;
                         FindObjectOfType<PointerManager>().ChangeCursor(1);
+                        FindObjectOfType<AudioCtrl>().Play("OpenDrawer");
                     }       
                 }    
             }
@@ -225,6 +228,7 @@ public class DrawerManager : MonoBehaviour
             //zoom.GetComponent<Animator>().SetTrigger(drawerName);
             StartCoroutine(HideDoor());
             StartCoroutine(BackZoom());
+            FindObjectOfType<AudioCtrl>().Play("CloseDrawer");
         }
     }
 

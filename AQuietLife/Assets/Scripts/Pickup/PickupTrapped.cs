@@ -13,6 +13,8 @@ public class PickupTrapped : MonoBehaviour
 
     [SerializeField] private bool isTrapped;
 
+    [SerializeField] private string currentObj;
+
     private void Start()
     {
         isTrapped = true;
@@ -68,6 +70,7 @@ public class PickupTrapped : MonoBehaviour
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
                     gameObject.SetActive(false);
+                    FindObjectOfType<AudioCtrl>().Play(currentObj);
                 }
 
                 break;

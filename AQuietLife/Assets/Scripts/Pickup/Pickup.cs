@@ -8,6 +8,8 @@ public class Pickup : MonoBehaviour
 
     public GameObject itemButton;
 
+    [SerializeField] private string currentObj;
+
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
@@ -33,6 +35,7 @@ public class Pickup : MonoBehaviour
                 Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
                 inventory.isFull[i] = true;
                 Instantiate(itemButton, inventory.slots[i].transform, false);
+                FindObjectOfType<AudioCtrl>().Play(currentObj);
                 gameObject.SetActive(false);
                 break;
             }

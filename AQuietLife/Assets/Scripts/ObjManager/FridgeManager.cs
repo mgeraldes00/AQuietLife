@@ -133,6 +133,7 @@ public class FridgeManager : MonoBehaviour
                             openingBottomDoor = true;
                             LockAndUnlock();
                             StartCoroutine(TimeToAlarm());
+                            FindObjectOfType<AudioCtrl>().Play("OpenFridge");
                         }
 
                         if (doorLeftOpen == true)
@@ -148,6 +149,7 @@ public class FridgeManager : MonoBehaviour
                             LockAndUnlockFromOpen();
                             StopCoroutine(TimeToAlarm());
                             alarm.Stop();
+                            FindObjectOfType<AudioCtrl>().Play("CloseFridge");
                         }
                     }
                 }
@@ -163,7 +165,8 @@ public class FridgeManager : MonoBehaviour
                             objectsFreezer[i].SetActive(true);
                         zoom.InteractionTransition();
                         openingTopDoor = true;
-                        LockAndUnlock();    
+                        LockAndUnlock();
+                        FindObjectOfType<AudioCtrl>().Play("OpenFridge");
                     }
 
                     if (doorRightOpen == true)
@@ -174,7 +177,8 @@ public class FridgeManager : MonoBehaviour
                             objectsFreezer[i].SetActive(false);
                         zoom.InteractionTransition();
                         closingTopDoor = true;
-                        LockAndUnlockFromOpen();                      
+                        LockAndUnlockFromOpen();
+                        FindObjectOfType<AudioCtrl>().Play("CloseFridge");
                     }
                 }
 

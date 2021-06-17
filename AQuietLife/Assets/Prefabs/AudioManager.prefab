@@ -110,3 +110,63 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: PlacePlate
+    clip: {fileID: 8300000, guid: 0d198260e13c4544d808a8ee4d022b15, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickPlate
+    clip: {fileID: 8300000, guid: 6884ebec8da4dd044b991eb607a5abba, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenCabinetDoor
+    clip: {fileID: 8300000, guid: e6ebd57404c9eba4fafce08b2c9ffee9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CloseCabinetDoor
+    clip: {fileID: 8300000, guid: 30f4d1c6f6363f84c84b77b21207fb2c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenDrawer
+    clip: {fileID: 8300000, guid: 091da113b8512134490279bd88af7054, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CloseDrawer
+    clip: {fileID: 8300000, guid: 268a70177688fe74b97b2cd39336d241, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenFridge
+    clip: {fileID: 8300000, guid: 3b8e27557012dec4c9b05bf1f9a58b98, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CloseFridge
+    clip: {fileID: 8300000, guid: 65dcc128f8a05a240824469083e9b342, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickDrink
+    clip: {fileID: 8300000, guid: bc129f26bcc3ff144bf203ddb4ca3b20, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DropDrink
+    clip: {fileID: 8300000, guid: dd3f598ee1a96c84595362e07ee3a98d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

@@ -134,6 +134,7 @@ public class CabinetManager : MonoBehaviour
                     objects[1].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
 
                 if (select.usingStoveCloth == true)
@@ -143,6 +144,7 @@ public class CabinetManager : MonoBehaviour
                     objects[1].SetActive(true);
                     FindObjectOfType<StoveCloth>().gloveUsed = true;
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
             }
 
@@ -160,6 +162,7 @@ public class CabinetManager : MonoBehaviour
                     doors[5].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
 
                 if (select.usingStoveCloth == true)
@@ -168,6 +171,7 @@ public class CabinetManager : MonoBehaviour
                     doors[5].SetActive(true);
                     FindObjectOfType<StoveCloth>().gloveUsed = true;
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
             }
 
@@ -183,6 +187,7 @@ public class CabinetManager : MonoBehaviour
                     //glove.SetActive(true);
                     LockAndUnlock();
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
 
                 if (door2Open == true)
@@ -206,6 +211,7 @@ public class CabinetManager : MonoBehaviour
                     //interactionText.SetActive(false);
                     LockAndUnlock();
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
 
                 if (door4Open == true)
