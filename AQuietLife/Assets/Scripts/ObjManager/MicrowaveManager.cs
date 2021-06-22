@@ -102,6 +102,7 @@ public class MicrowaveManager : MonoBehaviour
                         door[1].SetActive(true);
                         objects[1].SetActive(true);
                         zoom.InteractionTransition();
+                        FindObjectOfType<AudioCtrl>().Play("OpenMWave");
                     }
 
                     if (worked == true)
@@ -110,6 +111,7 @@ public class MicrowaveManager : MonoBehaviour
                         door[0].SetActive(false);
                         door[1].SetActive(true);
                         zoom.InteractionTransition();
+                        FindObjectOfType<AudioCtrl>().Play("OpenMWave");
                     }                    
                 }
 
@@ -127,6 +129,7 @@ public class MicrowaveManager : MonoBehaviour
                     objects[1].SetActive(false);
                     objects[2].SetActive(true);
                     zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("CloseMWave");
                 }
                 
             }
@@ -229,7 +232,7 @@ public class MicrowaveManager : MonoBehaviour
 
     IEnumerator Unfreeze()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(30.0f);
         //doorAnim.SetBool("Working", false);
         working = false;
         worked = true;

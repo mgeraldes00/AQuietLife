@@ -147,19 +147,31 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: OpenFridge
-    clip: {fileID: 8300000, guid: 3b8e27557012dec4c9b05bf1f9a58b98, type: 3}
+    clip: {fileID: 8300000, guid: fea588232ab42ec47a166e5e32917d16, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CloseFridge
-    clip: {fileID: 8300000, guid: 65dcc128f8a05a240824469083e9b342, type: 3}
+    clip: {fileID: 8300000, guid: db63f8385c2c8084fa5e1777e9ad1621, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: PickDrink
     clip: {fileID: 8300000, guid: bc129f26bcc3ff144bf203ddb4ca3b20, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenMWave
+    clip: {fileID: 8300000, guid: 8c30d50e01d3d4d47aa313a208d9f6c1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CloseMWave
+    clip: {fileID: 8300000, guid: 6231776054d324b4796855f036afa04a, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0

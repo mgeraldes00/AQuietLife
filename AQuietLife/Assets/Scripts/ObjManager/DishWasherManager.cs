@@ -15,6 +15,8 @@ public class DishWasherManager : MonoBehaviour
 
     public Animator returnArrow;
 
+    [SerializeField] public AudioSource[] workingAudio;
+
     public bool isWorking;
     public bool isActive;
 
@@ -29,6 +31,8 @@ public class DishWasherManager : MonoBehaviour
         isWorking = true;
         isLocked = false;
         closeUp.dishWasher = closeUp.dishWasher.GetComponent<BoxCollider2D>();
+
+        workingAudio[0].Play();
 
         StartCoroutine(TimeToFinish());
     }
@@ -124,6 +128,8 @@ public class DishWasherManager : MonoBehaviour
             if (timer <= 0)
             {
                 Debug.Log("Done washing!");
+                workingAudio[0].Stop();
+                workingAudio[1].Play();
                 isWorking = false;
             }
         }
