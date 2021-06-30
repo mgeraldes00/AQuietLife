@@ -53,6 +53,8 @@ public class MenuCtrl : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.DeleteKey("StoryMode");
+
         skipAnim.SetTrigger("Show");
         StartCoroutine(ShowButtons());
         Instantiate(audioMng);
@@ -93,6 +95,7 @@ public class MenuCtrl : MonoBehaviour
                 Application.Quit();
                 break;
             case (4):
+                PlayerPrefs.SetString("StoryMode", "StoryMode");
                 fade.GetComponent<Animator>().SetTrigger("Black");
                 StartCoroutine(NewGame());
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));

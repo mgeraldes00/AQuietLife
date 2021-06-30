@@ -13235,7 +13235,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 6b274b857f3145f4f868830109f864e4, type: 2}
   m_audioClip: {fileID: 8300000, guid: 57d98db1fae8a9d40a24874fc5eed7ea, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23262,7 +23262,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 6b274b857f3145f4f868830109f864e4, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4dbda94acea7dfe4da17e877e2a0a3c7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -36855,12 +36855,12 @@ GameObject:
   - component: {fileID: 1955879653}
   - component: {fileID: 1955879655}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1955879652
 RectTransform:
   m_ObjectHideFlags: 0

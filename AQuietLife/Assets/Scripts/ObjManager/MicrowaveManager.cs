@@ -89,6 +89,10 @@ public class MicrowaveManager : MonoBehaviour
             {
                 if (doorOpen == false && working == false)
                 {
+                    OpenAndUnlock();
+                    zoom.InteractionTransition();
+                    FindObjectOfType<AudioCtrl>().Play("OpenMWave");
+
                     if (worked == false)
                     {
                         //if (worked == true)
@@ -96,22 +100,17 @@ public class MicrowaveManager : MonoBehaviour
                         //doorAnim.SetTrigger("Open");
                         //doorOpen = true;
                         //structure.enabled = true;
-                        OpenAndUnlock();
                         //doorOpen = true;
                         door[0].SetActive(false);
                         door[1].SetActive(true);
                         objects[1].SetActive(true);
-                        zoom.InteractionTransition();
-                        FindObjectOfType<AudioCtrl>().Play("OpenMWave");
                     }
 
                     if (worked == true)
-                    {
-                        OpenAndUnlock();
+                    {         
                         door[0].SetActive(false);
                         door[1].SetActive(true);
-                        zoom.InteractionTransition();
-                        FindObjectOfType<AudioCtrl>().Play("OpenMWave");
+                        objects[0].GetComponent<BoxCollider2D>().enabled = true;
                     }                    
                 }
 
@@ -152,7 +151,7 @@ public class MicrowaveManager : MonoBehaviour
             }
 
             else if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
-                && doorOpen == false && breadPlaced == true && worked == false)
+                && doorOpen == false && breadPlaced == true && worked == false && working == false)
             {
                 //Start audio
                 //doorAnim.SetBool("Working", true);
@@ -190,7 +189,7 @@ public class MicrowaveManager : MonoBehaviour
 
     public void EnableObjs()
     {
-        for (int i = 0; i < objects.Length; i++)
+        for (int i = 1; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = true;
     }
 

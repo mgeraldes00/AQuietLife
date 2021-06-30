@@ -55,13 +55,20 @@ public class GameManager : MonoBehaviour
     public int numOfIngredients;
     public int glovesUsed;
 
+    private int currentMode;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("StoryMode"))
+        {
+            fadeAnim.speed = 0.3f;
+            introText.SetActive(true);
+        }
+
         returnable = true;
         isLocked = true;
-        Instantiate(audioMng);
-        fadeAnim.speed = 0.3f;
+        Instantiate(audioMng); 
         StartCoroutine(UnlockStart());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 1));
         numOfIngredients = 0;
@@ -242,15 +249,24 @@ public class GameManager : MonoBehaviour
 
     IEnumerator UnlockStart()
     {
-        yield return new WaitForSeconds(4.0f);
-        introText.GetComponent<Animator>().SetTrigger("HideIntroText");
-        yield return new WaitForSeconds(2.0f);
-        introText.SetActive(false);
-        isLocked = false;
-        kitchenClock.SetBool("Active", true);
-        //StartCoroutine(TimeTillLock());
-        yield return new WaitForSeconds(1.0f);
-        fadeAnim.speed = 1.0f;
+        if (PlayerPrefs.HasKey("StoryMode"))
+        {
+            yield return new WaitForSeconds(4.0f);
+            introText.GetComponent<Animator>().SetTrigger("HideIntroText");
+            yield return new WaitForSeconds(2.0f);
+            introText.SetActive(false);
+            isLocked = false;
+            kitchenClock.SetBool("Active", true);
+            //StartCoroutine(TimeTillLock());
+            yield return new WaitForSeconds(1.0f);
+            fadeAnim.speed = 1.0f;
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.5f);
+            isLocked = false;
+            kitchenClock.SetBool("Active", true);
+        }
     }
 
     IEnumerator TimeTillLock()
