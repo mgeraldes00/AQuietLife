@@ -12,6 +12,7 @@ public class DrawerManager : MonoBehaviour
 
     //public GameObject[] doors;
     public GameObject[] openDoor;
+    public GameObject[] door2;
     //public GameObject[] objects;
 
     public GameObject returnArrow;
@@ -189,7 +190,8 @@ public class DrawerManager : MonoBehaviour
                         }
                         else
                         {
-
+                            thought.ShowThought();
+                            thought.text = "The handle fell off... Now where is it?";
                         }
                     }
                     else
@@ -310,5 +312,7 @@ public class DrawerManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         handlePlaced = true;
+        door2[0].GetComponent<SpriteRenderer>().enabled = true;
+        door2[1].GetComponent<SpriteRenderer>().enabled = false;
     }
 }
