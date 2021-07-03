@@ -4,7 +4,10 @@ using UnityEngine.EventSystems;
 
 public class StorageManager : MonoBehaviour
 {
+    public CloseUpStorage closeUp;
     public CameraCtrl zoom;
+    public GameManager gameMng;
+    public Lock lockMgn;
 
     private Vector3 mousePosition;
     [SerializeField] private Rigidbody2D[] rb;
@@ -16,6 +19,13 @@ public class StorageManager : MonoBehaviour
 
     public bool leftDoorCol;
     public bool rightDoorCol;
+
+    public bool isLocked;
+
+    private void Start()
+    {
+        isLocked = true;
+    }
 
     // Update is called once per frame
     void Update()
@@ -51,7 +61,7 @@ public class StorageManager : MonoBehaviour
                 {
                     for (int i = 0; i < rb.Length; i++)
                         rb[i].velocity = Vector2.zero;
-                }
+                }       
             }
         }     
     }

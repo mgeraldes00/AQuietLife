@@ -676,7 +676,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9118646810efd9444874fcefc4d954b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closeUp: {fileID: 0}
   zoom: {fileID: 519420033}
+  gameMng: {fileID: 1037535894}
+  lockMgn: {fileID: 1424781638}
   rb:
   - {fileID: 202460648}
   - {fileID: 1724137861}
@@ -687,6 +690,7 @@ MonoBehaviour:
   - {fileID: 1298534428}
   leftDoorCol: 0
   rightDoorCol: 0
+  isLocked: 0
 --- !u!61 &33409399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27371,6 +27375,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1424781635}
   - component: {fileID: 1424781636}
+  - component: {fileID: 1424781638}
+  - component: {fileID: 1424781637}
   m_Layer: 0
   m_Name: _eyhole
   m_TagString: Untagged
@@ -27386,7 +27392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424781634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.285, y: -0.922, z: 0}
+  m_LocalPosition: {x: 2.258, y: -1.002, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 202460646}
@@ -27443,6 +27449,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1424781637
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424781634}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.78}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 4, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4}
+  m_EdgeRadius: 0
+--- !u!114 &1424781638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424781634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcefd54b0d37bba49b5f9a046e95c1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeUp: {fileID: 33409400}
+  storage: {fileID: 33409398}
+  zoom: {fileID: 519420033}
+  inventory: {fileID: 1888950854}
+  thought: {fileID: 1938436214}
+  keyBox: {fileID: 1424781637}
+  isOnLock: 0
 --- !u!1 &1428905215
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class CloseUpStorage : MonoBehaviour
     public GameManager gameMng;
     public CameraCtrl zoom;
 
-    [SerializeField] private BoxCollider2D[] doors;
+    public BoxCollider2D[] doors;
 
     private void OnMouseDown()
     {

@@ -136,7 +136,7 @@ public class BreadBoxManager : MonoBehaviour
 
     public void ButtonBehaviour()
     {
-        if (zoom.currentView == 1)
+        if (zoom.currentView == 1 && closeUp.isBreadBox == true)
         {
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
@@ -150,7 +150,7 @@ public class BreadBoxManager : MonoBehaviour
     IEnumerator TimeToTransition()
     {
         yield return new WaitForEndOfFrame();
-        breadBoxRewindButton.GetComponent<Animator>().SetBool("Visible", false);
+        //breadBoxRewindButton.GetComponent<Animator>().SetBool("Visible", false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);

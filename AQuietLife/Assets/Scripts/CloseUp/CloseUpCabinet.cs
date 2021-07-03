@@ -46,6 +46,7 @@ public class CloseUpCabinet : MonoBehaviour
                 Debug.Log(hit.collider.gameObject.name);
                 zoom.ObjectTransition();
                 zoom.cameraAnim.SetTrigger("ZoomCabinet");
+                cabinetMng.isOnCabinet = true;
                 StartCoroutine(TimeToZoom());
                 isCabinet = true;
             }

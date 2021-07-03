@@ -72,6 +72,8 @@ public class CabinetManager : MonoBehaviour
     public bool door4Open;
     public bool hasTime;
 
+    public bool isOnCabinet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -352,7 +354,7 @@ public class CabinetManager : MonoBehaviour
             //abinetGeneral.SetActive(true);
         }*/
 
-        if (zoom.currentView == 1)
+        if (zoom.currentView == 1 && isOnCabinet == true)
         {
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
@@ -372,6 +374,7 @@ public class CabinetManager : MonoBehaviour
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         cabinetRewindButton.SetActive(false);
+        isOnCabinet = false;
     }
 
     public void EnableObjs()
