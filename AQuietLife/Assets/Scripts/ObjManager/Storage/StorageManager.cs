@@ -50,20 +50,28 @@ public class StorageManager : MonoBehaviour
                     mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     direction = (mousePosition - transform.position).normalized;
                     rb[0].velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+                    if (moveSpeed >= 0)
+                        FindObjectOfType<AudioCtrl>().Play("OpenStorage");
+                    else if (moveSpeed <= 0)
+                        FindObjectOfType<AudioCtrl>().Play("CloseStorage");
                 }
                 else if (hit.collider.CompareTag("Direction2"))
                 {
                     mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     direction = (mousePosition - transform.position).normalized;
                     rb[1].velocity = new Vector2(direction.x * moveSpeed2, direction.y * moveSpeed2);
+                    if (moveSpeed2 >= 0)
+                        FindObjectOfType<AudioCtrl>().Play("OpenStorage");
+                    else if (moveSpeed2 <= 0)
+                        FindObjectOfType<AudioCtrl>().Play("CloseStorage");
                 }
                 else
                 {
                     for (int i = 0; i < rb.Length; i++)
                         rb[i].velocity = Vector2.zero;
-                }       
+                }
             }
-        }     
+        }
     }
 
     public void ButtonBehaviour()

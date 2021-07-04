@@ -58,13 +58,13 @@ public class BinManager : MonoBehaviour
             }
             else if (isTrapped == false)
             {
-                isOpen = true;
                 gameMng.returnable = false;
                 LockAndUnlock();
                 zoom.InteractionTransition();
                 StartCoroutine(ShowDoor(openDoor));
                 zoom.currentView++;
-                FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                if (isOpen != true)
+                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
             }
         }
     }
@@ -101,6 +101,7 @@ public class BinManager : MonoBehaviour
         door.SetActive(true);
         bin[0].GetComponent<SpriteRenderer>().enabled = false;
         bin[1].SetActive(true);
+        isOpen = true;
     }
 
     IEnumerator Unlock()

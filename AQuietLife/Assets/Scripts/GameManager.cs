@@ -168,7 +168,8 @@ public class GameManager : MonoBehaviour
     {
         //SceneManager.LoadScene("GameOver");
         backMusic.Stop();
-        FindObjectOfType<AudioCtrl>().Play("Explosion");
+        StartCoroutine(FadeMixerGroup.StartFade(dynamicMix, "DynamicVol", 1, 0));
+        FindObjectOfType<AudioCtrl>().Play("ExplosionKitchen");
         isLocked = true;
         isDead = true;
         deathScreen[0].SetActive(true);

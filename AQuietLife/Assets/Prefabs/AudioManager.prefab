@@ -112,37 +112,37 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlacePlate
     clip: {fileID: 8300000, guid: 0d198260e13c4544d808a8ee4d022b15, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: PickPlate
-    clip: {fileID: 8300000, guid: 6884ebec8da4dd044b991eb607a5abba, type: 3}
+    clip: {fileID: 8300000, guid: b2c3adee8957247489706be0297a2729, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: OpenCabinetDoor
     clip: {fileID: 8300000, guid: e6ebd57404c9eba4fafce08b2c9ffee9, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CloseCabinetDoor
     clip: {fileID: 8300000, guid: 30f4d1c6f6363f84c84b77b21207fb2c, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: OpenDrawer
     clip: {fileID: 8300000, guid: 091da113b8512134490279bd88af7054, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CloseDrawer
     clip: {fileID: 8300000, guid: 268a70177688fe74b97b2cd39336d241, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PickDrink
     clip: {fileID: 8300000, guid: bc129f26bcc3ff144bf203ddb4ca3b20, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -184,7 +184,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BreadPlate
     clip: {fileID: 8300000, guid: 94118f815eced8a42a1e392db42ae6c7, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -221,6 +221,84 @@ MonoBehaviour:
   - name: CutCheese
     clip: {fileID: 8300000, guid: 7045f837862151c418482b0b5ee152c8, type: 3}
     volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DropDrink
+    clip: {fileID: 8300000, guid: dd3f598ee1a96c84595362e07ee3a98d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenStorage
+    clip: {fileID: 8300000, guid: cb2c7ff9bb1a45a4092a114260924bba, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CloseStorage
+    clip: {fileID: 8300000, guid: 7727601cc7f89444b962b51b9a719608, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ExplosionKitchen
+    clip: {fileID: 8300000, guid: 6538830a3da06af48bc9a145c55784cf, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickHam
+    clip: {fileID: 8300000, guid: 37d68450722637d458fab192e26cb86d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlaceHam
+    clip: {fileID: 8300000, guid: 5d843471d09accf45bc7b79f9f5f89cd, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlaceLettuce
+    clip: {fileID: 8300000, guid: b7133b12a059c4142a6905c69124303a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenDishWasher
+    clip: {fileID: 8300000, guid: 382d749c8d5e7fc40b0fe777cec2b9eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GlassFromDishwasher
+    clip: {fileID: 8300000, guid: 6fa45f77db504004b9b570f6c76bd620, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pickbread
+    clip: {fileID: 8300000, guid: aa98bbf2037b87047a5b30ea9d81bc06, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: InsertHandle
+    clip: {fileID: 8300000, guid: 98512c980196d4d47afd21fa34e23333, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RemoveFromBin
+    clip: {fileID: 8300000, guid: 6bae9438f7055384d87f0e8766f987de, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cotton
+    clip: {fileID: 8300000, guid: 465899b9f2ebdf842a788d9cfacfcf3c, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}

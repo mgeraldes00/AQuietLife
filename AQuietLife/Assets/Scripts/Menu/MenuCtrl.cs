@@ -93,7 +93,7 @@ public class MenuCtrl : MonoBehaviour
                 Debug.Log("Quit");
                 PlayerPrefs.DeleteKey("isFirstTime");
                 fade.enabled = true;
-                fade.GetComponent<Animator>().SetTrigger("White");
+                fade.GetComponent<Animator>().SetTrigger("Black");
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
                 StartCoroutine(Quit());
                 break;

@@ -187,11 +187,12 @@ public class DrawerManager : MonoBehaviour
                         {
                             StartCoroutine(Restore());
                             FindObjectOfType<Handle>().handleUsed = true;
+                            FindObjectOfType<AudioCtrl>().Play("InsertHandle");
                         }
                         else
                         {
                             thought.ShowThought();
-                            thought.text = "The handle fell off... Now where is it?";
+                            thought.text = "The handle fell off... Now where is it?.";
                         }
                     }
                     else

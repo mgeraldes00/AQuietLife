@@ -2535,7 +2535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: bb4b7c0de6d27c4409ba1282638e0c78, type: 3}
-  currentObj: 
+  currentObj: Pickbread
   isUnmovable: 0
 --- !u!1 &139249253
 GameObject:
@@ -5288,7 +5288,7 @@ MonoBehaviour:
   itemButton: {fileID: 3210881669624165373, guid: 159f7bba167f34f4496cea1187e35c25, type: 3}
   isTrapped: 0
   isUnmovable: 0
-  currentObj: 
+  currentObj: RemoveFromBin
 --- !u!61 &256847422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11953,7 +11953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
-  currentObj: 
+  currentObj: Cotton
   isUnmovable: 0
 --- !u!61 &598848326
 BoxCollider2D:
@@ -15684,7 +15684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: de1d1c585f2f9ba4e80db5a226ef4f0f, type: 3}
-  currentObj: 
+  currentObj: GlassFromDishwasher
   isUnmovable: 0
 --- !u!61 &810671134
 BoxCollider2D:
@@ -24803,7 +24803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: 88a1b3ba92d0b2141bbefed5e4db77de, type: 3}
-  currentObj: 
+  currentObj: Cotton
   isUnmovable: 0
 --- !u!1 &1301152506
 GameObject:
@@ -26420,7 +26420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
-  currentObj: 
+  currentObj: Cotton
   isUnmovable: 0
 --- !u!61 &1379416587
 BoxCollider2D:
@@ -28871,7 +28871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1818831345527574544, guid: b81174190a65a30488defd356b7ca413, type: 3}
-  currentObj: 
+  currentObj: Cotton
   isUnmovable: 0
 --- !u!1 &1515202915
 GameObject:
@@ -32126,7 +32126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
-  currentObj: 
+  currentObj: Cotton
   isUnmovable: 0
 --- !u!61 &1688133310
 BoxCollider2D:
@@ -33884,7 +33884,7 @@ MonoBehaviour:
   itemButton: {fileID: 3210881669624165373, guid: d73081e1ea4933343ba749b93c30faa5, type: 3}
   isTrapped: 0
   isUnmovable: 1
-  currentObj: 
+  currentObj: PickHam
 --- !u!1 &1788219042
 GameObject:
   m_ObjectHideFlags: 0
@@ -40659,7 +40659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3833274968249996879, guid: c4c7f9e7763694e4bb5443a5c8f39223, type: 3}
-  currentObj: 
+  currentObj: Cotton
   isUnmovable: 0
 --- !u!61 &2092236194
 BoxCollider2D:

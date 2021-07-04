@@ -49,6 +49,8 @@ public class DishWasherManager : MonoBehaviour
                 closeUp.dishWasher.size = new Vector2(3.11f, 0.4f);
                 closeUp.dishWasher.offset = new Vector2(0, -0.88f);
 
+                FindObjectOfType<AudioCtrl>().Play("OpenDishWasher");
+
                 for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
                     closeUp.zoomableObjs[i].enabled = true;
             }
