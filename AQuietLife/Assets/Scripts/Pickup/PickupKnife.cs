@@ -43,6 +43,7 @@ public class PickupKnife : MonoBehaviour
                     Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
+                    FindObjectOfType<AudioCtrl>().Play("Knife");
                     StartCoroutine(GotKnife());
                     break;
                 }     

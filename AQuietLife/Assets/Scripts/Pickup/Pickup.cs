@@ -10,6 +10,8 @@ public class Pickup : MonoBehaviour
 
     [SerializeField] private string currentObj;
 
+    [SerializeField] private bool isUnmovable;
+
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
@@ -36,7 +38,15 @@ public class Pickup : MonoBehaviour
                 inventory.isFull[i] = true;
                 Instantiate(itemButton, inventory.slots[i].transform, false);
                 FindObjectOfType<AudioCtrl>().Play(currentObj);
-                gameObject.SetActive(false);
+
+                if (isUnmovable != true)
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    GetComponent<BoxCollider2D>().enabled = false;
+                }
                 break;
             }
         }

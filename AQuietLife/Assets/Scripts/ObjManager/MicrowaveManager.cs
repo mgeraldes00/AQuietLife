@@ -141,6 +141,7 @@ public class MicrowaveManager : MonoBehaviour
                     objects[1].SetActive(false);
                     breadPlaced = true;
                     FindObjectOfType<PlateWFrozenBread>().frozenBreadWPlateUsed = true;
+                    FindObjectOfType<AudioCtrl>().Play("PlacePlate");
                 }  
 
                 if (doorOpen == true && select.usingFrozenBread == true)

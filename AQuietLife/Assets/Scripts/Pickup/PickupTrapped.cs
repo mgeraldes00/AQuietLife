@@ -12,6 +12,7 @@ public class PickupTrapped : MonoBehaviour
     public GameObject itemButton;
 
     [SerializeField] private bool isTrapped;
+    [SerializeField] private bool isUnmovable;
 
     [SerializeField] private string currentObj;
 
@@ -69,10 +70,17 @@ public class PickupTrapped : MonoBehaviour
                     Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
-                    gameObject.SetActive(false);
                     FindObjectOfType<AudioCtrl>().Play(currentObj);
-                }
 
+                    if (isUnmovable != true)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        GetComponent<BoxCollider2D>().enabled = false;
+                    }        
+                }
                 break;
             }
         }

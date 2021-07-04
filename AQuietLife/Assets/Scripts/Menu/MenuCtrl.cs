@@ -92,7 +92,10 @@ public class MenuCtrl : MonoBehaviour
             case (3):
                 Debug.Log("Quit");
                 PlayerPrefs.DeleteKey("isFirstTime");
-                Application.Quit();
+                fade.enabled = true;
+                fade.GetComponent<Animator>().SetTrigger("White");
+                StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
+                StartCoroutine(Quit());
                 break;
             case (4):
                 PlayerPrefs.SetString("StoryMode", "StoryMode");
@@ -193,6 +196,12 @@ public class MenuCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(s);
+    }
+
+    IEnumerator Quit()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Application.Quit();
     }
 
     IEnumerator ShowButtons()

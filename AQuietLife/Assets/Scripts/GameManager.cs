@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource backMusic;
     public AudioMixer musicMix;
+    public AudioMixer dynamicMix;
 
     [SerializeField] private Animator fadeAnim;
 
@@ -167,6 +168,7 @@ public class GameManager : MonoBehaviour
     {
         //SceneManager.LoadScene("GameOver");
         backMusic.Stop();
+        FindObjectOfType<AudioCtrl>().Play("Explosion");
         isLocked = true;
         isDead = true;
         deathScreen[0].SetActive(true);
@@ -329,6 +331,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         fadeAnim.SetTrigger("FadeOut");
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
+        StartCoroutine(FadeMixerGroup.StartFade(dynamicMix, "DynamicVol", 1, 0));
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("ThankYou");
     }

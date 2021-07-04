@@ -188,6 +188,7 @@ public class CheeseDomeManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isOpen = true;
         yield return new WaitForSeconds(0.2f);
+        FindObjectOfType<AudioCtrl>().Play("Glassdome");
         objects[0].SetActive(false);
         objects[1].SetActive(true);
         closeUp.cheeseDome.offset = new Vector2(1.68f, -1.01f);
@@ -199,6 +200,7 @@ public class CheeseDomeManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isTaken = true;
         yield return new WaitForSeconds(0.2f);
+        FindObjectOfType<AudioCtrl>().Play("CutCheese");
         objects[2].SetActive(true);
         FindObjectOfType<PickupCheese>().PickCheese();
     }

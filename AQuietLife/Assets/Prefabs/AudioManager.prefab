@@ -176,8 +176,50 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: DropDrink
-    clip: {fileID: 8300000, guid: dd3f598ee1a96c84595362e07ee3a98d, type: 3}
+  - name: Glassdome
+    clip: {fileID: 8300000, guid: 9bb8ec3a7d70c7a4e87f4d290fae6d54, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BreadPlate
+    clip: {fileID: 8300000, guid: 94118f815eced8a42a1e392db42ae6c7, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickPickle
+    clip: {fileID: 8300000, guid: 12cb15b819ff6464fb74a641ca947400, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlacePickle
+    clip: {fileID: 8300000, guid: e78d5366700ab9e4dac6e40079d4df9d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Knife
+    clip: {fileID: 8300000, guid: 5a2412b99e63346429e7b2054f75e611, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Breadcut
+    clip: {fileID: 8300000, guid: bbb099813ec07f542a88379ddfda4346, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickLettuce
+    clip: {fileID: 8300000, guid: 6ccb90207046bb34bb1fc276a735cffc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutCheese
+    clip: {fileID: 8300000, guid: 7045f837862151c418482b0b5ee152c8, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
