@@ -50,12 +50,12 @@ public class PickupKey : MonoBehaviour
                     Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
+                    inventory.keyInPossession = true;
                     FindObjectOfType<AudioCtrl>().Play(currentObj);
                     gameObject.SetActive(false);
                     break;
                 }
             }
         }
-
     }
 }

@@ -4,10 +4,11 @@ using UnityEngine.EventSystems;
 
 public class StorageManager : MonoBehaviour
 {
+    [SerializeField] private ObjectSelection inventory;
+    [SerializeField] private ThoughtManager thought;
     public CloseUpStorage closeUp;
     public CameraCtrl zoom;
     public GameManager gameMng;
-    public Lock lockMgn;
 
     private Vector3 mousePosition;
     [SerializeField] private Rigidbody2D[] rb;
@@ -15,12 +16,15 @@ public class StorageManager : MonoBehaviour
     public float moveSpeed = 10f;
     public float moveSpeed2 = 10.0f;
 
-    public GameObject[] objects;
+    public GameObject[] objectsLeft;
+    public GameObject[] objectsRight;
 
     public bool leftDoorCol;
     public bool rightDoorCol;
 
     public bool isLocked;
+
+    [SerializeField] private bool isOnLock;
 
     private void Start()
     {
@@ -39,31 +43,57 @@ public class StorageManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
             if (Input.GetMouseButton(0) && FindObjectOfType<GameManager>().isLocked == false
-                && FindObjectOfType<CameraCtrl>().currentView == 1)
+                )//Fix currentView
             {
                 if (hit.collider == null)
                 {
 
                 }
-                else if (hit.collider.CompareTag("Direction"))
+                else if (hit.collider.name == "keyHole")
                 {
-                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    direction = (mousePosition - transform.position).normalized;
-                    rb[0].velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-                    if (moveSpeed >= 0)
-                        FindObjectOfType<AudioCtrl>().Play("OpenStorage");
-                    else if (moveSpeed <= 0)
-                        FindObjectOfType<AudioCtrl>().Play("CloseStorage");
+                    if (zoom.currentView == 1)
+                    {
+                        StartCoroutine(TimeToZoom());
+                    }
+                    else if (zoom.currentView == 2)
+                    {
+                        if (FindObjectOfType<InventorySimple>().keyInPossession == false)
+                        {
+                            thought.ShowThought();
+                            thought.text = "Now, where did I put the key? Should be well hidden....";
+                        }
+                        else if (inventory.usingKey == true)
+                        {
+                            FindObjectOfType<Key>().keyUsed = true;
+                            StartCoroutine(UnlockDoor());
+                        }
+                    }
                 }
-                else if (hit.collider.CompareTag("Direction2"))
+                else if (hit.collider.CompareTag("Direction") && zoom.currentView == 1)
                 {
-                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    direction = (mousePosition - transform.position).normalized;
-                    rb[1].velocity = new Vector2(direction.x * moveSpeed2, direction.y * moveSpeed2);
-                    if (moveSpeed2 >= 0)
-                        FindObjectOfType<AudioCtrl>().Play("OpenStorage");
-                    else if (moveSpeed2 <= 0)
-                        FindObjectOfType<AudioCtrl>().Play("CloseStorage");
+                    if (isLocked == false)
+                    {
+                        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        direction = (mousePosition - transform.position).normalized;
+                        rb[0].velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+                        if (moveSpeed >= 0)
+                            FindObjectOfType<AudioCtrl>().Play("OpenStorage");
+                        else if (moveSpeed <= 0)
+                            FindObjectOfType<AudioCtrl>().Play("CloseStorage");
+                    }
+                }
+                else if (hit.collider.CompareTag("Direction2") && zoom.currentView == 1)
+                {
+                    if (isLocked == false)
+                    {
+                        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        direction = (mousePosition - transform.position).normalized;
+                        rb[1].velocity = new Vector2(direction.x * moveSpeed2, direction.y * moveSpeed2);
+                        if (moveSpeed2 >= 0)
+                            FindObjectOfType<AudioCtrl>().Play("OpenStorage");
+                        else if (moveSpeed2 <= 0)
+                            FindObjectOfType<AudioCtrl>().Play("CloseStorage");
+                    }
                 }
                 else
                 {
@@ -78,33 +108,61 @@ public class StorageManager : MonoBehaviour
     {
         if (zoom.currentView == 1)
         {
-            FindObjectOfType<CloseUpStorage>().Normalize();
-            StartCoroutine(TimeToTransition());
+            if (rb[0].velocity == Vector2.zero)
+            {
+                FindObjectOfType<CloseUpStorage>().Normalize();
+                StartCoroutine(DisableObjs(2));
+            }
         }
-        else
+        else if (zoom.currentView == 2 && isOnLock == true)
         {
-
+            StartCoroutine(BackZoom());
         }
     }
 
-    IEnumerator TimeToTransition()
+    public IEnumerator EnableObjs(int thisObjs)
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (thisObjs == 0)
+            for (int i = 0; i < objectsLeft.Length; i++)
+                objectsLeft[i].GetComponent<BoxCollider2D>().enabled = true;
+        else if (thisObjs == 1)
+            for (int i = 0; i < objectsRight.Length; i++)
+                objectsRight[i].GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public IEnumerator DisableObjs(int thisObjs)
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (thisObjs == 0 || thisObjs > 1)
+            for (int i = 0; i < objectsLeft.Length; i++)
+                objectsLeft[i].GetComponent<BoxCollider2D>().enabled = false;
+        if (thisObjs == 1 || thisObjs > 1)
+            for (int i = 0; i < objectsRight.Length; i++)
+                objectsRight[i].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    IEnumerator TimeToZoom()
+    {
+        yield return new WaitForEndOfFrame();
+        zoom.currentView++;
+        zoom.cameraAnim.SetTrigger("ZoomLock");
+        isOnLock = true;
+    }
+
+    IEnumerator BackZoom()
     {
         yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < objects.Length; i++)
-            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        zoom.currentView--;
+        isOnLock = false;
     }
 
-    public IEnumerator EnableObjs()
+    IEnumerator UnlockDoor()
     {
         yield return new WaitForSeconds(0.5f);
-        for (int i = 0; i < objects.Length; i++)
-            objects[i].GetComponent<BoxCollider2D>().enabled = true;
-    }
-
-    public IEnumerator DisableObjs()
-    {
-        yield return new WaitForSeconds(0.5f);
-        for (int i = 0; i < objects.Length; i++)
-            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        isLocked = false;
+        closeUp.lockedDoor.enabled = false;
+        closeUp.doors[0].enabled = true;
+        closeUp.keyHole.enabled = false;
     }
 }

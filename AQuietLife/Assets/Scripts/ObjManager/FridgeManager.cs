@@ -198,7 +198,7 @@ public class FridgeManager : MonoBehaviour
                     StartCoroutine(ZoomZoom());
                 }
             }
-        }  
+        }
     }
 
     public void ButtonBehaviour()
@@ -208,7 +208,8 @@ public class FridgeManager : MonoBehaviour
             closeUp.Normalize();
             StartCoroutine(TimeToTransition());
         }
-        else if (zoom.currentView == 2 && isLocked == false && gameMng.returnable == true)
+        else if (zoom.currentView == 2 && isLocked == false && closeUp.isOnFridge == true
+            && gameMng.returnable == true)
         {
             //returnArrow.SetTrigger("Show");
             //arrowZoom.SetActive(false);

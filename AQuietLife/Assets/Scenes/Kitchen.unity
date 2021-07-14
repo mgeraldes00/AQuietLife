@@ -677,21 +677,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9118646810efd9444874fcefc4d954b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeUp: {fileID: 0}
+  inventory: {fileID: 1888950854}
+  thought: {fileID: 1938436214}
+  closeUp: {fileID: 33409400}
   zoom: {fileID: 519420033}
   gameMng: {fileID: 1037535894}
-  lockMgn: {fileID: 1424781638}
   rb:
   - {fileID: 202460648}
   - {fileID: 1724137861}
   moveSpeed: 10
   moveSpeed2: 10
-  objects:
-  - {fileID: 23175443}
+  objectsLeft:
   - {fileID: 1298534428}
+  objectsRight:
+  - {fileID: 23175443}
   leftDoorCol: 0
   rightDoorCol: 0
   isLocked: 0
+  isOnLock: 0
 --- !u!61 &33409399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -731,10 +734,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMng: {fileID: 1037535894}
+  storage: {fileID: 33409398}
   zoom: {fileID: 519420033}
   doors:
   - {fileID: 202460649}
   - {fileID: 1724137862}
+  lockedDoor: {fileID: 202460652}
+  keyHole: {fileID: 1424781637}
 --- !u!1 &42299530
 GameObject:
   m_ObjectHideFlags: 0
@@ -3444,6 +3450,7 @@ GameObject:
   - component: {fileID: 202460650}
   - component: {fileID: 202460649}
   - component: {fileID: 202460648}
+  - component: {fileID: 202460652}
   m_Layer: 0
   m_Name: left_door
   m_TagString: Direction
@@ -3459,7 +3466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202460645}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.55, y: 1.33, z: 0}
+  m_LocalPosition: {x: -2.6608887, y: 1.33, z: 0}
   m_LocalScale: {x: 1.05, y: 1, z: 1}
   m_Children:
   - {fileID: 1424781635}
@@ -3529,7 +3536,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.3780001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 20
@@ -3577,6 +3584,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDoor: Door1
+--- !u!60 &202460652
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202460645}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.22, y: 6.64}
+    newSize: {x: 6.22, y: 6.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.5447524, y: -3.236713}
+      - {x: -2.4731653, y: 2.767417}
+      - {x: 2.416176, y: 2.7967305}
+      - {x: 2.5300727, y: -0.7542676}
+      - {x: 1.9881124, y: -0.7648479}
+      - {x: 1.9207559, y: -1.4720613}
+      - {x: 2.5406988, y: -1.4654163}
+      - {x: 2.5225184, y: -3.2690196}
+      - {x: -0.76475227, y: -3.1995096}
 --- !u!1 &203766171
 GameObject:
   m_ObjectHideFlags: 0
@@ -24723,7 +24764,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -27395,10 +27436,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1424781635}
   - component: {fileID: 1424781636}
-  - component: {fileID: 1424781638}
   - component: {fileID: 1424781637}
   m_Layer: 0
-  m_Name: _eyhole
+  m_Name: keyHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27476,7 +27516,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424781634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -27495,25 +27535,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
---- !u!114 &1424781638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424781634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcefd54b0d37bba49b5f9a046e95c1e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeUp: {fileID: 33409400}
-  storage: {fileID: 33409398}
-  zoom: {fileID: 519420033}
-  inventory: {fileID: 1888950854}
-  thought: {fileID: 1938436214}
-  keyBox: {fileID: 1424781637}
-  isOnLock: 0
 --- !u!1 &1428905215
 GameObject:
   m_ObjectHideFlags: 0
