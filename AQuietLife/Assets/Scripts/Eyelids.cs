@@ -10,6 +10,8 @@ public class Eyelids : MonoBehaviour
     public MediaPlayer media;
 
     public Animator eyelids;
+    public Animator splash;
+
     public Animator cover;
     public Animator timerSmall;
     public Animator timer;
@@ -35,7 +37,8 @@ public class Eyelids : MonoBehaviour
 
     public void Close()
     {
-        eyelids.SetTrigger("Close");
+        //eyelids.SetTrigger("Close");
+        splash.SetTrigger("Rewind");
         returnArrow.GetComponent<Animator>().SetBool("Hide 0", true);
         //timerSmall.SetTrigger("RewindStart");
         timerSmall.SetBool("Visible", false);
@@ -63,6 +66,7 @@ public class Eyelids : MonoBehaviour
         yield return new WaitForEndOfFrame();
         returnArrow.GetComponent<Animator>().SetBool("Hide 0", false);
         yield return new WaitForSeconds(1.0f);
+        splash.SetBool("Rewinding", true);
         for (int i = 0; i < rewindClock.Length; i++)
             rewindClock[i].enabled = true;
         timer.SetBool("Rewind", true);
@@ -85,6 +89,7 @@ public class Eyelids : MonoBehaviour
         timer.SetBool("Rewind", false);
         tick.Stop();*/
         yield return new WaitForSeconds(0.2f);
+        splash.SetBool("Rewinding", false);
         //text.SetBool("Working", false);
         timer.SetTrigger("RewindEnd");       
         pointer.SetBool("Moving", false);
@@ -99,9 +104,9 @@ public class Eyelids : MonoBehaviour
             media.pressedButtons[c].SetActive(false);
         yield return new WaitForSeconds(1.0f);       
         for (int i = 0; i < rewindClock.Length; i++)
-            rewindClock[i].enabled = false;     
+            rewindClock[i].enabled = false;
         yield return new WaitForSeconds(0.25f);
-        eyelids.SetTrigger("Open");
+        //eyelids.SetTrigger("Open");
         yield return new WaitForSeconds(0.25f);
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
