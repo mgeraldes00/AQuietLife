@@ -11,7 +11,6 @@ public class CabinetManager : MonoBehaviour
     public MediaPlayer audioCtrl;
     public AudioSlider audioSlider;
     public Eyelids eyelids;
-    public GloveManager gloveMng;
     public ObjectiveManager objective;
     public GameManager gameMng;
     public CloseUpCabinet closeUp;

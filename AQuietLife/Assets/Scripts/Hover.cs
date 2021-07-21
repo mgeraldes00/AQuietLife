@@ -63,8 +63,8 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             if (isDirectional == true && cam.hasClicked == false && isArrow == true
             && isPhone == false)
             {
-                arrow.SetTrigger("Clicked");
-                otherArrow.SetTrigger("Clicked");
+                //arrow.SetTrigger("Clicked");
+                //otherArrow.SetTrigger("Clicked");
                 cam.hasClicked = true;
                 StartCoroutine(Unlock());
             }

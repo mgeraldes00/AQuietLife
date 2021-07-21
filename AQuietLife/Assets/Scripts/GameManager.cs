@@ -21,16 +21,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject introText;
 
-    public GameObject[] context;
-    public GameObject[] contextButtons;
     public GameObject[] deathScreen;
 
-    public GameObject scene;
-    public GameObject sceneCloseUp;
     public GameObject canvas;
 
     public GameObject returnArrow;
-    public GameObject noTextCollidersGeneral;
 
     public GameObject audioMng;
 
@@ -46,11 +41,7 @@ public class GameManager : MonoBehaviour
     public bool returnable;
 
     public bool isLocked;
-    public bool firstObject;
-    public bool firstGlove;
-    private bool allObjectives;
 
-    public bool breadHeated;
     public bool isDead;
 
     public int numOfIngredients;
@@ -155,13 +146,6 @@ public class GameManager : MonoBehaviour
             inspectionText.SetActive(false);
             noTextCollidersGeneral.SetActive(false);
         }*/
-
-        if (inventory.hamUsed == true && allObjectives == false)
-        {
-            allObjectives = true;
-            numOfIngredients++;
-            ShowFinalTutorial();
-        }
     }
 
     public void Die()

@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7af466f2ddf8532429fac1795921a52b
-  - enabled: 0
-    path: Assets/Scenes/Context.unity
-    guid: 62505c250c587f843a977d5a28ce7f69
   - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: 1c5cf37e3be81a64ba042fce4abd3635
@@ -26,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kitchen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/GameOver.unity
-    guid: d0ef1522a7c207843bd7e25bea9df4dc
   - enabled: 1
     path: Assets/Scenes/ThankYou.unity
     guid: 8781f40bc0af9e742beae436568eba96
