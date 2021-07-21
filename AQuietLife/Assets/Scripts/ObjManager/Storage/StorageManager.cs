@@ -62,7 +62,7 @@ public class StorageManager : MonoBehaviour
                             thought.ShowThought();
                             thought.text = "Now, where did I put the key? Should be well hidden....";
                         }
-                        else if (inventory.usingKey == true)
+                        else if (inventory.usingKey == true && isOnLock == true)
                         {
                             FindObjectOfType<Key>().keyUsed = true;
                             StartCoroutine(UnlockDoor());
@@ -147,6 +147,7 @@ public class StorageManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         zoom.currentView++;
         zoom.cameraAnim.SetTrigger("ZoomLock");
+        yield return new WaitForSeconds(0.1f);
         isOnLock = true;
     }
 
