@@ -17,7 +17,9 @@ public class Eyelids : MonoBehaviour
     public Animator timer;
     public Animator pointer;
     public Animator mediaPlayer;
-    public Animator text;
+    public Animator map;
+
+    //public Animator text;
 
     public AudioSource tick;
     public AudioSource tickReverse;
@@ -28,6 +30,7 @@ public class Eyelids : MonoBehaviour
     public GameObject[] ctrlButtons;
 
     public GameObject slider;
+    public GameObject dots;
     public GameObject returnArrow;
 
     public Image[] waveform;
@@ -71,6 +74,7 @@ public class Eyelids : MonoBehaviour
             rewindClock[i].enabled = true;
         timer.SetBool("Rewind", true);
         timer.SetTrigger("RewindStart");
+        map.SetBool("Active", true);
         yield return new WaitForSeconds(1.0f);
         mediaPlayer.SetBool("Rewinding", true);
     }
@@ -91,7 +95,8 @@ public class Eyelids : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         splash.SetBool("Rewinding", false);
         //text.SetBool("Working", false);
-        timer.SetTrigger("RewindEnd");       
+        timer.SetTrigger("RewindEnd");
+        map.SetBool("Active", false);
         pointer.SetBool("Moving", false);
         slider.SetActive(false);
         for (int i = 0; i < waveform.Length; i++)
@@ -100,6 +105,7 @@ public class Eyelids : MonoBehaviour
             ctrlButtons[b].SetActive(false);*/
         mediaFunction = false;
         mediaPlayer.SetBool("Rewinding", false);
+        dots.SetActive(false);
         for (int c = 0; c < media.pressedButtons.Length; c++)
             media.pressedButtons[c].SetActive(false);
         yield return new WaitForSeconds(1.0f);       

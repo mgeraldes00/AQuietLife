@@ -22,6 +22,8 @@ public class CheeseDomeManager : MonoBehaviour
     public Animator pointer;
     public Animator rewindAnim;
 
+    public GameObject dotAnim;
+
     public Image waveform;
 
     public GameObject slider;
@@ -102,6 +104,7 @@ public class CheeseDomeManager : MonoBehaviour
             audioCtrl.rewindAudio = rewindAudio;
             audioSlider.rewindAudio = rewindAudio;
             eyelids.timerSmall = rewindAnim;
+            eyelids.dots = dotAnim;
             StartCoroutine(TimeToOpen());
         }
     }
@@ -141,6 +144,7 @@ public class CheeseDomeManager : MonoBehaviour
             audioCtrl.pressedButtons[2].SetActive(true);
             slider.SetActive(true);
             rewindAudio.Play();
+            eyelids.dots.SetActive(true);
         }
         else if (rewindOnce == true)
         {
@@ -153,6 +157,7 @@ public class CheeseDomeManager : MonoBehaviour
             slider.SetActive(true);
             waveform.enabled = true;
             rewindAudio.Play();
+            eyelids.dots.SetActive(true);
         }
     }
 
