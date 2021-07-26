@@ -6871,6 +6871,7 @@ MonoBehaviour:
   slider: {fileID: 1715857557}
   dots: {fileID: 0}
   returnArrow: {fileID: 1479651714}
+  waveBack: {fileID: 672645370}
   waveform:
   - {fileID: 1497621681}
   - {fileID: 224111342}
@@ -6881,6 +6882,7 @@ MonoBehaviour:
   - {fileID: 1204984825}
   - {fileID: 289940667}
   mediaFunction: 0
+  audioType: 0
 --- !u!1 &432088922
 GameObject:
   m_ObjectHideFlags: 0

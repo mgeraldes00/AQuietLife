@@ -445,7 +445,7 @@ public class CabinetManager : MonoBehaviour
         waveformCabinet.enabled = false;
         //waveform.enabled = false;*/
         yield return new WaitForSeconds(0.1f);
-        eyelids.Close();
+        eyelids.Close(3);
         if (rewindOnce != true)
         {
             yield return new WaitForSeconds(2.0f);

@@ -126,7 +126,7 @@ public class CheeseDomeManager : MonoBehaviour
     IEnumerator TimeToOpen()
     {
         yield return new WaitForSeconds(0.1f);
-        eyelids.Close();
+        eyelids.Close(1);
         if (rewindOnce != true)
         {
             yield return new WaitForSeconds(2.0f);

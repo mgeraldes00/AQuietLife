@@ -32,14 +32,18 @@ public class Eyelids : MonoBehaviour
     public GameObject slider;
     public GameObject dots;
     public GameObject returnArrow;
+    public GameObject waveBack;
 
     public Image[] waveform;
     public Image[] rewindClock;
 
     public bool mediaFunction;
 
-    public void Close()
+    public int audioType;
+
+    public void Close(int i)
     {
+        audioType = i;
         //eyelids.SetTrigger("Close");
         splash.SetTrigger("Rewind");
         returnArrow.GetComponent<Animator>().SetBool("Hide 0", true);
@@ -77,6 +81,8 @@ public class Eyelids : MonoBehaviour
         map.SetBool("Active", true);
         yield return new WaitForSeconds(1.0f);
         mediaPlayer.SetBool("Rewinding", true);
+        yield return new WaitForSeconds(1.0f);
+        waveBack.SetActive(true);
     }
 
     IEnumerator TimerPress()
@@ -118,5 +124,7 @@ public class Eyelids : MonoBehaviour
         returnArrow.SetActive(true);
         timerSmall.SetBool("Visible", true);
         returnArrow.GetComponent<Animator>().SetTrigger("Show");
+        waveBack.SetActive(false);
+        audioType = 0;
     }
 }

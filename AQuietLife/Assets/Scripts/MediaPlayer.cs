@@ -18,7 +18,7 @@ public class MediaPlayer : MonoBehaviour
 
     public void ButtonBehaviour(int i)
     {
-        var pitchBendGroup = 
+        var pitchBendGroup =
             Resources.Load<UnityEngine.Audio.AudioMixerGroup>("Pitch Bend Mixer");
         //rewindAudio.outputAudioMixerGroup = pitchBendGroup;
 
@@ -27,8 +27,18 @@ public class MediaPlayer : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    rewindAudio.pitch = 3f;
-                    rewindMix.SetFloat("pitchBend", 10.0f);
+                    rewindAudio.pitch = 3.0f;
+                    if (eyelids.audioType == 3)
+                    {
+                        rewindMix.SetFloat("pitchBend", 10.0f);
+                        eyelids.dots.GetComponent<Animator>().speed = 10.0f;
+                        eyelids.pointer.speed = 10.0f;
+                    }
+                    else
+                    {
+                        eyelids.dots.GetComponent<Animator>().speed = 3.0f;
+                        eyelids.pointer.speed = 3.0f;
+                    }
                     /*audioButtons[0].SetBool("FF", true);
                     audioButtons[1].SetBool("FB", false);
                     audioButtons[2].SetBool("Play", false);
@@ -38,12 +48,25 @@ public class MediaPlayer : MonoBehaviour
                     pressedButtons[2].SetActive(false);
                     pressedButtons[3].SetActive(false);
                     pressedButtons[4].SetActive(false);
-                    eyelids.pointer.speed = 10f;
                     //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / 3f);
                     break;
                 case 1:
-                    rewindAudio.pitch = -3f;
-                    rewindMix.SetFloat("pitchBend", 10.0f);
+                    rewindAudio.pitch = -3.0f;
+                    if (eyelids.audioType == 3)
+                    {
+                        rewindMix.SetFloat("pitchBend", 10.0f);
+                        eyelids.dots.GetComponent<Animator>().StartPlayback();
+                        eyelids.dots.GetComponent<Animator>().speed = -10.0f;
+                        eyelids.pointer.StartPlayback();
+                        eyelids.pointer.speed = -10.0f;
+                    }
+                    else
+                    {
+                        eyelids.dots.GetComponent<Animator>().StartPlayback();
+                        eyelids.dots.GetComponent<Animator>().speed = -3.0f;
+                        eyelids.pointer.StartPlayback();
+                        eyelids.pointer.speed = -3.0f;
+                    }
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", true);
                     audioButtons[2].SetBool("Play", false);
@@ -53,12 +76,11 @@ public class MediaPlayer : MonoBehaviour
                     pressedButtons[2].SetActive(false);
                     pressedButtons[3].SetActive(false);
                     pressedButtons[4].SetActive(false);
-                    eyelids.pointer.StartPlayback();
-                    eyelids.pointer.speed = -10f;
                     //pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / -3f);
                     break;
                 case 2:
                     rewindAudio.pitch = 1.0f;
+                    eyelids.dots.GetComponent<Animator>().speed = 1.0f;
                     rewindMix.SetFloat("pitchBend", 1.0f);
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", false);
@@ -73,6 +95,7 @@ public class MediaPlayer : MonoBehaviour
                     break;
                 case 3:
                     rewindAudio.pitch = 0.0f;
+                    eyelids.dots.GetComponent<Animator>().speed = 0.0f;
                     rewindMix.SetFloat("pitchBend", 0.0f);
                     /*audioButtons[0].SetBool("FF", false);
                     audioButtons[1].SetBool("FB", false);
@@ -101,7 +124,7 @@ public class MediaPlayer : MonoBehaviour
                     eyelids.Open();
                     break;
             }
-        }      
+        }
     }
 
     public void MoreRewind()
