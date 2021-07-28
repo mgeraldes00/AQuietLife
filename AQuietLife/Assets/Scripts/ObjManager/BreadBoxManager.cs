@@ -206,7 +206,7 @@ public class BreadBoxManager : MonoBehaviour
             rewindReverseAudio.Play();
             eyelids.timer.SetTrigger("Pressed");
             waveformBreadBox.enabled = true;
-            eyelids.Uncover();
+            eyelids.Uncover(1);
             rewindOnce = true;
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");

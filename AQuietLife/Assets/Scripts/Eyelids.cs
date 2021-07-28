@@ -11,6 +11,8 @@ public class Eyelids : MonoBehaviour
 
     public Animator eyelids;
     public Animator splash;
+    public Animator phone;
+    public Animator inventory;
 
     public Animator cover;
     public Animator timerSmall;
@@ -50,6 +52,8 @@ public class Eyelids : MonoBehaviour
         //timerSmall.SetTrigger("RewindStart");
         timerSmall.SetBool("Visible", false);
         media.dirButtons.SetActive(false);
+        phone.SetBool("Enlarge", true);
+        inventory.SetBool("Visible", false);
         StartCoroutine(StartRewind());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
         StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 0.5f));
@@ -63,9 +67,17 @@ public class Eyelids : MonoBehaviour
         StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 1.0f));
     }
 
-    public void Uncover()
+    public void Uncover(int i)
     {
-        cover.SetTrigger("FirstRewind");
+        switch (i)
+        {
+            case 1:
+                cover.SetTrigger("FirstRewind");
+                break;
+            case 2:
+                cover.SetTrigger("2ndRewind");
+                break;
+        } 
     }
 
     IEnumerator StartRewind()
@@ -81,8 +93,7 @@ public class Eyelids : MonoBehaviour
         map.SetBool("Active", true);
         yield return new WaitForSeconds(1.0f);
         mediaPlayer.SetBool("Rewinding", true);
-        yield return new WaitForSeconds(1.0f);
-        waveBack.SetActive(true);
+        waveBack.GetComponent<Animator>().SetBool("Rewinding", true);
     }
 
     IEnumerator TimerPress()
@@ -105,26 +116,29 @@ public class Eyelids : MonoBehaviour
         map.SetBool("Active", false);
         pointer.SetBool("Moving", false);
         slider.SetActive(false);
-        for (int i = 0; i < waveform.Length; i++)
-            waveform[i].enabled = false;
+        cover.SetTrigger("Hide");
         /*for (int b = 0; b < ctrlButtons.Length; b++)
             ctrlButtons[b].SetActive(false);*/
         mediaFunction = false;
         mediaPlayer.SetBool("Rewinding", false);
         dots.SetActive(false);
+        waveBack.GetComponent<Animator>().SetBool("Rewinding", false);
         for (int c = 0; c < media.pressedButtons.Length; c++)
             media.pressedButtons[c].SetActive(false);
         yield return new WaitForSeconds(1.0f);       
         for (int i = 0; i < rewindClock.Length; i++)
             rewindClock[i].enabled = false;
+        for (int i = 0; i < waveform.Length; i++)
+            waveform[i].enabled = false;
         yield return new WaitForSeconds(0.25f);
         //eyelids.SetTrigger("Open");
+        phone.SetBool("Enlarge", false);
+        inventory.SetBool("Visible", true);
         yield return new WaitForSeconds(0.25f);
         gameMng.isLocked = false;
         returnArrow.SetActive(true);
         timerSmall.SetBool("Visible", true);
         returnArrow.GetComponent<Animator>().SetTrigger("Show");
-        waveBack.SetActive(false);
         audioType = 0;
     }
 }

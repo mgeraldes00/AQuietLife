@@ -135,7 +135,7 @@ public class CheeseDomeManager : MonoBehaviour
             eyelids.pointer.SetTrigger("CabinetRewind");
             eyelids.timer.SetTrigger("Pressed");
             waveform.enabled = true;
-            eyelids.Uncover();
+            eyelids.Uncover(1);
             rewindOnce = true;
             yield return new WaitForSeconds(2);
             eyelids.timer.SetTrigger("Pressed");
@@ -156,6 +156,7 @@ public class CheeseDomeManager : MonoBehaviour
             audioCtrl.MoreRewind();
             slider.SetActive(true);
             waveform.enabled = true;
+            eyelids.Uncover(2);
             rewindAudio.Play();
             eyelids.dots.SetActive(true);
         }
