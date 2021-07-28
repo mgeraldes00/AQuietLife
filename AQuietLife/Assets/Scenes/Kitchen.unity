@@ -10140,17 +10140,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672645370}
-  m_LocalRotation: {x: 0.05059292, y: 0.9987194, z: 0, w: 0}
+  m_LocalRotation: {x: 0.04876263, y: 0.9988104, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 1.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1282698786}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 5.8}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 5.59}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 560, y: -57}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 342, y: -27}
+  m_SizeDelta: {x: 380, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &672645372
 MonoBehaviour:
@@ -10172,7 +10172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 85cefb5e0a8e61243be65d3dc56e2cf1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a497e828e576984482a453348ca5ecf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14897,12 +14897,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 1888950853}
   thought: {fileID: 1938436214}
-  cabinet: {fileID: 406754941}
-  breadBox: {fileID: 373251369}
-  drawers: {fileID: 1940299077}
-  fridge: {fileID: 1109741756}
-  microwave: {fileID: 1502380691}
-  table: {fileID: 1532251294}
   pointer: {fileID: 53963619}
   introText: {fileID: 1955879651}
   deathScreen:
@@ -14916,7 +14910,7 @@ MonoBehaviour:
   canvas: {fileID: 1759471815}
   returnArrow: {fileID: 1479651714}
   audioMng: {fileID: 760849871664034019, guid: 5fddd2f98cb72f84683a0dc90638f8b8, type: 3}
-  kitchenClock: {fileID: 1250836745}
+  levelClock: {fileID: 1250836745}
   deathAnim: {fileID: 1902078082}
   backMusic: {fileID: 405528789}
   musicMix: {fileID: 24100000, guid: 7c61aa38172069b43b2b8dbeae76023d, type: 2}
@@ -14925,8 +14919,6 @@ MonoBehaviour:
   returnable: 0
   isLocked: 0
   isDead: 0
-  numOfIngredients: 0
-  glovesUsed: 0
 --- !u!4 &1037535895
 Transform:
   m_ObjectHideFlags: 0

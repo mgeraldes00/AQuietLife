@@ -86,7 +86,7 @@ public class InventoryManager : MonoBehaviour
     public void GloveOffInventory()
     {
         numOfGloves--;
-        gameMng.glovesUsed++;
+        //gameMng.glovesUsed++;
         //gloveIcon.enabled = false;
         //hasGlove = false;
 

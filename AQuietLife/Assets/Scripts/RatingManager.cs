@@ -65,14 +65,14 @@ public class RatingManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         ratingAnim.SetTrigger("LevelEnd");
         yield return new WaitForSeconds(1);
-        if (gameMng.numOfIngredients == 1 && gameMng.glovesUsed == 2)
+        /*if (gameMng.numOfIngredients == 1 && gameMng.glovesUsed == 2)
         {
             ratingAnim.SetTrigger("Has1Star");
         }           
         if (gameMng.glovesUsed == 1)
         {
             ratingAnim.SetTrigger("Has1HalfStar");
-        }
+        }*/
         yield return new WaitForSeconds(3);
         for (int i = 0; i < buttons.Length; i++)
             buttons[i].SetActive(true);

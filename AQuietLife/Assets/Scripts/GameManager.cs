@@ -9,14 +9,14 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public InventoryManager inventory;
+    //public InventoryManager inventory;
     public ThoughtManager thought;
-    public CabinetManager cabinet;
-    public BreadBoxManager breadBox;
-    public DrawerManager drawers;
-    public FridgeManager fridge;
-    public MicrowaveManager microwave;
-    public TableManager table;
+    //public CabinetManager cabinet;
+    //public BreadBoxManager breadBox;
+    //public DrawerManager drawers;
+    //public FridgeManager fridge;
+    //public MicrowaveManager microwave;
+    //public TableManager table;
     public PointerManager pointer;
 
     public GameObject introText;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject audioMng;
 
-    public Animator kitchenClock;
+    public Animator levelClock;
     public Animator deathAnim;
 
     public AudioSource backMusic;
@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
 
     public bool isDead;
 
-    public int numOfIngredients;
-    public int glovesUsed;
+    //public int numOfIngredients;
+    //public int glovesUsed;
 
     private int currentMode;
 
@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
         Instantiate(audioMng); 
         StartCoroutine(UnlockStart());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 1));
-        numOfIngredients = 0;
-        glovesUsed = 0;
+        //numOfIngredients = 0;
+        //glovesUsed = 0;
         //startTutorial.SetActive(true);
     }
 
@@ -93,44 +93,6 @@ public class GameManager : MonoBehaviour
         else if (hit.collider.CompareTag("CabinetBreach"))
         {
             //inspectionText.SetActive(true);
-        }
-
-        else if (hit.collider.CompareTag("CabinetDoor1")
-            || hit.collider.CompareTag("CabinetDoor2") && cabinet.door2Open == false
-            || hit.collider.CompareTag("CabinetDoor3")
-            || hit.collider.CompareTag("CabinetDoor4") && cabinet.door4Open == false
-            || hit.collider.CompareTag("BreadBoxDoor") && breadBox.doorOpen == false
-            || hit.collider.CompareTag("DrawerDoor1")
-            || hit.collider.CompareTag("DrawerDoor2") && drawers.doorCenterOpen == false
-            || hit.collider.CompareTag("DrawerDoor3")
-            || hit.collider.CompareTag("FridgeDoor1") && fridge.doorLeftOpen == false
-            || hit.collider.CompareTag("FridgeDoor2") && fridge.doorRightOpen == false)
-        {
-            //interactionText.SetActive(true);
-        }
-
-        else if (hit.collider.CompareTag("Plate") && inventory.hasObject == true
-            || hit.collider.CompareTag("Bread1") && inventory.hasObject == true
-            || hit.collider.CompareTag("Knife") && inventory.hasObject == true)
-        {
-            //pickUpText.SetActive(true);
-            thought.ShowThought();
-            thought.text = "Need to place this somewhere first.";
-        }
-
-        else if (hit.collider.CompareTag("TableClose")
-            && cabinet.plateTaken == true && table.plateOnTable == false
-            || hit.collider.CompareTag("TableClose")
-            && breadBox.bread1Taken == true && table.breadOnTable == false
-            || hit.collider.CompareTag("TableClose")
-            && drawers.knifeTaken == true && table.knifeOnTable == false)
-        {
-            //tableInteractionText.SetActive(true);
-        }
-
-        else if (hit.collider.CompareTag("Door") && inventory.hasPlateWBread == true)
-        {
-            //exitText.SetActive(true);
         }
 
         else if (hit.collider.CompareTag("NoTag"))
@@ -243,7 +205,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             introText.SetActive(false);
             isLocked = false;
-            kitchenClock.SetBool("Active", true);
+            levelClock.SetBool("Active", true);
             //StartCoroutine(TimeTillLock());
             yield return new WaitForSeconds(1.0f);
             fadeAnim.speed = 1.0f;
@@ -252,7 +214,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1.5f);
             isLocked = false;
-            kitchenClock.SetBool("Active", true);
+            levelClock.SetBool("Active", true);
         }
     }
 
@@ -264,13 +226,6 @@ public class GameManager : MonoBehaviour
         isLocked = true;
         yield return new WaitForSeconds(5);
         isLocked = true;
-    }
-
-    IEnumerator Unfreeze()
-    {
-        yield return new WaitForSeconds(10);
-        microwave.working = false;
-        //microwave.doorAnim.SetBool("Working", false);
     }
 
     IEnumerator DeathProcess()
