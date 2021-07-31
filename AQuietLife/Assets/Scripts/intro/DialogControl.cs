@@ -348,7 +348,7 @@ public class DialogControl : MonoBehaviour
             fadeAnim.SetTrigger("FadeOut");
         yield return new WaitForSeconds(2.0f);
         if (currentDialog == 0)
-            SceneManager.LoadScene("TransitionText");
+            SceneManager.LoadScene("Bedroom");
         else
             SceneManager.LoadScene("Kitchen");
     }

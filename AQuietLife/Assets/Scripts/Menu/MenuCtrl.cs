@@ -145,8 +145,11 @@ public class MenuCtrl : MonoBehaviour
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
                 break;
             case (7):
-                //fade.GetComponent<Animator>().SetTrigger("White");
-                //StartCoroutine(Continue("Bedroom"));
+                fade.enabled = true;
+                fade.GetComponent<Animator>().SetTrigger("White");
+                returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                StartCoroutine(Continue("Bedroom"));
+                StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
                 break;
             case (8):
                 if (isFirstTime == true && currentPanel == 0)

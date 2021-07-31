@@ -202,19 +202,22 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(4.0f);
             introText.GetComponent<Animator>().SetTrigger("HideIntroText");
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(0.5f);
+            levelClock.SetBool("Active", true);
+            yield return new WaitForSeconds(1.5f);
             introText.SetActive(false);
             isLocked = false;
-            levelClock.SetBool("Active", true);
             //StartCoroutine(TimeTillLock());
             yield return new WaitForSeconds(1.0f);
             fadeAnim.speed = 1.0f;
         }
         else
         {
-            yield return new WaitForSeconds(1.5f);
-            isLocked = false;
+            yield return new WaitForSeconds(0.5f);
             levelClock.SetBool("Active", true);
+            yield return new WaitForSeconds(1.0f);
+            isLocked = false;
+            
         }
     }
 
