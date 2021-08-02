@@ -13422,6 +13422,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i: 4
+--- !u!1 &980366548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871419440833396644, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
+  m_PrefabInstance: {fileID: 8871419441327954211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &992733610
 GameObject:
   m_ObjectHideFlags: 0
@@ -14117,7 +14122,7 @@ MonoBehaviour:
   - {fileID: 226772962}
   - {fileID: 1002186531}
   - {fileID: 956318172}
-  - {fileID: 0}
+  - {fileID: 980366548}
   - {fileID: 1618592427}
   canvas: {fileID: 1759471815}
   returnArrow: {fileID: 1479651714}
