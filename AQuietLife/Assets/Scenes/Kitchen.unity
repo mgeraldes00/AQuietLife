@@ -6415,7 +6415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &405528788
 Transform:
   m_ObjectHideFlags: 0
@@ -17141,7 +17141,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 6b274b857f3145f4f868830109f864e4, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4dbda94acea7dfe4da17e877e2a0a3c7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -31620,6 +31620,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6636842463105670403, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
+      propertyPath: orthographic size
+      value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636842463105670403, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636842463105670403, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
+      propertyPath: field of view
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636842463105670403, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6636842463105670652, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.2
@@ -31630,7 +31646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6636842463105670652, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6636842463105670652, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
       propertyPath: m_LocalRotation.x
