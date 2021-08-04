@@ -1622,7 +1622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Enabled
@@ -2301,11 +2301,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoom: {fileID: 1615249857}
   gameMng: {fileID: 977577487}
+  returnMng: {fileID: 2006920395}
   area: {fileID: 867999123}
   objects:
   - {fileID: 1788800535}
   - {fileID: 1944421893}
   zoomTrigger: ZoomDesk
+  zoomTrigger2: ZoomChair
 --- !u!1 &945184848
 GameObject:
   m_ObjectHideFlags: 0
@@ -4489,7 +4491,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788800532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -4772,7 +4774,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944421890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -4956,6 +4958,7 @@ MonoBehaviour:
   cam: {fileID: 1615249857}
   area: {fileID: 0}
   objects: []
+  currentArea: 
 --- !u!1 &2075793349
 GameObject:
   m_ObjectHideFlags: 0

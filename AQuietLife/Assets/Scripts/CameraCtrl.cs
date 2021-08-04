@@ -32,7 +32,7 @@ public class CameraCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentPanel = -1;  
+        currentPanel = -1;
     }
 
     public void ButtonBehaviour(int i)
@@ -114,7 +114,7 @@ public class CameraCtrl : MonoBehaviour
                     upDownArrows[0].SetTrigger("Show");
                     upDownArrows[1].SetTrigger("Hide");
                     fridge.lookAtFridge = true;
-                    break;   
+                    break;
             }
         }
     }
@@ -137,17 +137,22 @@ public class CameraCtrl : MonoBehaviour
 
     public void BackToGeneral()
     {
-        if (gameMng.returnable == true)
+        if (gameMng.returnable == true && gameMng.isLocked == false)
         {
             cameraAnim.SetTrigger("Return2");
             if (currentView == 1)
             {
                 gameMng.isLocked = true;
-                StartCoroutine(RestoreView());
+                StartCoroutine(RestoreView(1));
                 returnArrows[0].SetBool("Hide 0", true);
                 returnButtons[0].GetComponent<Button>().enabled = false;
                 for (int i = 0; i < directionalArrows.Length; i++)
                     directionalArrows[i].SetTrigger("Show");
+            }
+            else if (currentView == 2)
+            {
+                gameMng.isLocked = true;
+                StartCoroutine(RestoreView(2));
             }
         }
         else
@@ -166,13 +171,22 @@ public class CameraCtrl : MonoBehaviour
         gameMng.isLocked = false;
     }
 
-    IEnumerator RestoreView()
+    IEnumerator RestoreView(int i)
     {
         yield return new WaitForSeconds(0.1f);
-        currentView--;
+        if (i == 1)
+            currentView--;
         yield return new WaitForSeconds(0.4f);
-        returnButtons[0].SetActive(true);
-        returnArrows[0].SetBool("Hide 0", false);
+        switch (i)
+        {
+            case 1:
+                returnButtons[0].SetActive(true);
+                returnArrows[0].SetBool("Hide 0", false);
+                break;
+            case 2:
+                currentView--;
+                break;
+        }
         gameMng.isLocked = false;
     }
 
