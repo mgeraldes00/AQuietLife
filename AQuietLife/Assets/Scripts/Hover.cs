@@ -91,8 +91,8 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             if (pointers != null)
         {
             pointers.ChangeCursor(2);
-        } 
-        if (isArrow == true && isLocked == false)
+        }
+        if (isArrow == true)
         {
             isOver = true;
             arrow.SetBool("Selected", true);

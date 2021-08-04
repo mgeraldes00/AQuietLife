@@ -21,8 +21,7 @@ public class CameraCtrl : MonoBehaviour
     public GameObject[] directionalButtons;
     public GameObject[] returnButtons;
 
-    [SerializeField]
-    private int currentPanel;
+    public int currentPanel;
 
     public int currentView;
 
@@ -126,6 +125,9 @@ public class CameraCtrl : MonoBehaviour
         for (int i = 0; i < directionalArrows.Length; i++)
             directionalArrows[i].SetTrigger("Hide");
         returnArrows[0].SetTrigger("Show");
+        gameMng.isLocked = true;
+        StartCoroutine(ArrowUnlock());
+        StartCoroutine(gameMng.QuickUnlock());
     }
 
     public void InteractionTransition()
@@ -142,8 +144,8 @@ public class CameraCtrl : MonoBehaviour
             {
                 gameMng.isLocked = true;
                 StartCoroutine(RestoreView());
-
                 returnArrows[0].SetBool("Hide 0", true);
+                returnButtons[0].GetComponent<Button>().enabled = false;
                 for (int i = 0; i < directionalArrows.Length; i++)
                     directionalArrows[i].SetTrigger("Show");
             }
@@ -168,9 +170,15 @@ public class CameraCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         currentView--;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         returnButtons[0].SetActive(true);
         returnArrows[0].SetBool("Hide 0", false);
         gameMng.isLocked = false;
+    }
+
+    IEnumerator ArrowUnlock()
+    {
+        yield return new WaitForSeconds(0.5f);
+        returnButtons[0].GetComponent<Button>().enabled = true;
     }
 }

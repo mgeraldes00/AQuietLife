@@ -278,4 +278,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("ThankYou");
     }
+
+    public IEnumerator QuickUnlock()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isLocked = false;
+    }
 }
