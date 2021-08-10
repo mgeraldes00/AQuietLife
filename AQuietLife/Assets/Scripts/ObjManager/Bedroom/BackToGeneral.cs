@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackToGeneral : MonoBehaviour
 {
+    [SerializeField] private Tutorial tutorial;
     [SerializeField] private CameraCtrl cam;
 
     [SerializeField] private BoxCollider2D area;
@@ -95,8 +96,13 @@ public class BackToGeneral : MonoBehaviour
                 switch (currentArea)
                 {
                     case "Desk":
-                        area.offset = new Vector2(4.85f, -1.64f);
-                        area.size = new Vector2(9.24f, 6.09f);
+                        if (tutorial.isOver != true)
+                        {
+                            area.offset = new Vector2(4.85f, -1.64f);
+                            area.size = new Vector2(9.24f, 6.09f);
+                        }
+                        else
+                            area.enabled = true;
                         yield return new WaitForSeconds(0.1f);
                         currentArea = null;
                         break;

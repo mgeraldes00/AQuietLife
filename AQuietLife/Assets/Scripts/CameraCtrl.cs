@@ -127,7 +127,7 @@ public class CameraCtrl : MonoBehaviour
         returnArrows[0].SetTrigger("Show");
         gameMng.isLocked = true;
         StartCoroutine(ArrowUnlock());
-        StartCoroutine(gameMng.QuickUnlock());
+        StartCoroutine(gameMng.QuickUnlock(0.5f));
     }
 
     public void InteractionTransition()

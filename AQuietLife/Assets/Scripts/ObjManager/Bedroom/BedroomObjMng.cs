@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class BedroomObjMng : MonoBehaviour
 {
+    private Tutorial tutorial;
+
     [SerializeField] private CameraCtrl zoom;
     [SerializeField] private GameManager gameMng;
     [SerializeField] private BackToGeneral returnMng;
@@ -19,6 +21,7 @@ public class BedroomObjMng : MonoBehaviour
 
     private void Start()
     {
+        tutorial = GameObject.Find("Scene").GetComponent<Tutorial>();
         thought = GameObject.Find("ThoughtBalloon").GetComponent<ThoughtManager>();
         tasks = GameObject.Find("Scene").GetComponent<TaskCounter>();
     }
@@ -44,10 +47,10 @@ public class BedroomObjMng : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (zoomTrigger2 != null)
+                    if (zoomTrigger2 != "")
                         zoom.GetComponent<Animator>().SetTrigger(zoomTrigger2);
                     gameMng.isLocked = true;
-                    StartCoroutine(gameMng.QuickUnlock());
+                    StartCoroutine(gameMng.QuickUnlock(0.5f));
                     StartCoroutine(Zoom());
                     break;
             }
@@ -73,8 +76,10 @@ public class BedroomObjMng : MonoBehaviour
                                 break;
                             case "ClothePile":
                                 area.enabled = false;
-                                for (int i = 0; i < objects.Length; i++)
-                                    objects[i].enabled = true;
+                                if (objects[0] != null)
+                                    objects[0].enabled = true;
+                                else
+                                    objects[1].enabled = true;
                                 returnMng.currentArea = "ClothePile";
                                 break;
                         }
@@ -83,6 +88,8 @@ public class BedroomObjMng : MonoBehaviour
                         area.enabled = false;
                         for (int i = 0; i < 2; i++)
                             objects[i].enabled = true;
+                        if (FindObjectOfType<Wardrobe>().rightDoorOpen == true)
+                            FindObjectOfType<Wardrobe>().objects[0].enabled = true;
                         returnMng.currentArea = "Wardrobe";
                         break;
                     case 1:
@@ -108,8 +115,13 @@ public class BedroomObjMng : MonoBehaviour
                     case 2:
                         for (int i = 2; i < objects.Length; i++)
                             objects[i].enabled = true;
-                        area.offset = new Vector2(5.92f, -1.22f);
-                        area.size = new Vector2(2.62f, 2.86f);
+                        if (tutorial.isOver != true)
+                        {
+                            area.offset = new Vector2(5.92f, -1.22f);
+                            area.size = new Vector2(2.62f, 2.86f);
+                        }
+                        else
+                            area.enabled = false;
                         returnMng.currentArea = "Desk";
                         break;
                 }
