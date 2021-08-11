@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Animator balloon;
 
-    private float delay = 0.02f;
+    private float delay = 0.01f;
 
     public string text;
 
@@ -19,7 +19,8 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     //public TextMeshProUGUI txt;
 
-    public bool isThinking;
+    [SerializeField] private bool isThinking;
+    [SerializeField] private bool balloonActive;
 
     public void ShowThought()
     {
@@ -39,6 +40,10 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             balloon.SetTrigger("Appear");
             isThinking = true;
             StartCoroutine(ShowText());
+            if (balloonActive != true)
+            {
+                StartCoroutine(ShowBalloon());
+            }
         }
     }
 
@@ -49,18 +54,28 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     IEnumerator InstantDissappear()
     {
+        yield return new WaitForEndOfFrame();
+        textObj.GetComponent<TextMeshProUGUI>().raycastTarget = false;
         yield return new WaitForSeconds(0.1f);
         balloon.SetTrigger("Disappear");
         text = "";
         currentText = "";
-        isThinking = false;
         yield return new WaitForSeconds(1.0f);
         textObj.GetComponent<TextMeshProUGUI>().text = currentText;
+        isThinking = false;
+        balloonActive = false;
+    }
+
+    IEnumerator ShowBalloon()
+    {
+        yield return new WaitForSeconds(0.5f);
+        balloonActive = true;
     }
 
     IEnumerator ShowText()
     {
-        yield return new WaitForSecondsRealtime(0.7f);
+        yield return new WaitForSecondsRealtime(0.3f);
+        textObj.GetComponent<TextMeshProUGUI>().raycastTarget = true;
         for (int i = 0; i < text.Length; i++)
         {
             currentText = text.Substring(0, i);
@@ -82,12 +97,19 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Thinking");
         balloon.SetBool("OverBalloon", true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         balloon.SetBool("OverBalloon", false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (balloonActive == true)
+        {
+            StartCoroutine(InstantDissappear());
+        }
     }
 }

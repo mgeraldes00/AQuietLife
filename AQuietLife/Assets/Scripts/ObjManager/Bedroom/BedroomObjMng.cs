@@ -36,7 +36,7 @@ public class BedroomObjMng : MonoBehaviour
                 case 0:
                     if (objName == "Door" && tasks.completedTasks < 1)
                     {
-                        thought.ShowThought();
+                        thought.KeepThought();
                         thought.text = "Should tidy up the room a bit before leaving..";
                     }
                     else

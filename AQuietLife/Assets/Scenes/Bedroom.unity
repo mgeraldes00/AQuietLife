@@ -3257,6 +3257,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 192024089}
     m_Modifications:
+    - target: {fileID: 375497279, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 205.18002
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497279, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.0699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497279, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 93.05487
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497279, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.1799927
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_margin.x
+      value: 18.87335
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_margin.z
+      value: 18.28359
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_margin.y
+      value: 14.155006
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_margin.w
+      value: 11.206034
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

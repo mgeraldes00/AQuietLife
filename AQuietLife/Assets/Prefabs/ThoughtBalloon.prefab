@@ -309,6 +309,7 @@ MonoBehaviour:
   textObj: {fileID: 375497278}
   currentText: 
   isThinking: 0
+  balloonActive: 0
 --- !u!95 &7863672715628366530
 Animator:
   serializedVersion: 3
