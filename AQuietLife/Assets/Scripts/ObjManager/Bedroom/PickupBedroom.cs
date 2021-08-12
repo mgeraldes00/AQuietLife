@@ -16,6 +16,7 @@ public class PickupBedroom : MonoBehaviour
     public bool isPicked;
 
     [SerializeField] private bool isTrapped;
+    [SerializeField] private bool isLocked;
 
 
 
@@ -31,7 +32,8 @@ public class PickupBedroom : MonoBehaviour
     {
         for (int i = 0; i < inventory.slots.Length; i++)
         {
-            if (inventory.isFull[i] == false && isPicked == false)
+            if (inventory.isFull[i] == false && isPicked == false
+                && isLocked == false)
             {
                 if (isTrapped == true)
                 {
@@ -59,8 +61,11 @@ public class PickupBedroom : MonoBehaviour
         else
         {
             yield return new WaitForEndOfFrame();
+            isLocked = true;
             isTrapped = false;
             select.slotSelect = 0;
+            yield return new WaitForSeconds(0.5f);
+            isLocked = false;
         }
     }
 

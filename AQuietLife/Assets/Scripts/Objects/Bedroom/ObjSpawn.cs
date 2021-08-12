@@ -7,6 +7,7 @@ public class ObjSpawn : MonoBehaviour
 {
     private GameManager gameMng;
     private ObjectSelection select;
+    private TaskCounter tasks;
 
     [SerializeField] private string currentArea;
 
@@ -16,6 +17,7 @@ public class ObjSpawn : MonoBehaviour
     {
         gameMng = GameObject.Find("GameManager").GetComponent<GameManager>();
         select = GameObject.Find("InventoryBox").GetComponent<ObjectSelection>();
+        tasks = GameObject.Find("Scene").GetComponent<TaskCounter>();
     }
 
     private void OnMouseUp()
@@ -35,12 +37,17 @@ public class ObjSpawn : MonoBehaviour
                 if (select.selectedObject == "ShirtPile")
                     StartCoroutine(SpawnObjs());
                 break;
+            case "TV":
+                if (select.selectedObject == "Games")
+                    StartCoroutine(SpawnObjs());
+                break;
         }
     }
 
     IEnumerator SpawnObjs()
     {
         select.slotSelect--;
+        tasks.completedTasks++;
 
         switch (objsToSpawn.Length)
         {

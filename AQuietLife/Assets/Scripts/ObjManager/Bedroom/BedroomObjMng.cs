@@ -114,7 +114,8 @@ public class BedroomObjMng : MonoBehaviour
                         break;
                     case 2:
                         for (int i = 2; i < objects.Length; i++)
-                            objects[i].enabled = true;
+                            if (objects[i] != null)
+                                objects[i].enabled = true;
                         if (tutorial.isOver != true)
                         {
                             area.offset = new Vector2(5.92f, -1.22f);
@@ -134,6 +135,7 @@ public class BedroomObjMng : MonoBehaviour
                         {
                             case "Door":
                                 //End level
+                                Debug.Log("END LEVEL");
                                 break;
                         }
                         break;

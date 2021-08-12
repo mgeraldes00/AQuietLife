@@ -56,7 +56,7 @@ public class ObjectFade : MonoBehaviour
     public static IEnumerator FadeOutUI(Image image)
     {
         YieldInstruction fadeInstruction = new YieldInstruction();
-        float fadeTime = 1.0f;
+        float fadeTime = 0.5f;
 
         float elapsedTime = 0.0f;
         Color c = image.color;

@@ -59,7 +59,7 @@ public class BackToGeneral : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         switch (cam.currentPanel)
         {
-            case -1:     
+            case -1:
                 if (objects[0] != null || objects[1] != null)
                 {
                     area.enabled = true;
@@ -68,7 +68,9 @@ public class BackToGeneral : MonoBehaviour
                     else
                         for (int i = 0; i < objects.Length; i++)
                             objects[i].enabled = false;
-                }   
+                }
+                else
+                    area.enabled = false;
                 currentArea = null;
                 break;
             case 0:
