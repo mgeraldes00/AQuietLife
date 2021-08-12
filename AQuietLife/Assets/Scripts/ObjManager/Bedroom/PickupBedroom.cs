@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickupBedroom : MonoBehaviour
 {
     private InventorySimple inventory;
+    [SerializeField] private ObjectSelection select;
 
     public GameObject itemButton;
 
@@ -12,11 +13,18 @@ public class PickupBedroom : MonoBehaviour
 
     [SerializeField] private GameObject[] pickObjs;
 
-    [SerializeField] private bool isPicked;
+    public bool isPicked;
+
+    [SerializeField] private bool isTrapped;
+
+
 
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
+        inventory =
+            GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
+        select =
+            GameObject.FindGameObjectWithTag("ObjectSelection").GetComponent<ObjectSelection>();
     }
 
     private void OnMouseDown()
@@ -25,12 +33,34 @@ public class PickupBedroom : MonoBehaviour
         {
             if (inventory.isFull[i] == false && isPicked == false)
             {
-                inventory.isFull[i] = true;
-                Instantiate(itemButton, inventory.slots[i].transform, false);
-                FindObjectOfType<AudioCtrl>().Play(currentObj);
-                StartCoroutine(Disappear());
-                break;
+                if (isTrapped == true)
+                {
+                    StartCoroutine(CheckForGlove());
+                }
+                else
+                {
+                    inventory.isFull[i] = true;
+                    Instantiate(itemButton, inventory.slots[i].transform, false);
+                    FindObjectOfType<AudioCtrl>().Play(currentObj);
+                    StartCoroutine(Disappear());
+                    break;
+                }
             }
+        }
+    }
+
+    IEnumerator CheckForGlove()
+    {
+        if (select.selectedObject != "Glove")
+        {
+            //Game Over
+            Debug.Log("GAME OVER");
+        }
+        else
+        {
+            yield return new WaitForEndOfFrame();
+            isTrapped = false;
+            select.slotSelect = 0;
         }
     }
 
@@ -43,14 +73,16 @@ public class PickupBedroom : MonoBehaviour
             case 1:
                 StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>()));
                 yield return new WaitForSeconds(1.0f);
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
+                Destroy(gameObject);
                 break;
             case 2:
                 StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>()));
                 yield return new WaitForSeconds(0.5f);
                 StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>()));
                 yield return new WaitForSeconds(1.0f);
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
+                Destroy(gameObject);
                 break;
             case 3:
                 StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>()));
@@ -59,7 +91,8 @@ public class PickupBedroom : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 StartCoroutine(ObjectFade.FadeOut(pickObjs[2].GetComponent<SpriteRenderer>()));
                 yield return new WaitForSeconds(1.0f);
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
+                Destroy(gameObject);
                 break;
         }
     }

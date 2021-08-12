@@ -39,9 +39,15 @@ public class InvProp : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        StartCoroutine(Select());
+        select.slotSelect++;
+    }
+
+    IEnumerator Select()
+    {
+        yield return new WaitForEndOfFrame();
         isSelected = true;
         select.selectedObject = propName;
-        select.slotSelect++;
         GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 
