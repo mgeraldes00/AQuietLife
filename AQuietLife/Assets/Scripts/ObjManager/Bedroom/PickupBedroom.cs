@@ -99,6 +99,30 @@ public class PickupBedroom : MonoBehaviour
                 //gameObject.SetActive(false);
                 Destroy(gameObject);
                 break;
+            case 4:
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[2].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[3].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(1.0f);
+                Destroy(gameObject);
+                break;
+            case 5:
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[2].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[3].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[4].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(1.0f);
+                Destroy(gameObject);
+                break;
         }
     }
 }

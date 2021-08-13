@@ -11,7 +11,7 @@ public class ObjSpawn : MonoBehaviour
 
     [SerializeField] private string currentArea;
 
-    [SerializeField] private GameObject[] objsToSpawn;
+    public GameObject[] objsToSpawn;
 
     private void Start()
     {
@@ -33,6 +33,14 @@ public class ObjSpawn : MonoBehaviour
     {
         switch (i)
         {
+            case "Backpack":
+                if (select.selectedObject == "Notes"
+                    || select.selectedObject == "Pencil")
+                {
+                    StartCoroutine(SpawnObjs());
+                    StartCoroutine(FindObjectOfType<Backpack>().PlaceObject());
+                }
+                break;
             case "Wardrobe":
                 if (select.selectedObject == "ShirtPile")
                     StartCoroutine(SpawnObjs());
@@ -47,11 +55,14 @@ public class ObjSpawn : MonoBehaviour
     IEnumerator SpawnObjs()
     {
         select.slotSelect--;
-        tasks.completedTasks++;
+        if (currentArea != "Backpack" || FindObjectOfType<Backpack>().objectsPlaced == 2)
+            tasks.completedTasks++;
 
         switch (objsToSpawn.Length)
         {
             case 1:
+                if (currentArea == "Backpack" && FindObjectOfType<Backpack>().objectsPlaced == 0)
+                    yield return new WaitForSeconds(1.0f);
                 StartCoroutine(ObjectFade.FadeIn(objsToSpawn[0].GetComponent<SpriteRenderer>()));
                 break;
             case 2:
@@ -74,6 +85,19 @@ public class ObjSpawn : MonoBehaviour
                 StartCoroutine(ObjectFade.FadeIn(objsToSpawn[2].GetComponent<SpriteRenderer>()));
                 yield return new WaitForSeconds(0.5f);
                 StartCoroutine(ObjectFade.FadeIn(objsToSpawn[3].GetComponent<SpriteRenderer>()));
+                break;
+            case 5:
+                if (currentArea == "Backpack" && FindObjectOfType<Backpack>().objectsPlaced == 0)
+                    yield return new WaitForSeconds(1.0f);
+                StartCoroutine(ObjectFade.FadeIn(objsToSpawn[0].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeIn(objsToSpawn[1].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeIn(objsToSpawn[2].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeIn(objsToSpawn[3].GetComponent<SpriteRenderer>()));
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(ObjectFade.FadeIn(objsToSpawn[4].GetComponent<SpriteRenderer>()));
                 break;
         }
     }

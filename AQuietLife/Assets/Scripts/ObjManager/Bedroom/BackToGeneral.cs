@@ -90,7 +90,8 @@ public class BackToGeneral : MonoBehaviour
                     case "TV":
                         area.enabled = true;
                         for (int i = 0; i < objects.Length; i++)
-                            objects[i].enabled = false;
+                            if (objects[i] != null)
+                                objects[i].enabled = false;
                         currentArea = null;
                         break;
                     case "Door":

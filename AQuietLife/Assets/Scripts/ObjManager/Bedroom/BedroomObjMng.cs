@@ -98,7 +98,8 @@ public class BedroomObjMng : MonoBehaviour
                             case "TV":
                                 area.enabled = false;
                                 for (int i = 0; i < objects.Length; i++)
-                                    objects[i].enabled = true;
+                                    if (objects[i] != null)
+                                        objects[i].enabled = true;
                                 returnMng.currentArea = "TV";
                                 break;
                             case "Door":
