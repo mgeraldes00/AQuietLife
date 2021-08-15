@@ -19,8 +19,6 @@ public class PickupBedroom : MonoBehaviour
     [SerializeField] private bool isTrapped;
     [SerializeField] private bool isLocked;
 
-
-
     private void Start()
     {
         gameMng =

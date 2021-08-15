@@ -41,7 +41,7 @@ public class BackToGeneral : MonoBehaviour
                         objects = GameObject.Find("TV_Wall").GetComponent<BedroomObjMng>().objects;
                         break;
                     case "Door":
-                        area = GameObject.Find("Door").GetComponent<BedroomObjMng>().area;
+                        area = GameObject.Find("MainDoor").GetComponent<BedroomObjMng>().area;
                         objects = null;
                         break;
                 }
@@ -97,6 +97,7 @@ public class BackToGeneral : MonoBehaviour
                     case "Door":
                         area.offset = new Vector2(6.72f, 0.91f);
                         area.size = new Vector2(5.43f, 8.1f);
+                        GameObject.Find("MainDoor").GetComponent<StaticObj>().useState = -1;
                         currentArea = null;
                         break;
                 }

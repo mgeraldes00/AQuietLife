@@ -107,6 +107,7 @@ public class BedroomObjMng : MonoBehaviour
                                 area.size = new Vector2(1f, 1f);
                                 for (int i = 0; i < objects.Length; i++)
                                     objects[i].enabled = true;
+                                GameObject.Find("MainDoor").GetComponent<StaticObj>().useState = 2;
                                 returnMng.currentArea = "Door";
                                 thought.ShowThought();
                                 thought.text = "Did I take care of everything?.";

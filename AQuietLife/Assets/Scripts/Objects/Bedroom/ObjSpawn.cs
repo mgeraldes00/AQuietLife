@@ -37,8 +37,11 @@ public class ObjSpawn : MonoBehaviour
                 if (select.selectedObject == "Notes"
                     || select.selectedObject == "Pencil")
                 {
-                    StartCoroutine(SpawnObjs());
-                    StartCoroutine(FindObjectOfType<Backpack>().PlaceObject());
+                    if (FindObjectOfType<Backpack>().isLocked != true)
+                    {
+                        StartCoroutine(SpawnObjs());
+                        StartCoroutine(FindObjectOfType<Backpack>().PlaceObject());
+                    }
                 }
                 break;
             case "Wardrobe":

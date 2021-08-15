@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator EndLevel(string levelName)
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.2f);
         fadeAnim.SetTrigger("FadeOutDark");
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
         StartCoroutine(FadeMixerGroup.StartFade(dynamicMix, "DynamicVol", 1, 0));

@@ -6,20 +6,22 @@ using UnityEngine.EventSystems;
 public class StaticObj : MonoBehaviour
 {
     private GameManager gameMng;
+    private ObjectSelection select;
 
     [SerializeField] private GameObject[] objectVar;
 
     [SerializeField] private string doorType;
 
     [SerializeField] private bool isDoor;
-    [SerializeField] private bool isEndDoor;
     [SerializeField] private bool isLocked;
+    [SerializeField] private bool isTrapped;
 
-    [SerializeField] private int useState;
+    public int useState;
 
     private void Start()
     {
         gameMng = GameObject.Find("GameManager").GetComponent<GameManager>();
+        select = GameObject.Find("InventoryBox").GetComponent<ObjectSelection>();
     }
 
     private void OnMouseUp()
@@ -29,31 +31,38 @@ public class StaticObj : MonoBehaviour
         {
             if (isDoor)
             {
-                switch (useState)
+                if (isTrapped == true)
                 {
-                    case 0:
-                        StartCoroutine
-                            (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
-                        StartCoroutine
-                            (ObjectFade.FadeIn(objectVar[1].GetComponent<SpriteRenderer>()));
-                        StartCoroutine(SwitchCollider(0, doorType));
-                        break;
-                    case 1:
-                        StartCoroutine
-                            (ObjectFade.FadeOut(objectVar[1].GetComponent<SpriteRenderer>(), 0));
-                        StartCoroutine
-                            (ObjectFade.FadeIn(objectVar[0].GetComponent<SpriteRenderer>()));
-                        StartCoroutine(SwitchCollider(1, doorType));
-                        break;
+                    StartCoroutine(CheckForGlove());
                 }
+                else
+                    switch (useState)
+                    {
+                        case 0:
+                            StartCoroutine
+                                (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
+                            StartCoroutine
+                                (ObjectFade.FadeIn(objectVar[1].GetComponent<SpriteRenderer>()));
+                            StartCoroutine(SwitchCollider(0, doorType));
+                            isLocked = true;
+                            break;
+                        case 1:
+                            StartCoroutine
+                                (ObjectFade.FadeOut(objectVar[1].GetComponent<SpriteRenderer>(), 0));
+                            StartCoroutine
+                                (ObjectFade.FadeIn(objectVar[0].GetComponent<SpriteRenderer>()));
+                            StartCoroutine(SwitchCollider(1, doorType));
+                            isLocked = true;
+                            break;
+                        case 2:
+                            StartCoroutine
+                                (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
+                            isLocked = true;
+                            gameMng.isLocked = true;
+                            FindObjectOfType<CameraCtrl>().GetComponent<Animator>().SetTrigger("EndLevel");
+                            break;
+                    }
             }
-            else if (isEndDoor)
-            {
-                if (FindObjectOfType<CameraCtrl>().currentView > 0)
-                    StartCoroutine
-                        (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
-            }
-            isLocked = true;
             StartCoroutine(gameMng.QuickUnlock(1.0f));
         }
     }
@@ -64,21 +73,35 @@ public class StaticObj : MonoBehaviour
         switch (useState)
         {
             case 0:
-                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-8.92f, 0.46f);
-                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 9.44f);
                 if (doorType == "WardrobeRightDoor")
                 {
+                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-8.92f, 0.46f);
+                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 9.44f);
                     FindObjectOfType<Wardrobe>().objects[0].enabled = true;
                     FindObjectOfType<Wardrobe>().rightDoorOpen = true;
                 }
+                else if (doorType == "WardrobeLeftDoor")
+                {
+                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-1.29f, 0.5f);
+                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.36f, 9.39f);
+                    //FindObjectOfType<Wardrobe>().objects[1].enabled = true;
+                    FindObjectOfType<Wardrobe>().leftDoorOpen = true;
+                }
                 break;
             case 1:
-                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-7.09f, 0.46f);
-                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(3.84f, 9.44f);
                 if (doorType == "WardrobeRightDoor")
                 {
+                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-7.09f, 0.46f);
+                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(3.84f, 9.44f);
                     FindObjectOfType<Wardrobe>().objects[0].enabled = false;
                     FindObjectOfType<Wardrobe>().rightDoorOpen = false;
+                }
+                else if (doorType == "WardrobeLeftDoor")
+                {
+                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-3.14f, 0.5f);
+                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(4.04f, 9.39f);
+                    //FindObjectOfType<Wardrobe>().objects[1].enabled = true;
+                    FindObjectOfType<Wardrobe>().leftDoorOpen = false;
                 }
                 break;
         }
@@ -88,5 +111,24 @@ public class StaticObj : MonoBehaviour
         else if (i == 1)
             useState = 0;
         isLocked = false;
+    }
+
+    IEnumerator CheckForGlove()
+    {
+        if (select.selectedObject != "Glove")
+        {
+            //Game Over
+            Debug.Log("GAME OVER");
+            gameMng.Die();
+        }
+        else
+        {
+            yield return new WaitForEndOfFrame();
+            isLocked = true;
+            isTrapped = false;
+            select.slotSelect = 0;
+            yield return new WaitForSeconds(0.5f);
+            isLocked = false;
+        }
     }
 }
