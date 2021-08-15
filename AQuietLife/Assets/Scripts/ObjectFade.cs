@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class ObjectFade : MonoBehaviour
 {
-    public static IEnumerator FadeOut(SpriteRenderer sprite)
+    public static IEnumerator FadeOut(SpriteRenderer sprite, float f)
     {
+        if (f == 1.0f)
+            yield return new WaitForSeconds(1.0f);
         YieldInstruction fadeInstruction = new YieldInstruction();
         float fadeTime = 1.0f;
 

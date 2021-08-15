@@ -269,6 +269,16 @@ public class GameManager : MonoBehaviour
         returnable = true;
     }
 
+    public IEnumerator EndLevel(string levelName)
+    {
+        yield return new WaitForSeconds(1.0f);
+        fadeAnim.SetTrigger("FadeOutDark");
+        StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
+        StartCoroutine(FadeMixerGroup.StartFade(dynamicMix, "DynamicVol", 1, 0));
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene(levelName);
+    }
+
     public IEnumerator EndGame()
     {
         yield return new WaitForEndOfFrame();

@@ -12,6 +12,7 @@ public class StaticObj : MonoBehaviour
     [SerializeField] private string doorType;
 
     [SerializeField] private bool isDoor;
+    [SerializeField] private bool isEndDoor;
     [SerializeField] private bool isLocked;
 
     [SerializeField] private int useState;
@@ -32,19 +33,25 @@ public class StaticObj : MonoBehaviour
                 {
                     case 0:
                         StartCoroutine
-                            (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>()));
+                            (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
                         StartCoroutine
                             (ObjectFade.FadeIn(objectVar[1].GetComponent<SpriteRenderer>()));
                         StartCoroutine(SwitchCollider(0, doorType));
                         break;
                     case 1:
                         StartCoroutine
-                            (ObjectFade.FadeOut(objectVar[1].GetComponent<SpriteRenderer>()));
+                            (ObjectFade.FadeOut(objectVar[1].GetComponent<SpriteRenderer>(), 0));
                         StartCoroutine
                             (ObjectFade.FadeIn(objectVar[0].GetComponent<SpriteRenderer>()));
                         StartCoroutine(SwitchCollider(1, doorType));
                         break;
                 }
+            }
+            else if (isEndDoor)
+            {
+                if (FindObjectOfType<CameraCtrl>().currentView > 0)
+                    StartCoroutine
+                        (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
             }
             isLocked = true;
             StartCoroutine(gameMng.QuickUnlock(1.0f));

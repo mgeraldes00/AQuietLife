@@ -137,6 +137,7 @@ public class BedroomObjMng : MonoBehaviour
                             case "Door":
                                 //End level
                                 Debug.Log("END LEVEL");
+                                StartCoroutine(gameMng.EndLevel("Dialog2"));
                                 break;
                         }
                         break;
