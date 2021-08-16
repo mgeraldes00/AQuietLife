@@ -154,7 +154,7 @@ public class StorageManager : MonoBehaviour
     IEnumerator BackZoom()
     {
         yield return new WaitForSeconds(0.1f);
-        zoom.currentView--;
+        //zoom.currentView--;
         isOnLock = false;
     }
 

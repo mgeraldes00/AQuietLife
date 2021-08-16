@@ -58,9 +58,6 @@ public class GameManager : MonoBehaviour
             introText.SetActive(true);
         }
 
-        fadeAnim.speed = 0.3f;
-        introText.SetActive(true);
-
         returnable = true;
         isLocked = true;
         Instantiate(audioMng); 

@@ -219,7 +219,7 @@ public class FridgeManager : MonoBehaviour
             //closeUp.directionArrows[0].SetActive(true);
             closeUp.dirArrows[0].SetTrigger("Show");
             thought.HideThought();
-            StartCoroutine(BackZoom());
+            //StartCoroutine(BackZoom());
         }
     }
 

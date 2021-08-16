@@ -37,6 +37,7 @@ public class CabinetManager : MonoBehaviour
     //public GameObject activityText;
     public GameObject glove;
     public GameObject cabinetRewindButton;
+    public GameObject dotAnim;
     //public GameObject cabinetButtons;    
     //public GameObject cabinet;
     //public GameObject plate;
@@ -237,6 +238,7 @@ public class CabinetManager : MonoBehaviour
             audioCtrl.rewindAudio = rewindAudio;
             audioSlider.rewindAudio = rewindAudio;
             eyelids.timerSmall = rewindAnim;
+            eyelids.dots = dotAnim;
             StartCoroutine(TimeToOpen());
             //cabinetButtons.SetActive(true);
             //cabinetRewindButton.SetActive(false);
@@ -467,6 +469,7 @@ public class CabinetManager : MonoBehaviour
             slider.SetActive(true);
             //waveformCabinet.enabled = true;
             rewindAudio.Play();
+            eyelids.dots.SetActive(true);
         }
         else if (rewindOnce == true)
         {
@@ -482,6 +485,7 @@ public class CabinetManager : MonoBehaviour
             slider.SetActive(true);
             waveformCabinet.enabled = true;
             rewindAudio.Play();
+            eyelids.dots.SetActive(true);
         }
     }
 }

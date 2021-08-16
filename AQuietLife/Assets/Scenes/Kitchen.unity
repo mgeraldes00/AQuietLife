@@ -6647,6 +6647,7 @@ MonoBehaviour:
   returnArrow: {fileID: 1479651714}
   glove: {fileID: 0}
   cabinetRewindButton: {fileID: 782673415}
+  dotAnim: {fileID: 210925024}
   pointer: {fileID: 1204984827}
   rewindAnim: {fileID: 782673417}
   waveform: {fileID: 0}
