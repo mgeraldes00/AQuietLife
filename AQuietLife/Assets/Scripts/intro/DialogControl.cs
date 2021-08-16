@@ -342,10 +342,7 @@ public class DialogControl : MonoBehaviour
     IEnumerator TransitionToLevel()
     {
         yield return new WaitForSeconds(0.5f);
-        if (currentDialog == 0)
-            fadeAnim.SetTrigger("FadeOutAlt");
-        else
-            fadeAnim.SetTrigger("FadeOut");
+        fadeAnim.SetTrigger("FadeOut");
         yield return new WaitForSeconds(2.0f);
         if (currentDialog == 0)
             SceneManager.LoadScene("Bedroom");
