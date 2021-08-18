@@ -25,6 +25,16 @@ public class IntroHover : MonoBehaviour
         }
     }
 
+    private void OnMouseUp()
+    {
+        switch (currentObj)
+        {
+            case 0:
+                cursor.ChangeCursor(1);
+                break;
+        }
+    }
+
     private void OnMouseEnter()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
