@@ -5,4 +5,6 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     public bool isOver;
+
+    public int stage;
 }
