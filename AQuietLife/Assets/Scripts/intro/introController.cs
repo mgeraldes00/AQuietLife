@@ -169,11 +169,14 @@ public class IntroController : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    phone[1].SetActive(false);
+                    //phone[1].SetActive(false);
                     returnArrow.GetComponent<Animator>().SetTrigger("Hide 0");
                     cameraAnim.SetTrigger("ZoomOut");
-                    fadeAnim.SetTrigger("TransitionInteract");
-                    directionalButton.SetActive(true);
+                    //fadeAnim.SetTrigger("TransitionInteract");
+                    StartCoroutine
+                        (ObjectFade.FadeOut(phone[2].GetComponent<SpriteRenderer>(), 0));
+                    //directionalButton.SetActive(true);
+                    directionalButton.GetComponent<Animator>().SetTrigger("Show");
                     currentPanel++;
                     break;
                 case 1:
@@ -322,6 +325,7 @@ public class IntroController : MonoBehaviour
         cursorImg.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        phone[3].GetComponent<PolygonCollider2D>().enabled = true;
     }
 
     IEnumerator StartAlarm()
