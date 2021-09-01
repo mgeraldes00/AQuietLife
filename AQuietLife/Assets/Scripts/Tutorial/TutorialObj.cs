@@ -31,6 +31,7 @@ public class TutorialObj : MonoBehaviour
                         obj[0].SetActive(true);
                         StartCoroutine
                             (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
+                        StartCoroutine(FindObjectOfType<TextBox>().ShowText(1));
                         break;
                     case 2:
                         StartCoroutine(tut.PhoneStage());
