@@ -103,6 +103,4 @@ public class ObjectFade : MonoBehaviour
             text.color = c;
         }
     }
-
-    //Use animator instead of coroutine
 }

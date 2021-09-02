@@ -49,10 +49,13 @@ public class GameManager : MonoBehaviour
 
     private int currentMode;
 
+    [SerializeField] private int currLvl;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("StoryMode"))
+        PlayerPrefs.SetString("StoryMode", "StoryMode");
+        if (PlayerPrefs.HasKey("StoryMode") && currLvl == 2)
         {
             fadeAnim.speed = 0.3f;
             introText.SetActive(true);
@@ -200,16 +203,25 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("StoryMode"))
         {
-            yield return new WaitForSeconds(4.0f);
-            introText.GetComponent<Animator>().SetTrigger("HideIntroText");
-            yield return new WaitForSeconds(0.5f);
-            levelClock.SetBool("Active", true);
-            yield return new WaitForSeconds(1.5f);
-            introText.SetActive(false);
-            isLocked = false;
-            //StartCoroutine(TimeTillLock());
-            yield return new WaitForSeconds(1.0f);
-            fadeAnim.speed = 1.0f;
+            switch (currLvl)
+            {
+                case 1:
+                    yield return new WaitForSeconds(5.0f);
+                    isLocked = false;
+                    break;
+                case 2:
+                    yield return new WaitForSeconds(4.0f);
+                    introText.GetComponent<Animator>().SetTrigger("HideIntroText");
+                    yield return new WaitForSeconds(0.5f);
+                    levelClock.SetBool("Active", true);
+                    yield return new WaitForSeconds(1.5f);
+                    introText.SetActive(false);
+                    isLocked = false;
+                    //StartCoroutine(TimeTillLock());
+                    yield return new WaitForSeconds(1.0f);
+                    fadeAnim.speed = 1.0f;
+                    break;
+            }
         }
         else
         {

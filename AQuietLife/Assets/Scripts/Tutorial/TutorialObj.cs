@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialObj : MonoBehaviour
 {
     private Tutorial tut;
+    private TextBox txt;
 
     [SerializeField] private GameObject[] obj;
 
@@ -15,33 +16,38 @@ public class TutorialObj : MonoBehaviour
     private void Start()
     {
         tut = GameObject.Find("Scene").GetComponent<Tutorial>();
+        txt = GameObject.Find("TextBox").GetComponent<TextBox>();
 
         stagePhase = 1;
     }
 
     private void OnMouseUp()
     {
-        switch (tut.stage)
+        if (tut.isLocked != true && txt.isOpen != true)
         {
-            case 0:
-                StartCoroutine(NextPhase());
-                switch (stagePhase)
-                {
-                    case 1:
-                        obj[0].SetActive(true);
-                        StartCoroutine
-                            (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
-                        StartCoroutine(FindObjectOfType<TextBox>().ShowText(1));
-                        break;
-                    case 2:
-                        StartCoroutine(tut.PhoneStage());
-                        break;
-                    case 5:
-                        StartCoroutine
-                            (ObjectFade.FadeOut(obj[0].GetComponent<SpriteRenderer>(), 0));
-                        break;
-                }
-                break;
+            switch (tut.stage)
+            {
+                case 0:
+                    StartCoroutine(NextPhase());
+                    txt.isOpen = true;
+                    switch (stagePhase)
+                    {
+                        case 1:
+                            obj[0].SetActive(true);
+                            StartCoroutine
+                                (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
+                            StartCoroutine(FindObjectOfType<TextBox>().ShowText(2, 0));
+                            break;
+                        case 2:
+                            StartCoroutine(tut.PhoneStage());
+                            break;
+                        case 5:
+                            StartCoroutine
+                                (ObjectFade.FadeOut(obj[0].GetComponent<SpriteRenderer>(), 0));
+                            break;
+                    }
+                    break;
+            }
         }
     }
 
