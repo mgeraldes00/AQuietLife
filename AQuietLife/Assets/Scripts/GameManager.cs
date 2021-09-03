@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private int currentMode;
 
-    [SerializeField] private int currLvl;
+    public int currLvl;
 
     // Start is called before the first frame update
     void Start()

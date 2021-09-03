@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Tutorial : MonoBehaviour
 {
@@ -14,6 +15,15 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField] private Animator uiPhone;
     [SerializeField] private Animator inventory;
+
+    [SerializeField] private GameObject[] startTextObj;
+
+    private float delay = 0.2f;
+    private float dotDelay = 1.0f;
+
+    [SerializeField] private string[] startText;
+
+    private string currentText = "";
 
     public bool isOver;
     public bool isLocked;
@@ -39,7 +49,21 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator OpenCover()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(1.0f);
+        for (int i = 0; i < startText[0].Length; i++)
+        {
+            currentText = startText[0].Substring(0, i);
+            startTextObj[0].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(delay);
+        }
+        yield return new WaitForSeconds(2.0f);
+        for (int i = 0; i < startText[1].Length; i++)
+        {
+            currentText = startText[1].Substring(0, i);
+            startTextObj[1].GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSeconds(dotDelay);
+        }
+        yield return new WaitForEndOfFrame();
         startCover.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(BlurCtrl.RemoveBlur(blur));
@@ -47,6 +71,7 @@ public class Tutorial : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         isLocked = false;
+        Destroy(startCover);
     }
 
     public IEnumerator PhoneStage()
