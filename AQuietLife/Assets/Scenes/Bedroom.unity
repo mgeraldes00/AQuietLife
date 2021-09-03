@@ -3013,6 +3013,7 @@ MonoBehaviour:
   returnable: 0
   isLocked: 0
   isDead: 0
+  currLvl: 1
 --- !u!4 &977577488
 Transform:
   m_ObjectHideFlags: 0
@@ -7255,12 +7256,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006920392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14f59eac5c3dec24bb1443dd9e27362a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCover: {fileID: 0}
+  phone: []
+  blur: {fileID: 0}
   isOver: 1
+  isLocked: 0
+  stage: 0
 --- !u!1 &2070928926
 GameObject:
   m_ObjectHideFlags: 0

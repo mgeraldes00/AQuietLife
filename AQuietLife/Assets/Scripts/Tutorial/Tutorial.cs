@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
+    [SerializeField] private CameraCtrl cam;
+
     [SerializeField] private GameObject startCover;
 
     [SerializeField] private GameObject[] phone;
 
     public GameObject blur;
+
+    [SerializeField] private Animator uiPhone;
+    [SerializeField] private Animator inventory;
 
     public bool isOver;
     public bool isLocked;
@@ -19,6 +24,14 @@ public class Tutorial : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        isLocked = true;
+
+        uiPhone.SetBool("Enlarge", true);
+        inventory.SetBool("Visible", false);
+
+        for (int i = 0; i < cam.directionalArrows.Length; i++)
+            cam.directionalArrows[i].SetTrigger("Hide");
 
         StartCoroutine(BlurCtrl.BlurScreen(blur));
         StartCoroutine(OpenCover());
@@ -33,6 +46,7 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        isLocked = false;
     }
 
     public IEnumerator PhoneStage()

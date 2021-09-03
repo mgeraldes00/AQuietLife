@@ -14157,6 +14157,7 @@ MonoBehaviour:
   returnable: 0
   isLocked: 0
   isDead: 0
+  currLvl: 2
 --- !u!4 &1037535895
 Transform:
   m_ObjectHideFlags: 0

@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetString("StoryMode", "StoryMode");
+        //PlayerPrefs.DeleteKey("StoryMode");
+
         if (PlayerPrefs.HasKey("StoryMode") && currLvl == 2)
         {
             fadeAnim.speed = 0.3f;
@@ -205,9 +207,12 @@ public class GameManager : MonoBehaviour
         {
             switch (currLvl)
             {
-                case 1:
+                case 0:
                     yield return new WaitForSeconds(5.0f);
                     isLocked = false;
+                    break;
+                case 1:
+                    
                     break;
                 case 2:
                     yield return new WaitForSeconds(4.0f);

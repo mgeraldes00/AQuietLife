@@ -41,6 +41,7 @@ public class IntroController : MonoBehaviour
     public GameObject sceneCloseUp;
     public GameObject skipText;
     public GameObject winder;
+    public GameObject blur;
 
     public GameObject[] phone;
     public GameObject[] deathScreen;
@@ -75,6 +76,9 @@ public class IntroController : MonoBehaviour
         Instantiate(audioMng);
 
         StartCoroutine(FadeMixerGroup.StartFade(fxMix, "BackFX", 5, 1));
+        StartCoroutine(BlurCtrl.BlurScreen(blur));
+
+        directionalButton.GetComponent<Animator>().SetTrigger("Hide");
 
         currentPanel = -2;
         currentView = 0;
@@ -318,7 +322,9 @@ public class IntroController : MonoBehaviour
         }
         introCover.GetComponent<Animator>().SetTrigger("Open");
         currentPanel++;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(BlurCtrl.RemoveBlur(blur));
+        yield return new WaitForSeconds(2.0f);
         cursorImg.SetActive(true);
         introCover.SetActive(false);
         yield return new WaitForSeconds(2.0f);

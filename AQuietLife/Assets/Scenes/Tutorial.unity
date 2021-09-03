@@ -2879,6 +2879,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a230f4692cfaa4844b69682e8258c114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &816782907 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8859889567365632679, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+  m_PrefabInstance: {fileID: 61009180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &822513985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3597,7 +3602,7 @@ MonoBehaviour:
   returnable: 0
   isLocked: 0
   isDead: 0
-  currLvl: 1
+  currLvl: 0
 --- !u!4 &977577488
 Transform:
   m_ObjectHideFlags: 0
@@ -8864,12 +8869,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f59eac5c3dec24bb1443dd9e27362a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 1615249857}
   startCover: {fileID: 1601089846}
   phone:
   - {fileID: 110186423}
   - {fileID: 857801352}
   - {fileID: 293940878}
   blur: {fileID: 59477826}
+  uiPhone: {fileID: 816782907}
+  inventory: {fileID: 2131299044}
   isOver: 0
   isLocked: 0
   stage: 0
@@ -8911,5 +8919,10 @@ Transform:
 --- !u!1 &2131299043 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7905284235960206512, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
+  m_PrefabInstance: {fileID: 784042604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2131299044 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7905284235960206510, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
   m_PrefabInstance: {fileID: 784042604}
   m_PrefabAsset: {fileID: 0}
