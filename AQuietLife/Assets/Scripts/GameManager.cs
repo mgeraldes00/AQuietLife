@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetString("StoryMode", "StoryMode");
-        //PlayerPrefs.DeleteKey("StoryMode");
+        //PlayerPrefs.SetString("StoryMode", "StoryMode");
+        PlayerPrefs.DeleteKey("StoryMode");
 
         if (PlayerPrefs.HasKey("StoryMode") && currLvl == 2)
         {

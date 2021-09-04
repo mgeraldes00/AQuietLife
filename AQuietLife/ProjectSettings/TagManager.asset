@@ -51,8 +51,8 @@ TagManager:
   - 
   - 
   - Interactive
-  - 
-  - 
+  - ScreenSpace
+  - Blur
   - 
   - 
   - 
@@ -80,4 +80,7 @@ TagManager:
     locked: 0
   - name: Coiso
     uniqueID: 1739425651
+    locked: 0
+  - name: Blur
+    uniqueID: 1820370473
     locked: 0

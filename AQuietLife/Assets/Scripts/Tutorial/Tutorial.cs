@@ -32,19 +32,22 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        isLocked = true;
-
         uiPhone.SetBool("Enlarge", true);
         inventory.SetBool("Visible", false);
 
         for (int i = 0; i < cam.directionalArrows.Length; i++)
             cam.directionalArrows[i].SetTrigger("Hide");
 
-        StartCoroutine(BlurCtrl.BlurScreen(blur));
-        StartCoroutine(OpenCover());
+        if (PlayerPrefs.HasKey("StoryMode"))
+        {
+            isLocked = true;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            StartCoroutine(BlurCtrl.BlurScreen(blur));
+            StartCoroutine(OpenCover());
+        }
     }
 
     IEnumerator OpenCover()
