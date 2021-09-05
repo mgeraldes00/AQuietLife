@@ -71,7 +71,7 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(BlurCtrl.RemoveBlur(blur));
         yield return new WaitForSeconds(1.5f);
-        Cursor.visible = true;
+        //Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         isLocked = false;
         Destroy(startCover);

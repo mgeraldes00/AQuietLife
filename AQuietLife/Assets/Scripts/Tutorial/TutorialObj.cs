@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialObj : MonoBehaviour
 {
+    private GameManager gameMng;
     private Tutorial tut;
     private TextBox txt;
 
@@ -15,10 +16,35 @@ public class TutorialObj : MonoBehaviour
 
     private void Start()
     {
+        gameMng = GameObject.Find("GameManager").GetComponent<GameManager>();
         tut = GameObject.Find("Scene").GetComponent<Tutorial>();
         txt = GameObject.Find("TextBox").GetComponent<TextBox>();
 
         stagePhase = 1;
+    }
+
+    private void OnMouseEnter()
+    {
+        switch (stagePhase)
+        {
+            case 1:
+                gameMng.cursors.SetBool("Slide", true);
+                break;
+        }
+        
+    }
+
+    private void OnMouseExit()
+    {
+        switch (stagePhase)
+        {
+            case 1:
+                gameMng.cursors.SetBool("Slide", false);
+                break;
+            case 2:
+                
+                break;
+        }
     }
 
     private void OnMouseUp()
@@ -37,6 +63,7 @@ public class TutorialObj : MonoBehaviour
                             StartCoroutine
                                 (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
                             StartCoroutine(FindObjectOfType<TextBox>().ShowText(2, 0));
+                            gameMng.cursors.SetBool("Slide", false);
                             break;
                         case 2:
                             StartCoroutine(tut.PhoneStage());

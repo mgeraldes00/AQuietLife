@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     //public TableManager table;
     public PointerManager pointer;
 
+    public Animator cursors;
+
     public GameObject introText;
 
     public GameObject[] deathScreen;
@@ -54,6 +56,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         //PlayerPrefs.SetString("StoryMode", "StoryMode");
         PlayerPrefs.DeleteKey("StoryMode");
 
@@ -232,8 +237,11 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             levelClock.SetBool("Active", true);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
             isLocked = false;
+            cursors.SetBool("Open", true);
+            yield return new WaitForSeconds(1.0f);
+            Cursor.lockState = CursorLockMode.None;
             
         }
     }
