@@ -9,6 +9,8 @@ using TMPro;
 
 public class MenuCtrl : MonoBehaviour
 {
+    [SerializeField] private UIFollowMouse cursors;
+
     public GameObject[] menuTextObj;
     public GameObject[] buttons;
     public GameObject button;
@@ -53,9 +55,13 @@ public class MenuCtrl : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         PlayerPrefs.DeleteKey("StoryMode");
 
         skipAnim.SetTrigger("Show");
+        StartCoroutine(RevealCursor());
         StartCoroutine(ShowButtons());
         Instantiate(audioMng);
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 0.1f, 1));
@@ -95,11 +101,13 @@ public class MenuCtrl : MonoBehaviour
                 fade.enabled = true;
                 fade.GetComponent<Animator>().SetTrigger("Black");
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
+                cursors.ChangeCursor("Open", 0);
                 StartCoroutine(Quit());
                 break;
             case (4):
                 PlayerPrefs.SetString("StoryMode", "StoryMode");
                 fade.GetComponent<Animator>().SetTrigger("Black");
+                cursors.ChangeCursor("Open", 0);
                 StartCoroutine(NewGame());
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
                 break;
@@ -141,6 +149,7 @@ public class MenuCtrl : MonoBehaviour
                 fade.enabled = true;
                 fade.GetComponent<Animator>().SetTrigger("White");
                 returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                cursors.ChangeCursor("Open", 0);
                 StartCoroutine(Continue("Kitchen"));
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
                 break;
@@ -148,6 +157,7 @@ public class MenuCtrl : MonoBehaviour
                 fade.enabled = true;
                 fade.GetComponent<Animator>().SetTrigger("White");
                 returnArrow.GetComponent<Animator>().SetTrigger("Return");
+                cursors.ChangeCursor("Open", 0);
                 StartCoroutine(Continue("Bedroom"));
                 StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 1, 0));
                 break;
@@ -318,5 +328,12 @@ public class MenuCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         thisBool = false;
+    }
+
+    IEnumerator RevealCursor()
+    {
+        yield return new WaitForSeconds(0.5f);
+        cursors.ChangeCursor("Open", 1);
+        Cursor.lockState = CursorLockMode.None;
     }
 }

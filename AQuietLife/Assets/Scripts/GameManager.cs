@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     //public TableManager table;
     public PointerManager pointer;
 
-    public Animator cursors;
+    public UIFollowMouse cursors;
 
     public GameObject introText;
 
@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
             levelClock.SetBool("Active", true);
             yield return new WaitForSeconds(2.0f);
             isLocked = false;
-            cursors.SetBool("Open", true);
+            cursors.ChangeCursor("Open", 1);
             yield return new WaitForSeconds(1.0f);
             Cursor.lockState = CursorLockMode.None;
             

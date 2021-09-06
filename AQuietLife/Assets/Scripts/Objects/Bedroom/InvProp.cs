@@ -19,7 +19,7 @@ public class InvProp : MonoBehaviour, IPointerClickHandler
     {
         select = 
             GameObject.FindGameObjectWithTag("ObjectSelection").GetComponent<ObjectSelection>();
-        StartCoroutine(ObjectFade.FadeInUI(itemIcon));
+        StartCoroutine(ObjectFade.FadeInUI(itemIcon, 1.0f));
     }
 
     private void Update()
@@ -53,7 +53,7 @@ public class InvProp : MonoBehaviour, IPointerClickHandler
 
     IEnumerator DestroyObj()
     {
-        StartCoroutine(ObjectFade.FadeOutUI(itemIcon));
+        StartCoroutine(ObjectFade.FadeOutUI(itemIcon, 0.5f));
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

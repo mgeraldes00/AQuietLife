@@ -8,6 +8,7 @@ using TMPro;
 public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private PointerManager pointers;
+    private UIFollowMouse cursors;
 
     public Image selectedImg;
 
@@ -24,6 +25,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     private void Start()
     {
         pointers = FindObjectOfType<PointerManager>();
+        cursors = FindObjectOfType<UIFollowMouse>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -33,7 +35,8 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
                 isOver = true;
-                pointers.ChangeCursor(2);
+                //pointers.ChangeCursor(2);
+                cursors.ChangeCursor("Point", 1);
                 if (selectedImg != null)
                     selectedImg.enabled = true;
                 if (selectedText != null)
@@ -48,8 +51,9 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             isOver = true;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Underline;
-            if (pointers != null)
-                pointers.ChangeCursor(2);
+            if (cursors != null)
+                //pointers.ChangeCursor(2);
+                cursors.ChangeCursor("Point", 1);
         }
     }
 
@@ -64,7 +68,8 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             else if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
                 isOver = false;
-                pointers.ChangeCursor(1);
+                //pointers.ChangeCursor(1);
+                cursors.ChangeCursor("Point", 0);
                 if (selectedImg != null)
                     selectedImg.enabled = false;
                 if (selectedText != null)
@@ -78,8 +83,9 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             isOver = false;
             if (selectedText != null)
                 selectedText.fontStyle = FontStyles.Normal;
-            if (pointers != null)
-                pointers.ChangeCursor(1);
+            if (cursors != null)
+                //pointers.ChangeCursor(1);
+                cursors.ChangeCursor("Point", 0);
         }
     }
 
@@ -87,8 +93,9 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         if (selectedImg != null)
             selectedImg.enabled = false;
-        if (pointers != null)
-            pointers.ChangeCursor(1);
+        if (cursors != null)
+            //pointers.ChangeCursor(1);
+            cursors.ChangeCursor("Point", 0);
         StartCoroutine(Unlock());
         FindObjectOfType<AudioCtrl>().Play("MenuClick");
     }

@@ -40,10 +40,10 @@ public class ObjectFade : MonoBehaviour
         }
     }
 
-    public static IEnumerator FadeInUI(Image image)
+    public static IEnumerator FadeInUI(Image image, float f)
     {
         YieldInstruction fadeInstruction = new YieldInstruction();
-        float fadeTime = 1.0f;
+        float fadeTime = f;
 
         float elapsedTime = 0.0f;
         Color c = image.color;
@@ -56,10 +56,10 @@ public class ObjectFade : MonoBehaviour
         }
     }
 
-    public static IEnumerator FadeOutUI(Image image)
+    public static IEnumerator FadeOutUI(Image image, float f)
     {
         YieldInstruction fadeInstruction = new YieldInstruction();
-        float fadeTime = 0.5f;
+        float fadeTime = f;
 
         float elapsedTime = 0.0f;
         Color c = image.color;

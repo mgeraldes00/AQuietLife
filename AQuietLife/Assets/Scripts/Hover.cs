@@ -9,6 +9,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     private CameraCtrl cam;
     private GameManager gameMng;
     private IntroCursor introHover;
+    private UIFollowMouse cursors;
     private PointerManager pointers;
 
     public Animator arrow;
@@ -37,6 +38,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             gameMng = null;
             pointers = null;
             introHover = FindObjectOfType<IntroCursor>();
+            cursors = FindObjectOfType<UIFollowMouse>();
         }
         else if (currentLvl == 2)
         {
@@ -55,7 +57,8 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             {
                 arrow.SetTrigger("Clicked");
                 StartCoroutine(UnlockClock());
-                introHover.ChangeCursor(1);
+                //introHover.ChangeCursor(1);
+                cursors.ChangeCursor("Point", 0);
             }
         }
         else if (currentLvl == 2)
@@ -86,11 +89,13 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (currentLvl == 0)
-            introHover.ChangeCursor(2);
+            //introHover.ChangeCursor(2);
+            cursors.ChangeCursor("Point", 1);
         else
             if (pointers != null)
         {
-            pointers.ChangeCursor(2);
+            //pointers.ChangeCursor(2);
+            gameMng.cursors.ChangeCursor("Point", 1);
         }
         if (isArrow == true)
         {
@@ -110,11 +115,13 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     public void OnPointerExit(PointerEventData eventData)
     {
         if (currentLvl == 0)
-            introHover.ChangeCursor(1);
+            //introHover.ChangeCursor(1);
+            cursors.ChangeCursor("Point", 0);
         else
             if (pointers != null)
         {
-            pointers.ChangeCursor(1);
+            //pointers.ChangeCursor(1);
+            gameMng.cursors.ChangeCursor("Point", 0);
         }
         if (isArrow == true)
         {

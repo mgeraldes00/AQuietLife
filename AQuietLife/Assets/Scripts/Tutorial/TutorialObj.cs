@@ -25,13 +25,18 @@ public class TutorialObj : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        switch (stagePhase)
+        if (txt.isOpen != true)
         {
-            case 1:
-                gameMng.cursors.SetBool("Slide", true);
-                break;
+            switch (stagePhase)
+            {
+                case 1:
+                    gameMng.cursors.ChangeCursor("Slide", 1);
+                    break;
+                case 2:
+                    gameMng.cursors.ChangeCursor("Grab", 1);
+                    break;
+            }
         }
-        
     }
 
     private void OnMouseExit()
@@ -39,10 +44,10 @@ public class TutorialObj : MonoBehaviour
         switch (stagePhase)
         {
             case 1:
-                gameMng.cursors.SetBool("Slide", false);
+                gameMng.cursors.ChangeCursor("Slide", 0);
                 break;
             case 2:
-                
+                gameMng.cursors.ChangeCursor("Grab", 0);
                 break;
         }
     }
@@ -63,10 +68,11 @@ public class TutorialObj : MonoBehaviour
                             StartCoroutine
                                 (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
                             StartCoroutine(FindObjectOfType<TextBox>().ShowText(2, 0));
-                            gameMng.cursors.SetBool("Slide", false);
+                            gameMng.cursors.ChangeCursor("Slide", 0);
                             break;
                         case 2:
                             StartCoroutine(tut.PhoneStage());
+                            gameMng.cursors.ChangeCursor("Grab", 0);
                             break;
                         case 5:
                             StartCoroutine
