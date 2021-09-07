@@ -75,10 +75,6 @@ public class TutorialObj : MonoBehaviour
                             gameMng.cursors.ChangeCursor("Grab", 0);
                             tut.stage++;
                             break;
-                        case 5:
-                            StartCoroutine
-                                (ObjectFade.FadeOut(obj[0].GetComponent<SpriteRenderer>(), 0));
-                            break;
                     }
                     break;
             }

@@ -1273,6 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMng: {fileID: 0}
+  tut: {fileID: 0}
   phone: {fileID: 8859889567365632679}
   actualPhone: {fileID: 8859889567884998993}
   rend: {fileID: 0}
@@ -1314,6 +1315,10 @@ MonoBehaviour:
   hasNotif: 0
   isMsg: 0
   isActive: 0
+  isLockedFromTut: 0
+  optionsLocked: 0
+  messagesLocked: 0
+  exitLocked: 0
   currentScreen: 0
 --- !u!95 &8859889567365632679
 Animator:

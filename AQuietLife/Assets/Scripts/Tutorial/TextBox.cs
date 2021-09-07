@@ -33,6 +33,10 @@ public class TextBox : MonoBehaviour
                             StartCoroutine(UpdateText(2));
                             StartCoroutine(ButtonSwap());
                             break;
+                        case 2:
+                            StartCoroutine(UpdateText(4));
+                            StartCoroutine(ButtonSwap());
+                            break;
                     }
                     break;
                 case 1:
@@ -42,6 +46,13 @@ public class TextBox : MonoBehaviour
                     StartCoroutine(tut.QuickLock());
                     StartCoroutine(HideText());
                     isOpen = false;
+                    if (tut.stage >= 1 && tut.stage <= 4)
+                        tut.stage++;
+                    if (tut.stage == 4)
+                    {
+                        tut.phoneMng.exitLocked = false;
+                        tut.phoneMng.messagesLocked = true;
+                    }
                     break;
             }
         }

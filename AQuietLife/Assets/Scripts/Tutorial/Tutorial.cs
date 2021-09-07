@@ -56,19 +56,29 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public void ButtonBehaviour()
+    {
+        StartCoroutine
+            (ObjectFade.FadeOut(phone[2].GetComponent<SpriteRenderer>(), 0));
+    }
+
     public IEnumerator PhoneBehaviour(int i)
     {
+        yield return new WaitForSecondsRealtime(0.5f);
         switch (i)
         {
             case 0:
-                yield return new WaitForSecondsRealtime(0.5f);
                 StartCoroutine(txt.ShowText(1, 1));
                 break;
             case 1:
-
+                StartCoroutine(txt.ShowText(1, 3));
+                break;
+            case 2:
+                StartCoroutine(txt.ShowText(2, 5));
                 break;
         }
     }
+
 
     IEnumerator OpenCover()
     {
