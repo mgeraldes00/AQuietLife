@@ -67,12 +67,13 @@ public class TutorialObj : MonoBehaviour
                             obj[0].SetActive(true);
                             StartCoroutine
                                 (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
-                            StartCoroutine(FindObjectOfType<TextBox>().ShowText(2, 0));
+                            StartCoroutine(txt.ShowText(2, 0));
                             gameMng.cursors.ChangeCursor("Slide", 0);
                             break;
                         case 2:
-                            StartCoroutine(tut.PhoneStage());
+                            StartCoroutine(tut.StartPhoneStage());
                             gameMng.cursors.ChangeCursor("Grab", 0);
+                            tut.stage++;
                             break;
                         case 5:
                             StartCoroutine

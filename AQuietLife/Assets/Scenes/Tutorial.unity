@@ -480,6 +480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Phone
       objectReference: {fileID: 0}
+    - target: {fileID: 8859889567365632677, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: gameMng
       value: 
@@ -508,6 +512,14 @@ PrefabInstance:
       propertyPath: arrows.Array.data[2]
       value: 
       objectReference: {fileID: 664755299}
+    - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+      propertyPath: tut
+      value: 
+      objectReference: {fileID: 2006920397}
+    - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+      propertyPath: exitLocked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8859889567884998995, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -837,7 +849,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &192024089
 RectTransform:
@@ -1090,7 +1102,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 964945da6b3e0154baff17761b257ed9, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1172,7 +1184,9 @@ MonoBehaviour:
   text:
   - The cursor will change according to the action to perform. Try to pick up the
     phone now..
-  - ahhgkg.
+  - Through the phone you can access both the game's options and the messaging app,
+    with important context for your tasks..
+  - Try out the messaging app now..
 --- !u!1 &342578635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,7 +2745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7905284234457440509, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -29.99997
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 7905284234457440509, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -7141,6 +7155,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1685678609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+  m_PrefabInstance: {fileID: 61009180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7583245e2a1e1a5439975325f511f2b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725425414
 GameObject:
   m_ObjectHideFlags: 0
@@ -8103,7 +8128,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e34861cc758aa7a42a401de2f8663048, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -8777,7 +8802,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e34861cc758aa7a42a401de2f8663048, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -9005,6 +9030,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1615249857}
+  txt: {fileID: 300452239}
+  phoneMng: {fileID: 1685678609}
   startCover: {fileID: 1601089846}
   phone:
   - {fileID: 110186423}
@@ -9121,6 +9148,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4078909987894243394, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078909987894243395, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078909987894243395, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: offset.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4078909987894243421, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}

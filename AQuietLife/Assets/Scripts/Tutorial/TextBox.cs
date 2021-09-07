@@ -27,7 +27,13 @@ public class TextBox : MonoBehaviour
             switch (i)
             {
                 case 0:
-
+                    switch (tut.stage)
+                    {
+                        case 1:
+                            StartCoroutine(UpdateText(2));
+                            StartCoroutine(ButtonSwap());
+                            break;
+                    }
                     break;
                 case 1:
                     StartCoroutine
@@ -43,6 +49,8 @@ public class TextBox : MonoBehaviour
 
     public IEnumerator ShowText(int i, int h)
     {
+        tut.phoneMng.isLockedFromTut = true;
+
         txtAnim.SetBool("Active", true);
         StartCoroutine(ShowButton(i));
         StartCoroutine
@@ -50,7 +58,30 @@ public class TextBox : MonoBehaviour
 
         txt = tutTxt.text[h];
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
+        txtObj.GetComponent<TextMeshProUGUI>().raycastTarget = true;
+        for (int c = 0; c < txt.Length; c++)
+        {
+            currentTxt = txt.Substring(0, c);
+            txtObj.GetComponent<TextMeshProUGUI>().text = currentTxt;
+            yield return new WaitForSecondsRealtime(delay);
+        }
+    }
+
+    IEnumerator UpdateText(int h)
+    {
+        txtAnim.SetTrigger("UpdateText");
+        txt = "";
+        currentTxt = "";
+        yield return new WaitForSecondsRealtime(0.9f);
+        StartCoroutine(tut.QuickLock());
+        yield return new WaitForSecondsRealtime(0.1f);
+        txtObj.GetComponent<TextMeshProUGUI>().text = currentTxt;
+
+        yield return new WaitForSecondsRealtime(0.1f);
+        txt = tutTxt.text[h];
+
+        yield return new WaitForSecondsRealtime(0.1f);
         txtObj.GetComponent<TextMeshProUGUI>().raycastTarget = true;
         for (int c = 0; c < txt.Length; c++)
         {
@@ -67,14 +98,22 @@ public class TextBox : MonoBehaviour
         currentTxt = "";
         yield return new WaitForSecondsRealtime(1.0f);
         txtObj.GetComponent<TextMeshProUGUI>().text = currentTxt;
+        tut.phoneMng.isLockedFromTut = false;
     }
 
     IEnumerator ShowButton(int i)
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         if (i == 1)
             button[0].GetComponent<Animator>().SetTrigger("Show");
         else if (i == 2)
             button[1].GetComponent<Animator>().SetTrigger("Show");
+    }
+
+    IEnumerator ButtonSwap()
+    {
+        button[0].GetComponent<Animator>().SetTrigger("Hide");
+        yield return new WaitForSecondsRealtime(1.0f);
+        button[1].GetComponent<Animator>().SetTrigger("Show");
     }
 }

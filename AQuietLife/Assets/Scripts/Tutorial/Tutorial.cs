@@ -6,6 +6,8 @@ using TMPro;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private CameraCtrl cam;
+    [SerializeField] private TextBox txt;
+    public Phone phoneMng;
 
     [SerializeField] private GameObject startCover;
 
@@ -35,6 +37,10 @@ public class Tutorial : MonoBehaviour
         uiPhone.SetBool("Enlarge", true);
         inventory.SetBool("Visible", false);
 
+        phoneMng.isLockedFromTut = true;
+        phoneMng.optionsLocked = true;
+        phoneMng.exitLocked = true;
+
         for (int i = 0; i < cam.directionalArrows.Length; i++)
             cam.directionalArrows[i].SetTrigger("Hide");
 
@@ -47,6 +53,20 @@ public class Tutorial : MonoBehaviour
 
             StartCoroutine(BlurCtrl.BlurScreen(blur));
             StartCoroutine(OpenCover());
+        }
+    }
+
+    public IEnumerator PhoneBehaviour(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                yield return new WaitForSecondsRealtime(0.5f);
+                StartCoroutine(txt.ShowText(1, 1));
+                break;
+            case 1:
+
+                break;
         }
     }
 
@@ -77,7 +97,7 @@ public class Tutorial : MonoBehaviour
         Destroy(startCover);
     }
 
-    public IEnumerator PhoneStage()
+    public IEnumerator StartPhoneStage()
     {
         yield return new WaitForEndOfFrame();
         StartCoroutine
@@ -88,7 +108,7 @@ public class Tutorial : MonoBehaviour
     public IEnumerator QuickLock()
     {
         isLocked = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         isLocked = false;
     }
 }

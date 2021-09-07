@@ -8,6 +8,7 @@ public class TutorialTxt : MonoBehaviour
     {
         "The cursor will change according to the action to perform. " +
             "Try to pick up the phone now..",
-        "ahhgkg."
+        "Through the phone you can access both the game's options and the messaging app, with important context for your tasks..",
+        "Try out the messaging app now.."
     };
 }
