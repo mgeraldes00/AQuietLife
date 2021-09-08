@@ -6,7 +6,7 @@ using TMPro;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private CameraCtrl cam;
-    [SerializeField] private TextBox txt;
+    public TextBox txt;
     public Phone phoneMng;
 
     [SerializeField] private GameObject startCover;
@@ -14,6 +14,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private GameObject[] phone;
 
     public GameObject blur;
+    public GameObject returnButton;
+    public GameObject[] directionalButton;
 
     [SerializeField] private Animator uiPhone;
     [SerializeField] private Animator inventory;
@@ -29,6 +31,7 @@ public class Tutorial : MonoBehaviour
 
     public bool isOver;
     public bool isLocked;
+    public bool isLockedArrow;
 
     public int stage;
 
@@ -58,8 +61,21 @@ public class Tutorial : MonoBehaviour
 
     public void ButtonBehaviour()
     {
-        StartCoroutine
-            (ObjectFade.FadeOut(phone[2].GetComponent<SpriteRenderer>(), 0));
+        if (isLocked != true && txt.isOpen != true)
+        {
+            switch (stage)
+            {
+                case 5:
+                    StartCoroutine
+                        (ObjectFade.FadeOut(phone[2].GetComponent<SpriteRenderer>(), 0));
+                    StartCoroutine(ArrowBehaviour(0));
+                    break;
+                case 6:
+                    StartCoroutine(ArrowBehaviour(1));
+                    break;
+            }
+            
+        }
     }
 
     public IEnumerator PhoneBehaviour(int i)
@@ -75,6 +91,28 @@ public class Tutorial : MonoBehaviour
                 break;
             case 2:
                 StartCoroutine(txt.ShowText(2, 5));
+                break;
+            case 3:
+                yield return new WaitForSeconds(1.0f);
+                StartCoroutine(txt.ShowText(2, 6));
+                break;
+        }
+    }
+
+    IEnumerator ArrowBehaviour(int i)
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(txt.ShowText(1, 7));
+                isLockedArrow = true;
+                break;
+            case 1:
+                directionalButton[0].GetComponent<Animator>().SetTrigger("Clicked");
+                yield return new WaitForSeconds(0.5f);
+                directionalButton[0].SetActive(false);
                 break;
         }
     }
@@ -120,5 +158,7 @@ public class Tutorial : MonoBehaviour
         isLocked = true;
         yield return new WaitForSecondsRealtime(1.0f);
         isLocked = false;
+        if (isLockedArrow == true)
+            isLockedArrow = false;
     }
 }

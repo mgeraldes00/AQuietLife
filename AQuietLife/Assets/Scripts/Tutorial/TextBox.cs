@@ -37,6 +37,10 @@ public class TextBox : MonoBehaviour
                             StartCoroutine(UpdateText(4));
                             StartCoroutine(ButtonSwap());
                             break;
+                        case 5:
+                            StartCoroutine(UpdateText(8));
+                            StartCoroutine(ButtonSwap());
+                            break;
                     }
                     break;
                 case 1:
@@ -46,12 +50,20 @@ public class TextBox : MonoBehaviour
                     StartCoroutine(tut.QuickLock());
                     StartCoroutine(HideText());
                     isOpen = false;
-                    if (tut.stage >= 1 && tut.stage <= 4)
+                    if (tut.stage >= 1)
                         tut.stage++;
-                    if (tut.stage == 4)
+                    switch (tut.stage)
                     {
-                        tut.phoneMng.exitLocked = false;
-                        tut.phoneMng.messagesLocked = true;
+                        case 4:
+                            tut.phoneMng.exitLocked = false;
+                            tut.phoneMng.messagesLocked = true;
+                            break;
+                        case 5:
+                            tut.returnButton.GetComponent<Button>().enabled = true;
+                            break;
+                        case 6:
+                            tut.directionalButton[1].GetComponent<Animator>().SetTrigger("Hide");
+                            break;
                     }
                     break;
             }
@@ -60,6 +72,8 @@ public class TextBox : MonoBehaviour
 
     public IEnumerator ShowText(int i, int h)
     {
+        isOpen = true;
+
         tut.phoneMng.isLockedFromTut = true;
 
         txtAnim.SetBool("Active", true);
@@ -110,6 +124,8 @@ public class TextBox : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         txtObj.GetComponent<TextMeshProUGUI>().text = currentTxt;
         tut.phoneMng.isLockedFromTut = false;
+
+        isOpen = false;
     }
 
     IEnumerator ShowButton(int i)

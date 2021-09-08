@@ -1192,6 +1192,11 @@ MonoBehaviour:
   - Unread messages will have a red dot above them. Look through these texts now..
   - To go back to the previous screen and exit the phone, click the arrows on the
     bottom of it..
+  - When an arrow is present on the bottom left corner of the screen, press it to
+    step back..
+  - When you're as further back as possible, the arrows on each side of the screen
+    are used to navigate through the walls of the room..
+  - Right now, you should go to your left..
 --- !u!1 &342578635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,7 +2312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347984, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -4584,7 +4589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4268729910187247825, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: currentLvl
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5428824033131264741, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: arrow
@@ -4596,7 +4601,7 @@ PrefabInstance:
       objectReference: {fileID: 1120734380}
     - target: {fileID: 5428824033131264741, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: currentLvl
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5428824033131264741, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: isDirectional
@@ -4614,6 +4619,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ButtonBehaviour
       objectReference: {fileID: 0}
+    - target: {fileID: 6435017492031017414, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4621,6 +4634,34 @@ PrefabInstance:
     - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ButtonBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Tutorial, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2006920397}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ButtonBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435017492956124622, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6435017493723806300, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9043,6 +9084,10 @@ MonoBehaviour:
   - {fileID: 857801352}
   - {fileID: 293940878}
   blur: {fileID: 59477826}
+  returnButton: {fileID: 664755299}
+  directionalButton:
+  - {fileID: 1120734381}
+  - {fileID: 1120734379}
   uiPhone: {fileID: 816782907}
   inventory: {fileID: 2131299044}
   startTextObj:
@@ -9053,6 +9098,7 @@ MonoBehaviour:
   - ....
   isOver: 0
   isLocked: 0
+  isLockedArrow: 0
   stage: 0
 --- !u!1 &2070928926
 GameObject:

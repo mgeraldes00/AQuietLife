@@ -37,84 +37,91 @@ public class CameraCtrl : MonoBehaviour
 
     public void ButtonBehaviour(int i)
     {
-        if (gameMng.isLocked == false)
+        Tutorial tut = FindObjectOfType<Tutorial>();
+        if (tut != null)
         {
-            switch (i)
+            if (tut.txt.isOpen != true)
             {
-                case 0:
-                    if (currentPanel == -1)
+                if (gameMng.isLocked == false)
+                {
+                    switch (i)
                     {
-                        cameraAnim.SetTrigger("Return");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("Return2");
+                        case 0:
+                            if (currentPanel == -1)
+                            {
+                                cameraAnim.SetTrigger("Return");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("Return2");
+                            }
+                            if (currentPanel == 0)
+                            {
+                                cameraAnim.SetTrigger("Return");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("Center2");
+                            }
+                            if (currentPanel == 1)
+                            {
+                                cameraAnim.SetTrigger("Return");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("RotateLeft");
+                            }
+                            if (currentPanel == 2)
+                            {
+                                cameraAnim.SetTrigger("Return");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("Return");
+                            }
+                            currentPanel--;
+                            gameMng.isLocked = true;
+                            fadeAnim.SetTrigger("TransitionLeft");
+                            FindObjectOfType<AudioCtrl>().Play("PageTurn");
+                            StartCoroutine(EndTransition());
+                            break;
+                        case 1:
+                            if (currentPanel == -1)
+                            {
+                                cameraAnim.SetTrigger("RotateRight");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("Return3");
+                            }
+                            if (currentPanel == 0)
+                            {
+                                cameraAnim.SetTrigger("RotateRight");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("Return");
+                            }
+                            if (currentPanel == 1)
+                            {
+                                cameraAnim.SetTrigger("RotateRight");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("RotateLeft");
+                            }
+                            if (currentPanel == 2)
+                            {
+                                cameraAnim.SetTrigger("RotateRight");
+                                if (microwave != null && microwave.working == true)
+                                    microwaveAnim.SetTrigger("Center");
+                            }
+                            currentPanel++;
+                            gameMng.isLocked = true;
+                            fadeAnim.SetTrigger("TransitionRight");
+                            FindObjectOfType<AudioCtrl>().Play("PageTurnRight");
+                            StartCoroutine(EndTransition());
+                            break;
+                        case 2:
+                            cameraAnim.SetTrigger("Alt");
+                            upDownArrows[0].SetTrigger("Hide");
+                            upDownArrows[1].SetTrigger("Show");
+                            fridge.lookAtFridge = false;
+                            break;
+                        case 3:
+                            cameraAnim.SetTrigger("Alt");
+                            upDownArrows[0].SetTrigger("Show");
+                            upDownArrows[1].SetTrigger("Hide");
+                            fridge.lookAtFridge = true;
+                            break;
                     }
-                    if (currentPanel == 0)
-                    {
-                        cameraAnim.SetTrigger("Return");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("Center2");
-                    }
-                    if (currentPanel == 1)
-                    {
-                        cameraAnim.SetTrigger("Return");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("RotateLeft");
-                    }
-                    if (currentPanel == 2)
-                    {
-                        cameraAnim.SetTrigger("Return");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("Return");
-                    }
-                    currentPanel--;
-                    gameMng.isLocked = true;
-                    fadeAnim.SetTrigger("TransitionLeft");
-                    FindObjectOfType<AudioCtrl>().Play("PageTurn");
-                    StartCoroutine(EndTransition());
-                    break;
-                case 1:
-                    if (currentPanel == -1)
-                    {
-                        cameraAnim.SetTrigger("RotateRight");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("Return3");
-                    }
-                    if (currentPanel == 0)
-                    {
-                        cameraAnim.SetTrigger("RotateRight");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("Return");
-                    }
-                    if (currentPanel == 1)
-                    {
-                        cameraAnim.SetTrigger("RotateRight");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("RotateLeft");
-                    }
-                    if (currentPanel == 2)
-                    {
-                        cameraAnim.SetTrigger("RotateRight");
-                        if (microwave != null && microwave.working == true)
-                            microwaveAnim.SetTrigger("Center");
-                    }
-                    currentPanel++;
-                    gameMng.isLocked = true;
-                    fadeAnim.SetTrigger("TransitionRight");
-                    FindObjectOfType<AudioCtrl>().Play("PageTurnRight");
-                    StartCoroutine(EndTransition());
-                    break;
-                case 2:
-                    cameraAnim.SetTrigger("Alt");
-                    upDownArrows[0].SetTrigger("Hide");
-                    upDownArrows[1].SetTrigger("Show");
-                    fridge.lookAtFridge = false;
-                    break;
-                case 3:
-                    cameraAnim.SetTrigger("Alt");
-                    upDownArrows[0].SetTrigger("Show");
-                    upDownArrows[1].SetTrigger("Hide");
-                    fridge.lookAtFridge = true;
-                    break;
+                }
             }
         }
     }
