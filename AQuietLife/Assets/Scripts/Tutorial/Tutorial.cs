@@ -17,7 +17,7 @@ public class Tutorial : MonoBehaviour
     public GameObject returnButton;
     public GameObject[] directionalButton;
 
-    [SerializeField] private Animator uiPhone;
+    public GameObject uiPhone;
     [SerializeField] private Animator inventory;
 
     [SerializeField] private GameObject[] startTextObj;
@@ -37,7 +37,7 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        uiPhone.SetBool("Enlarge", true);
+        uiPhone.GetComponent<Animator>().SetBool("Enlarge", true);
         inventory.SetBool("Visible", false);
 
         phoneMng.isLockedFromTut = true;

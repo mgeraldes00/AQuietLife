@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialObj : MonoBehaviour
 {
@@ -73,6 +74,7 @@ public class TutorialObj : MonoBehaviour
                         case 2:
                             StartCoroutine(tut.StartPhoneStage());
                             gameMng.cursors.ChangeCursor("Grab", 0);
+                            tut.uiPhone.GetComponent<Image>().enabled = true;
                             tut.stage++;
                             break;
                     }
