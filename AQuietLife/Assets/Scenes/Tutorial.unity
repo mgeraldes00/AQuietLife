@@ -275,7 +275,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 91ebd5361b7cd7b4f99802345c458b91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -296,7 +296,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 33182715}
-  - component: {fileID: 33182716}
   - component: {fileID: 33182717}
   m_Layer: 0
   m_Name: BedLeft_Wall
@@ -321,29 +320,6 @@ Transform:
   m_Father: {fileID: 2006920393}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &33182716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33182714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28a3c0935ab64744b62b19eefe1cc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  gameMng: {fileID: 977577487}
-  returnMng: {fileID: 0}
-  thought: {fileID: 0}
-  tasks: {fileID: 0}
-  area: {fileID: 33182717}
-  objects:
-  - {fileID: 1774915779}
-  zoomTrigger: ZoomBackpack
-  zoomTrigger2: 
-  objName: Backpack
 --- !u!61 &33182717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -351,7 +327,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33182714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -482,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8859889567365632677, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: gameMng
@@ -1192,11 +1168,17 @@ MonoBehaviour:
   - Unread messages will have a red dot above them. Look through these texts now..
   - To go back to the previous screen and exit the phone, click the arrows on the
     bottom of it..
-  - When an arrow is present on the bottom left corner of the screen, press it to
-    step back..
-  - When you're as further back as possible, the arrows on each side of the screen
-    are used to navigate through the walls of the room..
+  - When an arrow is present on the bottom left corner of the screen, press it move
+    back a layer..
+  - When you're at the last layer, the arrows on each side of the screen are used
+    to navigate through the walls of the room..
   - Right now, you should go to your left..
+  - When the cursor depicts a magnifying glass, you can inspect the area you're pointing
+    at..
+  - This can be done at multiple layers. Right now, you should try to move closer
+    to the backpack sitting on the chair..
+  - To do this, try to first click on the desk's general zone, and then on the backpack's
+    area..
 --- !u!1 &342578635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,8 +1689,6 @@ GameObject:
   m_Component:
   - component: {fileID: 429171228}
   - component: {fileID: 429171230}
-  - component: {fileID: 429171229}
-  - component: {fileID: 429171231}
   m_Layer: 0
   m_Name: MainDoor
   m_TagString: Untagged
@@ -1731,28 +1711,6 @@ Transform:
   m_Father: {fileID: 955597006}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &429171229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429171227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28a3c0935ab64744b62b19eefe1cc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  gameMng: {fileID: 977577487}
-  returnMng: {fileID: 0}
-  thought: {fileID: 0}
-  tasks: {fileID: 0}
-  area: {fileID: 429171230}
-  objects: []
-  zoomTrigger: ZoomDoor
-  zoomTrigger2: 
-  objName: Door
 --- !u!61 &429171230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1760,7 +1718,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429171227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1779,25 +1737,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.43, y: 8.1}
   m_EdgeRadius: 0
---- !u!114 &429171231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429171227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5deb2f39c6ff4a14b962b7e1ac9d3234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectVar:
-  - {fileID: 1307855768}
-  doorType: 
-  isDoor: 1
-  isLocked: 0
-  isTrapped: 0
-  useState: -1
 --- !u!1 &459296180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,7 +2065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &654861160
 Transform:
   m_ObjectHideFlags: 0
@@ -2177,7 +2116,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661231728}
-  - component: {fileID: 661231729}
   m_Layer: 0
   m_Name: Pile
   m_TagString: Untagged
@@ -2200,21 +2138,6 @@ Transform:
   m_Father: {fileID: 822513986}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &661231729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661231727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d848c7bd15bd8bd49b4008bc7bb5b836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  glove: {fileID: 1292763820}
-  isRemoved: 0
 --- !u!1001 &664755297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2893,7 +2816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 799144979}
   - component: {fileID: 799144980}
-  - component: {fileID: 799144981}
   m_Layer: 0
   m_Name: Left_Shirts (1)
   m_TagString: Untagged
@@ -2945,24 +2867,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.3, y: 4}
   m_EdgeRadius: 0
---- !u!114 &799144981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799144978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f3eeb8b60940994495048cba2dfb900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentArea: Wardrobe
-  objsToSpawn:
-  - {fileID: 1682381575}
-  - {fileID: 720866334}
-  - {fileID: 1821250535}
-  - {fileID: 826917376}
 --- !u!114 &801549599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7905284234457440505, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
@@ -2983,7 +2887,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 822513986}
-  - component: {fileID: 822513987}
   - component: {fileID: 822513988}
   m_Layer: 0
   m_Name: Clothes
@@ -3007,30 +2910,6 @@ Transform:
   m_Father: {fileID: 1224425470}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 83.248}
---- !u!114 &822513987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822513985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28a3c0935ab64744b62b19eefe1cc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  gameMng: {fileID: 977577487}
-  returnMng: {fileID: 0}
-  thought: {fileID: 0}
-  tasks: {fileID: 0}
-  area: {fileID: 822513988}
-  objects:
-  - {fileID: 1024703630}
-  - {fileID: 1292763820}
-  zoomTrigger: ZoomClothePile1
-  zoomTrigger2: 
-  objName: ClothePile
 --- !u!61 &822513988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3038,7 +2917,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822513985}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3337,6 +3216,7 @@ Transform:
   - {fileID: 1650809463}
   - {fileID: 1788800533}
   - {fileID: 793923679}
+  - {fileID: 1604495291}
   m_Father: {fileID: 2006920393}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3347,7 +3227,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867999121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3375,23 +3255,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 867999121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28a3c0935ab64744b62b19eefe1cc66, type: 3}
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  gameMng: {fileID: 977577487}
-  returnMng: {fileID: 0}
-  thought: {fileID: 0}
-  tasks: {fileID: 0}
-  area: {fileID: 867999123}
-  objects:
-  - {fileID: 1788800535}
-  - {fileID: 1944421893}
-  - {fileID: 1535102824}
-  - {fileID: 1650809465}
-  zoomTrigger: ZoomDesk
-  zoomTrigger2: ZoomChair
-  objName: 
+  obj: []
+  camTrigger: ZoomDesk
+  stagePhase: 0
 --- !u!1 &881673873
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,7 +3510,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 955597006}
-  - component: {fileID: 955597008}
   - component: {fileID: 955597007}
   m_Layer: 0
   m_Name: TV_Wall
@@ -3673,7 +3541,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955597005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3692,30 +3560,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.07, y: 7.45}
   m_EdgeRadius: 0
---- !u!114 &955597008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955597005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28a3c0935ab64744b62b19eefe1cc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  gameMng: {fileID: 977577487}
-  returnMng: {fileID: 0}
-  thought: {fileID: 0}
-  tasks: {fileID: 0}
-  area: {fileID: 955597007}
-  objects:
-  - {fileID: 1168653068}
-  - {fileID: 999282405}
-  zoomTrigger: ZoomTV
-  zoomTrigger2: 
-  objName: TV
 --- !u!1 &977577486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3892,7 +3736,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 999282403}
-  - component: {fileID: 999282404}
   - component: {fileID: 999282405}
   m_Layer: 0
   m_Name: Notes
@@ -3920,30 +3763,6 @@ Transform:
   m_Father: {fileID: 1224425470}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &999282404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999282402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae997e66019bfc74ca2b053f3b0e949e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  select: {fileID: 0}
-  itemButton: {fileID: 3210881669624165373, guid: 44a0b6d2c24fbbc49b7959c9c25773b6, type: 3}
-  currentObj: 
-  pickObjs:
-  - {fileID: 1254569647}
-  - {fileID: 1147256677}
-  - {fileID: 1521055205}
-  - {fileID: 1740853710}
-  - {fileID: 1995952364}
-  isPicked: 0
-  isTrapped: 0
-  isLocked: 0
 --- !u!61 &999282405
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4061,7 +3880,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1024703628}
-  - component: {fileID: 1024703629}
   - component: {fileID: 1024703630}
   m_Layer: 0
   m_Name: ShirtPile
@@ -4087,28 +3905,6 @@ Transform:
   m_Father: {fileID: 661231728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1024703629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024703627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae997e66019bfc74ca2b053f3b0e949e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  select: {fileID: 0}
-  itemButton: {fileID: 3210881669624165373, guid: 924851606f6bc7b4c9affb63a54f40e3, type: 3}
-  currentObj: 
-  pickObjs:
-  - {fileID: 459296180}
-  - {fileID: 345641257}
-  - {fileID: 1640893849}
-  isPicked: 0
-  isTrapped: 0
-  isLocked: 0
 --- !u!61 &1024703630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4865,7 +4661,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1168653066}
   - component: {fileID: 1168653068}
-  - component: {fileID: 1168653067}
   m_Layer: 0
   m_Name: Games (1)
   m_TagString: Untagged
@@ -4889,22 +4684,6 @@ Transform:
   m_Father: {fileID: 1224425470}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1168653067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1168653065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f3eeb8b60940994495048cba2dfb900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentArea: TV
-  objsToSpawn:
-  - {fileID: 1628319079}
-  - {fileID: 1577472583}
 --- !u!61 &1168653068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5550,7 +5329,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1292763818}
   - component: {fileID: 1292763819}
-  - component: {fileID: 1292763821}
   - component: {fileID: 1292763820}
   m_Layer: 0
   m_Name: CottonProp#1
@@ -5650,26 +5428,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.52, y: 6.12}
   m_EdgeRadius: 0
---- !u!114 &1292763821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292763817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae997e66019bfc74ca2b053f3b0e949e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  select: {fileID: 0}
-  itemButton: {fileID: 3210881669624165373, guid: f640c71d058be0643bbb02a84889bee1, type: 3}
-  currentObj: Glove
-  pickObjs:
-  - {fileID: 1292763817}
-  isPicked: 0
-  isTrapped: 0
-  isLocked: 0
 --- !u!1 &1307855768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5843,7 +5601,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1334023749}
-  - component: {fileID: 1334023751}
   - component: {fileID: 1334023750}
   m_Layer: 0
   m_Name: Wardrobe_Wall
@@ -5874,7 +5631,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334023748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5893,31 +5650,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.32, y: 9.76}
   m_EdgeRadius: 0
---- !u!114 &1334023751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334023748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28a3c0935ab64744b62b19eefe1cc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {fileID: 1615249857}
-  gameMng: {fileID: 977577487}
-  returnMng: {fileID: 0}
-  thought: {fileID: 0}
-  tasks: {fileID: 0}
-  area: {fileID: 1334023750}
-  objects:
-  - {fileID: 1791257556}
-  - {fileID: 1627144507}
-  - {fileID: 799144980}
-  zoomTrigger: ZoomWardrobe
-  zoomTrigger2: 
-  objName: 
 --- !u!1 &1360381340
 GameObject:
   m_ObjectHideFlags: 0
@@ -6337,7 +6069,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535102823}
-  - component: {fileID: 1535102825}
   - component: {fileID: 1535102824}
   m_Layer: 0
   m_Name: Games
@@ -6388,27 +6119,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.65, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &1535102825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535102822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae997e66019bfc74ca2b053f3b0e949e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  select: {fileID: 0}
-  itemButton: {fileID: 3210881669624165373, guid: 5566016c5a56aee4cb3c6e02960752da, type: 3}
-  currentObj: 
-  pickObjs:
-  - {fileID: 1962157088}
-  - {fileID: 276163842}
-  isPicked: 0
-  isTrapped: 1
-  isLocked: 0
 --- !u!1 &1577472583
 GameObject:
   m_ObjectHideFlags: 0
@@ -6496,6 +6206,79 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1402397824323242867, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
   m_PrefabInstance: {fileID: 1200520141}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1604495290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604495291}
+  - component: {fileID: 1604495293}
+  - component: {fileID: 1604495292}
+  m_Layer: 0
+  m_Name: Chair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604495291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604495290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 867999122}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1604495292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604495290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: []
+  camTrigger: ZoomChair
+  stagePhase: 0
+--- !u!61 &1604495293
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604495290}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 5.86, y: -1.41}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.44, y: 3.94}
+  m_EdgeRadius: 0
 --- !u!1 &1608390690
 GameObject:
   m_ObjectHideFlags: 0
@@ -6599,7 +6382,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1627144505}
   - component: {fileID: 1627144507}
-  - component: {fileID: 1627144506}
   m_Layer: 0
   m_Name: doorRight
   m_TagString: Untagged
@@ -6623,26 +6405,6 @@ Transform:
   m_Father: {fileID: 1627617607}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1627144506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627144504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5deb2f39c6ff4a14b962b7e1ac9d3234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectVar:
-  - {fileID: 1914069039}
-  - {fileID: 1725425414}
-  doorType: WardrobeRightDoor
-  isDoor: 1
-  isLocked: 0
-  isTrapped: 0
-  useState: 0
 --- !u!61 &1627144507
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6678,7 +6440,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1627617607}
-  - component: {fileID: 1627617608}
   m_Layer: 0
   m_Name: Wardrobe
   m_TagString: Untagged
@@ -6705,22 +6466,6 @@ Transform:
   m_Father: {fileID: 1334023749}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1627617608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627617606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d807125ab7a784fa455152613a4147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 799144980}
-  rightDoorOpen: 0
-  leftDoorOpen: 0
 --- !u!1 &1628319079
 GameObject:
   m_ObjectHideFlags: 0
@@ -6895,7 +6640,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1650809463}
   - component: {fileID: 1650809464}
-  - component: {fileID: 1650809466}
   - component: {fileID: 1650809465}
   m_Layer: 0
   m_Name: pensil_casae
@@ -6995,26 +6739,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.16, y: 0.99}
   m_EdgeRadius: 0
---- !u!114 &1650809466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650809462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae997e66019bfc74ca2b053f3b0e949e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  select: {fileID: 0}
-  itemButton: {fileID: 3210881669624165373, guid: 0f45ae4eb3fd61c47a2b89e999028b7b, type: 3}
-  currentObj: 
-  pickObjs:
-  - {fileID: 1650809462}
-  isPicked: 0
-  isTrapped: 0
-  isLocked: 0
 --- !u!1 &1675462840
 GameObject:
   m_ObjectHideFlags: 0
@@ -7553,14 +7277,13 @@ GameObject:
   - component: {fileID: 1774915778}
   - component: {fileID: 1774915780}
   - component: {fileID: 1774915779}
-  - component: {fileID: 1774915781}
   m_Layer: 0
   m_Name: backpack_prop (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1774915778
 Transform:
   m_ObjectHideFlags: 0
@@ -7663,20 +7386,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1774915781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774915777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f3eeb8b60940994495048cba2dfb900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentArea: Backpack
-  objsToSpawn: []
 --- !u!1 &1781497142
 GameObject:
   m_ObjectHideFlags: 0
@@ -7888,7 +7597,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1791257555}
   - component: {fileID: 1791257556}
-  - component: {fileID: 1791257557}
   m_Layer: 0
   m_Name: doorLeft
   m_TagString: Untagged
@@ -7938,26 +7646,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36, y: 9.39}
   m_EdgeRadius: 0
---- !u!114 &1791257557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791257554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5deb2f39c6ff4a14b962b7e1ac9d3234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectVar:
-  - {fileID: 672413819}
-  - {fileID: 1608390690}
-  doorType: WardrobeLeftDoor
-  isDoor: 1
-  isLocked: 0
-  isTrapped: 1
-  useState: 1
 --- !u!1 &1803381945
 GameObject:
   m_ObjectHideFlags: 0
@@ -8532,7 +8220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1944421891
 Transform:
   m_ObjectHideFlags: 0
@@ -9083,6 +8771,9 @@ MonoBehaviour:
   - {fileID: 110186423}
   - {fileID: 857801352}
   - {fileID: 293940878}
+  area:
+  - {fileID: 867999123}
+  - {fileID: 1604495293}
   blur: {fileID: 59477826}
   returnButton: {fileID: 664755299}
   directionalButton:
@@ -9157,6 +8848,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 761426846}
     m_Modifications:
+    - target: {fileID: 1923623752584318093, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078909987241549427, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4078909987894243394, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9199,14 +8898,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4078909987894243394, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078909987894243395, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
-      propertyPath: offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078909987894243395, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
-      propertyPath: offset.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4078909987894243421, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}

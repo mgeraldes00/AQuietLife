@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class TutorialObj : MonoBehaviour
 {
     private GameManager gameMng;
+    private CameraCtrl cam;
+
     private Tutorial tut;
     private TextBox txt;
 
@@ -18,6 +20,8 @@ public class TutorialObj : MonoBehaviour
     private void Start()
     {
         gameMng = GameObject.Find("GameManager").GetComponent<GameManager>();
+        cam = GameObject.Find("Main Camera").GetComponent<CameraCtrl>();
+
         tut = GameObject.Find("Scene").GetComponent<Tutorial>();
         txt = GameObject.Find("TextBox").GetComponent<TextBox>();
 
@@ -28,28 +32,42 @@ public class TutorialObj : MonoBehaviour
     {
         if (txt.isOpen != true)
         {
-            switch (stagePhase)
+            if (tut.stage == 0)
             {
-                case 1:
-                    gameMng.cursors.ChangeCursor("Slide", 1);
-                    break;
-                case 2:
-                    gameMng.cursors.ChangeCursor("Grab", 1);
-                    break;
+                switch (stagePhase)
+                {
+                    case 1:
+                        gameMng.cursors.ChangeCursor("Slide", 1);
+                        break;
+                    case 2:
+                        gameMng.cursors.ChangeCursor("Grab", 1);
+                        break;
+                }
+            }
+            else if (tut.stage >= 1)
+            {
+                gameMng.cursors.ChangeCursor("Inspect", 1);
             }
         }
     }
 
     private void OnMouseExit()
     {
-        switch (stagePhase)
+        if (tut.stage == 0)
         {
-            case 1:
-                gameMng.cursors.ChangeCursor("Slide", 0);
-                break;
-            case 2:
-                gameMng.cursors.ChangeCursor("Grab", 0);
-                break;
+            switch (stagePhase)
+            {
+                case 1:
+                    gameMng.cursors.ChangeCursor("Slide", 0);
+                    break;
+                case 2:
+                    gameMng.cursors.ChangeCursor("Grab", 0);
+                    break;
+            }
+        }
+        else if (tut.stage >= 1)
+        {
+            gameMng.cursors.ChangeCursor("Inspect", 0);
         }
     }
 
@@ -74,8 +92,28 @@ public class TutorialObj : MonoBehaviour
                         case 2:
                             StartCoroutine(tut.StartPhoneStage());
                             gameMng.cursors.ChangeCursor("Grab", 0);
+                            GetComponent<Collider2D>().enabled = false;
                             tut.uiPhone.GetComponent<Image>().enabled = true;
                             tut.stage++;
+                            break;
+                    }
+                    break;
+                case 8:
+                    StartCoroutine(NextPhase());
+                    switch (stagePhase)
+                    {
+                        case 1:
+                            cam.ObjectTransition();
+                            cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                            GetComponent<Collider2D>().enabled = false;
+                            GameObject.Find("Chair").GetComponent<Collider2D>().enabled = true;
+                            StartCoroutine(Zoom());
+                            break;
+                        case 2:
+                            cam.ObjectTransition();
+                            cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                            GetComponent<Collider2D>().enabled = false;
+                            StartCoroutine(Zoom());
                             break;
                     }
                     break;
@@ -87,5 +125,11 @@ public class TutorialObj : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         stagePhase++;
+    }
+
+    IEnumerator Zoom()
+    {
+        yield return new WaitForEndOfFrame();
+        cam.currentView++;
     }
 }

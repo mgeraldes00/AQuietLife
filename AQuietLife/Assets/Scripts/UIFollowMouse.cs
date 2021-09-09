@@ -78,6 +78,17 @@ public class UIFollowMouse : MonoBehaviour
                         break;
                 }
                 break;
+            case "Inspect":
+                switch (i)
+                {
+                    case 0:
+                        cursorAnim.SetBool("Inspect", false);
+                        break;
+                    case 1:
+                        cursorAnim.SetBool("Inspect", true);
+                        break;
+                }
+                break;
         }
     }
 }

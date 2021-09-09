@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Tutorial : MonoBehaviour
@@ -12,6 +13,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private GameObject startCover;
 
     [SerializeField] private GameObject[] phone;
+
+    [SerializeField] private Collider2D[] area;
 
     public GameObject blur;
     public GameObject returnButton;
@@ -37,6 +40,7 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
+        uiPhone.GetComponent<Image>().enabled = false;
         uiPhone.GetComponent<Animator>().SetBool("Enlarge", true);
         inventory.SetBool("Visible", false);
 
@@ -95,6 +99,9 @@ public class Tutorial : MonoBehaviour
             case 3:
                 yield return new WaitForSeconds(1.0f);
                 StartCoroutine(txt.ShowText(2, 6));
+                uiPhone.GetComponent<Animator>().SetBool("Enlarge", true);
+                yield return new WaitForSecondsRealtime(1.0f);
+                uiPhone.GetComponent<Image>().enabled = false;
                 break;
         }
     }
@@ -113,6 +120,9 @@ public class Tutorial : MonoBehaviour
                 directionalButton[0].GetComponent<Animator>().SetTrigger("Clicked");
                 yield return new WaitForSeconds(0.5f);
                 directionalButton[0].SetActive(false);
+                yield return new WaitForSeconds(1.0f);
+                StartCoroutine(txt.ShowText(1, 9));
+                area[0].enabled = true;
                 break;
         }
     }
@@ -151,6 +161,7 @@ public class Tutorial : MonoBehaviour
         StartCoroutine
             (ObjectFade.FadeOut(phone[1].GetComponent<SpriteRenderer>(), 0));
         GameObject.Find("Phone").GetComponent<Animator>().SetBool("Enlarge", false);
+        txt.isOpen = false;
     }
 
     public IEnumerator QuickLock()

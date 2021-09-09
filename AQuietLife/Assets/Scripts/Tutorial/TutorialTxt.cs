@@ -11,10 +11,15 @@ public class TutorialTxt : MonoBehaviour
         "Through the phone you can access both the game's options and the messaging app, with important context for your tasks..",
         "Try out the messaging app now..",
         "Here, you can read texts left by your contacts, some more relevant than others..",
-        "Unread messages will have a red dot above them. Look through these texts now..",
+        "Unread messages will have a red dot above them. " +
+            "Look through these texts now..",
         "To go back to the previous screen and exit the phone, click the arrows on the bottom of it..",
-        "When an arrow is present on the bottom left corner of the screen, press it to step back..",
-        "When you're as further back as possible, the arrows on each side of the screen are used to navigate through the walls of the room..",
-        "Right now, you should go to your left.."
+        "When an arrow is present on the bottom left corner of the screen, press it move back a layer..",
+        "When you're at the last layer, the arrows on each side of the screen are used to navigate through the walls of the room..",
+        "Right now, you should go to your left..",
+        "When the cursor depicts a magnifying glass, you can inspect the area you're pointing at..",
+        "This can be done at multiple layers. " +
+            "Right now, you should try to move closer to the backpack sitting on the chair..",
+        "To do this, try to first click on the desk's general zone, and then on the backpack's area.."
     };
 }

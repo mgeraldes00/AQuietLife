@@ -41,6 +41,14 @@ public class TextBox : MonoBehaviour
                             StartCoroutine(UpdateText(8));
                             StartCoroutine(ButtonSwap());
                             break;
+                        case 6:
+                            StartCoroutine(UpdateText(10));
+                            tut.stage++;
+                            break;
+                        case 7:
+                            StartCoroutine(UpdateText(11));
+                            StartCoroutine(ButtonSwap());
+                            break;
                     }
                     break;
                 case 1:
@@ -63,6 +71,9 @@ public class TextBox : MonoBehaviour
                             break;
                         case 6:
                             tut.directionalButton[1].GetComponent<Animator>().SetTrigger("Hide");
+                            break;
+                        case 7:
+
                             break;
                     }
                     break;
