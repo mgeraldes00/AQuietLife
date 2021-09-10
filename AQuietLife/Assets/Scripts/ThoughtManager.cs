@@ -7,6 +7,8 @@ using TMPro;
 
 public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [SerializeField] private Tutorial tut;
+
     public Animator balloon;
 
     private float delay = 0.01f;
@@ -107,9 +109,25 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (balloonActive == true)
+        if (tut == null && balloonActive == true)
         {
             StartCoroutine(InstantDissappear());
         }
+        else if (tut != null)
+            if (tut.txt.isOpen != true && balloonActive == true)
+            {
+                switch (tut.rewindOnce)
+                {
+                    case true:
+                        StartCoroutine(InstantDissappear());
+                        break;
+                    case false:
+                        StartCoroutine(InstantDissappear());
+                        tut.rewindButton.GetComponent<Animator>().SetBool("Visible", true);
+                        tut.rewindOnce = true;
+                        break;
+                }
+                
+            }
     }
 }

@@ -8,9 +8,12 @@ public class Tutorial : MonoBehaviour
 {
     [SerializeField] private CameraCtrl cam;
     public TextBox txt;
+    public ThoughtManager thought;
     public Phone phoneMng;
 
     [SerializeField] private GameObject startCover;
+
+    public GameObject rewindButton;
 
     [SerializeField] private GameObject[] phone;
 
@@ -35,6 +38,7 @@ public class Tutorial : MonoBehaviour
     public bool isOver;
     public bool isLocked;
     public bool isLockedArrow;
+    public bool rewindOnce;
 
     public int stage;
 
@@ -106,6 +110,17 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public IEnumerator RewindBehaviour(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                yield return new WaitForSecondsRealtime(0.5f);
+                StartCoroutine(txt.ShowText(1, 12));
+                break;
+        }
+    }
+
     IEnumerator ArrowBehaviour(int i)
     {
         yield return new WaitForSecondsRealtime(0.5f);
@@ -120,9 +135,10 @@ public class Tutorial : MonoBehaviour
                 directionalButton[0].GetComponent<Animator>().SetTrigger("Clicked");
                 yield return new WaitForSeconds(0.5f);
                 directionalButton[0].SetActive(false);
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(0.5f);
                 StartCoroutine(txt.ShowText(1, 9));
                 area[0].enabled = true;
+                returnButton.SetActive(false);
                 break;
         }
     }

@@ -20,6 +20,9 @@ public class TutorialTxt : MonoBehaviour
         "When the cursor depicts a magnifying glass, you can inspect the area you're pointing at..",
         "This can be done at multiple layers. " +
             "Right now, you should try to move closer to the backpack sitting on the chair..",
-        "To do this, try to first click on the desk's general zone, and then on the backpack's area.."
+        "To do this, try to first click on the desk's general zone, and then on the backpack's area..",
+        "The balloon on the bottom left of the screen reveals a thought from the character you're playing as..",
+        "These will appear at multiple points, giving hints for how to handle different situations..",
+        "In this and some other cases, you need to click the balloon to make it disappear.."
     };
 }

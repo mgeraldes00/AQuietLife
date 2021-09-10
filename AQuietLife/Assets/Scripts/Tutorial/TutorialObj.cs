@@ -24,8 +24,6 @@ public class TutorialObj : MonoBehaviour
 
         tut = GameObject.Find("Scene").GetComponent<Tutorial>();
         txt = GameObject.Find("TextBox").GetComponent<TextBox>();
-
-        stagePhase = 1;
     }
 
     private void OnMouseEnter()
@@ -99,7 +97,6 @@ public class TutorialObj : MonoBehaviour
                     }
                     break;
                 case 8:
-                    StartCoroutine(NextPhase());
                     switch (stagePhase)
                     {
                         case 1:
@@ -114,6 +111,9 @@ public class TutorialObj : MonoBehaviour
                             cam.GetComponent<Animator>().SetTrigger(camTrigger);
                             GetComponent<Collider2D>().enabled = false;
                             StartCoroutine(Zoom());
+                            tut.thought.KeepThought();
+                            tut.thought.text = "Why is this here?.";
+                            StartCoroutine(tut.RewindBehaviour(0));
                             break;
                     }
                     break;
