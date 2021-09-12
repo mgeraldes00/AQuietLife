@@ -7,6 +7,8 @@ using TMPro;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private CameraCtrl cam;
+    [SerializeField] private GameManager gameMng;
+
     public TextBox txt;
     public ThoughtManager thought;
     public Phone phoneMng;
@@ -164,11 +166,15 @@ public class Tutorial : MonoBehaviour
         startCover.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(BlurCtrl.RemoveBlur(blur));
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
+        gameMng.cursors.ChangeCursor("Open", 1);
+        yield return new WaitForSeconds(1.0f);
         //Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         isLocked = false;
         Destroy(startCover);
+        yield return new WaitForEndOfFrame();
+        gameMng.cursors.ChangeCursor("Slide", 1);
     }
 
     public IEnumerator StartPhoneStage()

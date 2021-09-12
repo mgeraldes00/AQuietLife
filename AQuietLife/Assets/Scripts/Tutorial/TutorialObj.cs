@@ -8,16 +8,32 @@ public class TutorialObj : MonoBehaviour
     private GameManager gameMng;
     private CameraCtrl cam;
 
+    [SerializeField] private MediaPlayer audioCtrl;
+    [SerializeField] private AudioSlider audioSlider;
+    [SerializeField] private Eyelids eyelids;
+
     private Tutorial tut;
     private TextBox txt;
 
+    [SerializeField] private GameObject dotAnim;
+    [SerializeField] private GameObject slider;
+
     [SerializeField] private GameObject[] obj;
+
+    [SerializeField] private Animator rewindAnim;
+
+    [SerializeField] private Image waveformObj;
+
+    [SerializeField] private AudioSource rewindAudio;
+    [SerializeField] private AudioSource rewindReverseAudio;
 
     [SerializeField] private string camTrigger;
 
     [SerializeField] private int stagePhase;
 
     [SerializeField] private bool isThinking;
+    [SerializeField] private bool isLocked;
+    [SerializeField] private bool rewindOnce;
 
     private void Start()
     {
@@ -38,7 +54,7 @@ public class TutorialObj : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (txt.isOpen != true)
+        if (txt.isOpen != true && gameMng.isLocked != true)
         {
             if (tut.stage == 0)
             {
@@ -111,7 +127,7 @@ public class TutorialObj : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (tut.isLocked != true && txt.isOpen != true)
+        if (tut.isLocked != true && txt.isOpen != true && gameMng.isLocked != true)
         {
             switch (tut.stage)
             {
@@ -170,6 +186,32 @@ public class TutorialObj : MonoBehaviour
         }
     }
 
+    public void Rewind()
+    {
+        if (isLocked == false && gameMng.isLocked == false)
+        {
+            audioCtrl.rewindAudio = rewindAudio;
+            audioSlider.rewindAudio = rewindAudio;
+            eyelids.timerSmall = rewindAnim;
+            eyelids.dots = dotAnim;
+            StartCoroutine(TimeToOpen());
+        }
+    }
+
+    public void RewindLock()
+    {
+        if (isLocked == false && gameMng.isLocked == false)
+        {
+            isLocked = true;
+            gameMng.isLocked = true;
+        }
+    }
+
+    public void RewindUnlock()
+    {
+        isLocked = false;
+    }
+
     IEnumerator NextPhase()
     {
         yield return new WaitForEndOfFrame();
@@ -188,5 +230,43 @@ public class TutorialObj : MonoBehaviour
         yield return new WaitForEndOfFrame();
         GetComponent<Collider2D>().enabled = true;
 
+    }
+
+    IEnumerator TimeToOpen()
+    {
+        yield return new WaitForSeconds(0.1f);
+        eyelids.Close(1);
+        if (rewindOnce != true)
+        {
+            yield return new WaitForSeconds(2.0f);
+            rewindReverseAudio.Play();
+            yield return new WaitForSeconds(1);
+            eyelids.pointer.SetTrigger("CabinetRewind");
+            eyelids.timer.SetTrigger("Pressed");
+            waveformObj.enabled = true;
+            eyelids.Uncover(1);
+            rewindOnce = true;
+            yield return new WaitForSeconds(2);
+            eyelids.timer.SetTrigger("Pressed");
+            eyelids.pointer.SetBool("Moving", true);
+            eyelids.mediaFunction = true;
+            audioCtrl.pressedButtons[2].SetActive(true);
+            slider.SetActive(true);
+            rewindAudio.Play();
+            eyelids.dots.SetActive(true);
+        }
+        else if (rewindOnce == true)
+        {
+            yield return new WaitForSeconds(2);
+            eyelids.timer.SetTrigger("Pressed");
+            eyelids.pointer.SetBool("Moving", true);
+            eyelids.mediaFunction = true;
+            audioCtrl.pressedButtons[2].SetActive(true);
+            audioCtrl.MoreRewind();
+            slider.SetActive(true);
+            waveformObj.enabled = true;
+            rewindAudio.Play();
+            eyelids.dots.SetActive(true);
+        }
     }
 }

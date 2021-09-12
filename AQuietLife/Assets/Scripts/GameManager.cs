@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         //PlayerPrefs.SetString("StoryMode", "StoryMode");
-        PlayerPrefs.DeleteKey("StoryMode");
+        //PlayerPrefs.DeleteKey("StoryMode");
 
         if (PlayerPrefs.HasKey("StoryMode") && currLvl == 2)
         {
