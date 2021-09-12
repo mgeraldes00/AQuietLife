@@ -21,7 +21,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     //public TextMeshProUGUI txt;
 
-    [SerializeField] private bool isThinking;
+    public bool isThinking;
     [SerializeField] private bool balloonActive;
 
     public void ShowThought()
@@ -32,6 +32,10 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             isThinking = true;
             StartCoroutine(ShowText());
             StartCoroutine(TimeToDisappear());
+        }
+        else
+        {
+            UpdateThought();
         }
     }
 
@@ -47,6 +51,15 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 StartCoroutine(ShowBalloon());
             }
         }
+        else
+        {
+            UpdateThought();
+        }
+    }
+
+    public void UpdateThought()
+    {
+        StartCoroutine(UpdateText());
     }
 
     public void HideThought()
@@ -78,6 +91,26 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         yield return new WaitForSecondsRealtime(0.3f);
         textObj.GetComponent<TextMeshProUGUI>().raycastTarget = true;
+        for (int i = 0; i < text.Length; i++)
+        {
+            currentText = text.Substring(0, i);
+            textObj.GetComponent<TextMeshProUGUI>().text = currentText;
+            yield return new WaitForSecondsRealtime(delay);
+        }
+    }
+
+    IEnumerator UpdateText()
+    {
+        isThinking = false;
+        yield return new WaitForEndOfFrame();
+        isThinking = true;
+        balloon.SetTrigger("Update");
+        text = "";
+        currentText = "";
+        yield return new WaitForSeconds(0.5f);
+        textObj.GetComponent<TextMeshProUGUI>().text = currentText;
+
+        yield return new WaitForSecondsRealtime(0.1f);
         for (int i = 0; i < text.Length; i++)
         {
             currentText = text.Substring(0, i);

@@ -4250,6 +4250,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: tut
       value: 
@@ -8356,6 +8360,7 @@ GameObject:
   - component: {fileID: 1944421891}
   - component: {fileID: 1944421892}
   - component: {fileID: 1944421893}
+  - component: {fileID: 1944421894}
   m_Layer: 0
   m_Name: backpack_prop
   m_TagString: Untagged
@@ -8462,6 +8467,21 @@ PolygonCollider2D:
       - {x: 0.06, y: 0.51}
       - {x: 0.54, y: 1.11}
       - {x: -0.38, y: 1.26}
+--- !u!114 &1944421894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944421890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: []
+  camTrigger: 
+  stagePhase: 3
 --- !u!1 &1962157088
 GameObject:
   m_ObjectHideFlags: 0

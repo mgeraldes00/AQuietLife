@@ -17,6 +17,8 @@ public class TutorialObj : MonoBehaviour
 
     [SerializeField] private int stagePhase;
 
+    [SerializeField] private bool isThinking;
+
     private void Start()
     {
         gameMng = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -24,6 +26,14 @@ public class TutorialObj : MonoBehaviour
 
         tut = GameObject.Find("Scene").GetComponent<Tutorial>();
         txt = GameObject.Find("TextBox").GetComponent<TextBox>();
+    }
+
+    private void Update()
+    {
+        if (isThinking == true && tut.thought.isThinking == false)
+        {
+            isThinking = false;
+        }
     }
 
     private void OnMouseEnter()
@@ -42,9 +52,24 @@ public class TutorialObj : MonoBehaviour
                         break;
                 }
             }
-            else if (tut.stage >= 1)
+            else
             {
-                gameMng.cursors.ChangeCursor("Inspect", 1);
+                switch (tut.stage)
+                {
+                    case 7:
+                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                        break;
+                    case 8:
+                        if (stagePhase == 1 || stagePhase == 2)
+                            gameMng.cursors.ChangeCursor("Inspect", 1);
+                        else
+                            gameMng.cursors.ChangeCursor("Grab", 1);
+                        break;
+                    case 10:
+                        if (tut.thought.isThinking == false || isThinking == true)
+                            gameMng.cursors.ChangeCursor("Grab", 1);
+                        break;
+                }
             }
         }
     }
@@ -63,9 +88,24 @@ public class TutorialObj : MonoBehaviour
                     break;
             }
         }
-        else if (tut.stage >= 1)
+        else
         {
-            gameMng.cursors.ChangeCursor("Inspect", 0);
+            switch (tut.stage)
+            {
+                case 7:
+                    gameMng.cursors.ChangeCursor("Inspect", 0);
+                    break;
+                case 8:
+                    if (stagePhase == 1 || stagePhase == 2)
+                        gameMng.cursors.ChangeCursor("Inspect", 0);
+                    else
+                        gameMng.cursors.ChangeCursor("Grab", 0);
+                    break;
+                case 10:
+                    if (tut.thought.isThinking == false || isThinking == true)
+                        gameMng.cursors.ChangeCursor("Grab", 0);
+                    break;
+            }
         }
     }
 
@@ -110,11 +150,20 @@ public class TutorialObj : MonoBehaviour
                             cam.ObjectTransition();
                             cam.GetComponent<Animator>().SetTrigger(camTrigger);
                             GetComponent<Collider2D>().enabled = false;
+                            GameObject.Find("backpack_prop").GetComponent<Collider2D>().enabled = true;
                             StartCoroutine(Zoom());
                             tut.thought.KeepThought();
                             tut.thought.text = "Why is this here?.";
                             StartCoroutine(tut.RewindBehaviour(0));
                             break;
+                    }
+                    break;
+                case 10:
+                    if (isThinking == false && tut.thought.isThinking == false)
+                    {
+                        tut.thought.KeepThought();
+                        tut.thought.text = "Should see what happened earlier before touching anything..";
+                        isThinking = true;
                     }
                     break;
             }
@@ -131,5 +180,13 @@ public class TutorialObj : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         cam.currentView++;
+    }
+
+    IEnumerator QuickHideCollider()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForEndOfFrame();
+        GetComponent<Collider2D>().enabled = true;
+
     }
 }

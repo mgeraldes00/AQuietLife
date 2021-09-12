@@ -30,31 +30,31 @@ public class TextBox : MonoBehaviour
                     switch (tut.stage)
                     {
                         case 1:
-                            StartCoroutine(UpdateText(2));
+                            StartCoroutine(UpdateText(2, 0));
                             StartCoroutine(ButtonSwap());
                             break;
                         case 2:
-                            StartCoroutine(UpdateText(4));
+                            StartCoroutine(UpdateText(4, 0));
                             StartCoroutine(ButtonSwap());
                             break;
                         case 5:
-                            StartCoroutine(UpdateText(8));
+                            StartCoroutine(UpdateText(8, 0));
                             StartCoroutine(ButtonSwap());
                             break;
                         case 6:
-                            StartCoroutine(UpdateText(10));
+                            StartCoroutine(UpdateText(10, 1));
                             tut.stage++;
                             break;
                         case 7:
-                            StartCoroutine(UpdateText(11));
+                            StartCoroutine(UpdateText(11, 0));
                             StartCoroutine(ButtonSwap());
                             break;
                         case 8:
-                            StartCoroutine(UpdateText(13));
+                            StartCoroutine(UpdateText(13, 1));
                             tut.stage++;
                             break;
                         case 9:
-                            StartCoroutine(UpdateText(14));
+                            StartCoroutine(UpdateText(14, 0));
                             StartCoroutine(ButtonSwap());
                             break;
                     }
@@ -109,7 +109,7 @@ public class TextBox : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateText(int h)
+    IEnumerator UpdateText(int h, int multUpdate)
     {
         txtAnim.SetTrigger("UpdateText");
         txt = "";
@@ -130,6 +130,8 @@ public class TextBox : MonoBehaviour
             txtObj.GetComponent<TextMeshProUGUI>().text = currentTxt;
             yield return new WaitForSecondsRealtime(delay);
         }
+        if (multUpdate == 1)
+            txtAnim.SetTrigger("Wait");
     }
 
     public IEnumerator HideText()
