@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class Eyelids : MonoBehaviour
 {
+    [SerializeField] private Tutorial tut;
+
     public GameManager gameMng;
     public MediaPlayer media;
 
@@ -132,13 +134,19 @@ public class Eyelids : MonoBehaviour
             waveform[i].enabled = false;
         yield return new WaitForSeconds(0.25f);
         //eyelids.SetTrigger("Open");
-        phone.SetBool("Enlarge", false);
-        inventory.SetBool("Visible", true);
+        if (tut == null)
+        {
+            phone.SetBool("Enlarge", false);
+            inventory.SetBool("Visible", true);
+        }
         yield return new WaitForSeconds(0.25f);
         gameMng.isLocked = false;
-        returnArrow.SetActive(true);
-        timerSmall.SetBool("Visible", true);
-        returnArrow.GetComponent<Animator>().SetTrigger("Show");
+        if (tut == null)
+        {
+            returnArrow.SetActive(true);
+            timerSmall.SetBool("Visible", true);
+            returnArrow.GetComponent<Animator>().SetTrigger("Show");
+        }
         audioType = 0;
     }
 }

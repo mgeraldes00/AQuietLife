@@ -23,6 +23,12 @@ public class TutorialTxt : MonoBehaviour
         "To do this, try to first click on the desk's general zone, and then on the backpack's area..",
         "The balloon on the bottom left of the screen reveals a thought from the character you're playing as..",
         "These will appear at multiple points, giving hints for how to handle different situations..",
-        "In this and some other cases, you need to click the balloon to make it disappear.."
+        "In this and some other cases, you need to click the balloon to make it disappear..",
+        "In this screen you can hear the activity around the selected object, if there is any, from a few minutes earlier..",
+        "In addition to the audio, the map allows you to visualize the position of each sound..",
+        "The waveform contains every audible segment from the first to the last moment that the object was touched..",
+        "The buttons above the waveform control the flow of the audio segment..",
+        "When you're done listening, press the square button to exit this screen. " +
+            "You'll be able to come back to it later.."
     };
 }

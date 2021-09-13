@@ -57,6 +57,22 @@ public class TextBox : MonoBehaviour
                             StartCoroutine(UpdateText(14, 0));
                             StartCoroutine(ButtonSwap());
                             break;
+                        case 10:
+                            StartCoroutine(UpdateText(16, 1));
+                            tut.stage++;
+                            break;
+                        case 11:
+                            StartCoroutine(UpdateText(17, 1));
+                            tut.stage++;
+                            break;
+                        case 12:
+                            StartCoroutine(UpdateText(18, 1));
+                            tut.stage++;
+                            break;
+                        case 13:
+                            StartCoroutine(UpdateText(19, 2));
+                            StartCoroutine(ButtonSwap());
+                            break;
                     }
                     break;
                 case 1:

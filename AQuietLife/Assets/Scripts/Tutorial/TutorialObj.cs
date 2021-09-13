@@ -195,6 +195,13 @@ public class TutorialObj : MonoBehaviour
             eyelids.timerSmall = rewindAnim;
             eyelids.dots = dotAnim;
             StartCoroutine(TimeToOpen());
+
+            switch (stagePhase)
+            {
+                case 3:
+                    StartCoroutine(tut.RewindBehaviour(1));
+                    break;
+            }
         }
     }
 

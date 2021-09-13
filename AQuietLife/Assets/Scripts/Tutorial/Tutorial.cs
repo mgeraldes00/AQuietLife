@@ -120,6 +120,10 @@ public class Tutorial : MonoBehaviour
                 yield return new WaitForSecondsRealtime(0.5f);
                 StartCoroutine(txt.ShowText(1, 12));
                 break;
+            case 1:
+                yield return new WaitForSecondsRealtime(5.0f);
+                StartCoroutine(txt.ShowText(1, 15));
+                break;
         }
     }
 
