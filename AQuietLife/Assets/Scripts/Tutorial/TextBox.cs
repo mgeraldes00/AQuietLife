@@ -73,6 +73,10 @@ public class TextBox : MonoBehaviour
                             StartCoroutine(UpdateText(19, 2));
                             StartCoroutine(ButtonSwap());
                             break;
+                        case 14:
+                            StartCoroutine(UpdateText(21, 2));
+                            StartCoroutine(ButtonSwap());
+                            break;
                     }
                     break;
                 case 1:
@@ -95,6 +99,12 @@ public class TextBox : MonoBehaviour
                             break;
                         case 6:
                             tut.directionalButton[1].GetComponent<Animator>().SetTrigger("Hide");
+                            break;
+                        case 15:
+                            tut.thought.ShowThought();
+                            tut.thought.text = "Need to find something made of cotton....";
+                            tut.returnButton.SetActive(true);
+                            tut.returnButton.GetComponent<Animator>().SetTrigger("Show");
                             break;
                     }
                     break;

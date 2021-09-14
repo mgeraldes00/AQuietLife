@@ -32,6 +32,10 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             isThinking = true;
             StartCoroutine(ShowText());
             StartCoroutine(TimeToDisappear());
+            if (balloonActive != true)
+            {
+                StartCoroutine(ShowBalloon());
+            }
         }
         else
         {
@@ -81,6 +85,20 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         balloonActive = false;
     }
 
+    IEnumerator TimeToDisappear()
+    {
+        yield return new WaitForSecondsRealtime(3.5f);
+        if (isThinking != false)
+        {
+            balloon.SetTrigger("Disappear");
+            text = "";
+            currentText = "";
+            isThinking = false;
+            yield return new WaitForSecondsRealtime(1.0f);
+            textObj.GetComponent<TextMeshProUGUI>().text = currentText;
+        }
+    }
+
     IEnumerator ShowBalloon()
     {
         yield return new WaitForSeconds(0.5f);
@@ -119,17 +137,6 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    IEnumerator TimeToDisappear()
-    {
-        yield return new WaitForSecondsRealtime(3.5f);
-        balloon.SetTrigger("Disappear");
-        text = "";
-        currentText = "";
-        isThinking = false;
-        yield return new WaitForSecondsRealtime(1.0f);
-        textObj.GetComponent<TextMeshProUGUI>().text = currentText;
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         balloon.SetBool("OverBalloon", true);
@@ -149,18 +156,24 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         else if (tut != null)
             if (tut.txt.isOpen != true && balloonActive == true)
             {
-                switch (tut.rewindOnce)
+                if (tut.stage == 10)
                 {
-                    case true:
-                        StartCoroutine(InstantDissappear());
-                        break;
-                    case false:
-                        StartCoroutine(InstantDissappear());
-                        tut.rewindButton.GetComponent<Animator>().SetBool("Visible", true);
-                        tut.rewindOnce = true;
-                        break;
+                        switch (tut.rewindOnce)
+                        {
+                            case true:
+                                StartCoroutine(InstantDissappear());
+                                break;
+                            case false:
+                                StartCoroutine(InstantDissappear());
+                                tut.rewindButton.GetComponent<Animator>().SetBool("Visible", true);
+                                tut.rewindOnce = true;
+                                break;
+                        }
                 }
-                
+                else
+                {
+                    StartCoroutine(InstantDissappear());
+                }
             }
     }
 }

@@ -1663,6 +1663,10 @@ MonoBehaviour:
   - The buttons above the waveform control the flow of the audio segment..
   - When you're done listening, press the square button to exit this screen. You'll
     be able to come back to it later..
+  - As was heard just now, the backpack was touched in the recent past and, therefore,
+    it is lethal to the touch..
+  - Since the character needs to pick it up, you'll need to find something that can
+    help. Look around the place to find it..
 --- !u!1 &342578635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +1954,10 @@ PrefabInstance:
       propertyPath: currentView
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6636842463105670653, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
+      propertyPath: tut
+      value: 
+      objectReference: {fileID: 2006920397}
     - target: {fileID: 8373623914688113131, guid: 6a2373ea6e94e4a4b96f831d0aed719d, type: 3}
       propertyPath: basisObject
       value: 
@@ -3319,7 +3327,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1188132248449651908, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1188132248449651908, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -3333,6 +3341,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TutorialObj, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1188132248449651908, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Tutorial, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248449651908, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ButtonBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248449651908, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248449651908, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2006920397}
     - target: {fileID: 1188132248656270332, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: m_Name
       value: AudioPlayer

@@ -83,6 +83,18 @@ public class Tutorial : MonoBehaviour
                 case 6:
                     StartCoroutine(ArrowBehaviour(1));
                     break;
+                case 14:
+                    StartCoroutine(RewindBehaviour(2));
+                    break;
+                case 15:
+                    stage++;
+                    break;
+                case 16:
+                    thought.KeepThought();
+                    thought.text = "One of my clothes should do it. Should look in the wardrobe..";
+                    directionalButton[0].SetActive(true);
+                    stage++;
+                    break;
             }
             
         }
@@ -124,6 +136,10 @@ public class Tutorial : MonoBehaviour
                 yield return new WaitForSecondsRealtime(5.0f);
                 StartCoroutine(txt.ShowText(1, 15));
                 break;
+            case 2:
+                yield return new WaitForSecondsRealtime(2.0f);
+                StartCoroutine(txt.ShowText(1, 20));
+                break;
         }
     }
 
@@ -138,13 +154,11 @@ public class Tutorial : MonoBehaviour
                 isLockedArrow = true;
                 break;
             case 1:
-                directionalButton[0].GetComponent<Animator>().SetTrigger("Clicked");
-                yield return new WaitForSeconds(0.5f);
-                directionalButton[0].SetActive(false);
+                directionalButton[0].GetComponent<Animator>().SetTrigger("Hide");
                 yield return new WaitForSeconds(0.5f);
                 StartCoroutine(txt.ShowText(1, 9));
                 area[0].enabled = true;
-                returnButton.SetActive(false);
+                //returnButton.SetActive(false);
                 break;
         }
     }

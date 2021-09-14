@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CameraCtrl : MonoBehaviour
 {
+    [SerializeField] private Tutorial tut;
+
     public GameManager gameMng;
     public MicrowaveManager microwave;
     public FridgeManager fridge;
@@ -127,9 +129,11 @@ public class CameraCtrl : MonoBehaviour
     public void ObjectTransition()
     {
         //fadeAnim.SetTrigger("TransitionObj");
-        for (int i = 0; i < directionalArrows.Length; i++)
-            directionalArrows[i].SetTrigger("Hide");
-        returnArrows[0].SetTrigger("Show");
+        if (tut.stage != 8 || tut == null)
+            for (int i = 0; i < directionalArrows.Length; i++)
+                directionalArrows[i].SetTrigger("Hide");
+        if (tut.stage != 8 || tut == null)
+            returnArrows[0].SetTrigger("Show");
         gameMng.isLocked = true;
         StartCoroutine(ArrowUnlock());
         StartCoroutine(gameMng.QuickUnlock(0.5f));

@@ -29,6 +29,9 @@ public class TutorialTxt : MonoBehaviour
         "The waveform contains every audible segment from the first to the last moment that the object was touched..",
         "The buttons above the waveform control the flow of the audio segment..",
         "When you're done listening, press the square button to exit this screen. " +
-            "You'll be able to come back to it later.."
+            "You'll be able to come back to it later..",
+        "As was heard just now, the backpack was touched in the recent past and, therefore, it is lethal to the touch..",
+        "Since the character needs to pick it up, you'll need to find something that can help. " +
+            "Look around the place to find it.."
     };
 }
