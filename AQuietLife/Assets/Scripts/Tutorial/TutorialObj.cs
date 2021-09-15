@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TutorialObj : MonoBehaviour
@@ -28,9 +29,11 @@ public class TutorialObj : MonoBehaviour
     [SerializeField] private AudioSource rewindReverseAudio;
 
     [SerializeField] private string camTrigger;
+    [SerializeField] private string thoughtTxt;
 
     [SerializeField] private int stagePhase;
 
+    [SerializeField] private bool staticObj;
     [SerializeField] private bool isThinking;
     [SerializeField] private bool isLocked;
     [SerializeField] private bool rewindOnce;
@@ -54,17 +57,85 @@ public class TutorialObj : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (txt.isOpen != true && gameMng.isLocked != true)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
+            if (staticObj == true)
+                gameMng.cursors.ChangeCursor("Grab", 1);
+            else
+            {
+                if (txt.isOpen != true && gameMng.isLocked != true)
+                {
+                    if (tut.stage == 0)
+                    {
+                        switch (stagePhase)
+                        {
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Slide", 1);
+                                break;
+                            case 2:
+                                gameMng.cursors.ChangeCursor("Grab", 1);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (tut.stage)
+                        {
+                            case 7:
+                                gameMng.cursors.ChangeCursor("Inspect", 1);
+                                break;
+                            case 8:
+                                if (stagePhase == 1 || stagePhase == 2)
+                                    gameMng.cursors.ChangeCursor("Inspect", 1);
+                                else
+                                    gameMng.cursors.ChangeCursor("Grab", 1);
+                                break;
+                            case 10:
+                                if (tut.thought.isThinking == false || isThinking == true)
+                                    gameMng.cursors.ChangeCursor("Grab", 1);
+                                break;
+                            case 17:
+                                switch (stagePhase)
+                                {
+                                    case 0:
+                                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                                        break;
+                                    case 1:
+                                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                                        break;
+                                    case 2:
+                                        gameMng.cursors.ChangeCursor("Grab", 1);
+                                        break;
+                                    case 3:
+                                        //Open
+                                        break;
+                                    case 4:
+                                        gameMng.cursors.ChangeCursor("Grab", 1);
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            if (staticObj == true)
+                gameMng.cursors.ChangeCursor("Grab", 0);
             if (tut.stage == 0)
             {
                 switch (stagePhase)
                 {
                     case 1:
-                        gameMng.cursors.ChangeCursor("Slide", 1);
+                        gameMng.cursors.ChangeCursor("Slide", 0);
                         break;
                     case 2:
-                        gameMng.cursors.ChangeCursor("Grab", 1);
+                        gameMng.cursors.ChangeCursor("Grab", 0);
                         break;
                 }
             }
@@ -73,120 +144,160 @@ public class TutorialObj : MonoBehaviour
                 switch (tut.stage)
                 {
                     case 7:
-                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                        gameMng.cursors.ChangeCursor("Inspect", 0);
                         break;
                     case 8:
                         if (stagePhase == 1 || stagePhase == 2)
-                            gameMng.cursors.ChangeCursor("Inspect", 1);
+                            gameMng.cursors.ChangeCursor("Inspect", 0);
                         else
-                            gameMng.cursors.ChangeCursor("Grab", 1);
+                            gameMng.cursors.ChangeCursor("Grab", 0);
                         break;
                     case 10:
                         if (tut.thought.isThinking == false || isThinking == true)
-                            gameMng.cursors.ChangeCursor("Grab", 1);
+                            gameMng.cursors.ChangeCursor("Grab", 0);
+                        break;
+                    case 17:
+                        switch (stagePhase)
+                        {
+                            case 0:
+                                gameMng.cursors.ChangeCursor("Inspect", 0);
+                                break;
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Inspect", 0);
+                                break;
+                            case 2:
+                                gameMng.cursors.ChangeCursor("Grab", 0);
+                                break;
+                            case 3:
+                                //Open
+                                break;
+                            case 4:
+                                gameMng.cursors.ChangeCursor("Grab", 0);
+                                break;
+                        }
                         break;
                 }
             }
         }
     }
 
-    private void OnMouseExit()
-    {
-        if (tut.stage == 0)
-        {
-            switch (stagePhase)
-            {
-                case 1:
-                    gameMng.cursors.ChangeCursor("Slide", 0);
-                    break;
-                case 2:
-                    gameMng.cursors.ChangeCursor("Grab", 0);
-                    break;
-            }
-        }
-        else
-        {
-            switch (tut.stage)
-            {
-                case 7:
-                    gameMng.cursors.ChangeCursor("Inspect", 0);
-                    break;
-                case 8:
-                    if (stagePhase == 1 || stagePhase == 2)
-                        gameMng.cursors.ChangeCursor("Inspect", 0);
-                    else
-                        gameMng.cursors.ChangeCursor("Grab", 0);
-                    break;
-                case 10:
-                    if (tut.thought.isThinking == false || isThinking == true)
-                        gameMng.cursors.ChangeCursor("Grab", 0);
-                    break;
-            }
-        }
-    }
-
     private void OnMouseUp()
     {
-        if (tut.isLocked != true && txt.isOpen != true && gameMng.isLocked != true)
-        {
-            switch (tut.stage)
+        if (!EventSystem.current.IsPointerOverGameObject())
+            if (staticObj == true)
             {
-                case 0:
-                    StartCoroutine(NextPhase());
-                    txt.isOpen = true;
-                    switch (stagePhase)
-                    {
-                        case 1:
-                            obj[0].SetActive(true);
-                            StartCoroutine
-                                (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
-                            StartCoroutine(txt.ShowText(2, 0));
-                            gameMng.cursors.ChangeCursor("Slide", 0);
-                            break;
-                        case 2:
-                            StartCoroutine(tut.StartPhoneStage());
-                            gameMng.cursors.ChangeCursor("Grab", 0);
-                            GetComponent<Collider2D>().enabled = false;
-                            tut.uiPhone.GetComponent<Image>().enabled = true;
-                            tut.stage++;
-                            break;
-                    }
-                    break;
-                case 8:
-                    switch (stagePhase)
-                    {
-                        case 1:
-                            cam.ObjectTransition();
-                            cam.GetComponent<Animator>().SetTrigger(camTrigger);
-                            GetComponent<Collider2D>().enabled = false;
-                            GameObject.Find("Chair").GetComponent<Collider2D>().enabled = true;
-                            StartCoroutine(Zoom());
-                            break;
-                        case 2:
-                            cam.ObjectTransition();
-                            cam.GetComponent<Animator>().SetTrigger(camTrigger);
-                            GetComponent<Collider2D>().enabled = false;
-                            GameObject.Find("backpack_prop").GetComponent<Collider2D>().enabled = true;
-                            StartCoroutine(Zoom());
-                            tut.thought.KeepThought();
-                            tut.thought.text = "Why is this here?.";
-                            StartCoroutine(tut.RewindBehaviour(0));
-                            break;
-                    }
-                    break;
-                case 10:
-                    if (isThinking == false && tut.thought.isThinking == false)
-                    {
-                        tut.thought.KeepThought();
-                        tut.thought.text = "Should see what happened earlier before touching anything..";
-                        isThinking = true;
-                    }
-                    break;
+                tut.thought.ShowThought();
+                tut.thought.text = thoughtTxt;
             }
-        }
+            else
+            {
+                if (tut.isLocked != true && txt.isOpen != true && gameMng.isLocked != true)
+                {
+                    switch (tut.stage)
+                    {
+                        case 0:
+                            StartCoroutine(NextPhase());
+                            txt.isOpen = true;
+                            switch (stagePhase)
+                            {
+                                case 1:
+                                    obj[0].SetActive(true);
+                                    StartCoroutine
+                                        (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
+                                    StartCoroutine(txt.ShowText(2, 0));
+                                    gameMng.cursors.ChangeCursor("Slide", 0);
+                                    break;
+                                case 2:
+                                    StartCoroutine(tut.StartPhoneStage());
+                                    gameMng.cursors.ChangeCursor("Grab", 0);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    tut.uiPhone.GetComponent<Image>().enabled = true;
+                                    tut.stage++;
+                                    break;
+                            }
+                            break;
+                        case 8:
+                            switch (stagePhase)
+                            {
+                                case 1:
+                                    cam.ObjectTransition();
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("Chair").GetComponent<Collider2D>().enabled = true;
+                                    StartCoroutine(Zoom());
+                                    break;
+                                case 2:
+                                    cam.ObjectTransition();
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("backpack_prop").GetComponent<Collider2D>().enabled = true;
+                                    StartCoroutine(Zoom());
+                                    tut.thought.KeepThought();
+                                    tut.thought.text = "Why is this here?.";
+                                    StartCoroutine(tut.RewindBehaviour(0));
+                                    break;
+                            }
+                            break;
+                        case 10:
+                            if (isThinking == false && tut.thought.isThinking == false)
+                            {
+                                tut.thought.KeepThought();
+                                tut.thought.text = "Should see what happened earlier before touching anything..";
+                                isThinking = true;
+                            }
+                            break;
+                        case 17:
+                            switch (stagePhase)
+                            {
+                                case 0:
+                                    cam.ObjectTransition();
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("doorLeft").GetComponent<Collider2D>().enabled = true;
+                                    GameObject.Find("doorRight").GetComponent<Collider2D>().enabled = true;
+                                    StartCoroutine(Zoom());
+                                    break;
+                                case 1:
+                                    cam.ObjectTransition();
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GameObject.Find("doorLeft").GetComponent<Collider2D>().enabled = false;
+                                    tut.rewindButton[1].GetComponent<Animator>().SetBool("Visible", true);
+                                    stagePhase = 3;
+                                    StartCoroutine(Zoom());
+                                    break;
+                                case 3:
+                                    tut.thought.KeepThought();
+                                    tut.thought.text =
+                                        "Should make sure that this door wasn't opened recently..";
+                                    break;
+                            }
+                            break;
+                        case 18:
+                            switch (stagePhase)
+                            {
+                                case 3:
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("CottonProp#2").GetComponent<Collider2D>().enabled = false;
+                                    StartCoroutine
+                                        (ObjectFade.FadeOut(obj[0].GetComponent<SpriteRenderer>(), 0));
+                                    StartCoroutine
+                                        (ObjectFade.FadeIn(obj[1].GetComponent<SpriteRenderer>()));
+                                    StartCoroutine(tut.WardrobeBehaviour(3));
+                                    tut.rewindButton[1].GetComponent<Animator>().SetBool("Visible", false);
+                                    break;
+                                case 4:
+                                    GetComponent<Collider2D>().enabled = false;
+                                    StartCoroutine(ObjectFade.FadeOut(GetComponent<SpriteRenderer>(), 0));
+                                    StartCoroutine(tut.WardrobeBehaviour(4));
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            }
     }
 
-    public void Rewind()
+    public void Rewind(int i)
     {
         if (isLocked == false && gameMng.isLocked == false)
         {
@@ -199,7 +310,10 @@ public class TutorialObj : MonoBehaviour
             switch (stagePhase)
             {
                 case 3:
-                    StartCoroutine(tut.RewindBehaviour(1));
+                    if (i == 1)
+                        StartCoroutine(tut.RewindBehaviour(1));
+                    else if (i == 2)
+                        StartCoroutine(tut.RewindBehaviour(3));
                     break;
             }
         }

@@ -8,6 +8,7 @@ public class Tutorial : MonoBehaviour
 {
     [SerializeField] private CameraCtrl cam;
     [SerializeField] private GameManager gameMng;
+    [SerializeField] private InventorySimple inventoryMng;
 
     public TextBox txt;
     public ThoughtManager thought;
@@ -15,11 +16,15 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField] private GameObject startCover;
 
-    public GameObject rewindButton;
+    public GameObject[] rewindButton;
+
+    public GameObject[] itemButton;
 
     [SerializeField] private GameObject[] phone;
 
     [SerializeField] private Collider2D[] area;
+    [SerializeField] private Collider2D[] inspectObjs;
+    [SerializeField] private Collider2D wardrobe;
 
     public GameObject blur;
     public GameObject returnButton;
@@ -88,11 +93,15 @@ public class Tutorial : MonoBehaviour
                     break;
                 case 15:
                     stage++;
+                    area[2].enabled = false;
                     break;
                 case 16:
                     thought.KeepThought();
                     thought.text = "One of my clothes should do it. Should look in the wardrobe..";
                     directionalButton[0].SetActive(true);
+                    for (int i = 0; i < inspectObjs.Length; i++)
+                        inspectObjs[i].enabled = true;
+                    wardrobe.enabled = true;
                     stage++;
                     break;
             }
@@ -139,6 +148,42 @@ public class Tutorial : MonoBehaviour
             case 2:
                 yield return new WaitForSecondsRealtime(2.0f);
                 StartCoroutine(txt.ShowText(1, 20));
+                break;
+            case 3:
+                yield return new WaitForSecondsRealtime(5.0f);
+                StartCoroutine(txt.ShowText(2, 22));
+                break;
+        }
+    }
+
+    public IEnumerator WardrobeBehaviour(int i)
+    {
+        switch (i)
+        {
+            case 3:
+                yield return new WaitForSecondsRealtime(0.5f);
+                thought.KeepThought();
+                thought.text = 
+                    "He can't touch anything made of cotton, so everything in here is safe..";
+                break;
+            case 4:
+                yield return new WaitForSecondsRealtime(1.0f);
+                StartCoroutine(txt.ShowText(2, 23));
+                inventory.SetBool("Visible", true);
+                yield return new WaitForSecondsRealtime(1.0f);
+                for (int b = 0; b < inventoryMng.slots.Length; b++)
+                {
+                    if (inventoryMng.isFull[b] == false)
+                    {
+                        inventoryMng.isFull[b] = true;
+                        Instantiate(itemButton[0], inventoryMng.slots[i].transform, false);
+                        //FindObjectOfType<AudioCtrl>().Play(currentObj);
+                        break;
+                    }
+                }
+                break;
+            case 5:
+
                 break;
         }
     }

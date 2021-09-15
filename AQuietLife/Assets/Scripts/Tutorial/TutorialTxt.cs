@@ -32,6 +32,8 @@ public class TutorialTxt : MonoBehaviour
             "You'll be able to come back to it later..",
         "As was heard just now, the backpack was touched in the recent past and, therefore, it is lethal to the touch..",
         "Since the character needs to pick it up, you'll need to find something that can help. " +
-            "Look around the place to find it.."
+            "Look around the place to find it..",
+        "If there is no recent activity detected around an object or surface, this sound will play..",
+        "Upon picking up a new object, it will be added to a slot in the inventory.."
     };
 }

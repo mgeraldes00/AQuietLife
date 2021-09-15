@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5168292024310963552, guid: 772657052b0bd7f4a916b130fa7c32f4, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5168292024310963552, guid: 772657052b0bd7f4a916b130fa7c32f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5762152604682341324, guid: 8cd259be591a1fd4191bf4318644c8a5, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5762152604682341324, guid: 8cd259be591a1fd4191bf4318644c8a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8859889567365632674, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8859889567365632674, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -888,7 +888,9 @@ MonoBehaviour:
   rewindAudio: {fileID: 0}
   rewindReverseAudio: {fileID: 0}
   camTrigger: 
+  thoughtTxt: 
   stagePhase: 1
+  staticObj: 0
   isThinking: 0
   isLocked: 0
   rewindOnce: 0
@@ -993,6 +995,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &150820399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 587355993927858099, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
+  m_PrefabInstance: {fileID: 784042604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ffd8d8715f90d41ac7a02bad5f712e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &192024085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1098,7 @@ RectTransform:
   m_Children:
   - {fileID: 784042605}
   - {fileID: 576734225}
+  - {fileID: 1470180411}
   - {fileID: 1120734378}
   - {fileID: 585525253}
   - {fileID: 5120852}
@@ -1247,7 +1261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048983164238850768, guid: 980b784f972c9e549895e68eff08672a, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2048983164238850768, guid: 980b784f972c9e549895e68eff08672a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1530,7 +1544,7 @@ RectTransform:
   - {fileID: 1998250288}
   - {fileID: 1874346574}
   m_Father: {fileID: 192024089}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1667,6 +1681,9 @@ MonoBehaviour:
     it is lethal to the touch..
   - Since the character needs to pick it up, you'll need to find something that can
     help. Look around the place to find it..
+  - If there is no recent activity detected around an object or surface, this sound
+    will play..
+  - Upon picking up a new object, it will be added to a slot in the inventory..
 --- !u!1 &342578635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,6 +2198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429171228}
   - component: {fileID: 429171230}
+  - component: {fileID: 429171229}
   m_Layer: 0
   m_Name: MainDoor
   m_TagString: Untagged
@@ -2203,6 +2221,35 @@ Transform:
   m_Father: {fileID: 955597006}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &429171229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429171227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: 
+  thoughtTxt: Need to tidy up the room before leaving..
+  stagePhase: 0
+  staticObj: 1
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
 --- !u!61 &429171230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2477,7 +2524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 443453432022103806, guid: ea1d9ca2e75f15c4387ffbcc708b9bc7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 443453432022103806, guid: ea1d9ca2e75f15c4387ffbcc708b9bc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3008,7 +3055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347991, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347991, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3308,6 +3355,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TutorialObj, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5999576378943281029, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
       propertyPath: clockSelect
       value: 
@@ -3391,7 +3446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1188132248656270333, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1188132248656270333, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4008,6 +4063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 822513986}
   - component: {fileID: 822513988}
+  - component: {fileID: 822513987}
   m_Layer: 0
   m_Name: Clothes
   m_TagString: Untagged
@@ -4030,6 +4086,36 @@ Transform:
   m_Father: {fileID: 1224425470}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 83.248}
+--- !u!114 &822513987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822513985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: 
+  thoughtTxt: Don't want to waste these shirts. There should be something better
+    in the wardrobe..
+  stagePhase: 0
+  staticObj: 1
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
 --- !u!61 &822513988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4400,7 +4486,9 @@ MonoBehaviour:
   rewindAudio: {fileID: 0}
   rewindReverseAudio: {fileID: 0}
   camTrigger: ZoomDesk
+  thoughtTxt: 
   stagePhase: 1
+  staticObj: 0
   isThinking: 0
   isLocked: 0
   rewindOnce: 0
@@ -4563,13 +4651,15 @@ GameObject:
   m_Component:
   - component: {fileID: 945184849}
   - component: {fileID: 945184850}
+  - component: {fileID: 945184852}
+  - component: {fileID: 945184851}
   m_Layer: 0
   m_Name: CottonProp#2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &945184849
 Transform:
   m_ObjectHideFlags: 0
@@ -4578,7 +4668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945184848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.34, y: -3.22, z: 0}
+  m_LocalPosition: {x: -6.06, y: -0.22, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 1112312498}
@@ -4635,6 +4725,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &945184851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945184848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: 
+  thoughtTxt: 
+  stagePhase: 4
+  staticObj: 0
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
+--- !u!61 &945184852
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945184848}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.52, y: 6.12}
+    newSize: {x: 3.52, y: 6.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.52, y: 6.12}
+  m_EdgeRadius: 0
 --- !u!1 &950730354
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,6 +5092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999282403}
   - component: {fileID: 999282405}
+  - component: {fileID: 999282404}
   m_Layer: 0
   m_Name: Notes
   m_TagString: Untagged
@@ -4973,6 +5119,35 @@ Transform:
   m_Father: {fileID: 1224425470}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999282404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999282402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: 
+  thoughtTxt: It has to be cotton... This will not do..
+  stagePhase: 0
+  staticObj: 1
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
 --- !u!61 &999282405
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5368,7 +5543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5702,7 +5877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6435017493723806300, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6435017493723806300, guid: 89922c546863e064b86468a7c8dc638d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5994,7 +6169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242876, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242876, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6398,7 +6573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1549372997871117356, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1549372997871117356, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6842,6 +7017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334023749}
   - component: {fileID: 1334023750}
+  - component: {fileID: 1334023751}
   m_Layer: 0
   m_Name: Wardrobe_Wall
   m_TagString: Untagged
@@ -6890,6 +7066,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.32, y: 9.76}
   m_EdgeRadius: 0
+--- !u!114 &1334023751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334023748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: ZoomWardrobe
+  thoughtTxt: 
+  stagePhase: 0
+  staticObj: 0
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
 --- !u!1 &1360381340
 GameObject:
   m_ObjectHideFlags: 0
@@ -7021,7 +7226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8824958731676290663, guid: 9a7013d2b4b6f4d45964266aec1ae535, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8824958731676290663, guid: 9a7013d2b4b6f4d45964266aec1ae535, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7266,6 +7471,175 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1470180408
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 192024089}
+    m_Modifications:
+    - target: {fileID: 1455865238078965677, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394290, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_Name
+      value: ClockIconWardrobe
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394290, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -185.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1627144506}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Rewind
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialObj, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1627144506}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RewindLock
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TutorialObj, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455865238097394303, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999576378943281029, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: clockSelect
+      value: 
+      objectReference: {fileID: 1470180410}
+    - target: {fileID: 7596720145206274756, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+--- !u!1 &1470180409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1455865238097394290, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+  m_PrefabInstance: {fileID: 1470180408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1470180410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1455865238078965677, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+  m_PrefabInstance: {fileID: 1470180408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1470180411 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1455865238097394301, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+  m_PrefabInstance: {fileID: 1470180408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1470180412 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1455865238097394300, guid: f21893550cbb4fa4cb0b8bbe170179f1, type: 3}
+  m_PrefabInstance: {fileID: 1470180408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1484741581
 GameObject:
   m_ObjectHideFlags: 0
@@ -7631,7 +8005,9 @@ MonoBehaviour:
   rewindAudio: {fileID: 0}
   rewindReverseAudio: {fileID: 0}
   camTrigger: ZoomChair
+  thoughtTxt: 
   stagePhase: 2
+  staticObj: 0
   isThinking: 0
   isLocked: 0
   rewindOnce: 0
@@ -7764,6 +8140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627144505}
   - component: {fileID: 1627144507}
+  - component: {fileID: 1627144506}
   m_Layer: 0
   m_Name: doorRight
   m_TagString: Untagged
@@ -7787,6 +8164,37 @@ Transform:
   m_Father: {fileID: 1627617607}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1627144506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627144504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 709532037}
+  audioSlider: {fileID: 1228194414}
+  eyelids: {fileID: 585525252}
+  dotAnim: {fileID: 2114626512}
+  slider: {fileID: 1407243203}
+  obj:
+  - {fileID: 1914069039}
+  - {fileID: 1725425414}
+  rewindAnim: {fileID: 1470180412}
+  waveformObj: {fileID: 832978789}
+  rewindAudio: {fileID: 754254852}
+  rewindReverseAudio: {fileID: 919683929}
+  camTrigger: ZoomWrobeLeft
+  thoughtTxt: 
+  stagePhase: 1
+  staticObj: 0
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
 --- !u!61 &1627144507
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8979,6 +9387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1791257555}
   - component: {fileID: 1791257556}
+  - component: {fileID: 1791257557}
   m_Layer: 0
   m_Name: doorLeft
   m_TagString: Untagged
@@ -9028,6 +9437,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36, y: 9.39}
   m_EdgeRadius: 0
+--- !u!114 &1791257557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791257554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: 
+  thoughtTxt: It's best not to touch anything on this side..
+  stagePhase: 2
+  staticObj: 1
+  isThinking: 0
+  isLocked: 0
+  rewindOnce: 0
 --- !u!1 &1803381945
 GameObject:
   m_ObjectHideFlags: 0
@@ -9237,7 +9675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1117970069948738859, guid: bde28ec3058bf0e46800f9ea36f704bd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1117970069948738859, guid: bde28ec3058bf0e46800f9ea36f704bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9700,7 +10138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593399382069564848, guid: 1629c132879daf6488f19148359067cf, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3593399382069564848, guid: 1629c132879daf6488f19148359067cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10001,7 +10439,9 @@ MonoBehaviour:
   rewindAudio: {fileID: 754254852}
   rewindReverseAudio: {fileID: 919683929}
   camTrigger: 
+  thoughtTxt: 
   stagePhase: 3
+  staticObj: 0
   isThinking: 0
   isLocked: 0
   rewindOnce: 0
@@ -10450,11 +10890,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1615249857}
   gameMng: {fileID: 977577487}
+  inventoryMng: {fileID: 150820399}
   txt: {fileID: 300452239}
   thought: {fileID: 1078924841}
   phoneMng: {fileID: 1685678609}
   startCover: {fileID: 1601089846}
-  rewindButton: {fileID: 576734224}
+  rewindButton:
+  - {fileID: 576734224}
+  - {fileID: 1470180409}
+  itemButton:
+  - {fileID: 3210881669624165373, guid: f640c71d058be0643bbb02a84889bee1, type: 3}
+  - {fileID: 3210881669624165373, guid: 06bad7fb5f87aa049b95452e4e37e43b, type: 3}
   phone:
   - {fileID: 110186423}
   - {fileID: 857801352}
@@ -10462,6 +10908,12 @@ MonoBehaviour:
   area:
   - {fileID: 867999123}
   - {fileID: 1604495293}
+  - {fileID: 1944421893}
+  inspectObjs:
+  - {fileID: 429171230}
+  - {fileID: 999282405}
+  - {fileID: 822513988}
+  wardrobe: {fileID: 1334023750}
   blur: {fileID: 59477826}
   returnButton: {fileID: 664755299}
   directionalButton:
@@ -10561,7 +11013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6761754408494263878, guid: 0931afad8c3f78a4f8264657f639119e, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6761754408494263878, guid: 0931afad8c3f78a4f8264657f639119e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

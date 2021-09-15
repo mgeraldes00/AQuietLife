@@ -165,7 +165,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                                 break;
                             case false:
                                 StartCoroutine(InstantDissappear());
-                                tut.rewindButton.GetComponent<Animator>().SetBool("Visible", true);
+                                tut.rewindButton[0].GetComponent<Animator>().SetBool("Visible", true);
                                 tut.rewindOnce = true;
                                 break;
                         }

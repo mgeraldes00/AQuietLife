@@ -106,6 +106,11 @@ public class TextBox : MonoBehaviour
                             tut.returnButton.SetActive(true);
                             tut.returnButton.GetComponent<Animator>().SetTrigger("Show");
                             break;
+                        case 17:
+                            tut.thought.ShowThought();
+                            tut.thought.text = "This'll do. Now to use it on the backpack..";
+                            tut.WardrobeBehaviour(5);
+                            break;
                     }
                     break;
             }
