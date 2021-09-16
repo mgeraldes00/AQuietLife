@@ -89,6 +89,18 @@ public class UIFollowMouse : MonoBehaviour
                         break;
                 }
                 break;
+            case "OpenDoor":
+                switch (i)
+                {
+                    case 0:
+                        cursorAnim.SetBool("OpenDoor", false);
+                        break;
+                    case 1:
+                        cursorAnim.SetBool("OpenDoor", true);
+                        cursorAnim.SetTrigger("OpenR2L");
+                        break;
+                }
+                break;
         }
     }
 }

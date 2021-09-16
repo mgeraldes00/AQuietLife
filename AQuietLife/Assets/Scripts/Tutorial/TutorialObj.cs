@@ -107,7 +107,15 @@ public class TutorialObj : MonoBehaviour
                                         gameMng.cursors.ChangeCursor("Grab", 1);
                                         break;
                                     case 3:
-                                        //Open
+                                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                                        break;
+                                }
+                                break;
+                            case 18:
+                                switch (stagePhase)
+                                {
+                                    case 3:
+                                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
                                         break;
                                     case 4:
                                         gameMng.cursors.ChangeCursor("Grab", 1);
@@ -169,7 +177,15 @@ public class TutorialObj : MonoBehaviour
                                 gameMng.cursors.ChangeCursor("Grab", 0);
                                 break;
                             case 3:
-                                //Open
+                                gameMng.cursors.ChangeCursor("OpenDoor", 0);
+                                break;
+                        }
+                        break;
+                    case 18:
+                        switch (stagePhase)
+                        {
+                            case 3:
+                                gameMng.cursors.ChangeCursor("OpenDoor", 0);
                                 break;
                             case 4:
                                 gameMng.cursors.ChangeCursor("Grab", 0);
@@ -260,9 +276,11 @@ public class TutorialObj : MonoBehaviour
                                 case 1:
                                     cam.ObjectTransition();
                                     cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
                                     GameObject.Find("doorLeft").GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("WrobeRightHandle").GetComponent<Collider2D>().enabled = true;
                                     tut.rewindButton[1].GetComponent<Animator>().SetBool("Visible", true);
-                                    stagePhase = 3;
+                                    //stagePhase = 3;
                                     StartCoroutine(Zoom());
                                     break;
                                 case 3:
@@ -277,7 +295,7 @@ public class TutorialObj : MonoBehaviour
                             {
                                 case 3:
                                     GetComponent<Collider2D>().enabled = false;
-                                    GameObject.Find("CottonProp#2").GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("CottonProp2").GetComponent<Collider2D>().enabled = true;
                                     StartCoroutine
                                         (ObjectFade.FadeOut(obj[0].GetComponent<SpriteRenderer>(), 0));
                                     StartCoroutine

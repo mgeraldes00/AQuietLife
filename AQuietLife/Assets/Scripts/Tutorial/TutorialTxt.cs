@@ -34,6 +34,7 @@ public class TutorialTxt : MonoBehaviour
         "Since the character needs to pick it up, you'll need to find something that can help. " +
             "Look around the place to find it..",
         "If there is no recent activity detected around an object or surface, this sound will play..",
-        "Upon picking up a new object, it will be added to a slot in the inventory.."
+        "Upon picking up a new object, it will be added to a slot in the inventory..",
+        "By sacrificing an object with nullifying properties, the backpack that was previously lethal can now be safely collected.."
     };
 }

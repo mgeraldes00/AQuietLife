@@ -104,6 +104,9 @@ public class Tutorial : MonoBehaviour
                     wardrobe.enabled = true;
                     stage++;
                     break;
+                case 19:
+                    area[0].enabled = true;
+                    break;
             }
             
         }
@@ -176,14 +179,15 @@ public class Tutorial : MonoBehaviour
                     if (inventoryMng.isFull[b] == false)
                     {
                         inventoryMng.isFull[b] = true;
-                        Instantiate(itemButton[0], inventoryMng.slots[i].transform, false);
+                        Instantiate(itemButton[0], inventoryMng.slots[b].transform, false);
                         //FindObjectOfType<AudioCtrl>().Play(currentObj);
                         break;
                     }
                 }
                 break;
             case 5:
-
+                returnButton.GetComponent<Animator>().SetTrigger("Show");
+                Application.Quit();
                 break;
         }
     }
