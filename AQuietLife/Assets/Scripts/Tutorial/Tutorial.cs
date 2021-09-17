@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,6 +26,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Collider2D[] area;
     [SerializeField] private Collider2D[] inspectObjs;
     [SerializeField] private Collider2D wardrobe;
+    [SerializeField] private Collider2D bedSide;
 
     public GameObject blur;
     public GameObject returnButton;
@@ -106,9 +108,15 @@ public class Tutorial : MonoBehaviour
                     break;
                 case 19:
                     area[0].enabled = true;
+                    for (int i = 0; i < inspectObjs.Length; i++)
+                        inspectObjs[i].enabled = false;
+                    break;
+                case 21:
+                    StartCoroutine(txt.ShowText(1, 25));
+                    uiPhone.GetComponent<Image>().enabled = true;
                     break;
             }
-            
+
         }
     }
 
@@ -166,7 +174,7 @@ public class Tutorial : MonoBehaviour
             case 3:
                 yield return new WaitForSecondsRealtime(0.5f);
                 thought.KeepThought();
-                thought.text = 
+                thought.text =
                     "He can't touch anything made of cotton, so everything in here is safe..";
                 break;
             case 4:
@@ -187,7 +195,29 @@ public class Tutorial : MonoBehaviour
                 break;
             case 5:
                 returnButton.GetComponent<Animator>().SetTrigger("Show");
-                Application.Quit();
+                break;
+        }
+    }
+
+    public void DeskBehaviour(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                for (int b = 0; b < inventoryMng.slots.Length; b++)
+                {
+                    if (inventoryMng.isFull[b] == false && isLocked == false)
+                    {
+                        inventoryMng.isFull[b] = true;
+                        Instantiate(itemButton[1], inventoryMng.slots[b].transform, false);
+                        //FindObjectOfType<AudioCtrl>().Play(currentObj);
+                        break;
+                    }
+                }
+                returnButton.GetComponent<Animator>().SetTrigger("Show");
+                break;
+            case 2:
+                bedSide.enabled = true;
                 break;
         }
     }
@@ -260,5 +290,14 @@ public class Tutorial : MonoBehaviour
         isLocked = false;
         if (isLockedArrow == true)
             isLockedArrow = false;
+    }
+
+    public IEnumerator TransitionToLevel()
+    {
+        yield return new WaitForEndOfFrame();
+        isLocked = true;
+        uiPhone.GetComponent<Animator>().SetBool("Enlarge", false);
+        yield return new WaitForSecondsRealtime(1.0f);
+        SceneManager.LoadScene("Bedroom");
     }
 }

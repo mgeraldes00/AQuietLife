@@ -35,6 +35,8 @@ public class TutorialTxt : MonoBehaviour
             "Look around the place to find it..",
         "If there is no recent activity detected around an object or surface, this sound will play..",
         "Upon picking up a new object, it will be added to a slot in the inventory..",
-        "By sacrificing an object with nullifying properties, the backpack that was previously lethal can now be safely collected.."
+        "By sacrificing an object with nullifying properties, the backpack that was previously lethal can now be safely collected..",
+        "There are more things to do before leaving this room..",
+        "Keep track of your objectives through the messages you receive and the thoughts of your character.."
     };
 }

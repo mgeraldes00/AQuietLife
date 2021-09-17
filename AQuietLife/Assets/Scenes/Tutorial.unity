@@ -524,6 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 33182715}
   - component: {fileID: 33182717}
+  - component: {fileID: 33182716}
   m_Layer: 0
   m_Name: BedLeft_Wall
   m_TagString: Untagged
@@ -547,6 +548,37 @@ Transform:
   m_Father: {fileID: 2006920393}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &33182716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33182714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  select: {fileID: 801549599}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: ZoomBackpack
+  thoughtTxt: 
+  stagePhase: 1
+  staticObj: 0
+  isThinking: 0
+  isLocked: 0
+  isTrapped: 0
+  rewindOnce: 0
 --- !u!61 &33182717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -878,6 +910,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj:
@@ -893,6 +926,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!95 &110186428
 Animator:
@@ -1684,6 +1718,11 @@ MonoBehaviour:
   - If there is no recent activity detected around an object or surface, this sound
     will play..
   - Upon picking up a new object, it will be added to a slot in the inventory..
+  - By sacrificing an object with nullifying properties, the backpack that was previously
+    lethal can now be safely collected..
+  - There are more things to do before leaving this room..
+  - Keep track of your objectives through the messages you receive and the thoughts
+    of your character..
 --- !u!1 &342578635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,6 +2275,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -2249,6 +2289,7 @@ MonoBehaviour:
   staticObj: 1
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &429171230
 BoxCollider2D:
@@ -4101,6 +4142,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -4115,6 +4157,7 @@ MonoBehaviour:
   staticObj: 1
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &822513988
 BoxCollider2D:
@@ -4478,6 +4521,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -4491,6 +4535,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!1 &881673873
 GameObject:
@@ -4740,6 +4785,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -4753,6 +4799,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &945184852
 BoxCollider2D:
@@ -5134,6 +5181,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -5147,6 +5195,7 @@ MonoBehaviour:
   staticObj: 1
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &999282405
 BoxCollider2D:
@@ -6137,7 +6186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242867, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242876, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7081,6 +7130,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -7094,6 +7144,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!1 &1360381340
 GameObject:
@@ -7997,6 +8048,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -8010,6 +8062,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &1604495293
 BoxCollider2D:
@@ -8180,6 +8233,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 709532037}
   audioSlider: {fileID: 1228194414}
   eyelids: {fileID: 585525252}
+  select: {fileID: 0}
   dotAnim: {fileID: 2114626512}
   slider: {fileID: 1407243203}
   obj:
@@ -8195,6 +8249,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &1627144507
 BoxCollider2D:
@@ -9068,13 +9123,14 @@ GameObject:
   - component: {fileID: 1774915778}
   - component: {fileID: 1774915780}
   - component: {fileID: 1774915779}
+  - component: {fileID: 1774915781}
   m_Layer: 0
   m_Name: backpack_prop (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1774915778
 Transform:
   m_ObjectHideFlags: 0
@@ -9167,7 +9223,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3b9b3e68081db8640bf16bcfe2ffdf4f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9177,6 +9233,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1774915781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774915777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468aa504cce497b4dbe9a07aadcdff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCtrl: {fileID: 0}
+  audioSlider: {fileID: 0}
+  eyelids: {fileID: 0}
+  select: {fileID: 801549599}
+  dotAnim: {fileID: 0}
+  slider: {fileID: 0}
+  obj: []
+  rewindAnim: {fileID: 0}
+  waveformObj: {fileID: 0}
+  rewindAudio: {fileID: 0}
+  rewindReverseAudio: {fileID: 0}
+  camTrigger: 
+  thoughtTxt: At least here I know the backpack will be safe..
+  stagePhase: 2
+  staticObj: 0
+  isThinking: 0
+  isLocked: 0
+  isTrapped: 0
+  rewindOnce: 0
 --- !u!1 &1781497142
 GameObject:
   m_ObjectHideFlags: 0
@@ -9453,6 +9540,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 0}
   audioSlider: {fileID: 0}
   eyelids: {fileID: 0}
+  select: {fileID: 0}
   dotAnim: {fileID: 0}
   slider: {fileID: 0}
   obj: []
@@ -9466,6 +9554,7 @@ MonoBehaviour:
   staticObj: 1
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!1 &1803381945
 GameObject:
@@ -10432,6 +10521,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 709532037}
   audioSlider: {fileID: 1228194414}
   eyelids: {fileID: 585525252}
+  select: {fileID: 801549599}
   dotAnim: {fileID: 2114626512}
   slider: {fileID: 1407243203}
   obj: []
@@ -10445,6 +10535,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 1
   rewindOnce: 0
 --- !u!1 &1962157088
 GameObject:
@@ -10915,6 +11006,7 @@ MonoBehaviour:
   - {fileID: 999282405}
   - {fileID: 822513988}
   wardrobe: {fileID: 1334023750}
+  bedSide: {fileID: 33182717}
   blur: {fileID: 59477826}
   returnButton: {fileID: 664755299}
   directionalButton:
@@ -11015,6 +11107,7 @@ MonoBehaviour:
   audioCtrl: {fileID: 709532037}
   audioSlider: {fileID: 1228194414}
   eyelids: {fileID: 585525252}
+  select: {fileID: 0}
   dotAnim: {fileID: 2114626512}
   slider: {fileID: 1407243203}
   obj:
@@ -11030,6 +11123,7 @@ MonoBehaviour:
   staticObj: 0
   isThinking: 0
   isLocked: 0
+  isTrapped: 0
   rewindOnce: 0
 --- !u!61 &2080015511
 BoxCollider2D:

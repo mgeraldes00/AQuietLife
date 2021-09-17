@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 876542793333a404a915ec6b0938cee2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Bedroom.unity
     guid: eb51603899e323641bc26d8f839ee8fc
   - enabled: 0

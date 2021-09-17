@@ -12,6 +12,7 @@ public class TutorialObj : MonoBehaviour
     [SerializeField] private MediaPlayer audioCtrl;
     [SerializeField] private AudioSlider audioSlider;
     [SerializeField] private Eyelids eyelids;
+    [SerializeField] private ObjectSelection select;
 
     private Tutorial tut;
     private TextBox txt;
@@ -36,6 +37,7 @@ public class TutorialObj : MonoBehaviour
     [SerializeField] private bool staticObj;
     [SerializeField] private bool isThinking;
     [SerializeField] private bool isLocked;
+    [SerializeField] private bool isTrapped;
     [SerializeField] private bool rewindOnce;
 
     private void Start()
@@ -122,6 +124,38 @@ public class TutorialObj : MonoBehaviour
                                         break;
                                 }
                                 break;
+                            case 19:
+                                switch (stagePhase)
+                                {
+                                    case 1:
+                                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                                        break;
+                                    case 2:
+                                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                                        break;
+                                    case 3:
+                                        if (select.selectedObject == "Glove")
+                                            gameMng.cursors.ChangeCursor("Point", 1);
+                                        else
+                                            gameMng.cursors.ChangeCursor("Grab", 1);
+                                        break;
+                                }
+                                break;
+                            case 20:
+                                switch (stagePhase)
+                                {
+                                    case 1:
+                                        gameMng.cursors.ChangeCursor("Inspect", 1);
+                                        break;
+                                    case 2:
+                                        if (isTrapped != true)
+                                            gameMng.cursors.ChangeCursor("Point", 1);
+                                        break;
+                                    case 3:
+                                        gameMng.cursors.ChangeCursor("Grab", 1);
+                                        break;
+                                }
+                                break;
                         }
                     }
                 }
@@ -188,6 +222,38 @@ public class TutorialObj : MonoBehaviour
                                 gameMng.cursors.ChangeCursor("OpenDoor", 0);
                                 break;
                             case 4:
+                                gameMng.cursors.ChangeCursor("Grab", 0);
+                                break;
+                        }
+                        break;
+                    case 19:
+                        switch (stagePhase)
+                        {
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Inspect", 0);
+                                break;
+                            case 2:
+                                gameMng.cursors.ChangeCursor("Inspect", 0);
+                                break;
+                            case 3:
+                                if (select.selectedObject == "Glove")
+                                    gameMng.cursors.ChangeCursor("Point", 0);
+                                else
+                                    gameMng.cursors.ChangeCursor("Grab", 0);
+                                break;
+                        }
+                        break;
+                    case 20:
+                        switch (stagePhase)
+                        {
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Inspect", 0);
+                                break;
+                            case 2:
+                                if (isTrapped != true)
+                                    gameMng.cursors.ChangeCursor("Point", 0);
+                                break;
+                            case 3:
                                 gameMng.cursors.ChangeCursor("Grab", 0);
                                 break;
                         }
@@ -274,7 +340,6 @@ public class TutorialObj : MonoBehaviour
                                     StartCoroutine(Zoom());
                                     break;
                                 case 1:
-                                    cam.ObjectTransition();
                                     cam.GetComponent<Animator>().SetTrigger(camTrigger);
                                     GetComponent<Collider2D>().enabled = false;
                                     GameObject.Find("doorLeft").GetComponent<Collider2D>().enabled = false;
@@ -307,6 +372,70 @@ public class TutorialObj : MonoBehaviour
                                     GetComponent<Collider2D>().enabled = false;
                                     StartCoroutine(ObjectFade.FadeOut(GetComponent<SpriteRenderer>(), 0));
                                     StartCoroutine(tut.WardrobeBehaviour(4));
+                                    break;
+                            }
+                            break;
+                        case 19:
+                            switch (stagePhase)
+                            {
+                                case 1:
+                                    cam.ObjectTransition();
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("Chair").GetComponent<Collider2D>().enabled = true;
+                                    StartCoroutine(Zoom());
+                                    break;
+                                case 2:
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("backpack_prop").GetComponent<Collider2D>().enabled = true;
+                                    StartCoroutine(Zoom());
+                                    break;
+                                case 3:
+                                    if (isTrapped == true)
+                                    {
+                                        StartCoroutine(CheckForGlove());
+                                    }
+                                    break;
+                            }
+                            break;
+                        case 20:
+                            switch (stagePhase)
+                            {
+                                case 1:
+                                    cam.ObjectTransition();
+                                    cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    GetComponent<Collider2D>().enabled = false;
+                                    GameObject.Find("backpack_prop (1)").GetComponent<Collider2D>().enabled = true;
+                                    StartCoroutine(Zoom());
+                                    break;
+                                case 2:
+                                    if (select.selectedObject == "Backpack")
+                                    {
+                                        StartCoroutine(ObjectFade.FadeIn(GetComponent<SpriteRenderer>()));
+                                        GetComponent<Collider2D>().enabled = false;
+                                        select.slotSelect = 0;
+                                        tut.thought.ShowThought();
+                                        tut.thought.text = thoughtTxt;
+                                        tut.returnButton.GetComponent<Animator>().SetTrigger("Show");
+                                        isTrapped = true;
+                                        tut.stage++;
+                                    }
+                                    else
+                                    {
+                                        if (isTrapped != true)
+                                        {
+                                            tut.thought.ShowThought();
+                                            tut.thought.text = "Yeah, this is a good place to drop the backpack..";
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    GetComponent<Collider2D>().enabled = false;
+                                    StartCoroutine(ObjectFade.FadeOut(GetComponent<SpriteRenderer>(), 0));
+                                    tut.DeskBehaviour(1);
+                                    tut.thought.ShowThought();
+                                    tut.thought.text = "I'll place the backpack next to my bed..";
                                     break;
                             }
                             break;
@@ -369,6 +498,26 @@ public class TutorialObj : MonoBehaviour
         yield return new WaitForEndOfFrame();
         GetComponent<Collider2D>().enabled = true;
 
+    }
+
+    IEnumerator CheckForGlove()
+    {
+        if (select.selectedObject != "Glove")
+        {
+            //Game Over
+            tut.thought.ShowThought();
+            tut.thought.text = "Need to use the glove to touch this..";
+        }
+        else
+        {
+            yield return new WaitForEndOfFrame();
+            isLocked = true;
+            isTrapped = false;
+            select.slotSelect = 0;
+            yield return new WaitForSeconds(0.5f);
+            isLocked = false;
+            StartCoroutine(tut.txt.ShowText(2, 24));
+        }
     }
 
     IEnumerator TimeToOpen()

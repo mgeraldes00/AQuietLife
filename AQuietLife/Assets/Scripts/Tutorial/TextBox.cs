@@ -77,6 +77,10 @@ public class TextBox : MonoBehaviour
                             StartCoroutine(UpdateText(21, 2));
                             StartCoroutine(ButtonSwap());
                             break;
+                        case 21:
+                            StartCoroutine(UpdateText(26, 2));
+                            StartCoroutine(ButtonSwap());
+                            break;
                     }
                     break;
                 case 1:
@@ -110,6 +114,12 @@ public class TextBox : MonoBehaviour
                             tut.thought.ShowThought();
                             tut.thought.text = "This'll do. Now to use it on the backpack..";
                             StartCoroutine(tut.WardrobeBehaviour(5));
+                            break;
+                        case 20:
+                            tut.DeskBehaviour(2);
+                            break;
+                        case 22:
+                            StartCoroutine(tut.TransitionToLevel());
                             break;
                     }
                     break;

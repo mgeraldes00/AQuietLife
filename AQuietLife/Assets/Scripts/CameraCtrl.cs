@@ -132,7 +132,8 @@ public class CameraCtrl : MonoBehaviour
         if (tut.stage != 8 || tut == null)
             for (int i = 0; i < directionalArrows.Length; i++)
                 directionalArrows[i].SetTrigger("Hide");
-        if (tut.stage != 8 & tut.stage != 17 || tut == null)
+        if (tut.stage != 8 && tut.stage != 17 && tut.stage != 19 && tut.stage != 20 
+            || tut == null)
             returnArrows[0].SetTrigger("Show");
         gameMng.isLocked = true;
         StartCoroutine(ArrowUnlock());
