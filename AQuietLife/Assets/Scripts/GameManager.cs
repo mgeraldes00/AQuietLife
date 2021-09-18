@@ -57,15 +57,28 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
 
-        //PlayerPrefs.SetString("StoryMode", "StoryMode");
+        PlayerPrefs.SetString("StoryMode", "StoryMode");
         //PlayerPrefs.DeleteKey("StoryMode");
 
-        if (PlayerPrefs.HasKey("StoryMode") && currLvl == 2)
+        if (PlayerPrefs.HasKey("StoryMode"))
         {
-            fadeAnim.speed = 0.3f;
-            introText.SetActive(true);
+            if (currLvl == 2)
+            {
+                fadeAnim.speed = 0.3f;
+                introText.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else if (currLvl == 0)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+
+        if (!PlayerPrefs.HasKey("StoryMode") && currLvl == 1)
+        {
+            fadeAnim.SetTrigger("FadeIn");
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         returnable = true;
@@ -217,7 +230,9 @@ public class GameManager : MonoBehaviour
                     isLocked = false;
                     break;
                 case 1:
-                    
+                    yield return new WaitForSeconds(0.5f);
+                    isLocked = false;
+                    cursors.ChangeCursor("Open", 1);
                     break;
                 case 2:
                     yield return new WaitForSeconds(4.0f);

@@ -39,7 +39,6 @@ public class CameraCtrl : MonoBehaviour
 
     public void ButtonBehaviour(int i)
     {
-        Tutorial tut = FindObjectOfType<Tutorial>();
         if (tut.txt.isOpen != true && tut.isLocked != true || tut == null)
         {
             if (gameMng.isLocked == false)
