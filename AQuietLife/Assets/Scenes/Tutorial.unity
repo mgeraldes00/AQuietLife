@@ -750,6 +750,10 @@ PrefabInstance:
       propertyPath: exitLocked
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+      propertyPath: hasNotif
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8859889567884998995, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4894,6 +4898,7 @@ MonoBehaviour:
   musicMix: {fileID: 24100000, guid: 7c61aa38172069b43b2b8dbeae76023d, type: 2}
   dynamicMix: {fileID: 24100000, guid: 6b274b857f3145f4f868830109f864e4, type: 2}
   fadeAnim: {fileID: 1251456004}
+  cursorAnim: {fileID: 0}
   returnable: 0
   isLocked: 0
   isDead: 0
@@ -11168,6 +11173,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 761426846}
     m_Modifications:
+    - target: {fileID: 4078909987226467539, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dda1eb99d7ecbdb45b17f29d7d1d27ce, type: 2}
+    - target: {fileID: 4078909987241549427, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4078909987894243394, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

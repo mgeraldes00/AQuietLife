@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public AudioMixer dynamicMix;
 
     [SerializeField] private Animator fadeAnim;
+    [SerializeField] private Animator cursorAnim;
 
     public bool returnable;
 
@@ -56,6 +57,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cursors = FindObjectOfType<UIFollowMouse>();
+
         Cursor.visible = false;
 
         PlayerPrefs.SetString("StoryMode", "StoryMode");
@@ -230,7 +233,7 @@ public class GameManager : MonoBehaviour
                     isLocked = false;
                     break;
                 case 1:
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForEndOfFrame();
                     isLocked = false;
                     cursors.ChangeCursor("Open", 1);
                     break;
@@ -250,6 +253,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (currLvl == 1)
+            {
+                cursorAnim.runtimeAnimatorController = 
+                    Resources.Load("Animation/Cursors/Cursors") as RuntimeAnimatorController;
+            }
             yield return new WaitForSeconds(0.5f);
             levelClock.SetBool("Active", true);
             yield return new WaitForSeconds(2.0f);

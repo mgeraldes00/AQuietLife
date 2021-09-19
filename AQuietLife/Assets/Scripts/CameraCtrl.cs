@@ -34,12 +34,18 @@ public class CameraCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (gameMng.currLvl == 0)
+            tut = FindObjectOfType<Tutorial>();
+        else
+            tut = null;
+
         currentPanel = -1;
     }
 
     public void ButtonBehaviour(int i)
     {
-        if (tut.txt.isOpen != true && tut.isLocked != true || tut == null)
+        if (gameMng.currLvl == 0 && tut.txt.isOpen != true && tut.isLocked != true 
+            || tut == null)
         {
             if (gameMng.isLocked == false)
             {
@@ -128,10 +134,10 @@ public class CameraCtrl : MonoBehaviour
     public void ObjectTransition()
     {
         //fadeAnim.SetTrigger("TransitionObj");
-        if (tut.stage != 8 || tut == null)
+        if (gameMng.currLvl == 0 && tut.stage != 8 || tut == null)
             for (int i = 0; i < directionalArrows.Length; i++)
                 directionalArrows[i].SetTrigger("Hide");
-        if (tut.stage != 8 && tut.stage != 17 && tut.stage != 19 && tut.stage != 20 
+        if (gameMng.currLvl == 0 && tut.stage != 8 && tut.stage != 17 && tut.stage != 19 && tut.stage != 20 
             || tut == null)
             returnArrows[0].SetTrigger("Show");
         gameMng.isLocked = true;
