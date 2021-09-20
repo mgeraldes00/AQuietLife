@@ -56,7 +56,6 @@ public class DialogControl : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         StartCoroutine(DialogStart());
-
     }
 
     // Update is called once per frame
@@ -230,6 +229,7 @@ public class DialogControl : MonoBehaviour
     IEnumerator DialogStart()
     {
         yield return new WaitForEndOfFrame();
+        Destroy(GameObject.Find("BackMusic"));
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 10, 1));
         yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < introText.Length; i++)

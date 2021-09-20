@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7af466f2ddf8532429fac1795921a52b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: 1c5cf37e3be81a64ba042fce4abd3635
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Dialog.unity
     guid: 747e191deda1d1446a230e698d78b7dd
   - enabled: 0
@@ -23,13 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bedroom.unity
     guid: eb51603899e323641bc26d8f839ee8fc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Dialog2.unity
     guid: e184000ee0048164fb8f5584d261fa84
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Kitchen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ThankYou.unity
     guid: 8781f40bc0af9e742beae436568eba96
   m_configObjects: {}

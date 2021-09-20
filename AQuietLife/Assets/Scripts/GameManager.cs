@@ -76,6 +76,10 @@ public class GameManager : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
+            else if (currLvl == 1)
+            {
+                GameObject.Find("BackMusic").GetComponent<DontDestroy>().lvl = 1;
+            }
         }
 
         if (!PlayerPrefs.HasKey("StoryMode") && currLvl == 1)
