@@ -26,9 +26,51 @@ public class UIFollowMouse : MonoBehaviour
         movingObject.position = cam.ScreenToWorldPoint(pos);
     }
 
+    public void RemoveCursorForUI()
+    {
+        cursorAnim.SetBool("OpenDoor", false);
+        cursorAnim.SetBool("Grab", false);
+        cursorAnim.SetBool("Inspect", false);
+    }
+
     public void ChangeCursor(string curName, int i)
     {
-        switch (curName)
+        if (curName == "OpenDoor")
+        {
+            switch (i)
+            {
+                case 0:
+                    cursorAnim.SetBool("OpenDoor", false);
+                    break;
+                case 1:
+                    cursorAnim.SetBool("OpenDoor", true);
+                    cursorAnim.SetTrigger("OpenR2L");
+                    break;
+                case 2:
+                    cursorAnim.SetBool("OpenDoor", true);
+                    cursorAnim.SetTrigger("OpenL2R");
+                    break;
+                case 3:
+                    cursorAnim.SetBool("OpenDoor", true);
+                    cursorAnim.SetTrigger("OpenT2B");
+                    break;
+                case 4:
+                    cursorAnim.SetBool("OpenDoor", true);
+                    cursorAnim.SetTrigger("OpenB2T");
+                    break;
+            }
+        }
+        else
+            switch (i)
+            {
+                case 0:
+                    cursorAnim.SetBool(curName, false);
+                    break;
+                case 1:
+                    cursorAnim.SetBool(curName, true);
+                    break;
+            }
+        /*switch (curName)
         {
             case "Open":
                 switch (i)
@@ -101,6 +143,6 @@ public class UIFollowMouse : MonoBehaviour
                         break;
                 }
                 break;
-        }
+        }*/
     }
 }

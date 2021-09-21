@@ -57,7 +57,7 @@ public class TutorialObj : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
@@ -148,7 +148,7 @@ public class TutorialObj : MonoBehaviour
                                         gameMng.cursors.ChangeCursor("Inspect", 1);
                                         break;
                                     case 2:
-                                        if (isTrapped != true)
+                                        if (isTrapped != true && select.selectedObject == "Backpack")
                                             gameMng.cursors.ChangeCursor("Point", 1);
                                         break;
                                     case 3:
@@ -162,6 +162,78 @@ public class TutorialObj : MonoBehaviour
             }
         }
     }
+
+    /*private void OnMouseOver()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            if (txt.isOpen != true && gameMng.isLocked != true)
+            {
+                switch (tut.stage)
+                {
+                    case 8:
+                        if (stagePhase == 1 || stagePhase == 2)
+                            gameMng.cursors.ChangeCursor("Inspect", 1);
+                        else
+                            gameMng.cursors.ChangeCursor("Grab", 1);
+                        break;
+                    case 10:
+                        if (tut.thought.isThinking == false || isThinking == true)
+                            gameMng.cursors.ChangeCursor("Grab", 1);
+                        break;
+                    case 17:
+                        switch (stagePhase)
+                        {
+                            case 0:
+                                gameMng.cursors.ChangeCursor("Inspect", 1);
+                                break;
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Inspect", 1);
+                                break;
+                            case 2:
+                                gameMng.cursors.ChangeCursor("Grab", 1);
+                                break;
+                            case 3:
+                                gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                                break;
+                        }
+                        break;
+                    case 19:
+                        switch (stagePhase)
+                        {
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Inspect", 1);
+                                break;
+                            case 2:
+                                gameMng.cursors.ChangeCursor("Inspect", 1);
+                                break;
+                            case 3:
+                                if (select.selectedObject == "Glove")
+                                    gameMng.cursors.ChangeCursor("Point", 1);
+                                else
+                                    gameMng.cursors.ChangeCursor("Grab", 1);
+                                break;
+                        }
+                        break;
+                    case 20:
+                        switch (stagePhase)
+                        {
+                            case 1:
+                                gameMng.cursors.ChangeCursor("Inspect", 1);
+                                break;
+                            case 2:
+                                if (isTrapped != true && select.selectedObject == "Backpack")
+                                    gameMng.cursors.ChangeCursor("Point", 1);
+                                break;
+                            case 3:
+                                gameMng.cursors.ChangeCursor("Grab", 1);
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+    }*/
 
     private void OnMouseExit()
     {
@@ -414,6 +486,7 @@ public class TutorialObj : MonoBehaviour
                                     {
                                         StartCoroutine(ObjectFade.FadeIn(GetComponent<SpriteRenderer>()));
                                         GetComponent<Collider2D>().enabled = false;
+                                        gameMng.cursors.ChangeCursor("Point", 0);
                                         select.slotSelect = 0;
                                         tut.thought.ShowThought();
                                         tut.thought.text = thoughtTxt;
@@ -433,6 +506,7 @@ public class TutorialObj : MonoBehaviour
                                 case 3:
                                     GetComponent<Collider2D>().enabled = false;
                                     StartCoroutine(ObjectFade.FadeOut(GetComponent<SpriteRenderer>(), 0));
+                                    gameMng.cursors.ChangeCursor("Point", 0);
                                     tut.DeskBehaviour(1);
                                     tut.thought.ShowThought();
                                     tut.thought.text = "I'll place the backpack next to my bed..";
@@ -517,6 +591,7 @@ public class TutorialObj : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             isLocked = false;
             StartCoroutine(tut.txt.ShowText(2, 24));
+            gameMng.cursors.ChangeCursor("Point", 0);
         }
     }
 

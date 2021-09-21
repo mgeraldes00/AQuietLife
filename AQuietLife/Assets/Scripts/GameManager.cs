@@ -61,8 +61,8 @@ public class GameManager : MonoBehaviour
 
         Cursor.visible = false;
 
-        PlayerPrefs.SetString("StoryMode", "StoryMode");
-        //PlayerPrefs.DeleteKey("StoryMode");
+        //PlayerPrefs.SetString("StoryMode", "StoryMode");
+        PlayerPrefs.DeleteKey("StoryMode");
 
         if (PlayerPrefs.HasKey("StoryMode"))
         {

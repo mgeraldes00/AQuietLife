@@ -40,7 +40,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             introHover = FindObjectOfType<IntroCursor>();
             cursors = FindObjectOfType<UIFollowMouse>();
         }
-        else if (currentLvl == 2)
+        else if (currentLvl == 1 || currentLvl == 2)
         {
             cam = FindObjectOfType<CameraCtrl>();
             gameMng = FindObjectOfType<GameManager>();
@@ -58,7 +58,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
                 arrow.SetTrigger("Clicked");
                 StartCoroutine(UnlockClock());
                 //introHover.ChangeCursor(1);
-                cursors.ChangeCursor("Point", 0);
+                //cursors.ChangeCursor("Point", 0);
             }
         }
         else if (currentLvl == 2)
@@ -89,50 +89,108 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (currentLvl == 0)
+        {
+            cursors.RemoveCursorForUI();
+
             //introHover.ChangeCursor(2);
             cursors.ChangeCursor("Point", 1);
+
+            if (isArrow == true)
+            {
+                isOver = true;
+                arrow.SetBool("Selected", true);
+            }
+            else if (isArrow == false && isPhone == false
+                && isGameOver == false)
+            {
+                clockSelect.SetActive(true);
+            }
+            else if (isArrow == false && isPhone == false && selectedText != null
+                && isGameOver == true)
+            {
+                selectedText.fontStyle = FontStyles.Underline;
+            }
+        }
         else
+        {
+            gameMng.cursors.RemoveCursorForUI();
+
             if (pointers != null)
-        {
-            //pointers.ChangeCursor(2);
-            gameMng.cursors.ChangeCursor("Point", 1);
-        }
-        if (isArrow == true)
-        {
-            isOver = true;
-            arrow.SetBool("Selected", true);
-        }
-        else if (isArrow == false && isPhone == false
-            && isGameOver == false)
-            clockSelect.SetActive(true);
-        else if (isArrow == false && isPhone == false && selectedText != null
-            && isGameOver == true)
-        {
-            selectedText.fontStyle = FontStyles.Underline;
+            {
+                //pointers.ChangeCursor(2);
+                gameMng.cursors.ChangeCursor("Point", 1);
+            }
+            if (isArrow == true)
+            {
+                isOver = true;
+                arrow.SetBool("Selected", true);
+                gameMng.cursors.ChangeCursor("Point", 1);
+            }
+            else if (isArrow == false && isPhone == false
+                && isGameOver == false)
+            {
+                gameMng.cursors.ChangeCursor("Point", 1);
+                clockSelect.SetActive(true);
+            }
+            else if (isArrow == false && isPhone == false && selectedText != null
+                && isGameOver == true)
+            {
+                gameMng.cursors.ChangeCursor("Point", 1);
+                selectedText.fontStyle = FontStyles.Underline;
+            }
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (currentLvl == 0)
+        {
+            cursors.RemoveCursorForUI();
+
             //introHover.ChangeCursor(1);
             cursors.ChangeCursor("Point", 0);
+
+            if (isArrow == true)
+            {
+                isOver = false;
+                arrow.SetBool("Selected", false);
+            }
+            else if (isArrow == false && isGameOver == false)
+            {
+                clockSelect.SetActive(false);
+            }
+            else if (isArrow == false && isPhone == false && selectedText != null
+                && isGameOver == true)
+            {
+                selectedText.fontStyle = FontStyles.Normal;
+            }
+        }
+            
         else
+        {
             if (pointers != null)
-        {
-            //pointers.ChangeCursor(1);
-            gameMng.cursors.ChangeCursor("Point", 0);
+            {
+                //pointers.ChangeCursor(1);
+                gameMng.cursors.ChangeCursor("Point", 0);
+            }
+            if (isArrow == true)
+            {
+                isOver = false;
+                arrow.SetBool("Selected", false);
+                gameMng.cursors.ChangeCursor("Point", 0);
+            }
+            else if (isArrow == false && isGameOver == false)
+            {
+                clockSelect.SetActive(false);
+                gameMng.cursors.ChangeCursor("Point", 0);
+            }
+            else if (isArrow == false && isPhone == false && selectedText != null
+                && isGameOver == true)
+            {
+                selectedText.fontStyle = FontStyles.Normal;
+                gameMng.cursors.ChangeCursor("Point", 0);
+            }
         }
-        if (isArrow == true)
-        {
-            isOver = false;
-            arrow.SetBool("Selected", false);
-        }
-        else if (isArrow == false && isGameOver == false)
-            clockSelect.SetActive(false);
-        else if (isArrow == false && isPhone == false && selectedText != null
-            && isGameOver == true)
-            selectedText.fontStyle = FontStyles.Normal;
     }
 
     IEnumerator UnlockClock()

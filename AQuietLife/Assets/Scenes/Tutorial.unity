@@ -2171,7 +2171,7 @@ MonoBehaviour:
   rewindReverseAudio: {fileID: 0}
   camTrigger: 
   thoughtTxt: Need to tidy up the room before leaving..
-  stagePhase: 0
+  stagePhase: -1
   staticObj: 1
   isThinking: 0
   isLocked: 0
@@ -3780,7 +3780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7905284234457440509, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.00003
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 7905284234457440509, guid: 1aa3e1ed7cbaab744a9a13d9eb2d13c5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4039,7 +4039,7 @@ MonoBehaviour:
   camTrigger: 
   thoughtTxt: Don't want to waste these shirts. There should be something better
     in the wardrobe..
-  stagePhase: 0
+  stagePhase: -1
   staticObj: 1
   isThinking: 0
   isLocked: 0
@@ -4979,7 +4979,7 @@ MonoBehaviour:
   rewindReverseAudio: {fileID: 0}
   camTrigger: 
   thoughtTxt: It has to be cotton... This will not do..
-  stagePhase: 0
+  stagePhase: -1
   staticObj: 1
   isThinking: 0
   isLocked: 0
@@ -5974,7 +5974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242867, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242876, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_LocalPosition.x

@@ -2913,7 +2913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8239784722282517978, guid: 9c40fbffef8476143ad8a499cd6985fc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8239784722282517978, guid: 9c40fbffef8476143ad8a499cd6985fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3125,7 +3125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thought: {fileID: 1078924841}
-  pointer: {fileID: 2006920394}
+  pointer: {fileID: 0}
   cursors: {fileID: 0}
   introText: {fileID: 1058265419}
   deathScreen:
@@ -3162,7 +3162,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999282402
 GameObject:
@@ -7233,7 +7233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2006920393}
-  - component: {fileID: 2006920394}
   - component: {fileID: 2006920395}
   - component: {fileID: 2006920396}
   m_Layer: 0
@@ -7264,27 +7263,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2006920394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006920392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14709598564370f4c82f5d942a9bf0ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultTexture: {fileID: 2800000, guid: 331e62a7b18e9b84b8339a3a7f7c01e6, type: 3}
-  interactTexture: {fileID: 2800000, guid: 1bd5a9dc800803047ba4112fed834e23, type: 3}
-  pickUpTexture: {fileID: 2800000, guid: a1819275e4e01374baad5e3fd3c6959d, type: 3}
-  examineTexture: {fileID: 2800000, guid: 99c0b960ab55dff44bdd1471b97b3325, type: 3}
-  clickTexture: {fileID: 2800000, guid: c104e6ff01b86fc4a862741f5715bb66, type: 3}
-  doorTexture: {fileID: 0}
-  curMode: 0
-  hotSpot: {x: 0, y: 0}
-  currentCursor: 0
 --- !u!114 &2006920395
 MonoBehaviour:
   m_ObjectHideFlags: 0
