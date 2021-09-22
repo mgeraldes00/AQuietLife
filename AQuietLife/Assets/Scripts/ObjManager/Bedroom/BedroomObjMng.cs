@@ -21,7 +21,8 @@ public class BedroomObjMng : MonoBehaviour
 
     private void Start()
     {
-        tutorial = GameObject.Find("Scene").GetComponent<Tutorial>();
+        if (gameMng.currLvl == 0)
+            tutorial = GameObject.Find("Scene").GetComponent<Tutorial>();
         thought = GameObject.Find("ThoughtBalloon").GetComponent<ThoughtManager>();
         tasks = GameObject.Find("Scene").GetComponent<TaskCounter>();
     }
@@ -36,8 +37,12 @@ public class BedroomObjMng : MonoBehaviour
                 case 0:
                     if (objName == "Door" && tasks.completedTasks < 1)
                     {
-                        thought.KeepThought();
-                        thought.text = "Should tidy up the room a bit before leaving..";
+                        if (thought.attachedObj != "Door")
+                        {
+                            thought.ShowThought();
+                            thought.text = "Should tidy up the room a bit before leaving..";
+                            thought.attachedObj = objName;
+                        }
                     }
                     else
                     {
@@ -100,6 +105,12 @@ public class BedroomObjMng : MonoBehaviour
                                 for (int i = 0; i < objects.Length; i++)
                                     if (objects[i] != null)
                                         objects[i].enabled = true;
+                                if (thought.attachedObj != "TV")
+                                {
+                                    thought.ShowThought();
+                                    thought.text = "Did I take care of everything?.";
+                                    thought.attachedObj = objName;
+                                }
                                 returnMng.currentArea = "TV";
                                 break;
                             case "Door":
@@ -118,7 +129,7 @@ public class BedroomObjMng : MonoBehaviour
                         for (int i = 2; i < objects.Length; i++)
                             if (objects[i] != null)
                                 objects[i].enabled = true;
-                        if (tutorial.isOver != true)
+                        if (gameMng.currLvl != 0 || tutorial.isOver != true)
                         {
                             area.offset = new Vector2(5.92f, -1.22f);
                             area.size = new Vector2(2.62f, 2.86f);

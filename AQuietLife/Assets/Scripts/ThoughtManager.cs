@@ -19,6 +19,10 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public string currentText = "";
 
+    public string attachedObj;
+
+    private Coroutine resetHandle;
+
     //public TextMeshProUGUI txt;
 
     public bool isThinking;
@@ -31,7 +35,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             balloon.SetTrigger("Appear");
             isThinking = true;
             StartCoroutine(ShowText());
-            StartCoroutine(TimeToDisappear());
+            //StartCoroutine(TimeToDisappear());
             if (balloonActive != true)
             {
                 StartCoroutine(ShowBalloon());
@@ -39,6 +43,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else
         {
+            //this.RestartCoroutine(TimeToDisappear(), ref resetHandle);
             UpdateThought();
         }
     }
@@ -74,6 +79,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     IEnumerator InstantDissappear()
     {
         yield return new WaitForEndOfFrame();
+        isThinking = false;
         textObj.GetComponent<TextMeshProUGUI>().raycastTarget = false;
         yield return new WaitForSeconds(0.1f);
         balloon.SetTrigger("Disappear");
@@ -81,8 +87,8 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         currentText = "";
         yield return new WaitForSeconds(1.0f);
         textObj.GetComponent<TextMeshProUGUI>().text = currentText;
-        isThinking = false;
         balloonActive = false;
+        attachedObj = null;
     }
 
     IEnumerator TimeToDisappear()
@@ -96,6 +102,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             isThinking = false;
             yield return new WaitForSecondsRealtime(1.0f);
             textObj.GetComponent<TextMeshProUGUI>().text = currentText;
+            attachedObj = null;
         }
     }
 
@@ -123,7 +130,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         yield return new WaitForEndOfFrame();
         isThinking = true;
         balloon.SetTrigger("Update");
-        text = "";
+        //text = "";
         currentText = "";
         yield return new WaitForSeconds(0.5f);
         textObj.GetComponent<TextMeshProUGUI>().text = currentText;
