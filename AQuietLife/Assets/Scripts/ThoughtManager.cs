@@ -8,6 +8,7 @@ using TMPro;
 public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Tutorial tut;
+    [SerializeField] private GameManager gameMng;
 
     public Animator balloon;
 
@@ -27,6 +28,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public bool isThinking;
     [SerializeField] private bool balloonActive;
+    [SerializeField] private bool isHovering;
 
     public void ShowThought()
     {
@@ -35,7 +37,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             balloon.SetTrigger("Appear");
             isThinking = true;
             StartCoroutine(ShowText());
-            //StartCoroutine(TimeToDisappear());
+            this.StartCoroutine(TimeToDisappear(), ref resetHandle);
             if (balloonActive != true)
             {
                 StartCoroutine(ShowBalloon());
@@ -43,7 +45,8 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else
         {
-            //this.RestartCoroutine(TimeToDisappear(), ref resetHandle);
+            this.TryStopCoroutine(ref resetHandle);
+
             UpdateThought();
         }
     }
@@ -80,6 +83,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         yield return new WaitForEndOfFrame();
         isThinking = false;
+        balloonActive = false;
         textObj.GetComponent<TextMeshProUGUI>().raycastTarget = false;
         yield return new WaitForSeconds(0.1f);
         balloon.SetTrigger("Disappear");
@@ -87,16 +91,18 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         currentText = "";
         yield return new WaitForSeconds(1.0f);
         textObj.GetComponent<TextMeshProUGUI>().text = currentText;
-        balloonActive = false;
         attachedObj = null;
     }
 
     IEnumerator TimeToDisappear()
     {
-        yield return new WaitForSecondsRealtime(3.5f);
+        yield return new WaitForSecondsRealtime(5.0f);
+        while (isHovering == true)
+            yield return null;
         if (isThinking != false)
         {
             balloon.SetTrigger("Disappear");
+            balloonActive = false;
             text = "";
             currentText = "";
             isThinking = false;
@@ -108,7 +114,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     IEnumerator ShowBalloon()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForEndOfFrame();
         balloonActive = true;
     }
 
@@ -128,6 +134,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         isThinking = false;
         yield return new WaitForEndOfFrame();
+        this.RestartCoroutine(TimeToDisappear(), ref resetHandle);
         isThinking = true;
         balloon.SetTrigger("Update");
         //text = "";
@@ -147,11 +154,18 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         balloon.SetBool("OverBalloon", true);
+        isHovering = true;
+        //this.TryStopCoroutine(ref resetHandle);
+        gameMng.cursors.ChangeCursor("Point", 1);
+        gameMng.cursors.RemoveCursorForUI();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         balloon.SetBool("OverBalloon", false);
+        isHovering = false;
+        //this.StartCoroutine(TimeToDisappear(), ref resetHandle);
+        gameMng.cursors.ChangeCursor("Point", 0);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -165,17 +179,17 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             {
                 if (tut.stage == 10)
                 {
-                        switch (tut.rewindOnce)
-                        {
-                            case true:
-                                StartCoroutine(InstantDissappear());
-                                break;
-                            case false:
-                                StartCoroutine(InstantDissappear());
-                                tut.rewindButton[0].GetComponent<Animator>().SetBool("Visible", true);
-                                tut.rewindOnce = true;
-                                break;
-                        }
+                    switch (tut.rewindOnce)
+                    {
+                        case true:
+                            StartCoroutine(InstantDissappear());
+                            break;
+                        case false:
+                            StartCoroutine(InstantDissappear());
+                            tut.rewindButton[0].GetComponent<Animator>().SetBool("Visible", true);
+                            tut.rewindOnce = true;
+                            break;
+                    }
                 }
                 else
                 {
