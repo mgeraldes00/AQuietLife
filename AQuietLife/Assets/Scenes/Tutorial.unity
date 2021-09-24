@@ -5342,6 +5342,10 @@ PrefabInstance:
       propertyPath: tut
       value: 
       objectReference: {fileID: 2006920397}
+    - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: gameMng
+      value: 
+      objectReference: {fileID: 977577487}
     - target: {fileID: 7863672715628366532, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_RaycastTarget
       value: 0

@@ -56,6 +56,7 @@ public class Eyelids : MonoBehaviour
         media.dirButtons.SetActive(false);
         phone.SetBool("Enlarge", true);
         inventory.SetBool("Visible", false);
+        gameMng.thought.HideThought();
         StartCoroutine(StartRewind());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
         StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 0.5f));

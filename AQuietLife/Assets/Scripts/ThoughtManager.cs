@@ -47,7 +47,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             this.TryStopCoroutine(ref resetHandle);
 
-            UpdateThought();
+            UpdateThought(1);
         }
     }
 
@@ -65,13 +65,15 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else
         {
-            UpdateThought();
+            this.TryStopCoroutine(ref resetHandle);
+
+            UpdateThought(2);
         }
     }
 
-    public void UpdateThought()
+    public void UpdateThought(int i)
     {
-        StartCoroutine(UpdateText());
+        StartCoroutine(UpdateText(i));
     }
 
     public void HideThought()
@@ -130,11 +132,12 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    IEnumerator UpdateText()
+    IEnumerator UpdateText(int typeOfThought)
     {
         isThinking = false;
         yield return new WaitForEndOfFrame();
-        this.RestartCoroutine(TimeToDisappear(), ref resetHandle);
+        if (typeOfThought == 1)
+            this.RestartCoroutine(TimeToDisappear(), ref resetHandle);
         isThinking = true;
         balloon.SetTrigger("Update");
         //text = "";
