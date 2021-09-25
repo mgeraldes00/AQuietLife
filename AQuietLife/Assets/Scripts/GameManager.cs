@@ -61,8 +61,8 @@ public class GameManager : MonoBehaviour
 
         Cursor.visible = false;
 
-        //PlayerPrefs.SetString("StoryMode", "StoryMode");
-        PlayerPrefs.DeleteKey("StoryMode");
+        PlayerPrefs.SetString("StoryMode", "StoryMode");
+        //PlayerPrefs.DeleteKey("StoryMode");
 
         if (PlayerPrefs.HasKey("StoryMode"))
         {
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
             }
             else if (currLvl == 1)
             {
+                backMusic = GameObject.Find("BackMusic").GetComponent<AudioSource>();
                 GameObject.Find("BackMusic").GetComponent<DontDestroy>().lvl = 1;
             }
         }

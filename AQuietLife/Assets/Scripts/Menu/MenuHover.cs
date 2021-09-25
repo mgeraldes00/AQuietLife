@@ -30,7 +30,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (currentScene == 0 && isLocked == false)
+        if (currentScene == -2 && isLocked == false)
         {   
             if (FindObjectOfType<MenuCtrl>().watchingCredits == false)
             {
@@ -46,7 +46,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
                 FindObjectOfType<AudioCtrl>().Play("MenuSelect");
             }
         }
-        else if (currentScene == 1)
+        else if (currentScene == 0)
         {
             isOver = true;
             if (selectedText != null)
@@ -59,7 +59,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (currentScene == 0 && isLocked == false)
+        if (currentScene == -2 && isLocked == false)
         {
             if (!FindObjectOfType<MenuCtrl>())
             {
@@ -78,7 +78,7 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
                     imgAnim.SetTrigger("Normalize");
             }
         }
-        else if (currentScene == 1)
+        else if (currentScene == 0)
         {
             isOver = false;
             if (selectedText != null)
@@ -94,8 +94,17 @@ public class MenuHover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         if (selectedImg != null)
             selectedImg.enabled = false;
         if (cursors != null)
-            //pointers.ChangeCursor(1);
-            cursors.ChangeCursor("Point", 0);
+        {
+            if (currentScene == 0)
+            {
+
+            }
+            else
+            {
+                //pointers.ChangeCursor(1);
+                cursors.ChangeCursor("Point", 0);
+            }
+        }
         StartCoroutine(Unlock());
         FindObjectOfType<AudioCtrl>().Play("MenuClick");
     }

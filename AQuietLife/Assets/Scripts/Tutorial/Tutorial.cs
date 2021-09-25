@@ -137,9 +137,9 @@ public class Tutorial : MonoBehaviour
             case 3:
                 yield return new WaitForSeconds(1.0f);
                 StartCoroutine(txt.ShowText(2, 6));
-                uiPhone.GetComponent<Animator>().SetBool("Enlarge", true);
+                //uiPhone.GetComponent<Animator>().SetBool("Enlarge", true);
                 yield return new WaitForSecondsRealtime(1.0f);
-                uiPhone.GetComponent<Image>().enabled = false;
+                //uiPhone.GetComponent<Image>().enabled = false;
                 break;
         }
     }
@@ -283,10 +283,10 @@ public class Tutorial : MonoBehaviour
         txt.isOpen = false;
     }
 
-    public IEnumerator QuickLock()
+    public IEnumerator QuickLock(float f)
     {
         isLocked = true;
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(f);
         isLocked = false;
         if (isLockedArrow == true)
             isLockedArrow = false;

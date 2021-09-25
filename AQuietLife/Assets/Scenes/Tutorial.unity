@@ -3439,6 +3439,26 @@ PrefabInstance:
       propertyPath: tut
       value: 
       objectReference: {fileID: 2006920397}
+    - target: {fileID: 2186079000310855137, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286324048181712664, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872758898418974948, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824974576289656909, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614692523521498918, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
 --- !u!224 &709532036 stripped
@@ -5978,7 +5998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242867, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242876, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9748,7 +9768,7 @@ MonoBehaviour:
   imgAnim: {fileID: 0}
   isOver: 0
   isLocked: 0
-  currentScene: 1
+  currentScene: 0
 --- !u!222 &1874346579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10577,7 +10597,7 @@ MonoBehaviour:
   imgAnim: {fileID: 0}
   isOver: 0
   isLocked: 0
-  currentScene: 1
+  currentScene: 0
 --- !u!1 &2006920392
 GameObject:
   m_ObjectHideFlags: 0

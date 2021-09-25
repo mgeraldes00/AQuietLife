@@ -56,7 +56,8 @@ public class Eyelids : MonoBehaviour
         media.dirButtons.SetActive(false);
         phone.SetBool("Enlarge", true);
         inventory.SetBool("Visible", false);
-        gameMng.thought.HideThought();
+        if (gameMng.thought.isThinking == true)
+            gameMng.thought.HideThought();
         StartCoroutine(StartRewind());
         StartCoroutine(FadeMixerGroup.StartFade(musicMix, "BackMusic", 2, 0));
         StartCoroutine(FadeMixerGroup.StartFade(objMix, "DynamicVol", 2, 0.5f));
@@ -80,7 +81,7 @@ public class Eyelids : MonoBehaviour
             case 2:
                 cover.SetTrigger("2ndRewind");
                 break;
-        } 
+        }
     }
 
     IEnumerator StartRewind()
@@ -128,7 +129,7 @@ public class Eyelids : MonoBehaviour
         waveBack.GetComponent<Animator>().SetBool("Rewinding", false);
         for (int c = 0; c < media.pressedButtons.Length; c++)
             media.pressedButtons[c].SetActive(false);
-        yield return new WaitForSeconds(1.0f);       
+        yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < rewindClock.Length; i++)
             rewindClock[i].enabled = false;
         for (int i = 0; i < waveform.Length; i++)

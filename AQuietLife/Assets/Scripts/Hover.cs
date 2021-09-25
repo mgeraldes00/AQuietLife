@@ -25,6 +25,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     [SerializeField] private bool isDirectional;
     [SerializeField] private bool isArrow;
     [SerializeField] private bool isPhone;
+    [SerializeField] private bool isMediaCtrl;
     [SerializeField] private bool isLocked;
     [SerializeField] private bool isGameOver;
 
@@ -100,7 +101,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
                 isOver = true;
                 arrow.SetBool("Selected", true);
             }
-            else if (isArrow == false && isPhone == false
+            else if (isArrow == false && isPhone == false && isMediaCtrl == false
                 && isGameOver == false)
             {
                 clockSelect.SetActive(true);
@@ -155,7 +156,8 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
                 isOver = false;
                 arrow.SetBool("Selected", false);
             }
-            else if (isArrow == false && isGameOver == false)
+            else if (isArrow == false && isMediaCtrl == false
+                && isGameOver == false)
             {
                 clockSelect.SetActive(false);
             }

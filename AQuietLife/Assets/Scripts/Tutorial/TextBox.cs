@@ -87,7 +87,7 @@ public class TextBox : MonoBehaviour
                     StartCoroutine
                         (BlurCtrl.RemoveBlur(tut.blur));
                     button[1].GetComponent<Animator>().SetTrigger("Hide");
-                    StartCoroutine(tut.QuickLock());
+                    StartCoroutine(tut.QuickLock(1.0f));
                     StartCoroutine(HideText());
                     isOpen = false;
                     if (tut.stage >= 1)
@@ -152,12 +152,11 @@ public class TextBox : MonoBehaviour
 
     IEnumerator UpdateText(int h, int multUpdate)
     {
+        StartCoroutine(tut.QuickLock(2.0f));
         txtAnim.SetTrigger("UpdateText");
         txt = "";
         currentTxt = "";
-        yield return new WaitForSecondsRealtime(0.9f);
-        StartCoroutine(tut.QuickLock());
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(1.0f);
         txtObj.GetComponent<TextMeshProUGUI>().text = currentTxt;
 
         yield return new WaitForSecondsRealtime(0.1f);

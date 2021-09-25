@@ -477,6 +477,8 @@ public class TutorialObj : MonoBehaviour
                                 case 1:
                                     cam.ObjectTransition();
                                     cam.GetComponent<Animator>().SetTrigger(camTrigger);
+                                    tut.thought.ShowThought();
+                                    tut.thought.text = "Yeah, this is a good place to drop the backpack..";
                                     GetComponent<Collider2D>().enabled = false;
                                     GameObject.Find("backpack_prop (1)").GetComponent<Collider2D>().enabled = true;
                                     StartCoroutine(Zoom());
@@ -493,14 +495,6 @@ public class TutorialObj : MonoBehaviour
                                         tut.returnButton.GetComponent<Animator>().SetTrigger("Show");
                                         isTrapped = true;
                                         tut.stage++;
-                                    }
-                                    else
-                                    {
-                                        if (isTrapped != true)
-                                        {
-                                            tut.thought.ShowThought();
-                                            tut.thought.text = "Yeah, this is a good place to drop the backpack..";
-                                        }
                                     }
                                     break;
                                 case 3:
