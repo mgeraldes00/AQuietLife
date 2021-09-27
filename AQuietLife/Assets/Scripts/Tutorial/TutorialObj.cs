@@ -39,6 +39,7 @@ public class TutorialObj : MonoBehaviour
     [SerializeField] private bool isLocked;
     [SerializeField] private bool isTrapped;
     [SerializeField] private bool rewindOnce;
+    [SerializeField] private bool hasAudio;
 
     private void Start()
     {
@@ -593,37 +594,48 @@ public class TutorialObj : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         eyelids.Close(1);
-        if (rewindOnce != true)
+        if (hasAudio == true)
+        {
+            if (rewindOnce != true)
+            {
+                yield return new WaitForSeconds(2.0f);
+                rewindReverseAudio.Play();
+                yield return new WaitForSeconds(1);
+                eyelids.pointer.SetTrigger("CabinetRewind");
+                eyelids.timer.SetTrigger("Pressed");
+                waveformObj.enabled = true;
+                eyelids.Uncover(1);
+                rewindOnce = true;
+                yield return new WaitForSeconds(2);
+                eyelids.timer.SetTrigger("Pressed");
+                eyelids.pointer.SetBool("Moving", true);
+                eyelids.mediaFunction = true;
+                audioCtrl.pressedButtons[2].SetActive(true);
+                slider.SetActive(true);
+                rewindAudio.Play();
+                eyelids.dots.SetActive(true);
+            }
+            else if (rewindOnce == true)
+            {
+                yield return new WaitForSeconds(2.0f);
+                eyelids.timer.SetTrigger("Pressed");
+                eyelids.pointer.SetBool("Moving", true);
+                eyelids.mediaFunction = true;
+                audioCtrl.pressedButtons[2].SetActive(true);
+                audioCtrl.MoreRewind();
+                slider.SetActive(true);
+                waveformObj.enabled = true;
+                rewindAudio.Play();
+                eyelids.dots.SetActive(true);
+            }
+        }
+        else if (hasAudio != true)
         {
             yield return new WaitForSeconds(2.0f);
-            rewindReverseAudio.Play();
-            yield return new WaitForSeconds(1);
-            eyelids.pointer.SetTrigger("CabinetRewind");
-            eyelids.timer.SetTrigger("Pressed");
-            waveformObj.enabled = true;
-            eyelids.Uncover(1);
-            rewindOnce = true;
-            yield return new WaitForSeconds(2);
-            eyelids.timer.SetTrigger("Pressed");
-            eyelids.pointer.SetBool("Moving", true);
-            eyelids.mediaFunction = true;
-            audioCtrl.pressedButtons[2].SetActive(true);
-            slider.SetActive(true);
-            rewindAudio.Play();
-            eyelids.dots.SetActive(true);
-        }
-        else if (rewindOnce == true)
-        {
-            yield return new WaitForSeconds(2);
-            eyelids.timer.SetTrigger("Pressed");
-            eyelids.pointer.SetBool("Moving", true);
             eyelids.mediaFunction = true;
             audioCtrl.pressedButtons[2].SetActive(true);
             audioCtrl.MoreRewind();
-            slider.SetActive(true);
-            waveformObj.enabled = true;
             rewindAudio.Play();
-            eyelids.dots.SetActive(true);
         }
     }
 }

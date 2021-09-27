@@ -579,6 +579,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &33182717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -927,6 +928,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!95 &110186428
 Animator:
   serializedVersion: 3
@@ -2177,6 +2179,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &429171230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4065,6 +4068,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &822513988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4443,6 +4447,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!1 &881673873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4707,6 +4712,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &945184852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5005,6 +5011,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &999282405
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5998,7 +6005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242867, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402397824323242876, guid: 59e77586cd990c44091deb7f9e8a0205, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6814,6 +6821,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!1 &1360381340
 GameObject:
   m_ObjectHideFlags: 0
@@ -7732,6 +7740,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &1604495293
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7919,6 +7928,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &1627144507
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8932,6 +8942,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!1 &1781497142
 GameObject:
   m_ObjectHideFlags: 0
@@ -9224,6 +9235,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!1 &1803381945
 GameObject:
   m_ObjectHideFlags: 0
@@ -9395,6 +9407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 192024089}
     m_Modifications:
+    - target: {fileID: 1117970068771940468, guid: bde28ec3058bf0e46800f9ea36f704bd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1117970068886258022, guid: bde28ec3058bf0e46800f9ea36f704bd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -10205,6 +10221,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 1
   rewindOnce: 0
+  hasAudio: 1
 --- !u!1 &1962157088
 GameObject:
   m_ObjectHideFlags: 0
@@ -10793,6 +10810,7 @@ MonoBehaviour:
   isLocked: 0
   isTrapped: 0
   rewindOnce: 0
+  hasAudio: 0
 --- !u!61 &2080015511
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11121,6 +11139,10 @@ PrefabInstance:
     - target: {fileID: 8239784722282517976, guid: 9c40fbffef8476143ad8a499cd6985fc, type: 3}
       propertyPath: m_Name
       value: BackMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239784722282517977, guid: 9c40fbffef8476143ad8a499cd6985fc, type: 3}
+      propertyPath: m_Volume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8239784722282517978, guid: 9c40fbffef8476143ad8a499cd6985fc, type: 3}
       propertyPath: m_LocalPosition.x
