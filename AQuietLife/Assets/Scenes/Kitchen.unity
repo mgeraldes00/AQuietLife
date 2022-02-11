@@ -27650,6 +27650,26 @@ PrefabInstance:
       propertyPath: dirButtons
       value: 
       objectReference: {fileID: 952785878}
+    - target: {fileID: 2186079000310855137, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286324048181712664, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872758898418974948, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824974576289656909, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614692523521498918, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: isMediaCtrl
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
 --- !u!1001 &1249327126796057074
@@ -29071,9 +29091,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375497280, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278190080
       objectReference: {fileID: 0}
+    - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
+      propertyPath: gameMng
+      value: 
+      objectReference: {fileID: 1037535894}
     - target: {fileID: 7863672715628366529, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: thoughtImg
       value: 
@@ -29502,6 +29530,10 @@ PrefabInstance:
       propertyPath: gameMng
       value: 
       objectReference: {fileID: 1037535894}
+    - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
+      propertyPath: hasNotif
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8859889567365632678, guid: 3532906de5fe9d7439c11265483dee2d, type: 3}
       propertyPath: backMusic
       value: 
