@@ -27554,6 +27554,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2016906914}
+    - target: {fileID: 1188132248560404210, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248560404214, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.b
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248560404214, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248560404214, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.r
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 1188132248656270332, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: m_Name
       value: AudioPlayer
@@ -27650,6 +27666,38 @@ PrefabInstance:
       propertyPath: dirButtons
       value: 
       objectReference: {fileID: 952785878}
+    - target: {fileID: 1188132248964758169, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248964758173, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.b
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248964758173, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132248964758173, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.r
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132249593091859, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132249593091863, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.b
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132249593091863, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188132249593091863, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
+      propertyPath: m_Color.r
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 2186079000310855137, guid: b1bce0b04d07745449dfca503fae4215, type: 3}
       propertyPath: isMediaCtrl
       value: 1
