@@ -97,7 +97,10 @@ public class CabinetManager : MonoBehaviour
         if (closeUp.isCabinet == true)
         {
             if (hit2.collider == null)
+            {
                 gameMng.cursors.ChangeCursor("OpenDoor", 0);
+                gameMng.cursors.ChangeCursor("Inspect", 0);
+            }
             else
             {
                 if (hit2.collider.CompareTag("CabinetDoor1") 
@@ -112,7 +115,7 @@ public class CabinetManager : MonoBehaviour
                 }
                 if (hit2.collider.CompareTag("CabinetBreach"))
                 {
-
+                    gameMng.cursors.ChangeCursor("Inspect", 1);
                 }
             }
         } 
