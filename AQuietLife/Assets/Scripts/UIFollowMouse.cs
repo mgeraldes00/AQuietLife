@@ -41,6 +41,8 @@ public class UIFollowMouse : MonoBehaviour
             {
                 case 0:
                     cursorAnim.SetBool("OpenDoor", false);
+                    cursorAnim.ResetTrigger("OpenR2L");
+                    cursorAnim.ResetTrigger("OpenL2R");
                     break;
                 case 1:
                     cursorAnim.SetBool("OpenDoor", true);

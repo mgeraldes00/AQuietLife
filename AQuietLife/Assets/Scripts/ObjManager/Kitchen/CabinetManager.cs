@@ -97,13 +97,23 @@ public class CabinetManager : MonoBehaviour
         if (closeUp.isCabinet == true)
         {
             if (hit2.collider == null)
-                FindObjectOfType<PointerManager>().ChangeCursor(1);
-            else if (hit2.collider.CompareTag("CabinetDoor1") || hit2.collider.CompareTag("CabinetDoor2")
-                || hit2.collider.CompareTag("CabinetDoor3")
-                || hit2.collider.CompareTag("CabinetDoor4")
-                || hit2.collider.CompareTag("CabinetBreach"))
+                gameMng.cursors.ChangeCursor("OpenDoor", 0);
+            else
             {
-                FindObjectOfType<PointerManager>().ChangeCursor(2);
+                if (hit2.collider.CompareTag("CabinetDoor1") 
+                    || hit2.collider.CompareTag("CabinetDoor3"))
+                {
+                    gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                }
+                if (hit2.collider.CompareTag("CabinetDoor2")
+                    || hit2.collider.CompareTag("CabinetDoor4"))
+                {
+                    gameMng.cursors.ChangeCursor("OpenDoor", 2);
+                }
+                if (hit2.collider.CompareTag("CabinetBreach"))
+                {
+
+                }
             }
         } 
 
