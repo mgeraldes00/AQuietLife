@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public bool isLocked;
 
     public bool isDead;
+    public bool isCursorLocked;
 
     //public int numOfIngredients;
     //public int glovesUsed;
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
 
         //PlayerPrefs.SetString("StoryMode", "StoryMode");
-        PlayerPrefs.DeleteKey("StoryMode");
+        //PlayerPrefs.DeleteKey("StoryMode");
 
         if (PlayerPrefs.HasKey("StoryMode"))
         {
@@ -148,6 +149,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeMixerGroup.StartFade(dynamicMix, "DynamicVol", 1, 0));
         FindObjectOfType<AudioCtrl>().Play("ExplosionKitchen");
         isLocked = true;
+        isCursorLocked = true;
+        cursors.RemoveCursorForUI();
         isDead = true;
         deathScreen[0].SetActive(true);
         deathScreen[5].SetActive(true);
@@ -286,13 +289,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DeathProcess()
     {
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(0.5f);
         deathScreen[5].GetComponent<VideoPlayer>().Play();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         deathAnim.SetTrigger("Death");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3.0f);
         deathScreen[4].SetActive(false);
         yield return new WaitForEndOfFrame();
+        isCursorLocked = false;
         deathScreen[1].SetActive(true);
         deathScreen[2].SetActive(true);
     }

@@ -10126,7 +10126,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 2.71}
+  m_Size: {x: 0.18, y: 2.71}
   m_EdgeRadius: 0
 --- !u!1 &855990849
 GameObject:
@@ -12082,6 +12082,7 @@ MonoBehaviour:
   returnable: 0
   isLocked: 0
   isDead: 0
+  isBlocked: 0
   currLvl: 2
 --- !u!4 &1037535895
 Transform:
@@ -15996,7 +15997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1549372997871117356, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1549372997871117356, guid: dbc4e980d058dfc4c8625afef9d8bf7e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -16140,6 +16141,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4078909987894243395, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 1037535894}
     - target: {fileID: 4078909987894243421, guid: 285acd0e784028546ae80e0c76ad2886, type: 3}
       propertyPath: m_Name
       value: CursorCamera
@@ -21820,9 +21825,9 @@ RectTransform:
   - {fileID: 1431491625}
   - {fileID: 1920926619}
   - {fileID: 1715857559}
-  - {fileID: 1938436210}
   - {fileID: 1479651715}
   - {fileID: 1374568438}
+  - {fileID: 1938436210}
   - {fileID: 1955879652}
   m_Father: {fileID: 1716396476}
   m_RootOrder: 0
@@ -28228,7 +28233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347991, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3578828616572347991, guid: be39b7c2bc40f8d4f87d9142b3edcd74, type: 3}
       propertyPath: m_AnchorMax.x
@@ -29188,7 +29193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7863672715628366533, guid: 1c66ac3a287f05748af7c3663252ef15, type: 3}
       propertyPath: m_AnchorMax.x
@@ -29612,9 +29617,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 1084126742}
     m_Modifications:
     - target: {fileID: 8871419440833396650, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871419440833396650, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
       propertyPath: m_TargetCamera
       value: 
-      objectReference: {fileID: 519420031}
+      objectReference: {fileID: 1716396477}
     - target: {fileID: 8871419441370144455, guid: 9086a8f435f845241b1bfc5242facacd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

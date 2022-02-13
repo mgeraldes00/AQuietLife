@@ -9,6 +9,7 @@ public class UIFollowMouse : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private RectTransform basisObject;
     [SerializeField] private Camera cam;
+    [SerializeField] private GameManager gm;
 
     [SerializeField] private Animator cursorAnim;
 
@@ -31,47 +32,53 @@ public class UIFollowMouse : MonoBehaviour
         cursorAnim.SetBool("OpenDoor", false);
         cursorAnim.SetBool("Grab", false);
         cursorAnim.SetBool("Inspect", false);
+
+        cursorAnim.ResetTrigger("OpenR2L");
+        cursorAnim.ResetTrigger("OpenL2R");
     }
 
     public void ChangeCursor(string curName, int i)
     {
-        if (curName == "OpenDoor")
+        if (!gm.isCursorLocked)
         {
-            switch (i)
+            if (curName == "OpenDoor")
             {
-                case 0:
-                    cursorAnim.SetBool("OpenDoor", false);
-                    cursorAnim.ResetTrigger("OpenR2L");
-                    cursorAnim.ResetTrigger("OpenL2R");
-                    break;
-                case 1:
-                    cursorAnim.SetBool("OpenDoor", true);
-                    cursorAnim.SetTrigger("OpenR2L");
-                    break;
-                case 2:
-                    cursorAnim.SetBool("OpenDoor", true);
-                    cursorAnim.SetTrigger("OpenL2R");
-                    break;
-                case 3:
-                    cursorAnim.SetBool("OpenDoor", true);
-                    cursorAnim.SetTrigger("OpenT2B");
-                    break;
-                case 4:
-                    cursorAnim.SetBool("OpenDoor", true);
-                    cursorAnim.SetTrigger("OpenB2T");
-                    break;
+                switch (i)
+                {
+                    case 0:
+                        cursorAnim.SetBool("OpenDoor", false);
+                        cursorAnim.ResetTrigger("OpenR2L");
+                        cursorAnim.ResetTrigger("OpenL2R");
+                        break;
+                    case 1:
+                        cursorAnim.SetBool("OpenDoor", true);
+                        cursorAnim.SetTrigger("OpenR2L");
+                        break;
+                    case 2:
+                        cursorAnim.SetBool("OpenDoor", true);
+                        cursorAnim.SetTrigger("OpenL2R");
+                        break;
+                    case 3:
+                        cursorAnim.SetBool("OpenDoor", true);
+                        cursorAnim.SetTrigger("OpenT2B");
+                        break;
+                    case 4:
+                        cursorAnim.SetBool("OpenDoor", true);
+                        cursorAnim.SetTrigger("OpenB2T");
+                        break;
+                }
             }
+            else
+                switch (i)
+                {
+                    case 0:
+                        cursorAnim.SetBool(curName, false);
+                        break;
+                    case 1:
+                        cursorAnim.SetBool(curName, true);
+                        break;
+                }
         }
-        else
-            switch (i)
-            {
-                case 0:
-                    cursorAnim.SetBool(curName, false);
-                    break;
-                case 1:
-                    cursorAnim.SetBool(curName, true);
-                    break;
-            }
         /*switch (curName)
         {
             case "Open":
