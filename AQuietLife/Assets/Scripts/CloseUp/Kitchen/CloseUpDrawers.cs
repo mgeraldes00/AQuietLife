@@ -40,7 +40,7 @@ public class CloseUpDrawers : MonoBehaviour
             {
                 if (isDrawer == true)
                 {
-                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    gameMng.cursors.ChangeCursor("Inspect", 0);
                     isDrawer = false;
                 }               
             }
@@ -48,7 +48,7 @@ public class CloseUpDrawers : MonoBehaviour
                 || hit2.collider.CompareTag("DrawerDoor2")
                 || hit2.collider.CompareTag("DrawerDoor3"))
             {
-                FindObjectOfType<PointerManager>().ChangeCursor(5);
+                gameMng.cursors.ChangeCursor("Inspect", 1);
                 isDrawer = true;
             }
         }

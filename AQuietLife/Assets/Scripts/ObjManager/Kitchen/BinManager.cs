@@ -44,6 +44,8 @@ public class BinManager : MonoBehaviour
 
                 if (select.usingGlove == true)
                 {
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    gameMng.cursors.ChangeCursor("OpenDoor", 1);
                     FindObjectOfType<AudioCtrl>().Play("Disarm");
                     FindObjectOfType<Glove>().gloveUsed = true;
                     StartCoroutine(Untrap());
@@ -51,6 +53,8 @@ public class BinManager : MonoBehaviour
 
                 if (select.usingStoveCloth == true)
                 {
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    gameMng.cursors.ChangeCursor("OpenDoor", 1);
                     FindObjectOfType<AudioCtrl>().Play("Disarm");
                     FindObjectOfType<StoveCloth>().gloveUsed = true;
                     StartCoroutine(Untrap());
@@ -58,6 +62,12 @@ public class BinManager : MonoBehaviour
             }
             else if (isTrapped == false)
             {
+                gameMng.cursors.ChangeCursor("Inspect", 0);
+                gameMng.cursors.ChangeCursor("OpenDoor", 0);
+
+                closeUp.bin.offset = new Vector2(0, -0.04f);
+                closeUp.bin.size = new Vector2(1.49f, 1.99f);
+
                 gameMng.returnable = false;
                 LockAndUnlock();
                 zoom.InteractionTransition();

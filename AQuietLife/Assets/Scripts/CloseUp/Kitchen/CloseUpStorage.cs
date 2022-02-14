@@ -28,14 +28,12 @@ public class CloseUpStorage : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.examineTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        gameMng.cursors.ChangeCursor("Inspect", 1);
     }
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor
-            (gameMng.pointer.defaultTexture, gameMng.pointer.hotSpot, gameMng.pointer.curMode);
+        gameMng.cursors.ChangeCursor("Inspect", 0);
     }
 
     public void Normalize()

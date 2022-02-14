@@ -44,14 +44,14 @@ public class CloseUpFridge : MonoBehaviour
             {
                 if (isFridge == true)
                 {
-                    FindObjectOfType<PointerManager>().ChangeCursor(1);
+                    gameMng.cursors.ChangeCursor("Inspect", 0);
                     isFridge = false;
                 }
             }
             else if (hit2.collider.CompareTag("Fridge")
                 || hit2.collider.CompareTag("Freezer"))
             {
-                FindObjectOfType<PointerManager>().ChangeCursor(5);
+                gameMng.cursors.ChangeCursor("Inspect", 1);
                 isFridge = true;
             }
         }
@@ -60,6 +60,8 @@ public class CloseUpFridge : MonoBehaviour
         {     
             if (!EventSystem.current.IsPointerOverGameObject())
             {
+                gameMng.cursors.ChangeCursor("Inspect", 0);
+
                 Debug.Log("Mouse Clicked");
                 Vector3 mousePos =
                     Camera.main.ScreenToWorldPoint(Input.mousePosition);

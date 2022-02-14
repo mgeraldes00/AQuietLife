@@ -39,14 +39,15 @@ public class CloseUpToaster : MonoBehaviour
     private void OnMouseEnter()
     {
         if (zoom.currentView == 0 && gameMng.isLocked == false)
-            FindObjectOfType<PointerManager>().ChangeCursor(5);
+            gameMng.cursors.ChangeCursor("Inspect", 1);
         else if (zoom.currentView == 1 && gameMng.isLocked == false && isOnToaster == true)
-            FindObjectOfType<PointerManager>().ChangeCursor(2);
+            gameMng.cursors.ChangeCursor("Grab", 1);
     }
 
     private void OnMouseExit()
     {
-        FindObjectOfType<PointerManager>().ChangeCursor(1);
+        gameMng.cursors.ChangeCursor("Inspect", 0);
+        gameMng.cursors.ChangeCursor("Grab", 0);
     }
 
     IEnumerator TimeToZoom()

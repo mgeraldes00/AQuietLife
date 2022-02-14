@@ -12082,7 +12082,7 @@ MonoBehaviour:
   returnable: 0
   isLocked: 0
   isDead: 0
-  isBlocked: 0
+  isCursorLocked: 0
   currLvl: 2
 --- !u!4 &1037535895
 Transform:
@@ -20177,6 +20177,7 @@ MonoBehaviour:
   zoom: {fileID: 519420033}
   gameMng: {fileID: 1037535894}
   binMng: {fileID: 1637544282}
+  obSel: {fileID: 1888950854}
   returnArrow: {fileID: 1479651714}
   bin: {fileID: 1637544281}
   isOnTrash: 0

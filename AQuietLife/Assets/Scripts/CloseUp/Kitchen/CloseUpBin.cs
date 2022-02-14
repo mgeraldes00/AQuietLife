@@ -8,6 +8,7 @@ public class CloseUpBin : MonoBehaviour
     public CameraCtrl zoom;
     public GameManager gameMng;
     public BinManager binMng;
+    public ObjectSelection obSel;
 
     public GameObject returnArrow;
     //public GameObject binRewindButton;
@@ -25,7 +26,7 @@ public class CloseUpBin : MonoBehaviour
                 zoom.cameraAnim.SetTrigger("ZoomTrashBin");
                 StartCoroutine(TimeToZoom());
                 zoom.ObjectTransition();
-                FindObjectOfType<PointerManager>().ChangeCursor(1);
+                gameMng.cursors.ChangeCursor("Inspect", 0);
             }
         }
     }
@@ -33,20 +34,33 @@ public class CloseUpBin : MonoBehaviour
     private void OnMouseEnter()
     {
         if (zoom.currentView == 0 && gameMng.isLocked == false)
-            FindObjectOfType<PointerManager>().ChangeCursor(5);
+            gameMng.cursors.ChangeCursor("Inspect", 1);
         else if (zoom.currentView == 1 && gameMng.isLocked == false)
-            FindObjectOfType<PointerManager>().ChangeCursor(2);
+            if (!binMng.isOpen)
+                if (obSel.usingGlove || obSel.usingStoveCloth)
+                    gameMng.cursors.ChangeCursor("Point", 1);
+                else
+                    gameMng.cursors.ChangeCursor("OpenDoor", 1);
+            else
+                gameMng.cursors.ChangeCursor("Inspect", 1);
     }
 
     private void OnMouseExit()
     {
-        FindObjectOfType<PointerManager>().ChangeCursor(1);
+        gameMng.cursors.ChangeCursor("Inspect", 0);
+        gameMng.cursors.ChangeCursor("OpenDoor", 0);
+        gameMng.cursors.ChangeCursor("Point", 0);
     }
 
     IEnumerator TimeToZoom()
     {
         yield return new WaitForEndOfFrame();
         //binRewindButton.SetActive(true);
+        if (!binMng.isOpen)
+        {
+            bin.offset = new Vector2(0.53f, -0.1f);
+            bin.size = new Vector2(0.3f, 0.6f);
+        }
         zoom.currentView++;
         isOnTrash = true;
     }
@@ -54,5 +68,7 @@ public class CloseUpBin : MonoBehaviour
     public void Normalize()
     {
         isOnTrash = false;
+        bin.offset = new Vector2(0, -0.04f);
+        bin.size = new Vector2(1.49f, 1.99f);
     }
 }
