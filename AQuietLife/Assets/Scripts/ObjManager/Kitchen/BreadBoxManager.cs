@@ -95,7 +95,7 @@ public class BreadBoxManager : MonoBehaviour
                     objects[0].SetActive(true);
                     objects[1].SetActive(true);
                     FindObjectOfType<Glove>().gloveUsed = true;
-                    zoom.InteractionTransition();
+                    //zoom.InteractionTransition();
                 }
 
                 if (select.usingStoveCloth == true)
@@ -105,7 +105,7 @@ public class BreadBoxManager : MonoBehaviour
                     objects[0].SetActive(true);
                     objects[1].SetActive(true);
                     FindObjectOfType<StoveCloth>().gloveUsed = true;
-                    zoom.InteractionTransition();
+                    //zoom.InteractionTransition();
                 }
             }
 
@@ -118,7 +118,7 @@ public class BreadBoxManager : MonoBehaviour
                 objects[1].GetComponent<BoxCollider2D>().enabled = false;
                 FindObjectOfType<Knife>().knifeUsed = true;
                 FindObjectOfType<InventorySimple>().knifeInPossession = false;
-                zoom.InteractionTransition();
+                //zoom.InteractionTransition();
             }
         }
     }

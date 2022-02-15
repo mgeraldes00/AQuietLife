@@ -29,8 +29,17 @@ public class StoveCloth : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        select.usingStoveCloth = true;
-        GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        if (!select.usingStoveCloth)
+        {
+            select.usingStoveCloth = true;
+            GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        }
+        else
+        {
+            select.usingStoveCloth = false;
+            GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+        }
+        
         DeselectRest();
     }
     

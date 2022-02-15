@@ -66,11 +66,15 @@ public class CabinetManager : MonoBehaviour
     [SerializeField]
     private bool rewindOnce;
 
+    private bool isPointing;
+
     public bool rewindApplied;
     public bool plateTaken;
     public bool door2Open;
     public bool door4Open;
     public bool hasTime;
+
+    private bool[] isTrapped;
 
     public bool isOnCabinet;
 
@@ -80,6 +84,10 @@ public class CabinetManager : MonoBehaviour
         anim = GetComponent<Animator>();
         isLocked = false;
         hasTime = true;
+
+        isTrapped = new bool[4];
+        isTrapped[1] = true;
+        isTrapped[3] = true;
     }
 
     // Update is called once per frame
@@ -100,18 +108,36 @@ public class CabinetManager : MonoBehaviour
             {
                 gameMng.cursors.ChangeCursor("OpenDoor", 0);
                 gameMng.cursors.ChangeCursor("Inspect", 0);
+
+                if (isPointing)
+                {
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    isPointing = false;
+                }
             }
             else
             {
-                if (hit2.collider.CompareTag("CabinetDoor1") 
+                if (hit2.collider.CompareTag("CabinetDoor1")
                     || hit2.collider.CompareTag("CabinetDoor3"))
                 {
-                    gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                    if (select.usingGlove || select.usingStoveCloth)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 1);
+                        isPointing = true;
+                    }  
+                    else
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
                 }
                 if (hit2.collider.CompareTag("CabinetDoor2")
                     || hit2.collider.CompareTag("CabinetDoor4"))
                 {
-                    gameMng.cursors.ChangeCursor("OpenDoor", 2);
+                    if (select.usingGlove || select.usingStoveCloth)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 1);
+                        isPointing = true;
+                    }
+                    else
+                        gameMng.cursors.ChangeCursor("OpenDoor", 2);
                 }
                 if (hit2.collider.CompareTag("CabinetBreach"))
                 {
@@ -136,56 +162,73 @@ public class CabinetManager : MonoBehaviour
 
             else if (hit.collider.CompareTag("CabinetDoor1") && gameMng.isLocked == false)
             {
-                if (select.usingNothing == true)
+                if (isTrapped[1])
                 {
-                    Debug.Log("Game Over");
-                    gameMng.Die();
-                }
+                    if (select.usingNothing == true)
+                    {
+                        Debug.Log("Game Over");
+                        gameMng.Die();
+                    }
 
-                if (select.usingGlove == true)
-                {
-                    doors[2].SetActive(false);
-                    doors[3].SetActive(true);
-                    objects[1].SetActive(true);
-                    FindObjectOfType<Glove>().gloveUsed = true;
-                    zoom.InteractionTransition();
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
-                }
+                    if (select.usingGlove == true)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                        FindObjectOfType<Glove>().gloveUsed = true;
+                        FindObjectOfType<AudioCtrl>().Play("Disarm");
+                        StartCoroutine(Untrap(1));
+                    }
 
-                if (select.usingStoveCloth == true)
+                    if (select.usingStoveCloth == true)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                        FindObjectOfType<StoveCloth>().gloveUsed = true;
+                        FindObjectOfType<AudioCtrl>().Play("Disarm");
+                        StartCoroutine(Untrap(1));
+                    }
+                }
+                else
                 {
-                    doors[2].SetActive(false);
-                    doors[3].SetActive(true);
+                    doors[2].GetComponent<BoxCollider2D>().enabled = false;
                     objects[1].SetActive(true);
-                    FindObjectOfType<StoveCloth>().gloveUsed = true;
-                    zoom.InteractionTransition();
+                    zoom.InteractionTransition(doors[3], doors[2], 0);
                     FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
             }
 
             else if (hit.collider.CompareTag("CabinetDoor3") && gameMng.isLocked == false)
             {
-                if (select.usingNothing == true)
+                if (isTrapped[3])
                 {
-                    Debug.Log("Game Over");
-                    gameMng.Die();
-                }
+                    if (select.usingNothing == true)
+                    {
+                        Debug.Log("Game Over");
+                        gameMng.Die();
+                    }
 
-                if (select.usingGlove == true)
-                {
-                    doors[4].SetActive(false);
-                    doors[5].SetActive(true);
-                    FindObjectOfType<Glove>().gloveUsed = true;
-                    zoom.InteractionTransition();
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
-                }
+                    if (select.usingGlove == true)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                        FindObjectOfType<Glove>().gloveUsed = true;
+                        FindObjectOfType<AudioCtrl>().Play("Disarm");
+                        StartCoroutine(Untrap(3));
+                    }
 
-                if (select.usingStoveCloth == true)
+                    if (select.usingStoveCloth == true)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                        FindObjectOfType<StoveCloth>().gloveUsed = true;
+                        FindObjectOfType<AudioCtrl>().Play("Disarm");
+                        StartCoroutine(Untrap(3));
+                    }
+                }
+                else
                 {
-                    doors[4].SetActive(false);
-                    doors[5].SetActive(true);
-                    FindObjectOfType<StoveCloth>().gloveUsed = true;
-                    zoom.InteractionTransition();
+                    doors[4].GetComponent<BoxCollider2D>().enabled = false;
+                    zoom.InteractionTransition(doors[5], doors[4], 0);
                     FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
             }
@@ -194,15 +237,25 @@ public class CabinetManager : MonoBehaviour
             {
                 if (door2Open == false)
                 {
-                    //door2Anim.SetBool("Door2Open", true);
-                    doors[0].SetActive(false);
-                    doors[1].SetActive(true);
-                    door2Open = true;
-                    //doorSound.Play();
-                    //glove.SetActive(true);
-                    LockAndUnlock();
-                    zoom.InteractionTransition();
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    if (select.usingGlove || select.usingStoveCloth)
+                    {
+                        select.usingGlove = false;
+                        select.usingStoveCloth = false;
+
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 2);
+                    }
+                    else
+                    {
+                        //door2Anim.SetBool("Door2Open", true);
+                        doors[0].GetComponent<BoxCollider2D>().enabled = false;
+                        door2Open = true;
+                        //doorSound.Play();
+                        //glove.SetActive(true);
+                        LockAndUnlock();
+                        zoom.InteractionTransition(doors[1], doors[0], 0);
+                        FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    }
                 }
 
                 if (door2Open == true)
@@ -216,22 +269,32 @@ public class CabinetManager : MonoBehaviour
             {
                 if (door4Open == false)
                 {
-                    //door4Anim.SetBool("Door4Open", true);
-                    doors[6].SetActive(false);
-                    doors[7].SetActive(true);
-                    objects[0].SetActive(true); ;
-                    door4Open = true;
-                    //plateInteract.SetActive(true);
-                    //doorSound.Play();
-                    //interactionText.SetActive(false);
-                    LockAndUnlock();
-                    zoom.InteractionTransition();
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    if (select.usingGlove || select.usingStoveCloth)
+                    {
+                        select.usingGlove = false;
+                        select.usingStoveCloth = false;
+
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 2);
+                    }
+                    else
+                    {
+                        //door4Anim.SetBool("Door4Open", true);
+                        doors[6].GetComponent<BoxCollider2D>().enabled = false;
+                        objects[0].SetActive(true);
+                        door4Open = true;
+                        //plateInteract.SetActive(true);
+                        //doorSound.Play();
+                        //interactionText.SetActive(false);
+                        LockAndUnlock();
+                        zoom.InteractionTransition(doors[7], doors[6], 0);
+                        FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    }
                 }
 
                 if (door4Open == true)
                 {
-                    //Do nothing
+                    // Do nothing
                 }
             }
 
@@ -422,6 +485,12 @@ public class CabinetManager : MonoBehaviour
     public void NoMoreTime()
     {
         hasTime = false;
+    }
+
+    IEnumerator Untrap(int i)
+    {
+        yield return new WaitForEndOfFrame();
+        isTrapped[i] = false;
     }
 
     IEnumerator Unlock()

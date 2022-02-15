@@ -90,7 +90,7 @@ public class MicrowaveManager : MonoBehaviour
                 if (doorOpen == false && working == false)
                 {
                     OpenAndUnlock();
-                    zoom.InteractionTransition();
+                    //zoom.InteractionTransition();
                     FindObjectOfType<AudioCtrl>().Play("OpenMWave");
 
                     if (worked == false)
@@ -127,7 +127,7 @@ public class MicrowaveManager : MonoBehaviour
                     door[1].SetActive(false);
                     objects[1].SetActive(false);
                     objects[2].SetActive(true);
-                    zoom.InteractionTransition();
+                    //zoom.InteractionTransition();
                     FindObjectOfType<AudioCtrl>().Play("CloseMWave");
                 }
                 

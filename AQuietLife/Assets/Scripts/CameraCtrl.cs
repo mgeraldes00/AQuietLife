@@ -145,9 +145,12 @@ public class CameraCtrl : MonoBehaviour
         StartCoroutine(gameMng.QuickUnlock(0.5f));
     }
 
-    public void InteractionTransition()
+    public void InteractionTransition(GameObject i, GameObject j, float f)
     {
-        fadeAnim.SetTrigger("TransitionInteract");
+        StartCoroutine(ObjectFade.FadeIn(
+            i.GetComponent<SpriteRenderer>()));
+        StartCoroutine(ObjectFade.FadeOut(
+            j.GetComponent<SpriteRenderer>(), f));
     }
 
     public void BackToGeneral()

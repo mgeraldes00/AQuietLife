@@ -129,7 +129,7 @@ public class FridgeManager : MonoBehaviour
                                 objects[i].SetActive(true);
                             for (int i = 0; i < moreObjects.Length; i++)
                                 moreObjects[i].SetActive(true);
-                            zoom.InteractionTransition();
+                            //zoom.InteractionTransition();
                             openingBottomDoor = true;
                             LockAndUnlock();
                             StartCoroutine(TimeToAlarm());
@@ -144,7 +144,7 @@ public class FridgeManager : MonoBehaviour
                                 objects[i].SetActive(false);
                             for (int i = 0; i < moreObjects.Length; i++)
                                 moreObjects[i].SetActive(false);
-                            zoom.InteractionTransition();
+                            //zoom.InteractionTransition();
                             closingBottomDoor = true;
                             LockAndUnlockFromOpen();
                             StopCoroutine(TimeToAlarm());
@@ -163,7 +163,7 @@ public class FridgeManager : MonoBehaviour
                         doors[1].SetActive(true);
                         for (int i = 0; i < objectsFreezer.Length; i++)
                             objectsFreezer[i].SetActive(true);
-                        zoom.InteractionTransition();
+                        //zoom.InteractionTransition();
                         openingTopDoor = true;
                         LockAndUnlock();
                         FindObjectOfType<AudioCtrl>().Play("OpenFridge");
@@ -175,7 +175,7 @@ public class FridgeManager : MonoBehaviour
                         doors[1].SetActive(false);
                         for (int i = 0; i < objectsFreezer.Length; i++)
                             objectsFreezer[i].SetActive(false);
-                        zoom.InteractionTransition();
+                        //zoom.InteractionTransition();
                         closingTopDoor = true;
                         LockAndUnlockFromOpen();
                         FindObjectOfType<AudioCtrl>().Play("CloseFridge");

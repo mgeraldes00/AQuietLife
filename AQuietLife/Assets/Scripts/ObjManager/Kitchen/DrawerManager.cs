@@ -128,7 +128,7 @@ public class DrawerManager : MonoBehaviour
                     {
                         gameMng.returnable = false;
                         LockAndUnlock();
-                        zoom.InteractionTransition();
+                        //zoom.InteractionTransition();
                         StartCoroutine(ShowDoor(openDoor[0]));
                         zoom.currentView++;
                         FindObjectOfType<PointerManager>().ChangeCursor(1);
@@ -170,7 +170,7 @@ public class DrawerManager : MonoBehaviour
                     {
                         gameMng.returnable = false;
                         LockAndUnlock();
-                        zoom.InteractionTransition();
+                        //zoom.InteractionTransition();
                         StartCoroutine(ShowDoor(openDoor[2]));
                         zoom.currentView++;
                         FindObjectOfType<PointerManager>().ChangeCursor(1);
@@ -204,7 +204,7 @@ public class DrawerManager : MonoBehaviour
                         drawerName = "ZoomDrawer2";
                         gameMng.returnable = false;
                         LockAndUnlock();
-                        zoom.InteractionTransition();
+                        //zoom.InteractionTransition();
                         //zoom.GetComponent<Animator>().SetTrigger("Return2");
                         StartCoroutine(ShowDoor(openDoor[1]));
                         zoom.currentView++;
@@ -227,7 +227,7 @@ public class DrawerManager : MonoBehaviour
             && closeUp.isOnDrawer == true)
         {
             LockAndUnlock();
-            zoom.InteractionTransition();
+            //zoom.InteractionTransition();
             //zoom.GetComponent<Animator>().SetTrigger(drawerName);
             StartCoroutine(HideDoor());
             StartCoroutine(BackZoom());

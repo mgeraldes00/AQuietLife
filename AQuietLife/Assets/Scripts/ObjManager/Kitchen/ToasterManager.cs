@@ -72,7 +72,7 @@ public class ToasterManager : MonoBehaviour
             }
             else if (select.usingFrozenBread == true)
             {
-                zoom.InteractionTransition();
+                //zoom.InteractionTransition();
                 StartCoroutine(PlaceBread());
                 LockAndUnlock();
                 FindObjectOfType<FrozenBread>().frozenBreadUsed = true;

@@ -70,7 +70,7 @@ public class BinManager : MonoBehaviour
 
                 gameMng.returnable = false;
                 LockAndUnlock();
-                zoom.InteractionTransition();
+                //zoom.InteractionTransition();
                 StartCoroutine(ShowDoor(openDoor));
                 zoom.currentView++;
                 if (isOpen != true)
@@ -89,7 +89,7 @@ public class BinManager : MonoBehaviour
             && closeUp.isOnTrash == true)
         {
             LockAndUnlock();
-            zoom.InteractionTransition();
+            //zoom.InteractionTransition();
             StartCoroutine(HideDoor());
             StartCoroutine(BackZoom());
         }

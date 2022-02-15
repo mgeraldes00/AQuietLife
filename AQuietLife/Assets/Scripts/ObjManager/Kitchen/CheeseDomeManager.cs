@@ -72,7 +72,7 @@ public class CheeseDomeManager : MonoBehaviour
         }
         else if (isLocked == false && isTrapped == false && isOpen == false)
         {
-            zoom.InteractionTransition();
+            //zoom.InteractionTransition();
             StartCoroutine(OpenDome());
         }
     }
@@ -88,7 +88,7 @@ public class CheeseDomeManager : MonoBehaviour
             }
             else if (select.usingKnife == true && isOpen == true && isTaken == false)
             {
-                zoom.InteractionTransition();
+                //zoom.InteractionTransition();
                 LockAndUnlock();
                 FindObjectOfType<Knife>().knifeUsed = true;
                 FindObjectOfType<InventorySimple>().knifeInPossession = false;

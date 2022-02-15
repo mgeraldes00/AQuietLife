@@ -64,7 +64,7 @@ public class DishWasherManager : MonoBehaviour
                     closeUp.zoomableObjs[i].enabled = false;
             }
 
-            zoom.InteractionTransition();
+            //zoom.InteractionTransition();
             LockAndUnlock();
         } 
     }
