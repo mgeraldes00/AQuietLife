@@ -6,21 +6,27 @@ using TMPro;
 
 public class ObjectFade : MonoBehaviour
 {
-    public static IEnumerator FadeOut(SpriteRenderer sprite, float f)
+    public static IEnumerator FadeOut(GameObject sprite, int i, float f)
     {
+        SpriteRenderer s = sprite.GetComponent<SpriteRenderer>();
         if (f == 1.0f)
             yield return new WaitForSeconds(1.0f);
         YieldInstruction fadeInstruction = new YieldInstruction();
         float fadeTime = 1.0f;
 
         float elapsedTime = 0.0f;
-        Color c = sprite.color;
+        Color c = s.color;
         while (elapsedTime < fadeTime)
         {
             yield return fadeInstruction;
             elapsedTime += Time.deltaTime;
             c.a = 1.0f - Mathf.Clamp01(elapsedTime / fadeTime);
-            sprite.color = c;
+            s.color = c;
+        }
+        if (i == 1)
+        {
+            yield return new WaitForSeconds(1.0f);
+            sprite.SetActive(false);
         }
     }
 

@@ -78,50 +78,50 @@ public class PickupBedroom : MonoBehaviour
         switch (pickObjs.Length)
         {
             case 1:
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0], 0, 0));
                 yield return new WaitForSeconds(1.0f);
                 //gameObject.SetActive(false);
                 Destroy(gameObject);
                 break;
             case 2:
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[1], 0, 0));
                 yield return new WaitForSeconds(1.0f);
                 //gameObject.SetActive(false);
                 Destroy(gameObject);
                 break;
             case 3:
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[1], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[2].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[2], 0, 0));
                 yield return new WaitForSeconds(1.0f);
                 //gameObject.SetActive(false);
                 Destroy(gameObject);
                 break;
             case 4:
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[1], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[2].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[2], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[3].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[3], 0, 0));
                 yield return new WaitForSeconds(1.0f);
                 Destroy(gameObject);
                 break;
             case 5:
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[0].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[0], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[1].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[1], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[2].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[2], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[3].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[3], 0, 0));
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(ObjectFade.FadeOut(pickObjs[4].GetComponent<SpriteRenderer>(), 0));
+                StartCoroutine(ObjectFade.FadeOut(pickObjs[4], 0, 0));
                 yield return new WaitForSeconds(1.0f);
                 Destroy(gameObject);
                 break;

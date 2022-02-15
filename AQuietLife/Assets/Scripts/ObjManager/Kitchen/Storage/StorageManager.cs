@@ -83,10 +83,10 @@ public class StorageManager : MonoBehaviour
                         {
                             doors[0].GetComponent<BoxCollider2D>().enabled = false;
                             doors[2].GetComponent<BoxCollider2D>().enabled = true;
-                            StartCoroutine
-                                (ObjectFade.FadeOut(doors[0].GetComponent<SpriteRenderer>(), 0));
-                            StartCoroutine
-                                (ObjectFade.FadeOut(doors[1].GetComponent<SpriteRenderer>(), 0));
+                            StartCoroutine(ObjectFade.FadeOut(
+                                doors[0], 0, 0));
+                            StartCoroutine(ObjectFade.FadeOut(
+                                doors[1], 0, 0));
                             StartCoroutine
                                 (ObjectFade.FadeIn(doors[2].GetComponent<SpriteRenderer>()));
                             StartCoroutine
@@ -105,9 +105,9 @@ public class StorageManager : MonoBehaviour
                             StartCoroutine
                                 (ObjectFade.FadeIn(doors[1].GetComponent<SpriteRenderer>()));
                             StartCoroutine
-                                (ObjectFade.FadeOut(doors[2].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(doors[2], 0, 0));
                             StartCoroutine
-                                (ObjectFade.FadeOut(doors[3].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(doors[3], 0, 0));
                             FindObjectOfType<AudioCtrl>().Play("CloseStorage");
                             moveSpeed = 10;
                             leftDoorCol = false;
@@ -128,7 +128,7 @@ public class StorageManager : MonoBehaviour
                             doors[4].GetComponent<BoxCollider2D>().enabled = false;
                             doors[5].GetComponent<BoxCollider2D>().enabled = true;
                             StartCoroutine
-                                (ObjectFade.FadeOut(doors[4].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(doors[4], 0, 0));
                             StartCoroutine
                                 (ObjectFade.FadeIn(doors[5].GetComponent<SpriteRenderer>()));
                             FindObjectOfType<AudioCtrl>().Play("OpenStorage");
@@ -143,7 +143,7 @@ public class StorageManager : MonoBehaviour
                             StartCoroutine
                                 (ObjectFade.FadeIn(doors[4].GetComponent<SpriteRenderer>()));
                             StartCoroutine
-                                (ObjectFade.FadeOut(doors[5].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(doors[5], 0, 0));
                             FindObjectOfType<AudioCtrl>().Play("CloseStorage");
                             moveSpeed2 = 10;
                             rightDoorCol = false;

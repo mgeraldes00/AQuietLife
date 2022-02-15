@@ -145,12 +145,10 @@ public class CameraCtrl : MonoBehaviour
         StartCoroutine(gameMng.QuickUnlock(0.5f));
     }
 
-    public void InteractionTransition(GameObject i, GameObject j, float f)
+    public void InteractionTransition(GameObject a, GameObject b, int i, float f)
     {
-        StartCoroutine(ObjectFade.FadeIn(
-            i.GetComponent<SpriteRenderer>()));
-        StartCoroutine(ObjectFade.FadeOut(
-            j.GetComponent<SpriteRenderer>(), f));
+        StartCoroutine(ObjectFade.FadeIn(a.GetComponent<SpriteRenderer>()));
+        StartCoroutine(ObjectFade.FadeOut(b, i, f));
     }
 
     public void BackToGeneral()

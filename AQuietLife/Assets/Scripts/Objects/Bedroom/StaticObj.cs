@@ -40,7 +40,7 @@ public class StaticObj : MonoBehaviour
                     {
                         case 0:
                             StartCoroutine
-                                (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(objectVar[0], 0, 0));
                             StartCoroutine
                                 (ObjectFade.FadeIn(objectVar[1].GetComponent<SpriteRenderer>()));
                             StartCoroutine(SwitchCollider(0, doorType));
@@ -48,7 +48,7 @@ public class StaticObj : MonoBehaviour
                             break;
                         case 1:
                             StartCoroutine
-                                (ObjectFade.FadeOut(objectVar[1].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(objectVar[1], 0, 0));
                             StartCoroutine
                                 (ObjectFade.FadeIn(objectVar[0].GetComponent<SpriteRenderer>()));
                             StartCoroutine(SwitchCollider(1, doorType));
@@ -56,7 +56,7 @@ public class StaticObj : MonoBehaviour
                             break;
                         case 2:
                             StartCoroutine
-                                (ObjectFade.FadeOut(objectVar[0].GetComponent<SpriteRenderer>(), 0));
+                                (ObjectFade.FadeOut(objectVar[0], 0, 0));
                             isLocked = true;
                             gameMng.isLocked = true;
                             FindObjectOfType<CameraCtrl>().GetComponent<Animator>().SetTrigger("EndLevel");

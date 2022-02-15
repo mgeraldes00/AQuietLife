@@ -84,7 +84,7 @@ public class Tutorial : MonoBehaviour
             {
                 case 5:
                     StartCoroutine
-                        (ObjectFade.FadeOut(phone[2].GetComponent<SpriteRenderer>(), 0));
+                        (ObjectFade.FadeOut(phone[2], 0, 0));
                     StartCoroutine(ArrowBehaviour(0));
                     break;
                 case 6:
@@ -278,7 +278,7 @@ public class Tutorial : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         StartCoroutine
-            (ObjectFade.FadeOut(phone[1].GetComponent<SpriteRenderer>(), 0));
+            (ObjectFade.FadeOut(phone[1], 0, 0));
         GameObject.Find("Phone").GetComponent<Animator>().SetBool("Enlarge", false);
         txt.isOpen = false;
     }

@@ -192,7 +192,7 @@ public class CabinetManager : MonoBehaviour
                 {
                     doors[2].GetComponent<BoxCollider2D>().enabled = false;
                     objects[1].SetActive(true);
-                    zoom.InteractionTransition(doors[3], doors[2], 0);
+                    zoom.InteractionTransition(doors[3], doors[2], 1, 0);
                     FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
             }
@@ -227,8 +227,9 @@ public class CabinetManager : MonoBehaviour
                 }
                 else
                 {
+                    GameObject.Find("Breach").SetActive(false);
                     doors[4].GetComponent<BoxCollider2D>().enabled = false;
-                    zoom.InteractionTransition(doors[5], doors[4], 0);
+                    zoom.InteractionTransition(doors[5], doors[4], 1, 0);
                     FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                 }
             }
@@ -253,7 +254,7 @@ public class CabinetManager : MonoBehaviour
                         //doorSound.Play();
                         //glove.SetActive(true);
                         LockAndUnlock();
-                        zoom.InteractionTransition(doors[1], doors[0], 0);
+                        zoom.InteractionTransition(doors[1], doors[0], 1, 0);
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                     }
                 }
@@ -287,7 +288,7 @@ public class CabinetManager : MonoBehaviour
                         //doorSound.Play();
                         //interactionText.SetActive(false);
                         LockAndUnlock();
-                        zoom.InteractionTransition(doors[7], doors[6], 0);
+                        zoom.InteractionTransition(doors[7], doors[6], 1, 0);
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                     }
                 }

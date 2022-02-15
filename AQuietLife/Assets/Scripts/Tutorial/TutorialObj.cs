@@ -358,7 +358,7 @@ public class TutorialObj : MonoBehaviour
                                 case 1:
                                     obj[0].SetActive(true);
                                     StartCoroutine
-                                        (ObjectFade.FadeOut(obj[1].GetComponent<SpriteRenderer>(), 0));
+                                        (ObjectFade.FadeOut(obj[1], 0, 0));
                                     StartCoroutine(txt.ShowText(2, 0));
                                     gameMng.cursors.ChangeCursor("Slide", 0);
                                     break;
@@ -435,7 +435,7 @@ public class TutorialObj : MonoBehaviour
                                     GetComponent<Collider2D>().enabled = false;
                                     GameObject.Find("CottonProp2").GetComponent<Collider2D>().enabled = true;
                                     StartCoroutine
-                                        (ObjectFade.FadeOut(obj[0].GetComponent<SpriteRenderer>(), 0));
+                                        (ObjectFade.FadeOut(obj[0], 0, 0));
                                     StartCoroutine
                                         (ObjectFade.FadeIn(obj[1].GetComponent<SpriteRenderer>()));
                                     StartCoroutine(tut.WardrobeBehaviour(3));
@@ -443,7 +443,7 @@ public class TutorialObj : MonoBehaviour
                                     break;
                                 case 4:
                                     GetComponent<Collider2D>().enabled = false;
-                                    StartCoroutine(ObjectFade.FadeOut(GetComponent<SpriteRenderer>(), 0));
+                                    StartCoroutine(ObjectFade.FadeOut(this.gameObject, 0, 0));
                                     StartCoroutine(tut.WardrobeBehaviour(4));
                                     break;
                             }
@@ -500,7 +500,7 @@ public class TutorialObj : MonoBehaviour
                                     break;
                                 case 3:
                                     GetComponent<Collider2D>().enabled = false;
-                                    StartCoroutine(ObjectFade.FadeOut(GetComponent<SpriteRenderer>(), 0));
+                                    StartCoroutine(ObjectFade.FadeOut(this.gameObject, 0, 0));
                                     gameMng.cursors.ChangeCursor("Point", 0);
                                     tut.DeskBehaviour(1);
                                     tut.thought.ShowThought();

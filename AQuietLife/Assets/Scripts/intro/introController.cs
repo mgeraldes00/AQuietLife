@@ -177,8 +177,7 @@ public class IntroController : MonoBehaviour
                     returnArrow.GetComponent<Animator>().SetTrigger("Hide 0");
                     cameraAnim.SetTrigger("ZoomOut");
                     //fadeAnim.SetTrigger("TransitionInteract");
-                    StartCoroutine
-                        (ObjectFade.FadeOut(phone[2].GetComponent<SpriteRenderer>(), 0));
+                    StartCoroutine(ObjectFade.FadeOut(phone[2], 0, 0));
                     //directionalButton.SetActive(true);
                     directionalButton.GetComponent<Animator>().SetTrigger("Show");
                     currentPanel++;
