@@ -11,7 +11,7 @@ public class BinManager : MonoBehaviour
     public ThoughtManager thought;
     public ObjectSelection select;
 
-    public GameObject openDoor;
+    public GameObject[] openDoor;
 
     public GameObject[] bin;
 
@@ -32,7 +32,7 @@ public class BinManager : MonoBehaviour
     private void OnMouseDown()
     {
         if (!EventSystem.current.IsPointerOverGameObject()
-            && zoom.currentView == 1 && isLocked == false && closeUp.isOnTrash == true)
+            && zoom.currentView == 1 && !isLocked && closeUp.isOnTrash)
         {
             if (isTrapped == true)
             {
@@ -62,34 +62,60 @@ public class BinManager : MonoBehaviour
             }
             else if (isTrapped == false)
             {
-                gameMng.cursors.ChangeCursor("Inspect", 0);
-                gameMng.cursors.ChangeCursor("OpenDoor", 0);
+                if (select.usingGlove || select.usingStoveCloth)
+                {
+                    select.usingGlove = false;
+                    select.usingStoveCloth = false;
 
-                closeUp.bin.offset = new Vector2(0, -0.04f);
-                closeUp.bin.size = new Vector2(1.49f, 1.99f);
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                }
+                else
+                {
+                    if (!isOpen)
+                    {
+                        FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                        isOpen = true;
 
-                gameMng.returnable = false;
-                LockAndUnlock();
-                //zoom.InteractionTransition();
-                StartCoroutine(ShowDoor(openDoor));
-                zoom.currentView++;
-                if (isOpen != true)
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                        gameMng.cursors.ChangeCursor("Inspect", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 0);
+
+                        closeUp.bin.offset = new Vector2(0, -0.04f);
+                        closeUp.bin.size = new Vector2(1.49f, 1.99f);
+
+                        LockAndUnlock();
+                        StartCoroutine(ObjectFade.FadeIn(
+                            bin[1].GetComponent<SpriteRenderer>()));
+                        StartCoroutine(ObjectFade.FadeIn(
+                            bin[2].GetComponent<SpriteRenderer>()));
+                        StartCoroutine(ObjectFade.FadeOut(
+                            bin[0], 0, 0));
+                    }
+                    else
+                    {
+                        gameMng.cursors.ChangeCursor("Inspect", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 0);
+
+                        LockAndUnlock();
+                        gameMng.returnable = false;
+                        StartCoroutine(ShowDoor(openDoor));
+                        zoom.currentView++;
+                    }
+                }
             }
         }
     }
 
     public void ButtonBehaviour()
     {
-        if (zoom.currentView == 1 && isLocked == false)
+        if (zoom.currentView == 1 && !isLocked)
         {
             closeUp.Normalize();
         }
-        else if (zoom.currentView == 2 && isLocked == false && gameMng.returnable == false
-            && closeUp.isOnTrash == true)
+        else if (zoom.currentView == 2 && !isLocked && !gameMng.returnable
+            && closeUp.isOnTrash)
         {
             LockAndUnlock();
-            //zoom.InteractionTransition();
             StartCoroutine(HideDoor());
             StartCoroutine(BackZoom());
         }
@@ -97,33 +123,43 @@ public class BinManager : MonoBehaviour
 
     public void LockAndUnlock()
     {
-        if (isLocked == false)
+        if (!isLocked)
         {
             isLocked = true;
             StartCoroutine(Unlock());
         }
     }
 
-    IEnumerator ShowDoor(GameObject door)
+    IEnumerator ShowDoor(GameObject[] door)
     {
-
-        yield return new WaitForSeconds(0.2f);
-        door.SetActive(true);
-        bin[0].GetComponent<SpriteRenderer>().enabled = false;
-        bin[1].SetActive(true);
-        isOpen = true;
+        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < door.Length; i++)
+        {
+            StartCoroutine(ObjectFade.FadeIn(
+                door[i].GetComponent<SpriteRenderer>()));
+        }
+        yield return new WaitForSeconds(1.0f);
+        door[1].GetComponent<BoxCollider2D>().enabled = true;
     }
 
     IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         isLocked = false;
     }
 
     IEnumerator HideDoor()
     {
-        yield return new WaitForSeconds(0.2f);
-        openDoor.SetActive(false);
+        if (openDoor[1] != null)
+        {
+            openDoor[1].GetComponent<BoxCollider2D>().enabled = false;
+        }
+        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < openDoor.Length; i++)
+        {
+            StartCoroutine(ObjectFade.FadeOut(
+                openDoor[i], 0, 0));
+        }
     }
 
     IEnumerator BackZoom()

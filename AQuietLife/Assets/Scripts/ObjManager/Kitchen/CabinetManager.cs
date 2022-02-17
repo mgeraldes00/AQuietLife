@@ -190,10 +190,21 @@ public class CabinetManager : MonoBehaviour
                 }
                 else
                 {
-                    doors[2].GetComponent<BoxCollider2D>().enabled = false;
-                    objects[1].SetActive(true);
-                    zoom.InteractionTransition(doors[3], doors[2], 1, 0);
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    if (select.usingGlove || select.usingStoveCloth)
+                    {
+                        select.usingGlove = false;
+                        select.usingStoveCloth = false;
+
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                    }
+                    else
+                    {
+                        doors[2].GetComponent<BoxCollider2D>().enabled = false;
+                        objects[1].SetActive(true);
+                        zoom.InteractionTransition(doors[3], doors[2], 1, 0);
+                        FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    }
                 }
             }
 
@@ -227,10 +238,21 @@ public class CabinetManager : MonoBehaviour
                 }
                 else
                 {
-                    GameObject.Find("Breach").SetActive(false);
-                    doors[4].GetComponent<BoxCollider2D>().enabled = false;
-                    zoom.InteractionTransition(doors[5], doors[4], 1, 0);
-                    FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    if (select.usingGlove || select.usingStoveCloth)
+                    {
+                        select.usingGlove = false;
+                        select.usingStoveCloth = false;
+
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                    }
+                    else
+                    {
+                        GameObject.Find("Breach").SetActive(false);
+                        doors[4].GetComponent<BoxCollider2D>().enabled = false;
+                        zoom.InteractionTransition(doors[5], doors[4], 1, 0);
+                        FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
+                    }
                 }
             }
 

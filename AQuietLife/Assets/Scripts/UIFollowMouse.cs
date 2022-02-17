@@ -60,11 +60,11 @@ public class UIFollowMouse : MonoBehaviour
                         break;
                     case 3:
                         cursorAnim.SetBool("OpenDoor", true);
-                        cursorAnim.SetTrigger("OpenT2B");
+                        cursorAnim.SetTrigger("OpenU2D");
                         break;
                     case 4:
                         cursorAnim.SetBool("OpenDoor", true);
-                        cursorAnim.SetTrigger("OpenB2T");
+                        cursorAnim.SetTrigger("OpenD2U");
                         break;
                 }
             }

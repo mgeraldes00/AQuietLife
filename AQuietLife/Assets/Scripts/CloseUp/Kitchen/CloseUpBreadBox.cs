@@ -54,8 +54,9 @@ public class CloseUpBreadBox : MonoBehaviour
         //breadBoxRewindButton.SetActive(true);
         //breadBoxRewindButton.GetComponent<Animator>().SetBool("Visible", true);
         breadBox.enabled = false;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = true;       
+        if (!breadBoxMng.doorOpen)
+            for (int i = 0; i < zoomableObjs.Length; i++)
+                zoomableObjs[i].enabled = true;
         //returnArrow.SetActive(true);
         breadBoxMng.EnableObjs();
         zoom.currentView++;
