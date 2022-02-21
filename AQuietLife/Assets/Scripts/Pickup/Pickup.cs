@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class Pickup : MonoBehaviour
 {
     private InventorySimple inventory;
-    private PointerManager pointer;
+    private GameManager pointer;
 
     public GameObject itemButton;
 
@@ -15,17 +15,22 @@ public class Pickup : MonoBehaviour
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
-        pointer = GameObject.FindGameObjectWithTag("Scene").GetComponent<PointerManager>();
+        pointer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     private void OnMouseOver()
     {
-        Cursor.SetCursor(pointer.interactTexture, pointer.hotSpot, pointer.curMode);
+        pointer.cursors.ChangeCursor("Grab", 1);
     }
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
+        pointer.cursors.ChangeCursor("Grab", 0);
+    }
+
+    public void ExternalTrigger()
+    {
+        OnMouseDown();
     }
 
     private void OnMouseDown()
@@ -34,7 +39,7 @@ public class Pickup : MonoBehaviour
         {
             if (inventory.isFull[i] == false)
             {
-                Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
+                pointer.cursors.ChangeCursor("Grab", 0);
                 inventory.isFull[i] = true;
                 Instantiate(itemButton, inventory.slots[i].transform, false);
                 FindObjectOfType<AudioCtrl>().Play(currentObj);
