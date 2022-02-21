@@ -97,7 +97,7 @@ public class CabinetManager : MonoBehaviour
             isLocked = false;
 
         Vector3 mousePos2 =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
 
         RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
@@ -202,7 +202,8 @@ public class CabinetManager : MonoBehaviour
                     {
                         doors[2].GetComponent<BoxCollider2D>().enabled = false;
                         objects[1].SetActive(true);
-                        zoom.InteractionTransition(doors[3], doors[2], 1, 0);
+                        StartCoroutine(
+                            zoom.InteractionTransition(doors[3], doors[2], 1, 0));
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                     }
                 }
@@ -250,7 +251,8 @@ public class CabinetManager : MonoBehaviour
                     {
                         GameObject.Find("Breach").SetActive(false);
                         doors[4].GetComponent<BoxCollider2D>().enabled = false;
-                        zoom.InteractionTransition(doors[5], doors[4], 1, 0);
+                        StartCoroutine(
+                            zoom.InteractionTransition(doors[5], doors[4], 1, 0));
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                     }
                 }
@@ -276,7 +278,8 @@ public class CabinetManager : MonoBehaviour
                         //doorSound.Play();
                         //glove.SetActive(true);
                         LockAndUnlock();
-                        zoom.InteractionTransition(doors[1], doors[0], 1, 0);
+                        StartCoroutine(
+                            zoom.InteractionTransition(doors[1], doors[0], 1, 0));
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                     }
                 }
@@ -310,7 +313,8 @@ public class CabinetManager : MonoBehaviour
                         //doorSound.Play();
                         //interactionText.SetActive(false);
                         LockAndUnlock();
-                        zoom.InteractionTransition(doors[7], doors[6], 1, 0);
+                        StartCoroutine(
+                            zoom.InteractionTransition(doors[7], doors[6], 1, 0));
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                     }
                 }

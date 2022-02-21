@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MicrowaveManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MicrowaveManager : MonoBehaviour
 
     public GameObject[] door;
     public GameObject[] objects;
+    [SerializeField] private GameObject[] slices;
 
     public GameObject returnArrow;
     //public GameObject noTextCollidersGeneral; //Activate on final
@@ -38,6 +40,8 @@ public class MicrowaveManager : MonoBehaviour
     [SerializeField]
     private bool worked;
 
+    [SerializeField] private bool isPointing;
+
     public bool rewindApplied;
     public bool BreadTaken;
     public bool doorOpen;
@@ -54,7 +58,8 @@ public class MicrowaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zoom.currentView == 1 && closeUp.isMicrowave == true)
+        if (!EventSystem.current.IsPointerOverGameObject()
+            && zoom.currentView == 1 && closeUp.isMicrowave == true)
         {
             Vector3 mousePos2 =
                 Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -63,15 +68,62 @@ public class MicrowaveManager : MonoBehaviour
             RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
 
             if (hit2.collider == null)
-                FindObjectOfType<PointerManager>().ChangeCursor(1);
-            else if (hit2.collider.CompareTag("Microwave")
-                || hit2.collider.CompareTag("MicrowaveDoor"))
             {
-                FindObjectOfType<PointerManager>().ChangeCursor(2);
+                gameMng.cursors.ChangeCursor("OpenDoor", 0);
+                gameMng.cursors.ChangeCursor("Inspect", 0);
+                if (isPointing)
+                {
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    isPointing = false;
+                }
+                gameMng.cursors.ChangeCursor("Grab", 0);
+                gameMng.cursors.ChangeCursor("Click", 0);
+            }
+            else if (hit2.collider.CompareTag("Microwave"))
+            {
+                if (select.usingGlove || select.usingStoveCloth)
+                {
+                    gameMng.cursors.ChangeCursor("Point", 1);
+                    isPointing = true;
+                }
+                else
+                    gameMng.cursors.ChangeCursor("Click", 1);
+            }
+            else if (hit2.collider.CompareTag("MicrowaveDoor"))
+            {
+                if (select.usingGlove || select.usingStoveCloth)
+                {
+                    gameMng.cursors.ChangeCursor("Point", 1);
+                    isPointing = true;
+                }
+                else
+                {
+                    if (!doorOpen)
+                    {
+                        gameMng.cursors.ChangeCursor("Click", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 1);
+                    }
+                    else
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        gameMng.cursors.ChangeCursor("Grab", 0);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 2);
+                    }
+                }
+            }
+            else if (hit2.collider.CompareTag("Nothing"))
+            {
+                if (select.usingPlateWFrozenBread)
+                    gameMng.cursors.ChangeCursor("Point", 1);
+                else
+                {
+                    gameMng.cursors.ChangeCursor("OpenDoor", 0);
+                }
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && isLocked == false)
+        if (!EventSystem.current.IsPointerOverGameObject()
+            && Input.GetMouseButtonDown(0) && isLocked == false)
         {
             //Debug.Log("Mouse Clicked");
             Vector3 mousePos =
@@ -85,60 +137,90 @@ public class MicrowaveManager : MonoBehaviour
                 //Nothing
             }
 
-            else if (hit.collider.CompareTag("MicrowaveDoor") && gameMng.isLocked == false)
+            else if (hit.collider.CompareTag("MicrowaveDoor") 
+                && gameMng.isLocked == false)
             {
-                if (doorOpen == false && working == false)
+                if (select.usingGlove || select.usingStoveCloth)
                 {
-                    OpenAndUnlock();
-                    //zoom.InteractionTransition();
-                    FindObjectOfType<AudioCtrl>().Play("OpenMWave");
+                    select.usingGlove = false;
+                    select.usingStoveCloth = false;
 
-                    if (worked == false)
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    gameMng.cursors.ChangeCursor("OpenDoor", 3);
+                }
+                else
+                {
+                    if (doorOpen == false && working == false)
                     {
-                        //if (worked == true)
-                        //bread.enabled = true;
-                        //doorAnim.SetTrigger("Open");
-                        //doorOpen = true;
-                        //structure.enabled = true;
-                        //doorOpen = true;
-                        door[0].SetActive(false);
-                        door[1].SetActive(true);
-                        objects[1].SetActive(true);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 0);
+
+                        OpenAndUnlock();
+                        //zoom.InteractionTransition();
+                        FindObjectOfType<AudioCtrl>().Play("OpenMWave");
+
+                        if (worked == false)
+                        {
+                            //if (worked == true)
+                            //bread.enabled = true;
+                            //doorAnim.SetTrigger("Open");
+                            //doorOpen = true;
+                            //structure.enabled = true;
+                            //doorOpen = true;
+                            StartCoroutine(
+                                zoom.InteractionTransition(door[1], door[0], 0, 0));
+                            door[0].GetComponent<BoxCollider2D>().enabled = false;
+                            door[1].GetComponent<BoxCollider2D>().enabled = true;
+                            objects[1].SetActive(true);
+                        }
+
+                        if (worked == true)
+                        {         
+                            StartCoroutine(
+                                zoom.InteractionTransition(door[1], door[0], 0, 0));
+                            door[0].GetComponent<BoxCollider2D>().enabled = false;
+                            door[1].GetComponent<BoxCollider2D>().enabled = true;
+                            objects[0].GetComponent<BoxCollider2D>().enabled = true;
+                        }                    
                     }
 
-                    if (worked == true)
-                    {         
-                        door[0].SetActive(false);
-                        door[1].SetActive(true);
-                        objects[0].GetComponent<BoxCollider2D>().enabled = true;
-                    }                    
-                }
+                    if (doorOpen == true)
+                    {
+                        gameMng.cursors.ChangeCursor("OpenDoor", 0);
 
-                if (doorOpen == true)
-                {
-                    //if (worked == true)
-                    //bread.enabled = false;
-                    //doorAnim.SetTrigger("Close");
-                    //doorAnim.SetBool("PrevOpen", false);
-                    //doorOpen = false;
-                    CloseAndUnlock();
-                    //doorOpen = false;
-                    door[0].SetActive(true);
-                    door[1].SetActive(false);
-                    objects[1].SetActive(false);
-                    objects[2].SetActive(true);
-                    //zoom.InteractionTransition();
-                    FindObjectOfType<AudioCtrl>().Play("CloseMWave");
+                        //if (worked == true)
+                        //bread.enabled = false;
+                        //doorAnim.SetTrigger("Close");
+                        //doorAnim.SetBool("PrevOpen", false);
+                        //doorOpen = false;
+                        CloseAndUnlock();
+                        //doorOpen = false;
+                        StartCoroutine(
+                            zoom.InteractionTransition(door[0], door[1], 0, 0));
+                        door[1].GetComponent<BoxCollider2D>().enabled = false;
+                        door[0].GetComponent<BoxCollider2D>().enabled = true;
+                        objects[1].SetActive(false);
+                        objects[2].SetActive(true);
+                        //zoom.InteractionTransition();
+                        FindObjectOfType<AudioCtrl>().Play("CloseMWave");
+                    }
                 }
-                
             }
 
-            else if (hit.collider.CompareTag("Nothing") && gameMng.isLocked == false)
+            else if (hit.collider.CompareTag("Nothing") 
+                && gameMng.isLocked == false)
             {
+                gameMng.cursors.ChangeCursor("Point", 0);
+
                 if (doorOpen == true && select.usingPlateWFrozenBread == true)
                 {
                     objects[0].SetActive(true);
                     objects[1].SetActive(false);
+                    StartCoroutine(ObjectFade.FadeIn(
+                        objects[0].GetComponent<SpriteRenderer>()));
+                    StartCoroutine(ObjectFade.FadeIn(
+                        slices[0].GetComponent<SpriteRenderer>()));
+                    StartCoroutine(ObjectFade.FadeIn(
+                        slices[1].GetComponent<SpriteRenderer>()));
                     breadPlaced = true;
                     FindObjectOfType<PlateWFrozenBread>().frozenBreadWPlateUsed = true;
                     FindObjectOfType<AudioCtrl>().Play("PlacePlate");
@@ -151,17 +233,30 @@ public class MicrowaveManager : MonoBehaviour
                 }
             }
 
-            else if (hit.collider.CompareTag("Microwave") && gameMng.isLocked == false
-                && doorOpen == false && breadPlaced == true && worked == false && working == false)
+            else if (hit.collider.CompareTag("Microwave") && !gameMng.isLocked)
             {
-                //Start audio
-                //doorAnim.SetBool("Working", true);
-                door[0].SetActive(false);
-                door[2].SetActive(true);
-                working = true;
-                microwaveWork.Play();
-                //StartCoroutine(Unfreeze());
-                gameMng.StartCoroutine(Unfreeze());
+                if (select.usingGlove || select.usingStoveCloth)
+                {
+                    select.usingGlove = false;
+                    select.usingStoveCloth = false;
+
+                    gameMng.cursors.ChangeCursor("Point", 0);
+                    gameMng.cursors.ChangeCursor("OpenDoor", 3);
+                }
+                else if (!doorOpen && breadPlaced && !worked && !working)
+                {
+                    gameMng.cursors.ChangeCursor("Click", 0);
+
+                    //Start audio
+                    //doorAnim.SetBool("Working", true);
+                    objects[2].GetComponent<BoxCollider2D>().enabled = false;
+                    door[0].SetActive(false);
+                    door[2].SetActive(true);
+                    working = true;
+                    microwaveWork.Play();
+                    //StartCoroutine(Unfreeze());
+                    gameMng.StartCoroutine(Unfreeze());
+                }   
             }
         }
     }
@@ -216,18 +311,20 @@ public class MicrowaveManager : MonoBehaviour
 
     IEnumerator OpenUnlock()
     {
+        yield return new WaitForEndOfFrame();
+        doorOpen = true;
         yield return new WaitForSeconds(1);
         isLocked = false;
         //returnArrow.SetActive(true);
-        doorOpen = true;
     }
 
     IEnumerator CloseUnlock()
     {
+        yield return new WaitForEndOfFrame();
+        doorOpen = false;
         yield return new WaitForSeconds(1);
         isLocked = false;
         //returnArrow.SetActive(true);
-        doorOpen = false;
     }
 
     IEnumerator Unfreeze()

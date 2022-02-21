@@ -68,8 +68,10 @@ public class CloseUpMicrowave : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         microwave.enabled = false;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = true;
+        if (microMng.doorOpen)
+            zoomableObjs[1].enabled = true;
+        else
+            zoomableObjs[0].enabled = true;
         //returnArrow.SetActive(true);
         microMng.EnableObjs();
         zoom.currentView++;
@@ -87,8 +89,6 @@ public class CloseUpMicrowave : MonoBehaviour
     {
         if (zoom.currentView == 0 && gameMng.isLocked == false)
             gameMng.cursors.ChangeCursor("Inspect", 1);
-        else if (zoom.currentView == 1 && gameMng.isLocked == false)
-            gameMng.cursors.ChangeCursor("Grab", 1);
     }
 
     private void OnMouseExit()

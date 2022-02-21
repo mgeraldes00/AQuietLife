@@ -9,10 +9,12 @@ public class CloseUpToaster : MonoBehaviour
     public GameManager gameMng;
     public ToasterManager toasterMng;
 
+    [SerializeField] private ObjectSelection select;
+
     public GameObject returnArrow;
     //public GameObject rewindButton;
 
-    public BoxCollider2D toaster;
+    public BoxCollider2D[] toaster;
 
     [SerializeField] private bool isOnToaster;
 
@@ -30,45 +32,37 @@ public class CloseUpToaster : MonoBehaviour
             }
             else if (gameMng.isLocked == false && zoom.currentView == 1)
             {
-                toasterMng.ToasterBehaviour();
-                toasterMng.CheckTrap();
+                if (isOnToaster)
+                {
+                    toasterMng.CheckTrap();
+                }
             }
         }
-    }
-
-    private void OnMouseEnter()
-    {
-        if (zoom.currentView == 0 && gameMng.isLocked == false)
-            gameMng.cursors.ChangeCursor("Inspect", 1);
-        else if (zoom.currentView == 1 && gameMng.isLocked == false && isOnToaster == true)
-            gameMng.cursors.ChangeCursor("Grab", 1);
-    }
-
-    private void OnMouseExit()
-    {
-        gameMng.cursors.ChangeCursor("Inspect", 0);
-        gameMng.cursors.ChangeCursor("Grab", 0);
     }
 
     IEnumerator TimeToZoom()
     {
         yield return new WaitForEndOfFrame();
-        toaster.enabled = false;
+        toaster[0].enabled = false;
         zoom.currentView++;
         yield return new WaitForSeconds(0.5f);
-        toaster.enabled = true;
-        if (toasterMng.isPlaced == true)
+        if (!toasterMng.isHeating && !toasterMng.hasHeated)
         {
-            toaster.size = new Vector2(0.32f, 0.8f);
-            toaster.offset = new Vector2(-0.48f, 0);
+            toaster[0].enabled = true;
+            toaster[1].enabled = true;
         }
-        toasterMng.objects[0].GetComponent<BoxCollider2D>().enabled = true;
+        else if (toasterMng.hasHeated)
+            toasterMng.objects[0].GetComponent<BoxCollider2D>().enabled = true;
+        toaster[0].size = new Vector2(0.32f, 0.8f);
+        toaster[0].offset = new Vector2(-0.48f, 0);
     }
 
     public void Normalize()
     {
-        toaster.size = new Vector2(2.02f, 1.82f);
-        toaster.offset = new Vector2(0.05f, 0.19f);
+        toaster[0].enabled = true;
+        toaster[1].enabled = false;
+        toaster[0].size = new Vector2(2.02f, 1.82f);
+        toaster[0].offset = new Vector2(0.05f, 0.19f);
         toasterMng.isToaster = false;
         isOnToaster = false;
     }
