@@ -34,8 +34,8 @@ public class CheeseDomeManager : MonoBehaviour
     [SerializeField] private bool rewindOnce;
     [SerializeField] private bool isLocked;
     [SerializeField] private bool isTrapped;
-    [SerializeField] private bool isTaken;
-
+    public bool isTaken;
+    public bool isPointing;
     public bool isCheese;
     public bool isOpen;
     public bool rewindApplied;
@@ -58,6 +58,8 @@ public class CheeseDomeManager : MonoBehaviour
 
             if (select.usingGlove == true)
             {
+                gameMng.cursors.ChangeCursor("Point", 0);
+                gameMng.cursors.ChangeCursor("OpenDoor", 4);
                 FindObjectOfType<AudioCtrl>().Play("Disarm");
                 FindObjectOfType<Glove>().gloveUsed = true;
                 StartCoroutine(Untrap());
@@ -65,6 +67,8 @@ public class CheeseDomeManager : MonoBehaviour
 
             if (select.usingStoveCloth == true)
             {
+                gameMng.cursors.ChangeCursor("Point", 0);
+                gameMng.cursors.ChangeCursor("OpenDoor", 4);
                 FindObjectOfType<AudioCtrl>().Play("Disarm");
                 FindObjectOfType<StoveCloth>().gloveUsed = true;
                 StartCoroutine(Untrap());
@@ -72,8 +76,19 @@ public class CheeseDomeManager : MonoBehaviour
         }
         else if (isLocked == false && isTrapped == false && isOpen == false)
         {
-            //zoom.InteractionTransition();
-            StartCoroutine(OpenDome());
+            if (select.usingGlove || select.usingStoveCloth)
+            {
+                select.usingGlove = false;
+                select.usingStoveCloth = false;
+
+                gameMng.cursors.ChangeCursor("Point", 0);
+                gameMng.cursors.ChangeCursor("OpenDoor", 4);
+            }
+            else
+            {
+                //zoom.InteractionTransition();
+                StartCoroutine(OpenDome());
+            }
         }
     }
 
@@ -191,24 +206,31 @@ public class CheeseDomeManager : MonoBehaviour
 
     IEnumerator OpenDome()
     {
+        closeUp.cheeseDome.enabled = false;
         yield return new WaitForEndOfFrame();
         isOpen = true;
-        yield return new WaitForSeconds(0.2f);
-        FindObjectOfType<AudioCtrl>().Play("Glassdome");
-        objects[0].SetActive(false);
         objects[1].SetActive(true);
+        FindObjectOfType<AudioCtrl>().Play("Glassdome");
+        StartCoroutine(
+            zoom.InteractionTransition(objects[1], objects[0], 0, 0));
+        yield return new WaitForSeconds(1.0f);
+        objects[0].SetActive(false);
         closeUp.cheeseDome.offset = new Vector2(1.68f, -1.01f);
         closeUp.cheeseDome.size = new Vector2(4.87f, 3.95f);
     }
 
     IEnumerator TakeCheese()
     {
+        closeUp.cheeseDome.enabled = false;
         yield return new WaitForEndOfFrame();
         isTaken = true;
-        yield return new WaitForSeconds(0.2f);
         FindObjectOfType<AudioCtrl>().Play("CutCheese");
         objects[2].SetActive(true);
+        StartCoroutine(
+            ObjectFade.FadeIn(objects[2].GetComponent<SpriteRenderer>()));
         FindObjectOfType<PickupCheese>().PickCheese();
+        yield return new WaitForSeconds(1.0f);
+        objects[2].GetComponent<BoxCollider2D>().enabled = true;
     }
 
     IEnumerator Unlock()

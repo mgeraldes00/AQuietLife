@@ -26,12 +26,6 @@ public class ToasterManager : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Vector3 mousePos =
-            Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
         if (zoom.currentView == 0 && gameMng.isLocked == false)
             gameMng.cursors.ChangeCursor("Inspect", 1);
         else if (zoom.currentView == 1 && !gameMng.isLocked)
@@ -58,7 +52,6 @@ public class ToasterManager : MonoBehaviour
             isPointing = false;
         }
         gameMng.cursors.ChangeCursor("OpenDoor", 0);
-        gameMng.cursors.ChangeCursor("Grab", 0);
     }
 
     private void Start()

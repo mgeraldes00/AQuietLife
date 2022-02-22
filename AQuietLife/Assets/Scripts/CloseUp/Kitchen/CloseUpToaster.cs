@@ -8,7 +8,6 @@ public class CloseUpToaster : MonoBehaviour
     public CameraCtrl zoom;
     public GameManager gameMng;
     public ToasterManager toasterMng;
-
     [SerializeField] private ObjectSelection select;
 
     public GameObject returnArrow;
