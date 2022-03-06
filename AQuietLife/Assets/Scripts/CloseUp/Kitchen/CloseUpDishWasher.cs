@@ -9,6 +9,7 @@ public class CloseUpDishWasher : MonoBehaviour
     public GameManager gameMng;
     public DishWasherManager dishwasherMng;
     public ThoughtManager thought;
+    [SerializeField] private ObjectSelection select;
 
     public Animator returnArrow;
 
@@ -28,6 +29,8 @@ public class CloseUpDishWasher : MonoBehaviour
                 zoom.ObjectTransition();
                 zoom.cameraAnim.SetTrigger(zoomTrigger);
                 StartCoroutine(TimeToZoom());
+                dishWasher.size = new Vector2(3.11f, 0.52f);
+                dishWasher.offset = new Vector2(0, 0.81f);
                 isOnWasher = true;
                 gameMng.cursors.ChangeCursor("Inspect", 0);
                 if (dishwasherMng.isOpen == true)
@@ -35,7 +38,8 @@ public class CloseUpDishWasher : MonoBehaviour
                     dishWasher.size = new Vector2(3.11f, 0.4f);
                     dishWasher.offset = new Vector2(0, -0.88f);
                     for (int i = 0; i < dishwasherMng.objects.Length; i++)
-                        dishwasherMng.objects[i].GetComponent<BoxCollider2D>().enabled = true;
+                        dishwasherMng.objects[i].
+                            GetComponent<BoxCollider2D>().enabled = true;
                 }
             }
             else if (dishwasherMng.isWorking == true)
@@ -50,14 +54,34 @@ public class CloseUpDishWasher : MonoBehaviour
     {
         if (zoom.currentView == 0 && gameMng.isLocked == false)
             gameMng.cursors.ChangeCursor("Inspect", 1);
-        else if (zoom.currentView == 1 && gameMng.isLocked == false && isOnWasher == true)
-            gameMng.cursors.ChangeCursor("Grab", 1);
+        else if (
+            zoom.currentView == 1 && !gameMng.isLocked && isOnWasher)
+        {
+            if (select.usingGlove || select.usingStoveCloth)
+            {
+                gameMng.cursors.ChangeCursor("Point", 1);
+                dishwasherMng.isPointing = true;
+            }
+            else
+            {
+                if (!dishwasherMng.isOpen)
+                    gameMng.cursors.ChangeCursor("OpenDoor", 3);
+                else
+                    gameMng.cursors.ChangeCursor("OpenDoor", 4);
+            }
+        }
     }
 
     private void OnMouseExit()
     {
         gameMng.cursors.ChangeCursor("Inspect", 0);
         gameMng.cursors.ChangeCursor("Grab", 0);
+        gameMng.cursors.ChangeCursor("OpenDoor", 0);
+        if (dishwasherMng.isPointing)
+        {
+            gameMng.cursors.ChangeCursor("Point", 0);
+            dishwasherMng.isPointing = false;
+        }
     }
 
     IEnumerator TimeToZoom()

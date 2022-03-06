@@ -11731,6 +11731,7 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   closeUp: {fileID: 1019528737}
   thought: {fileID: 1938436214}
+  select: {fileID: 1888950854}
   doors:
   - {fileID: 2012881422}
   objects:
@@ -11742,9 +11743,10 @@ MonoBehaviour:
   - {fileID: 680807483}
   isWorking: 0
   isActive: 0
+  isPointing: 0
   isLocked: 0
   isOpen: 0
-  startTime: 120
+  startTime: 0
 --- !u!114 &1019528737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11761,6 +11763,7 @@ MonoBehaviour:
   gameMng: {fileID: 1037535894}
   dishwasherMng: {fileID: 1019528736}
   thought: {fileID: 1938436214}
+  select: {fileID: 1888950854}
   returnArrow: {fileID: 3578828615367628757}
   dishWasher: {fileID: 1019528738}
   zoomableObjs:

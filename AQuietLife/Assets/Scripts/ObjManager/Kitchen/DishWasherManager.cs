@@ -9,6 +9,7 @@ public class DishWasherManager : MonoBehaviour
     public GameManager gameMng;
     public CloseUpDishWasher closeUp;
     public ThoughtManager thought;
+    [SerializeField] private ObjectSelection select;
 
     public GameObject[] doors;
     public GameObject[] objects;
@@ -19,6 +20,7 @@ public class DishWasherManager : MonoBehaviour
 
     public bool isWorking;
     public bool isActive;
+    public bool isPointing;
 
     [SerializeField]private bool isLocked;
     public bool isOpen;
@@ -42,30 +44,29 @@ public class DishWasherManager : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject() && isActive == true
             && isLocked == false)
         {
-            StartCoroutine(OpenDoor());
-            if (isOpen != true)
+            if (select.usingGlove || select.usingStoveCloth)
             {
-                doors[0].SetActive(false);
-                closeUp.dishWasher.size = new Vector2(3.11f, 0.4f);
-                closeUp.dishWasher.offset = new Vector2(0, -0.88f);
+                select.usingGlove = false;
+                select.usingStoveCloth = false;
 
-                FindObjectOfType<AudioCtrl>().Play("OpenDishWasher");
-
-                for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                    closeUp.zoomableObjs[i].enabled = true;
+                gameMng.cursors.ChangeCursor("Point", 0);
+                if (isOpen)
+                    gameMng.cursors.ChangeCursor("OpenDoor", 4);
+                else
+                    gameMng.cursors.ChangeCursor("OpenDoor", 3);
             }
-            else if (isOpen == true)
+            else
             {
-                doors[0].SetActive(true);
-                closeUp.dishWasher.size = new Vector2(3.11f, 2.13f);
-                closeUp.dishWasher.offset = new Vector2(0, 0);
-
-                for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
-                    closeUp.zoomableObjs[i].enabled = false;
+                if (isOpen != true)
+                {
+                    StartCoroutine(OpenDoor());
+                }
+                else if (isOpen == true)
+                {
+                    StartCoroutine(CloseDoor());
+                }
+                LockAndUnlock();
             }
-
-            //zoom.InteractionTransition();
-            LockAndUnlock();
         } 
     }
 
@@ -86,6 +87,9 @@ public class DishWasherManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         returnArrow.SetTrigger("Hide");
+        for (int i = 0; i < objects.Length; i++)
+            objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(0.9f);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -109,31 +113,52 @@ public class DishWasherManager : MonoBehaviour
 
     IEnumerator OpenDoor()
     {
+        closeUp.dishWasher.enabled = false;
         yield return new WaitForEndOfFrame();
-        if (isOpen != true)
-            isOpen = true;
-        else
-            isOpen = false;
+        closeUp.dishWasher.size = new Vector2(3.11f, 0.4f);
+        closeUp.dishWasher.offset = new Vector2(0, -0.88f);
+        StartCoroutine(ObjectFade.FadeOut(doors[0], 0, 0));
+        FindObjectOfType<AudioCtrl>().Play("OpenDishWasher");
+        yield return new WaitForSeconds(1.0f);
+        closeUp.dishWasher.enabled = true;
+        for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+            closeUp.zoomableObjs[i].enabled = true;
+        isOpen = true;
+    }
+
+    IEnumerator CloseDoor()
+    {
+        closeUp.dishWasher.enabled = false;
+        for (int i = 0; i < closeUp.zoomableObjs.Length; i++)
+            closeUp.zoomableObjs[i].enabled = false;
+        yield return new WaitForEndOfFrame();
+        closeUp.dishWasher.size = new Vector2(3.11f, 0.52f);
+        closeUp.dishWasher.offset = new Vector2(0, 0.81f);
+        StartCoroutine(ObjectFade.FadeIn(
+            doors[0].GetComponent<SpriteRenderer>()));
+        FindObjectOfType<AudioCtrl>().Play("OpenDishWasher");
+        yield return new WaitForSeconds(1.0f);
+        closeUp.dishWasher.enabled = true;
+        isOpen = false;
     }
 
     IEnumerator TimeToFinish()
     {
         timer = startTime;
+        
+        do
         {
-            do
-            {
-                timer -= Time.deltaTime;
-                yield return null;
-            }
-            while (timer > 0);
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        while (timer > 0);
 
-            if (timer <= 0)
-            {
-                Debug.Log("Done washing!");
-                workingAudio[0].Stop();
-                workingAudio[1].Play();
-                isWorking = false;
-            }
+        if (timer <= 0)
+        {
+            Debug.Log("Done washing!");
+            workingAudio[0].Stop();
+            workingAudio[1].Play();
+            isWorking = false;
         }
     }
 }
