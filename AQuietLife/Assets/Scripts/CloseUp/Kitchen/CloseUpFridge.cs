@@ -20,6 +20,7 @@ public class CloseUpFridge : MonoBehaviour
     //public GameObject fridge;
     //public GameObject fridgeButtons;
     //public GameObject activityText;
+    
     //public GameObject fridgeRewindButton;
 
     public BoxCollider2D[] fridge;
@@ -32,27 +33,31 @@ public class CloseUpFridge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zoom.currentView == 0)
+        Vector3 mousePos2 =
+            Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
+
+        RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
+
+        if (hit2.collider == null)
         {
-            Vector3 mousePos2 =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos22D = new Vector2(mousePos2.x, mousePos2.y);
-
-            RaycastHit2D hit2 = Physics2D.Raycast(mousePos22D, Vector2.zero);
-
-            if (hit2.collider == null)
+            if (isFridge == true)
             {
-                if (isFridge == true)
-                {
-                    gameMng.cursors.ChangeCursor("Inspect", 0);
-                    isFridge = false;
-                }
+                gameMng.cursors.ChangeCursor("Inspect", 0);
+                isFridge = false;
             }
-            else if (hit2.collider.CompareTag("Fridge")
+            gameMng.cursors.ChangeCursor("OpenDoor", 0);
+        }
+        else
+        {
+            if (hit2.collider.CompareTag("Fridge")
                 || hit2.collider.CompareTag("Freezer"))
             {
-                gameMng.cursors.ChangeCursor("Inspect", 1);
-                isFridge = true;
+                if (zoom.currentView == 0 && !fridgeMng.onFridge)
+                {
+                    gameMng.cursors.ChangeCursor("Inspect", 1);
+                    isFridge = true;
+                }
             }
         }
 
@@ -136,6 +141,6 @@ public class CloseUpFridge : MonoBehaviour
                 zoomableObjs[i].enabled = false;
             bottomDoor.enabled = false;
             isOnFridge = false;
-        } 
+        }
     }
 }
