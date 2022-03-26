@@ -103,6 +103,7 @@ public class ThoughtManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             yield return null;
         if (isThinking != false)
         {
+            textObj.GetComponent<TextMeshProUGUI>().raycastTarget = false;
             balloon.SetTrigger("Disappear");
             balloonActive = false;
             text = "";
