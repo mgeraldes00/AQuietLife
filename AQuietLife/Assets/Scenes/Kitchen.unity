@@ -13069,9 +13069,9 @@ MonoBehaviour:
   - {fileID: 1772929782}
   - {fileID: 605737022}
   - {fileID: 330755879}
-  - {fileID: 1113950054}
   - {fileID: 1412311368}
   - {fileID: 1429534062}
+  lettuce: {fileID: 1113950054}
   moreObjects:
   - {fileID: 1196342755}
   - {fileID: 437193060}
@@ -13093,6 +13093,7 @@ MonoBehaviour:
   rewindApplied: 0
   hamTaken: 0
   frozenBreadTaken: 0
+  lettuceTaken: 0
   doorLeftOpen: 0
   doorRightOpen: 0
   lookAtFridge: 0
@@ -13111,7 +13112,7 @@ GameObject:
   - component: {fileID: 1113950057}
   - component: {fileID: 1113950058}
   m_Layer: 0
-  m_Name: _ettuce
+  m_Name: lettuce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13217,7 +13218,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1113950054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30c268d1f074a94f9d855b4a1812826, type: 3}
+  m_Script: {fileID: 11500000, guid: 3478076e97c682448a099f0149186110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3210881669624165373, guid: ce5d71a45d71cb04998f7a17ed29ce67, type: 3}

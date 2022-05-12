@@ -14,6 +14,7 @@ public class FridgeManager : MonoBehaviour
 
     public GameObject[] doors;
     public GameObject[] objects;
+    public GameObject lettuce;
     public GameObject[] moreObjects;
     public GameObject[] objectsFreezer;
 
@@ -37,6 +38,7 @@ public class FridgeManager : MonoBehaviour
     public bool rewindApplied;
     public bool hamTaken;
     public bool frozenBreadTaken;
+    public bool lettuceTaken;
     public bool doorLeftOpen;
     public bool doorRightOpen;
     public bool lookAtFridge;
@@ -157,6 +159,7 @@ public class FridgeManager : MonoBehaviour
                                 StartCoroutine(UpdateDoors(0, 2, doors[2], doors[3]));
                                 for (int i = 0; i < objects.Length; i++)
                                     objects[i].SetActive(true);
+                                lettuce.SetActive(true);
                                 for (int i = 0; i < moreObjects.Length; i++)
                                     moreObjects[i].SetActive(true);
                                 //zoom.InteractionTransition();
@@ -174,6 +177,7 @@ public class FridgeManager : MonoBehaviour
                             StartCoroutine(UpdateDoors(1, 2, doors[2], doors[3]));
                             for (int i = 0; i < objects.Length; i++)
                                 objects[i].GetComponent<Collider2D>().enabled = false;
+                            lettuce.GetComponent<Collider2D>().enabled = false;
                             for (int i = 0; i < moreObjects.Length; i++)
                                 moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
                             //zoom.InteractionTransition();
@@ -234,6 +238,7 @@ public class FridgeManager : MonoBehaviour
                     doors[3].GetComponent<Collider2D>().enabled = false;
                     for (int i = 0; i < objects.Length; i++)
                         objects[i].GetComponent<BoxCollider2D>().enabled = false;
+                    lettuce.GetComponent<Collider2D>().enabled = false;
                     for (int i = 0; i < moreObjects.Length; i++)
                         moreObjects[i].GetComponent<EdgeCollider2D>().enabled = true;
                     //closeUp.directionArrows[0].SetActive(false);
@@ -266,6 +271,8 @@ public class FridgeManager : MonoBehaviour
                 moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
             for (int i = 0; i < objects.Length; i++)
                 objects[i].GetComponent<BoxCollider2D>().enabled = true;
+            if (!lettuceTaken)
+                lettuce.GetComponent<Collider2D>().enabled = true;
             //closeUp.directionArrows[0].SetActive(true);
             closeUp.dirArrows[0].SetTrigger("Show");
             thought.HideThought();
@@ -282,6 +289,7 @@ public class FridgeManager : MonoBehaviour
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
         for (int i = 0; i < objectsFreezer.Length; i++)
             objectsFreezer[i].GetComponent<BoxCollider2D>().enabled = false;
+        lettuce.GetComponent<Collider2D>().enabled = false;
         onFridge = false;
     }
 
@@ -291,6 +299,8 @@ public class FridgeManager : MonoBehaviour
         {
             for (int i = 0; i < objects.Length; i++)
                 objects[i].GetComponent<BoxCollider2D>().enabled = true;
+            if (!lettuceTaken)
+                lettuce.GetComponent<Collider2D>().enabled = true;
         }
         else if (type == 2)
         {
@@ -332,6 +342,8 @@ public class FridgeManager : MonoBehaviour
                 {
                     for (int i = 0; i < objects.Length; i++)
                         objects[i].GetComponent<Collider2D>().enabled = true;
+                    if (!lettuceTaken)
+                        lettuce.GetComponent<Collider2D>().enabled = true;
                     doors[8].GetComponent<Collider2D>().enabled = true;
                 }
                 break;
@@ -362,6 +374,7 @@ public class FridgeManager : MonoBehaviour
                 {
                     for (int i = 0; i < moreObjects.Length; i++)
                         moreObjects[i].SetActive(false);
+                    lettuce.SetActive(false);
                     for (int i = 0; i < objects.Length; i++)
                         objects[i].SetActive(false);
                 }
