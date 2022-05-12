@@ -154,7 +154,7 @@ public class FridgeManager : MonoBehaviour
                             {
                                 gameMng.cursors.ChangeCursor("OpenDoor", 0);
 
-                                StartCoroutine(UpdateDoors(0, 1, doors[2], doors[3]));
+                                StartCoroutine(UpdateDoors(0, 2, doors[2], doors[3]));
                                 for (int i = 0; i < objects.Length; i++)
                                     objects[i].SetActive(true);
                                 for (int i = 0; i < moreObjects.Length; i++)
@@ -173,9 +173,9 @@ public class FridgeManager : MonoBehaviour
 
                             StartCoroutine(UpdateDoors(1, 2, doors[2], doors[3]));
                             for (int i = 0; i < objects.Length; i++)
-                                objects[i].SetActive(false);
+                                objects[i].GetComponent<Collider2D>().enabled = false;
                             for (int i = 0; i < moreObjects.Length; i++)
-                                moreObjects[i].SetActive(false);
+                                moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
                             //zoom.InteractionTransition();
                             closingBottomDoor = true;
                             LockAndUnlockFromOpen();
@@ -216,10 +216,9 @@ public class FridgeManager : MonoBehaviour
                     if (doorRightOpen == true)
                     {
                         gameMng.cursors.ChangeCursor("OpenDoor", 0);
-
-                        StartCoroutine(UpdateDoors(1, 2, doors[0], doors[1]));
                         for (int i = 0; i < objectsFreezer.Length; i++)
-                            objectsFreezer[i].SetActive(false);
+                            objectsFreezer[i].GetComponent<Collider2D>().enabled = false;
+                        StartCoroutine(UpdateDoors(1, 1, doors[0], doors[1]));
                         //zoom.InteractionTransition();
                         closingTopDoor = true;
                         LockAndUnlockFromOpen();
@@ -232,6 +231,9 @@ public class FridgeManager : MonoBehaviour
                     //arrow.SetActive(false);
                     //arrowZoom.SetActive(true);
                     doors[8].GetComponent<BoxCollider2D>().enabled = false;
+                    doors[3].GetComponent<Collider2D>().enabled = false;
+                    for (int i = 0; i < objects.Length; i++)
+                        objects[i].GetComponent<BoxCollider2D>().enabled = false;
                     for (int i = 0; i < moreObjects.Length; i++)
                         moreObjects[i].GetComponent<EdgeCollider2D>().enabled = true;
                     //closeUp.directionArrows[0].SetActive(false);
@@ -259,8 +261,11 @@ public class FridgeManager : MonoBehaviour
             //returnArrow.SetTrigger("Show");
             //arrowZoom.SetActive(false);
             doors[8].GetComponent<BoxCollider2D>().enabled = true;
+            doors[3].GetComponent<Collider2D>().enabled = true;
             for (int i = 0; i < moreObjects.Length; i++)
                 moreObjects[i].GetComponent<EdgeCollider2D>().enabled = false;
+            for (int i = 0; i < objects.Length; i++)
+                objects[i].GetComponent<BoxCollider2D>().enabled = true;
             //closeUp.directionArrows[0].SetActive(true);
             closeUp.dirArrows[0].SetTrigger("Show");
             thought.HideThought();
@@ -275,13 +280,23 @@ public class FridgeManager : MonoBehaviour
         //rewindButton.SetActive(false);
         for (int i = 0; i < objects.Length; i++)
             objects[i].GetComponent<BoxCollider2D>().enabled = false;
+        for (int i = 0; i < objectsFreezer.Length; i++)
+            objectsFreezer[i].GetComponent<BoxCollider2D>().enabled = false;
         onFridge = false;
     }
 
-    public void EnableObjs()
+    public void EnableObjs(int type)
     {
-        for (int i = 0; i < objects.Length; i++)
-            objects[i].GetComponent<BoxCollider2D>().enabled = true;
+        if (type == 1)
+        {
+            for (int i = 0; i < objects.Length; i++)
+                objects[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else if (type == 2)
+        {
+            for (int i = 0; i < objectsFreezer.Length; i++)
+                objectsFreezer[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 
     IEnumerator UpdateDoors(
@@ -291,6 +306,7 @@ public class FridgeManager : MonoBehaviour
         switch (state)
         {
             case 0:
+                currDoor.GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(
                     zoom.InteractionTransition(oppDoor, currDoor, 0, 0));
                 if (type == 2)
@@ -299,15 +315,55 @@ public class FridgeManager : MonoBehaviour
                         doors[8].GetComponent<SpriteRenderer>()));
                     StartCoroutine(ObjectFade.FadeIn(
                         doors[9].GetComponent<SpriteRenderer>()));
+                    for (int i = 0; i < moreObjects.Length; i++)
+                    {
+                        StartCoroutine(ObjectFade.FadeIn(
+                            moreObjects[i].GetComponent<SpriteRenderer>()));
+                    }
+                }
+                yield return new WaitForSeconds(1.0f);
+                oppDoor.GetComponent<Collider2D>().enabled = true;
+                if (type == 1)
+                {
+                    for (int i = 0; i < objectsFreezer.Length; i++)
+                        objectsFreezer[i].GetComponent<Collider2D>().enabled = true;
+                }
+                else if (type == 2)
+                {
+                    for (int i = 0; i < objects.Length; i++)
+                        objects[i].GetComponent<Collider2D>().enabled = true;
+                    doors[8].GetComponent<Collider2D>().enabled = true;
                 }
                 break;
             case 1:
+                oppDoor.GetComponent<Collider2D>().enabled = false;
+                if (type == 2)
+                    doors[8].GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(
                     zoom.InteractionTransition(currDoor, oppDoor, 0, 0));
                 if (type == 2)
                 {
                     StartCoroutine(ObjectFade.FadeOut(doors[8], 0, 0));
                     StartCoroutine(ObjectFade.FadeOut(doors[9], 0, 0));
+                    for (int i = 0; i < moreObjects.Length; i++)
+                    {
+                        StartCoroutine(ObjectFade.FadeOut(
+                            moreObjects[i], 0, 0));
+                    }
+                }
+                yield return new WaitForSeconds(1.0f);
+                currDoor.GetComponent<Collider2D>().enabled = true;
+                if (type == 1)
+                {
+                    for (int i = 0; i < objectsFreezer.Length; i++)
+                        objectsFreezer[i].SetActive(false);
+                }
+                else if (type == 2)
+                {
+                    for (int i = 0; i < moreObjects.Length; i++)
+                        moreObjects[i].SetActive(false);
+                    for (int i = 0; i < objects.Length; i++)
+                        objects[i].SetActive(false);
                 }
                 break;
         }

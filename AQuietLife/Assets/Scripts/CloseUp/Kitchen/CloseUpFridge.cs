@@ -110,15 +110,28 @@ public class CloseUpFridge : MonoBehaviour
 
     IEnumerator TimeToZoom()
     {
-        yield return new WaitForSeconds(0.1f);
-        //fridgeRewindButton.SetActive(true);
+        yield return new WaitForEndOfFrame();
         fridge[0].enabled = false;
         fridge[1].enabled = false;
-        for (int i = 0; i < zoomableObjs.Length; i++)
-            zoomableObjs[i].enabled = true;
-        bottomDoor.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        //fridgeRewindButton.SetActive(true);
+        if (fridgeMng.doorLeftOpen)
+        {
+            bottomDoor.enabled = true;
+            fridgeMng.EnableObjs(1);
+        }
+        else if (!fridgeMng.doorLeftOpen)
+            zoomableObjs[2].enabled = true;
+        if (fridgeMng.doorRightOpen)
+        {
+            zoomableObjs[1].enabled = true;
+            fridgeMng.EnableObjs(2);
+        }
+        else if (!fridgeMng.doorRightOpen)
+        {
+            zoomableObjs[0].enabled = true;
+        }
         //returnArrow.SetActive(true);
-        fridgeMng.EnableObjs();
         zoom.currentView++;
         isOnFridge = true;
     }
