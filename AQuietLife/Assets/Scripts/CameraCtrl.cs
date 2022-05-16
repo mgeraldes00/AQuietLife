@@ -157,27 +157,28 @@ public class CameraCtrl : MonoBehaviour
 
     public void BackToGeneral()
     {
-        if (gameMng.returnable == true && gameMng.isLocked == false)
+        if (!gameMng.isLocked)
         {
-            cameraAnim.SetTrigger("Return2");
-            if (currentView == 1)
+            if (gameMng.returnable == true)
             {
-                gameMng.isLocked = true;
-                StartCoroutine(RestoreView(1));
-                returnArrows[0].SetBool("Hide 0", true);
-                returnButtons[0].GetComponent<Button>().enabled = false;
-                for (int i = 0; i < directionalArrows.Length; i++)
-                    directionalArrows[i].SetTrigger("Show");
+                cameraAnim.SetTrigger("Return2");
+                if (currentView == 1)
+                {
+                    StartCoroutine(RestoreView(1));
+                    returnArrows[0].SetBool("Hide 0", true);
+                    returnButtons[0].GetComponent<Button>().enabled = false;
+                    for (int i = 0; i < directionalArrows.Length; i++)
+                        directionalArrows[i].SetTrigger("Show");
+                }
+                else if (currentView == 2)
+                {
+                    StartCoroutine(RestoreView(2));
+                }
             }
-            else if (currentView == 2)
+            else
             {
-                gameMng.isLocked = true;
-                StartCoroutine(RestoreView(2));
+                StartCoroutine(gameMng.LiberateReturn());
             }
-        }
-        else
-        {
-            StartCoroutine(gameMng.LiberateReturn());
         }
     }
 
@@ -193,6 +194,8 @@ public class CameraCtrl : MonoBehaviour
 
     IEnumerator RestoreView(int i)
     {
+        yield return new WaitForEndOfFrame();
+        gameMng.isLocked = true;
         yield return new WaitForSeconds(0.1f);
         if (i == 1)
             currentView--;

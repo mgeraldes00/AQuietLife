@@ -35,24 +35,27 @@ public class Pickup : MonoBehaviour
 
     private void OnMouseDown()
     {
-        for (int i = 0; i < inventory.slots.Length; i++)
+        if (!pointer.isLocked)
         {
-            if (inventory.isFull[i] == false)
+            for (int i = 0; i < inventory.slots.Length; i++)
             {
-                pointer.cursors.ChangeCursor("Grab", 0);
-                inventory.isFull[i] = true;
-                Instantiate(itemButton, inventory.slots[i].transform, false);
-                FindObjectOfType<AudioCtrl>().Play(currentObj);
+                if (inventory.isFull[i] == false)
+                {
+                    pointer.cursors.ChangeCursor("Grab", 0);
+                    inventory.isFull[i] = true;
+                    Instantiate(itemButton, inventory.slots[i].transform, false);
+                    FindObjectOfType<AudioCtrl>().Play(currentObj);
 
-                if (isUnmovable != true)
-                {
-                    gameObject.SetActive(false);
+                    if (isUnmovable != true)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                    break;
                 }
-                else
-                {
-                    GetComponent<BoxCollider2D>().enabled = false;
-                }
-                break;
             }
         }
     }

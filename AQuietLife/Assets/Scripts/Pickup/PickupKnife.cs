@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickupKnife : MonoBehaviour
 {
     private InventorySimple inventory;
-    private PointerManager pointer;
+    private GameManager pointer;
     [SerializeField] ThoughtManager thought;
 
     public GameObject itemButton;
@@ -13,40 +13,44 @@ public class PickupKnife : MonoBehaviour
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySimple>();
-        pointer = GameObject.FindGameObjectWithTag("Scene").GetComponent<PointerManager>();
+        pointer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     private void OnMouseOver()
     {
-        Cursor.SetCursor(pointer.interactTexture, pointer.hotSpot, pointer.curMode);
+        pointer.cursors.ChangeCursor("Grab", 1);
     }
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
+        pointer.cursors.ChangeCursor("Grab", 0);
     }
 
     private void OnMouseDown()
     {
-        for (int i = 0; i < inventory.slots.Length; i++)
+        if (!pointer.isLocked)
         {
-            if (inventory.isFull[i] == false)
+            for (int i = 0; i < inventory.slots.Length; i++)
             {
-                if (inventory.knifeInPossession == true)
+                if (inventory.isFull[i] == false)
                 {
-                    //Show Thought
-                    thought.ShowThought();
-                    thought.text = "Already have one of these..";
+                    if (inventory.knifeInPossession == true)
+                    {
+                        //Show Thought
+                        thought.ShowThought();
+                        thought.text = "Already have one of these..";
+                    }
+                    else if (inventory.knifeInPossession == false)
+                    {
+                        pointer.cursors.ChangeCursor("Grab", 0);
+                        inventory.isFull[i] = true;
+                        Instantiate(itemButton, inventory.slots[i].transform, false);
+                        FindObjectOfType<AudioCtrl>().Play("Knife");
+                        StartCoroutine(GotKnife());
+                        gameObject.SetActive(false);
+                        break;
+                    }     
                 }
-                else if (inventory.knifeInPossession == false)
-                {
-                    Cursor.SetCursor(pointer.defaultTexture, pointer.hotSpot, pointer.curMode);
-                    inventory.isFull[i] = true;
-                    Instantiate(itemButton, inventory.slots[i].transform, false);
-                    FindObjectOfType<AudioCtrl>().Play("Knife");
-                    StartCoroutine(GotKnife());
-                    break;
-                }     
             }
         }
     }
@@ -55,7 +59,5 @@ public class PickupKnife : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         inventory.knifeInPossession = true;
-        yield return new WaitForEndOfFrame();
-        gameObject.SetActive(false);
     }
 }

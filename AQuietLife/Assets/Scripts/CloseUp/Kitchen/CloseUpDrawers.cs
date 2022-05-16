@@ -20,10 +20,25 @@ public class CloseUpDrawers : MonoBehaviour
 
     public BoxCollider2D[] drawers;
 
+    [SerializeField] private Vector2[] originalOffset;
+    [SerializeField] private Vector2[] originalSize;
+
     public int currentDrawer;
 
     public bool isOnDrawer;
     public bool isDrawer;
+
+    private void Start()
+    {
+        originalOffset = new Vector2[drawers.Length];
+        originalSize = new Vector2[drawers.Length];
+
+        for (int i = 0; i < drawers.Length; i++)
+        {
+            originalOffset[i] = drawers[i].offset;
+            originalSize[i] = drawers[i].size;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -77,6 +92,8 @@ public class CloseUpDrawers : MonoBehaviour
                         Debug.Log(hit.collider.gameObject.name);
                         zoom.ObjectTransition();
                         currentDrawer = 0;
+                        drawers[0].offset = new Vector2(-0.06f, 0.13f);
+                        drawers[0].size = new Vector2(0.62f, 0.27f);
                     }
                     else if (hit.collider.CompareTag("DrawerDoor2"))
                     {
@@ -85,6 +102,8 @@ public class CloseUpDrawers : MonoBehaviour
                         Debug.Log(hit.collider.gameObject.name);
                         zoom.ObjectTransition();
                         currentDrawer = 1;
+                        drawers[1].offset = new Vector2(0.04f, 0.17f);
+                        drawers[1].size = new Vector2(0.72f, 0.19f);
                     }
                     else if (hit.collider.CompareTag("DrawerDoor3"))
                     {
@@ -93,6 +112,8 @@ public class CloseUpDrawers : MonoBehaviour
                         Debug.Log(hit.collider.gameObject.name);
                         zoom.ObjectTransition();
                         currentDrawer = 2;
+                        drawers[2].offset = new Vector2(0, 0.09f);
+                        drawers[2].size = new Vector2(0.68f, 0.2f);
                     }
                 }      
             }           
@@ -114,5 +135,13 @@ public class CloseUpDrawers : MonoBehaviour
     {
         //drawers[currentDrawer].enabled = true;
         isOnDrawer = false;
+
+        for (int i = 0; i < drawers.Length; i++)
+        {
+            drawers[i].offset = new Vector2(
+                originalOffset[i].x, originalOffset[i].y);
+            drawers[i].size = new Vector2(
+                originalSize[i].x, originalSize[i].y);
+        }
     }
 }

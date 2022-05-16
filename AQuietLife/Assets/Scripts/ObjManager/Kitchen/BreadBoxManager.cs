@@ -76,10 +76,10 @@ public class BreadBoxManager : MonoBehaviour
             else if (hit2.collider.CompareTag("BreadBoxDoor"))
             {
                 if (select.usingGlove || select.usingStoveCloth)
-                    {
-                        gameMng.cursors.ChangeCursor("Point", 1);
-                        isPointing = true;
-                    }  
+                {
+                    gameMng.cursors.ChangeCursor("Point", 1);
+                    isPointing = true;
+                }  
                 else
                     gameMng.cursors.ChangeCursor("OpenDoor", 4);
             }
