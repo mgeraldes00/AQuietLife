@@ -17,7 +17,7 @@ public class CloseUpOven : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (gameMng.isLocked == false && zoom.currentView == 0)
+            if (zoom.currentView == 0)
             {
                 zoom.ObjectTransition();
                 zoom.cameraAnim.SetTrigger("ZoomOven");

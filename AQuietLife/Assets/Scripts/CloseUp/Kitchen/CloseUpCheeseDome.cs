@@ -42,10 +42,10 @@ public class CloseUpCheeseDome : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (zoom.currentView == 0 && gameMng.isLocked == false)
+        if (zoom.currentView == 0)
             gameMng.cursors.ChangeCursor("Inspect", 1);
         else if (
-            zoom.currentView == 1 && !gameMng.isLocked && isOnDome)
+            zoom.currentView == 1 && isOnDome)
         {
             if (select.usingGlove || select.usingStoveCloth)
             {

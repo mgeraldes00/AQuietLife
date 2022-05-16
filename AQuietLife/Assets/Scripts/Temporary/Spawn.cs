@@ -32,9 +32,9 @@ public class Spawn : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (zoom.currentView == 0 && gameMng.isLocked == false)
+        if (zoom.currentView == 0)
             gameMng.cursors.ChangeCursor("Inspect", 1);
-        else if (zoom.currentView == 1 && gameMng.isLocked == false)
+        else if (zoom.currentView == 1)
             gameMng.cursors.ChangeCursor("Grab", 1);
     }
 

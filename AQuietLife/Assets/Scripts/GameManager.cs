@@ -264,7 +264,8 @@ public class GameManager : MonoBehaviour
             if (currLvl == 1)
             {
                 cursorAnim.runtimeAnimatorController = 
-                    Resources.Load("Animation/Cursors/Cursors") as RuntimeAnimatorController;
+                    Resources.Load("Animation/Cursors/Cursors") 
+                    as RuntimeAnimatorController;
             }
             yield return new WaitForSeconds(0.5f);
             levelClock.SetBool("Active", true);

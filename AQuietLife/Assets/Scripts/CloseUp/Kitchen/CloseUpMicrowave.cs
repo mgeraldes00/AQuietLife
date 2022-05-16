@@ -87,7 +87,7 @@ public class CloseUpMicrowave : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (zoom.currentView == 0 && gameMng.isLocked == false)
+        if (zoom.currentView == 0)
             gameMng.cursors.ChangeCursor("Inspect", 1);
     }
 
