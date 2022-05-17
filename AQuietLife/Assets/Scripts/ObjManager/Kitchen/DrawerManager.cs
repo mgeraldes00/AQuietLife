@@ -271,11 +271,11 @@ public class DrawerManager : MonoBehaviour
 
     public void LockAndUnlock()
     {
-        if (isLocked == false && !gameMng.isLocked)
+        if (!isLocked)
         {
             //returnArrow.SetActive(false);
-            isLocked = true;
             gameMng.isLocked = true;
+            isLocked = true;
             StartCoroutine(Unlock());
         }
     }
@@ -292,7 +292,7 @@ public class DrawerManager : MonoBehaviour
 
     IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.0f);
         isLocked = false;
         gameMng.isLocked = false;
         //returnArrow.SetActive(true);

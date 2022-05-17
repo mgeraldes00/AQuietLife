@@ -108,12 +108,13 @@ public class BinManager : MonoBehaviour
 
     public void ButtonBehaviour()
     {
-        if (zoom.currentView == 1 && !isLocked)
+        if (zoom.currentView == 1 && !isLocked && !gameMng.isLocked
+            && closeUp.isOnTrash)
         {
             closeUp.Normalize();
         }
         else if (zoom.currentView == 2 && !isLocked && !gameMng.returnable
-            && closeUp.isOnTrash)
+            && closeUp.isOnTrash && !gameMng.isLocked)
         {
             LockAndUnlock();
             StartCoroutine(HideDoor());
@@ -125,6 +126,7 @@ public class BinManager : MonoBehaviour
     {
         if (!isLocked)
         {
+            gameMng.isLocked = true;
             isLocked = true;
             StartCoroutine(Unlock());
         }
@@ -144,8 +146,9 @@ public class BinManager : MonoBehaviour
 
     IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
         isLocked = false;
+        gameMng.isLocked = false;
     }
 
     IEnumerator HideDoor()
