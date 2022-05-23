@@ -62,7 +62,8 @@ public class BinManager : MonoBehaviour
             }
             else if (isTrapped == false)
             {
-                if (select.usingGlove || select.usingStoveCloth)
+                if (select.usingGlove && !isOpen 
+                    || select.usingStoveCloth && !isOpen)
                 {
                     select.usingGlove = false;
                     select.usingStoveCloth = false;
