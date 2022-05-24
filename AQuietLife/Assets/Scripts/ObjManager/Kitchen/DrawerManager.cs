@@ -77,10 +77,13 @@ public class DrawerManager : MonoBehaviour
                 {
                     gameMng.cursors.ChangeCursor("Inspect", 0);
                     gameMng.cursors.ChangeCursor("OpenDoor", 0);
-                    gameMng.cursors.ChangeCursor("Point", 0);
+                    if (isPointing)
+                    {
+                        gameMng.cursors.ChangeCursor("Point", 0);
+                        isPointing = false;
+                    }
                 }
                 else if (hit2.collider.CompareTag("DrawerDoor1")
-                    || hit2.collider.CompareTag("DrawerDoor2")
                     || hit2.collider.CompareTag("DrawerDoor3"))
                 {
                     if (select.usingGlove || select.usingStoveCloth)
@@ -90,6 +93,23 @@ public class DrawerManager : MonoBehaviour
                     }
                     else
                         gameMng.cursors.ChangeCursor("OpenDoor", 3);
+                }
+                else if (hit2.collider.CompareTag("DrawerDoor2"))
+                {
+                    if (!handlePlaced)
+                    {
+                        if (select.usingHandle)
+                        {
+                            gameMng.cursors.ChangeCursor("Point", 1);
+                            isPointing = true;
+                        }
+                        else
+                            gameMng.cursors.ChangeCursor("Inspect", 1);
+                    }
+                    else
+                    {
+                        gameMng.cursors.ChangeCursor("OpenDoor", 3);
+                    }
                 }
             }        
         }    
@@ -162,7 +182,7 @@ public class DrawerManager : MonoBehaviour
                     }
                 }
 
-                else if (hit.collider.CompareTag("DrawerDoor3") && gameMng.isLocked == false)
+                else if (hit.collider.CompareTag("DrawerDoor3") && !gameMng.isLocked)
                 {
                     if (isTrapped[1] == true)
                     {
@@ -176,6 +196,8 @@ public class DrawerManager : MonoBehaviour
                         {
                             //doors[4].SetActive(false);
                             //doors[5].SetActive(true);
+                            gameMng.cursors.ChangeCursor("Point", 0);
+                            gameMng.cursors.ChangeCursor("OpenDoor", 3);
                             FindObjectOfType<AudioCtrl>().Play("Disarm");
                             FindObjectOfType<Glove>().gloveUsed = true;
                             StartCoroutine(Untrap(1));
@@ -184,6 +206,8 @@ public class DrawerManager : MonoBehaviour
 
                         if (select.usingStoveCloth == true)
                         {
+                            gameMng.cursors.ChangeCursor("Point", 0);
+                            gameMng.cursors.ChangeCursor("OpenDoor", 3);
                             //doors[4].SetActive(false);
                             //doors[5].SetActive(true);
                             FindObjectOfType<AudioCtrl>().Play("Disarm");
@@ -197,9 +221,10 @@ public class DrawerManager : MonoBehaviour
                         gameMng.returnable = false;
                         LockAndUnlock();
                         //zoom.InteractionTransition();
+                        closeUp.drawers[2].enabled = false;
                         StartCoroutine(ShowDoor(openDoor[2]));
                         zoom.currentView++;
-                        FindObjectOfType<PointerManager>().ChangeCursor(1);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 0);
                         FindObjectOfType<AudioCtrl>().Play("OpenDrawer");
                     }
                 }
@@ -211,6 +236,8 @@ public class DrawerManager : MonoBehaviour
                     {
                         if (select.usingHandle == true)
                         {
+                            gameMng.cursors.ChangeCursor("Point", 0);
+                            gameMng.cursors.ChangeCursor("OpenDoor", 3);
                             StartCoroutine(Restore());
                             FindObjectOfType<Handle>().handleUsed = true;
                             FindObjectOfType<AudioCtrl>().Play("InsertHandle");
@@ -223,18 +250,16 @@ public class DrawerManager : MonoBehaviour
                     }
                     else
                     {
-                        //doors[2].SetActive(false);
-                        //doors[3].SetActive(true);
-                        //objects[1].SetActive(true);
                         doorCenterOpen = true;
                         drawerName = "ZoomDrawer2";
+
                         gameMng.returnable = false;
                         LockAndUnlock();
                         //zoom.InteractionTransition();
-                        //zoom.GetComponent<Animator>().SetTrigger("Return2");
+                        closeUp.drawers[1].enabled = false;
                         StartCoroutine(ShowDoor(openDoor[1]));
                         zoom.currentView++;
-                        FindObjectOfType<PointerManager>().ChangeCursor(1);
+                        gameMng.cursors.ChangeCursor("OpenDoor", 0);
                         FindObjectOfType<AudioCtrl>().Play("OpenDrawer");
                     }       
                 }    
@@ -322,6 +347,13 @@ public class DrawerManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1.0f);
         lookingAtDrawer = true;
+        foreach(Transform child in door.transform)
+        {
+            if (child.gameObject.GetComponent<Collider2D>() != null)
+            {
+                child.gameObject.GetComponent<Collider2D>().enabled = true;
+            }
+        }
     }
 
     IEnumerator HideDoor()
@@ -333,6 +365,10 @@ public class DrawerManager : MonoBehaviour
         {
             StartCoroutine(ObjectFade.FadeOut(
                 child.gameObject, 0, 0));
+            if (child.gameObject.GetComponent<Collider2D>() != null)
+            {
+                child.gameObject.GetComponent<Collider2D>().enabled = false;
+            }
         }
         yield return new WaitForSeconds(1.0f);
         openDoor[door].SetActive(false);
