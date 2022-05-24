@@ -78,8 +78,8 @@ public class BinManager : MonoBehaviour
                         FindObjectOfType<AudioCtrl>().Play("OpenCabinetDoor");
                         isOpen = true;
 
-                        gameMng.cursors.ChangeCursor("Inspect", 0);
                         gameMng.cursors.ChangeCursor("OpenDoor", 0);
+                        gameMng.cursors.ChangeCursor("Inspect", 1);
 
                         closeUp.bin.offset = new Vector2(0, -0.04f);
                         closeUp.bin.size = new Vector2(1.49f, 1.99f);

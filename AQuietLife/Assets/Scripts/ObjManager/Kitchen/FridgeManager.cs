@@ -70,6 +70,7 @@ public class FridgeManager : MonoBehaviour
                 {
                     gameMng.cursors.ChangeCursor("Point", 0);
                     isPointing = false;
+                    gameMng.cursors.ChangeCursor("Inspect", 0);
                 }
                 else if (hit2.collider.CompareTag("FridgeDoor2") && !lookAtFridge
                     || hit2.collider.CompareTag("FridgeDoor1") && lookAtFridge)
@@ -92,7 +93,7 @@ public class FridgeManager : MonoBehaviour
                 }
                 else if (hit2.collider.gameObject.name == "fridge_shelf")
                 {
-
+                    gameMng.cursors.ChangeCursor("Inspect", 1);
                 }
             }
 
@@ -234,6 +235,7 @@ public class FridgeManager : MonoBehaviour
                 {
                     //arrow.SetActive(false);
                     //arrowZoom.SetActive(true);
+                    gameMng.cursors.ChangeCursor("Inspect", 0);
                     doors[8].GetComponent<BoxCollider2D>().enabled = false;
                     doors[3].GetComponent<Collider2D>().enabled = false;
                     for (int i = 0; i < objects.Length; i++)

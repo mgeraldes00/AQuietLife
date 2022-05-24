@@ -11990,7 +11990,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0.4
   m_Points:
   - {x: 1.18, y: 0.13}
-  - {x: 1.1, y: -1.06}
+  - {x: 1.1, y: -1.02}
   - {x: 1.53, y: -0.18}
   - {x: 1.88, y: -0.41}
   - {x: 1.88, y: -3.83}
@@ -26903,7 +26903,7 @@ GameObject:
   - component: {fileID: 2098245055}
   m_Layer: 0
   m_Name: fridge_shelf
-  m_TagString: Untagged
+  m_TagString: DoorRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
